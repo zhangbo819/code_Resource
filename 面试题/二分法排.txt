@@ -1,0 +1,40 @@
+var arr=[];
+//随机20个数
+function fun(){
+	while(arr.length<20){
+		var b=true;
+		var rand=parseInt(Math.random()*100+1);
+		if(arr.length==0){
+			arr.push(rand);
+		}
+		for(var i=0;i<arr.length;i++){
+			if(rand==arr[i]){
+				b=false;
+			}
+		}
+		if(b){
+			arr.push(rand);
+		}
+	}
+	return arr;
+}
+var arr=fun();
+console.log(arr);
+//二分法进行排序
+function fun1(arr){
+	if(arr.length<=1){
+		return arr;
+	}
+	var leftArr = [];
+	var rightArr = [];
+	var now=arr.splice(Math.floor(arr.length/2),1);//floor?ceil?
+	for(var i=0;i<arr.length;i++){
+		if(parseInt(arr[i])<=now){
+			leftArr.push(arr[i]);
+		}else{
+			rightArr.push(arr[i]);
+		}
+	}
+	return fun1(leftArr).concat(now,fun1(rightArr));
+}
+console.log(fun1(arr));

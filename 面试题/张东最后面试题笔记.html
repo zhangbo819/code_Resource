@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+
+ </head>
+ <body>
+  <script src="./jquery-1.11.3.js"></script>
+  <script>
+	
+	//将 str="ryan is not a good man" 转换为 "ryan5 is6 not7 a8 good9 man10"
+	$(function(){
+		var str="ryan is not a good man";
+		var n=5;
+		str=str.replace(/\b[a-z]+\b/ig,function(kw){
+			return kw+n++
+		})
+		//console.log(str);
+	})
+	
+	//计算一个字符串的值，如: 1+23*2+3*3*3
+	$(function(){
+		var str="1+23*2+3*3*3";
+		str=str.split("+");
+		sn=0;
+		for(var i=0;i<str.length;i++){
+			if(str[i].indexOf("*")==-1) sn+=Number(str[i]);
+			else{
+				var sstr=str[i].split("*");
+				var ssn=1;
+				for(var j=0;j<sstr.length;j++){
+					ssn*=sstr[j];
+				}
+				sn+=ssn;
+			}
+		}
+		//console.log(sn);
+	})
+
+	//找出指定字符串中哪个字母最多，有多少个
+	$(function(){
+		//第一种
+		var str="abcbcdadcabce";
+		var result = str.split("")
+						.sort()
+						.join("")
+						.match(/([a-z])\1*/g)
+						.sort(function(a,b){return b.length-a.length})[0]
+						;
+		console.log("最多的字母是："+result[0],"有"+result.length+"个");
+	})
+
+	//数组降维
+	$(function(){
+		
+		var arr=[
+			[0,0,0,0],
+			[0,0,0,0],
+			[0,0,0,0],
+			[0,0,0,0]
+		];
+		//方法1
+		for(var i=0,newarr=[];i<arr.length;i++)
+		{	
+			for(var j=0;j<arr[i].length;j++)
+			{
+				newarr.push(arr[i][j]);
+			}
+		}
+		
+		//方法2
+		arr=Array.prototype.concat.apply([],arr);
+
+		//console.log(arr);
+	})
+	//两头遍历
+	$(function(){
+		var arr=[8,7,6,5,4,3,2,1];
+		var result=[];
+		for(var i=0,j=arr.length-1;i<j;i++,j--)
+		{
+			result.push(arr[j]);
+			result.push(arr[i]);
+		}
+		if(i==j) result.push(arr[i]);
+		//console.log(result);
+	})
+	//找一个数组中那两个数的和为19
+	$(function(){
+		var arr=[1,2,4,6,9,10,12,15,17];
+		var sum=19;
+		for(var i=0,j=arr.length-1;i<j;){
+			if(arr[i]+arr[j]>sum) j--;
+			else if(arr[i]+arr[j]<sum) i++;
+			else {
+				//console.log(arr[i],arr[j]);
+				i++;j--;
+			}
+		}
+	})
+	//递归
+	$(function(){
+		var emp={
+			work:function(){
+				var sum=0;
+				for(var i=0;i<arguments.length&&arguments[0]>0;i++)
+				{
+					sum+=arguments[i]+arguments.callee(--arguments[i]);
+				}
+				return sum;
+			}
+		}
+		//console.log(emp.work(3,2,1));
+	})
+
+//	$(function(){
+//		var a=0,b=0;
+//		function A(a){
+//			A=function(b){console.log("*"+a);console.log(a+b++)}
+//			console.log(a);
+//		}
+//		A(1);
+//		A(12);
+//	})
+
+  </script>
+ </body>
+</html>

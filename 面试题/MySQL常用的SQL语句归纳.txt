@@ -1,0 +1,356 @@
+常用的SQL语句
+（0）设置客户端的sql命令所用的字符集
+
+	SET NAMES UTF8;
+
+（1）试着丢弃指定的数据库
+
+	DROP DATABASE IF EXISTS 库名;	drop database if exists;
+
+（2）新建一个数据库
+
+	CREATE DATABASE 库名 CHARSET=UTF8;	create database 库名; 
+
+（3）进去指定的库
+
+	USE 库名;
+
+（4）创建一个新的数据表
+
+	CREATE TABLE 表名( 列名 类型，列名 类型，列名 类型 );create table 表名
+
+（5）向表中插入一行数据/记录
+
+	INSERT INTO 表名 VALUES ();        insert into 表名 values();
+	提示：一行中数据值的数量必须与表声明中列的数量相同；字符串和日期数据必
+	须用英文单引号或双引号括起来，数字可括可不括；
+
+（6）从表中删除一行记录
+
+	DELETE FROM 表名;							    #删除表中所有的记录行，仍保留表本身
+	DELETE FROM 表名 WHERE 条件子句;                #只删除满足条件的记录行
+ 
+（7）修改表中的一行记录---用的比较少，最不好记忆！！
+
+	UPDATE 表名 SET 列名=值，列名=值;                 #修改所有行
+	UPDATE 表名 SET 列名=值，列名=值 WHERE 条件子句;
+
+（8）查询表中已有的所有数据
+
+	SELECT * FROM 表名;
+
+insert into xz_user value(dingding,123456,...);
+delete from xz_user where uid=1;
+update xz_user set uname='dingding',upwd='123456'...
+select uname from xz_user;
+
+查询
+2.简单查询—————查询特定的列
+  语法：SELECT 列名,列名,列名 FROM 表名;
+  要求：查询出所有的员工姓名及其工资
+  SELECT ename,salary FROM emp;
+  练习：查询出所有员工的生日、姓名、编号
+  SELECT birthday,ename,deptId FROM emp;
+
+3.简单查询—————查询所有的列
+  语法：SELECT * FROM emp;
+  提示：该语句真实项目中使用比较少
+
+4.简单查询—————给列取别名
+  语法：
+    SELECT 列名 [AS] 别名,列名 [AS] 别名
+    FROM 表名;
+  实例：查询所有员工的姓名，表头显示为“姓名”
+    SELECT ename AS 姓名 
+    FROM emp;
+  练习：查询出员工的编号、姓名、工资，列名全部用中文呈现
+    SELECT eid 员工编号,ename 姓名,salary '工 `资'
+    FROM emp;
+
+5.只显示列上不同的值
+  语法：
+      SELECT DISTINCT 列名
+      FROM 表名;
+
+  示例：查询所有员工都处于那些部门中
+      SELECT  distinct deptId FROM emp;                    
+  练习：查询出所有员工工资共有多少种
+      SELECT  distinct salary FROM emp; 
+
+6.简单查询—————查询时执行算数运算
+  示例：查询出每个员工的姓名及其年薪
+    SELECT ename,salary*12 '年薪' FROM emp;
+  练习：公司决定给每人月薪+200，每人再加5000年终奖，查询出每个员工的姓名及其年终所拿到的所有薪水
+    SELECT ename,salary+200 '月薪',(salary+200)*12+5000 '年薪' FROM emp;
+    
+7.简单查询—————查询结果的排序
+  语法：SELECT ...
+        FROM 表名
+	ORDER BY 列名 [ASC|DESC];   
+      ascendant 升序    descendant 降序
+  示例：显示所有员工的编号、姓名，按编号降序显示
+    SELECT eid,ename FROM emp ORDER BY eid DESC;
+
+   
+  练习：显示所有员工编号、姓名、工资，按工资由小到大排序
+    SELECT eid,ename,salary
+    FROM emp
+    ORDER BY salary ASC;
+
+    SELECT eid,ename,salary
+    FROM emp
+    ORDER BY salary DESC;
+  练习: 显示所有员工编号、姓名、工资，按工资由小到大排序、若工资相同，在安装姓名由大到小排序
+     SELECT eid,ename,salary
+     FROM emp
+     ORDER BY salary ASC,ename DESC;
+
+
+
+8.简单查询——————对查询到的记录进行筛选/条件查询
+  语法：
+     SELECT...
+     FROM 表名
+     WHERE 条件判断；
+  示例：查询出编号为8的员工所有信息————相等查询
+     SELECT * FROM emp WHERE eid=8;
+  练习：查询出姓名为KING的员工的所有信息
+     SELECT * FROM emp WHERE ename='king';
+  练习：查询出部门编号为10的员工的所有信息
+     SELECT * FROM emp WHERE deptId=10;
+  示例：查询出工资大于等于6000的员工的所有信息
+     SELECT * FROM emp WHERE salary>=6000;
+  练习：查询1991-1-1之后出生的
+     SELECT * FROM emp WHERE birthday>='1991-1-1'; 
+
+  示例：查询出不在10号部门的员工的所有信息 
+     SELECT * FROM emp WHERE deptId!=10;  
+ 
+     
+
+
+9.简单查询——————多条件查询
+  示例：查询出工资在6000(包括)~7000(不包括)之间的员工所有信息
+    SELECT * FROM emp WHERE salary>=6000  AND salary<7000 ;
+
+  练习：查询出所有在1990年出生的员工所有信息
+    SELECT * FROM emp WHERE birthday>='1990-1-1' AND birthday<='1990-12-31';
+  上述语句的变种： 列名 BETWEEN 值1 AND 值2
+    SELECT * FROM emp WHERE birthday BETWEEN '1990-1-1' AND '1990-12-31';
+
+  练习：查询出工资大于8000的10号部门员工的所有信息
+    SELECT * FROM emp WHERE salary>=8000 AND deptId=10;
+
+  示例：查询出部门编号为10或30的员工所有信息
+    SELECT * FROM emp WHERE deptId=10 OR deptId=30;
+
+  练习：查询出所有1990年和1992年出生的
+    SELECT * FROM emp 
+    WHERE (birthday>='1990-1-1'AND birthday<'1991-1-1') 
+    OR 
+    (birthday>='1992-1-1'AND birthday<'1993-1-1');
+
+  练习：查询出10、30、40号部门的员工所有信息
+    SELECT * FROM emp WHERE deptId=10 OR deptId=30 OR deptId=40;
+  上述语句等价于 ： WHERE 列名 IN(...)
+    SELECT * FROM emp 
+    WHERE deptId IN (10,30,40);
+  
+ （取反）语法：
+     SELECT...
+     FROM...
+     WHERE NOT 条件1；
+
+  练习：查询出不在10、30、40号部门的员工所有信息
+    SELECT * FROM emp 
+    WHERE NOT deptId IN (10,30,40);
+    等价于 WHERE deptId NOT IN (10,30,40);
+
+  查询出所有不在1990和1992出生的员工的所有信息
+    SELECT * FROM emp
+    WHERE  NOT 
+    ((birthday>='1990-1-1' AND birthday<'1991-1-1') OR  (birthday>='1992-1-1' AND birthday<'1993-1-1'));
+
+  示例：查询出部门编号为NULL的员工所有信息
+    SELECT * FROM emp WHERE deptId = NULL;    #错误
+    SELECT * FROM emp WHERE deptid IS NULL;   #正确
+
+
+
+10.简单查询——————条件查询之————————模糊查询
+  语法：
+     SELECT...
+     FROM...
+     WHERE 列名 LIKE 模糊匹配表达式；
+   模糊表达式都是字符串类型：
+     WHERE title LIKE '戴尔'; #标题必须等于；
+     WHERE title LIKE '%戴尔' #在‘戴尔’之前匹配任意多个任意字符
+     WHERE title LIKE '戴尔%'
+     WHERE title LIKE '%戴尔%'
+     WHERE title LIKE '_戴尔' #_匹配任意一个任意字符
+   练习：查询出所有姓名中带字符E的员工所有信息
+     SELECT *
+     FROM emp
+     WHERE ename  LIKE '%E%' ;
+   练习：查询出所有姓名以字符E开头的员工所有信息
+     SELECT *
+     FROM emp
+     WHERE ename LIKE 'E%';
+   练习：查询出所有姓名倒数第二个字符是E的员工的所有信息
+     SELECT *
+     FROM emp
+     WHERE ename  LIKE '%E_';
+   练习：查询出姓名中包含字符E或A的员工的所有信息
+   SELECT *
+     FROM emp
+     WHERE ename  LIKE '%E%' OR ename LIKE '%A%';
+
+
+11.简单查询—————— 分页查询————重点
+   若要查询的满足条件的数据行太多，不方便一次性全部显示给用户，可以“一页一页”的显示。
+   语法：
+      SELECT...
+      FROM..
+      WHERE...
+      ORDER BY...
+      LIMIT start,count; 
+      start 是一个数字，表示从哪一行开始获取数据
+      count 是一个数字，表示一次最多读取多少行记录
+   假设：每一页最多只显示5条记录
+      第一页:...LIMIT 0,5;
+      第二页:...LIMIT 5,5;
+      第三页:...LIMIT 10,5;
+      第n页:... LIMIT (n-1)*5,5;
+   示例：查询所有员工，每页显示5条，要第1页
+      SELECT * FROM emp LIMIT 0,5; 
+   示例：查询所有员工，每页显示5条，要第2页
+      SELECT * FROM emp LIMIT 5,5; 
+   示例：查询所有员工，每页显示5条，要第3页
+      SELECT * FROM emp LIMIT 10,5; 
+   示例：查询所有员工，每页显示5条，要第4页
+      SELECT * FROM emp LIMIT 15,5;
+   示例：查询出姓名中包含字符E的员工的信息，按姓名升序排序，每页显示3条记录，显示第一页
+      SELECT *
+      FROM emp
+      WHERE ename LIKE '%E%'
+      ORDER BY ename 
+      LIMIT 0,3;
+
+
+12.复杂查询——————分组查询/聚合函数
+   示例：查询所有员工数量
+   语法：MySQL提供了五个聚合函数：
+     COUNT() MIN() MAX() SUM() AVG()
+   示例：查询所有员工数量 
+       SELECT COUNT(eid) FROM emp;
+       SELECT COUNT(deptId) FROM emp;
+   练习：查询出10号部门的员工数量
+       SELECT COUNT(*) FROM emp WHERE deptId=10;
+   示例：查询出所有员工工资的最大值
+       SELECT MAX(salary) FROM emp ;
+   练习：查询出所有员工中年龄最大的员工的生日
+       SELECT MIN(birthday) FROM emp ;
+   练习：查询出所有员工的工资总和
+       SELECT SUM(salary) FROM emp;
+   练习：查询出所有员工工资的平均值
+       SELECT AVG(salary) FROM emp;
+       SELECT SUM(salary)/COUNT(eid) FROM emp;
+   
+   分组
+   语法：
+       SELECT COUNT(..),SUM(..),MAX(..)
+       FROM 表名
+       GROUP BY 列名;
+
+   示例：查询出每个部门的编号，以及该部门下员工的数量
+       SELECT deptId,COUNT(*) FROM emp GROUP BY deptId; 
+   练习：查询出每个部门的编号、平均工资、最大工资、最小工资
+       SELECT deptId,AVG(salary),SUM(salary),MIN(salary) FROM emp GROUP BY deptId;
+
+
+13.复杂查询————————子查询————————难点！
+   示例：查询出"Development" 部门的所有的员工信息
+   步骤1：查询出Development部门的编号——————10
+      SELECT did FROM dept WHERE dname='Development';
+   步骤2：查询出10号部门中员工的所有信息
+      SELECT * FROM emp WHERE deptId=10;
+   整合步骤1和步骤2：
+      SELECT * FROM emp WHERE deptId=(
+         SELECT did FROM dept WHERE dname='Development'
+      );
+
+   练习：查询出工资大于SMITH 的工资的员工所有信息
+       SELECT * FROM emp WHERE salary>(
+           SELECT  salary FROM emp WHERE ename='SMITH'
+       );
+   练习：查询出比King年长的员工的所有信息
+       SELECT * FROM emp WHERE birthday<(
+            SELECT birthday FROM emp WHERE ename='King'
+       );
+
+   练习：查询出工资 比所有员工平均工资 大的员工的所有信息
+      SELECT * FROM emp WHERE salary>(
+            SELECT AVG(salary)  FROM  emp
+      );
+    
+   练习：查询出编号比KING的员工编号 大的员工的所有信息
+    SELECT * FROM emp WHERE eid>(
+          SELECT eid FROM emp WHERE ename='KING'
+    );
+	``````````````````````````````````````````````````````````````````
+    SELECT * FROM emp WHERE deptId=(
+       SELECT deptId FROM emp WHERE ename='KING'
+    );
+     
+    SELECT * FROM emp WHERE birthday<(
+       SELECT birthday FROM emp WHERE ename='KING'
+    );
+
+14.复杂查询——————跨表查询  掌握
+    语法：————————————————必须有WHERE相等判定，否则会产生笛卡尔积
+           SELECT...
+           FROM 表1,表2
+           WHERE 表1的列=表2的列;
+
+    *注意：SQL-92标准中的跨表查询语法可能产生“数据缺失”
+    
+         1.语法SQL-99： 内连接查询   INNER JOIN...ON...
+           SELECT ename,dname
+           FROM emp INNER JOIN dept 
+           ON emp.deptId=dept.did;
+
+    *注意：内连接查询与SQL-92标准中的查询效果一样
+
+	 2.语法SQL-99：左外链接查询 LEFT OUTER JOIN...ON...
+	  SELECT ename,dname
+	  FROM emp LEFT OUTER JOIN dept 
+	  ON emp.deptId=dept.did; #小手指向左边表
+	  注意：左外链接会把左边记录全部显示
+
+	 3.语法SQL-99：右外链接查询 RIGHT OUTER JOIN...ON...
+	   SELECT ename,dname
+	   FROM emp RIGHT OUTER JOIN dept 
+	   ON emp.deptId=dept.did;#小手指向右边表
+	   注意：右外链接会把右边记录全部显示
+
+         4.语法SQL-99：全链接查询 FULL JOIN...ON...
+           SELECT ename,dname
+	   FROM emp FULL JOIN dept 
+	   ON emp.deptId=dept.did;#小手指向左边和右边表
+	   注意：全链接会把左右边记录全部显示——————MySQL不支持全连接。可以使用左连接和右连接
+	   查询结果集的“合并”来代替实现。
+	     (SELECT ename,dname FROM emp LEFT JOIN dept ON deptId=did)
+	     UNION 
+	     (SELECT ename,dname FROM emp RIGHT JOIN dept ON deptId=did);
+
+
+    示例：查询出所有的员工姓名及其所在部门名称  
+    SELECT ename,dname FROM dept,emp; #错误，产生了笛卡尔积
+  
+·······································································
+从两个集合中任意去出一个元素于另一个集合中任一元素组合，
+方案数共有 M x N 个 ——————笛卡尔积
+·······································································
+    SELECT ename,dname
+    FROM dept,emp
+    WHERE deptId=did;

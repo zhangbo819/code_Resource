@@ -1,0 +1,37 @@
+﻿JSONP：https://www.cnblogs.com/fanyx/p/5775939.html
+js中跨域解决：https://www.cnblogs.com/2050/p/3191744.html
+不要再问我跨域问题了: https://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&mid=2651554582&idx=1&sn=f04640859c081eadda8f825ec8728e94&chksm=802554d7b752ddc10950a699a2221a42e8bf607ce45c98e68d8bfe7f4a9b431a3baa90d7ee7e&mpshare=1&scene=23&srcid=0224WurIwxsv3UwT8gSnIE45#rd
+一、什么是跨域
+http:// www . google : 8080 / script/jquery.js
+
+http:// （协议号）
+
+www  （子域名）
+
+google （主域名）
+
+8080 （端口号）
+* 当协议、子域名、主域名、端口号中任意一各不相同时，都算不同的“域”。
+
+* 不同的域之间相互请求资源，就叫“跨域”
+
+二、处理跨域的方法
+
+1.后台代理
+
+2.JSONP
+
+3.XHR2
+* IE10以下的版本都不支持
+
+* 只需要在服务器端头部加上下面两句代码：
+
+header( "Access-Control-Allow-Origin:*" );
+
+4.空iframe加form
+
+5.CORS
+CORS是一个W3C标准，全称是"跨域资源共享"（Cross-origin resource sharing）跨域资源共享 CORS 详解。看名字就知道这是处理跨域问题的标准做法。
+
+6.代理
+想一下，如果我们请求的时候还是用前端的域名，然后有个东西帮我们把这个请求转发到真正的后端域名上，不就避免跨域了吗？这时候，Nginx出场了。

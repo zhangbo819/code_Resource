@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* w3c盒子 ie盒子 */
+        .w3cBox {
+            background-color: red;
+            width: 200px;
+            height: 200px;
+            box-sizing: border-box;
+            padding: 50px;
+            border: 10px solid green;
+            margin: 50px;
+        }
+    </style>
+    <style>
+        /* 水平垂直居中 */
+        .wrp {
+            background-color: #b9b9b9;
+            width: 240px;
+            height: 160px;
+        }
+
+        .box {
+            color: white;
+            background-color: #3e8e41;
+            width: 200px;
+            height: 120px;
+            overflow: auto;
+        }
+
+        .wrp1 {
+            position: relative;
+        }
+
+        .box1 {
+            margin: auto;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+        .wrp2 {
+            position: relative;
+        }
+
+        .box2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -100px;
+            /* (width + padding)/2 */
+            margin-top: -60px;
+            /* (height + padding)/2 */
+        }
+
+        .wrp3 {
+            position: relative;
+        }
+
+        .box3 {
+            margin: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        .wrp4 {
+            display: table;
+        }
+
+        .subwrp4 {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .box4 {
+            margin: auto;
+            overflow-wrap: break-word;
+            height: auto;
+            max-height: 80%;
+            max-width: 80%;
+        }
+
+        .wrp5 {
+            text-align: center;
+            overflow: auto;
+        }
+
+        .box5 {
+            display: inline-block;
+            vertical-align: middle;
+            width: auto;
+            height: auto;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .wrp5:after {
+            content: '';
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+            margin-left: -0.25em;
+            /* To offset spacing. May vary by font */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w3cBox"></div>
+    <hr>
+    <div class="wrp wrp1">
+        <div class="box box1">
+            <h3>完全居中层1：</h3>
+            <h3>开发工具 【 WeX5 】： 高性能轻架构、开源免费、跨端、可视化</h3>
+        </div>
+    </div>
+    <hr>
+    <div class="wrp wrp2">
+        <div class="box box2">
+            <h3>完全居中方案二：</h3>
+            <h3>开发工具 【 WeX5 】： 高性能轻架构、开源免费、跨端、可视化</h3>
+        </div>
+    </div>
+    <hr>
+    <div class="wrp wrp3">
+        <div class="box box3">
+            <h3>完全居中方案三：</h3>
+            <h3>开发工具 【 WeX5 】： 高性能轻架构、开源免费、跨端、可视化</h3>
+        </div>
+    </div>
+    <hr>
+    <div class="wrp wrp4">
+        <div class="subwrp4">
+            <div class="box box4">
+                <h3>完全居中方案四：</h3>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="wrp wrp5">
+
+        <div class="box box5">
+            <h3>完全居中方案五：</h3>
+            <h3>开发工具 【 WeX5 】： 高性能轻架构、开源免费、跨端、可视化</h3>
+        </div>
+    </div>
+</body>
+
+</html>

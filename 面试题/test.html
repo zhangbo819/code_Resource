@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title></title>
+ </head>
+ <body>
+  <script>
+	var arr=[20, 3, 36, 62, 4, 54, 58, 78, 40, 43, 76, 95, 21, 37, 47, 18, 84, 94, 1, 68];
+	console.log(arr);
+
+	//快速进行排序
+	function quicksort(arr){
+		if(arr.length<=1) return arr;
+//		var arr=[];
+//		for(var i=0;i<arr1.length;i++) 
+//		arr.push(arr1[i]);
+		var leftarr=[],rightarr=[],now=arr.splice(Math.floor(arr.length/2),1);
+		for(var i=0;i<arr.length;i++)
+		{
+			if(arr[i]<=now) leftarr.push(arr[i]);
+			else rightarr.push(arr[i]);
+		}
+		return quicksort(leftarr).concat(now,quicksort(rightarr));
+	}
+	arr=quicksort(arr);
+	console.log(arr);
+  </script>
+ </body>
+</html>

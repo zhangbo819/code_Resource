@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style></style>
+  <script></script>
+  <script>
+		var arr=[20,3,20,41,99,99,45,21,3,41,41];
+		function fn(arr){
+			var newarr=[];
+			var obj={};
+
+			for(var i=0;i<arr.length;i++){
+
+				if(!obj[arr[i]]){
+					newarr.push(arr[i]);
+					obj[arr[i]]=1;
+				}
+			}
+			return newarr
+		}
+	
+		console.log(arr);
+		console.log(fn(arr));
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

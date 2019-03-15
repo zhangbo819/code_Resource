@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		/*const fibonacci = (n) => {
+			if(isNaN(n)) return 
+			else if(n==1||n==2) return 1
+			else{
+//				var arr = [1,1];
+//				for(var i = 0;i<n-2;i++){
+//					//console.log(arr[i]+arr[i+1]);
+//					arr.push(arr[i]+arr[i+1])
+//				}
+//				return arr[n-1]
+					var a=1,b=1,t=n-2,sn;
+					while(t--){
+						sn=a+b;
+						a=b;
+						b=sn;
+					}
+					return sn
+			}
+		}
+		
+		*/
+
+		//const fibonacci=((s)=>(f=(i)=>s[i]||(s[i]=f(i-1)+f(i-2))))([0,1,1])
+		const fibonacci=function(s){	
+			return function f(i){
+				  console.log(s);
+					//console.log("i="+i+"\n");
+					return s[i]||(s[i]=f(i-1)+f(i-2))
+				}
+		}([0,1,1])
+
+//		console.log(fibonacci(1));
+//		console.log(fibonacci(4));
+		console.log(fibonacci(6));
+		
+	</script>
+</body>
+</html>

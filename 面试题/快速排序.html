@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title></title>
+ </head>
+ <body>
+  <script>
+	var arr=[];
+	//随机20个数
+	function fun(){
+		while(arr.length<20){
+			var b=true;
+			var rand=parseInt(Math.random()*100+1);
+			if(arr.length==0){
+				arr.push(rand);
+			}
+			for(var i=0;i<arr.length;i++){
+				if(rand==arr[i]){
+					b=false;
+				}
+			}
+			if(b){
+				arr.push(rand);
+			}
+		}
+		return arr;
+	}
+	var arr=fun();
+	console.log(arr);
+	//快速进行排序
+	function quicksort(arr){
+		if(arr.length<=1) return arr;
+		var leftarr=[],
+				rightarr=[],
+				now=arr.splice(Math.floor(arr.length/2),1);
+		for(var i=0;i<arr.length;i++)
+		{
+			if(arr[i]<=now) leftarr.push(arr[i]);
+			else rightarr.push(arr[i]);
+		}
+		return quicksort(leftarr).concat(now,quicksort(rightarr));
+	}
+	console.log(quicksort(arr));
+  </script>
+ </body>
+</html>

@@ -1,0 +1,10 @@
+//判断一个节点node是否具有一个指定的class名className
+function myhasClass(node,className){
+    if(node.length==0) return false;
+    var arr=node.split(" ");
+    for(var i=0;i<arr.length;i++)
+    {   
+        if(arr[i]==className) return true;
+    }
+    return false;
+}

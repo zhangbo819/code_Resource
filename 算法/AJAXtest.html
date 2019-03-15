@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+	<script src="common.js"></script>
+	<script>
+		function get(){
+			//1、创建 / 获取 xhr
+			var xhr = createXhr();
+			//2、创建请求
+			xhr.open("get","06-ajax-exercise.php",true);
+			//3、设置回调函数 onreadystatechange
+			xhr.onreadystatechange=function(){
+				//判断readyState 以及 status 的状态
+				if(xhr.readyState==4&&xhr.status==200){
+					//获取响应数据
+					var resText = xhr.responseText;
+					//对响应数据的处理
+					$("msg-show").innerHTML=resText;
+				}
+			}
+			//4、发送请求
+			xhr.send(null);
+		}
+
+
+		function Post(){
+			//1、获取 xhr
+			var xhr = createXhr();
+			//2、创建请求（post 方式）
+			xhr.open("post","01-check-login.php",true);
+			//3、设置回调函数
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState==4&&xhr.status==200){
+					$("show").innerHTML=xhr.responseText;
+				}
+			}
+			
+			//增加：设置Content-Type 的请求消息头(POST专用)
+			xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+
+			//4、发送请求(有请求主体)
+			var uname = $("uname").value;
+			var upwd = $("upwd").value;
+			xhr.send("uname="+uname+"&upwd="+upwd);
+		}
+
+
+	</script>
+ </head>
+ <body>
+
+ </body>
+</html>

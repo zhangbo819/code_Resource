@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style></style>
+  <script></script>
+  <script>
+		function sleep(numberMillis) { 
+			var now = new Date(); 
+			var exitTime = now.getTime() + numberMillis; 
+			while (true) { 
+				now = new Date(); 
+				if (now.getTime() > exitTime) return; 
+			} 
+		}
+
+		var now = new Date();
+//		console.log(Date.prototype);
+		console.log("sleep开始"+now);
+		sleep(3000);
+		now = new Date();
+		console.log("sleep结束"+now);
+		
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

@@ -1,0 +1,20 @@
+1. 让其点击的按钮disable，让其不能点击
+存一个状态
+2. 用setTimeout+clearTimeout方法，防止大量重复点击
+timer = setTimeout(function() {
+   ...
+})
+
+3. 每次发送ajax前，取消之前没有返回的同样的ajax请求，就是abort掉
+其实Ajax请求的XMLHttpRequest对象有abort方法，在发送之前把之前没有返回的ajax请求取消。
+abort()函数
+取消当前响应，关闭连接并且结束任何未决的网络活动。
+这个方法把 XMLHttpRequest 对象重置为 readyState 为 0 的状态，并且取消所有未决的网络活动。例如，如果请求用了太长时间，而且响应不再必要的时候，可以调用这个方法。
+伪代码如下：
+if(xmlhttp&&xmlhttp.readyState<4)
+{
+    xmlhttp.abort(); 
+}
+
+
+

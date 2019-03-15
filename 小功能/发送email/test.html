@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.a{
+			display:flex;
+			justify-content: center;
+			align-items: center;
+			flex-wrap:wrap;
+			width:1000px;
+			height:500px;
+			border:1px solid red;
+			margin:0 auto;
+		}
+		.b{
+			width:300px;
+			height:180px;
+			margin:0 10px;
+/*			border:1px solid red;*/
+			background:red;
+		}
+	</style>
+</head>
+<body>
+	<div class="a" id="a">
+		<div class="b"></div>
+<!-- 		<div class="b"></div> -->
+<!-- 		<div class="b"></div> -->
+<!-- 		<div class="b"></div> -->
+<!-- 		<div class="b"></div> -->
+<!-- 		<div class="b"></div> -->
+	</div>
+	<script>
+		var a = document.getElementById("a"),i=1;
+
+		setInterval(function(){
+			if(i==6){
+				a.innerHTML="";
+				i=0;
+			}
+
+			a.innerHTML+=`<div class="b"></div>`;
+			i++;
+		},1000)
+	</script>
+</body>
+</html>

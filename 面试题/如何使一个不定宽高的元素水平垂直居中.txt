@@ -1,0 +1,44 @@
+ps:Vertical-align被用于垂直对齐inline元素，也就是display值为inline和inline-block的元素
+
+1.让父元素display:table，子元素display:table-cell，然后使用vertical-align: middle垂直对齐
+  text-align: center水平对齐
+  父元素：display:table
+  子元素: display:table-cell
+          vertical-align: middle;
+          text-align: center;
+  display:table-cell (此元素会作为一个表格单元格显示（类似 <td> 和 <th>）)
+  display:table (此元素会作为块级表格来显示（类似 <table>），表格前后带有换行符。)
+  vertical-align: middle (垂直居中)
+
+2.父元素text-align: center 水平对齐，然后定义一个新的空span元素，width: 0，height: 100%
+  ，display: inline-block，vertical-align: middle 垂直对齐，目标div inline-block。
+  
+  父元素：text-align: center;
+  子元素: 
+          span{
+			    display: inline-block;
+                width: 0;
+                height: 100%;
+                vertical-align: middle;
+                zoom: 1;
+		  }
+		  div{
+		       display: inline-block;
+               color: #fff;
+               zoom: 1;
+		  }
+  ps:zoom ie专用 用来解决一些布局上的bug
+
+3.父元素相对定位，子元素绝对定位，top、left 为50% ，最后用transform 向左移动50%
+
+  父元素：position: relative;
+  子元素: position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+4.弹性布局，justify-content：center水平，align-items：center垂直
+  父元素：display: flex;
+          justify-content: center;
+          align-items: center;
+  子元素: 无

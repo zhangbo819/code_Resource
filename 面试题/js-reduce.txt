@@ -1,0 +1,2 @@
+str=[ "c", "d", "a", "a", "b", "c","a", "b"];
+info=str.reduce(function(p,k){console.log(p,k); return p[k]++||(p[k]=1),p},{})

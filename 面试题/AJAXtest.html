@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+	<script src="common.js"></script>
+	<script>
+//	  2.readyState - 属性
+//      作用：表示 xhr 对象的 请求状态
+//      值：由 0 - 4 表示的 5个状态
+//        0 ：请求尚未初始化
+//				1 ：已经打开到WEB服务器的连接，正在向服务器发送请求
+//				2 ：请求完成
+//				3 ：正在接收服务器端的响应
+//				4 ：接收响应数据成功
+//				注意：当readyState的值为4的时候，表示所有的响应都已经接收完毕。
+//    
+//    3.status - 属性
+//      作用：服务器的响应状态码
+//      值：
+//        只记住一个即可 200 当status 是 200 的时候，表示服务器已经正确的给出所有的响应
+		function createXhr()
+		{ var xhr;
+			if(window.XMLHttpRequest)
+				 xhr=new XMLHttpRequest();
+			else
+				 xhr=new ActiveObject(Micrsoft.XMLHttp);
+			return xhr;
+		}
+		function get(){
+			//1、创建 / 获取 xhr
+			var xhr = createXhr();
+			//2、创建请求
+			xhr.open("get","06-ajax-exercise.php",true);
+			//3、设置回调函数 onreadystatechange
+			xhr.onreadystatechange=function(){
+				//判断readyState 以及 status 的状态
+				if(xhr.readyState==4&&xhr.status==200){
+					//获取响应数据
+					var resText = xhr.responseText;
+					//对响应数据的处理
+					$("msg-show").innerHTML=resText;
+				}
+			}
+			//4、发送请求
+			xhr.send(null);
+		}
+
+		function Post(){
+			//1、获取 xhr
+			var xhr = createXhr();
+			//2、创建请求（post 方式）
+			xhr.open("post","01-check-login.php",true);
+			//3、设置回调函数
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState==4&&xhr.status==200){
+					$("show").innerHTML=xhr.responseText;
+				}
+			}
+			
+			//增加：设置Content-Type 的请求消息头(POST专用)
+			xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+
+			//4、发送请求(有请求主体)
+			var uname = $("uname").value;
+			var upwd = $("upwd").value;
+			xhr.send("uname="+uname+"&upwd="+upwd);
+		}
+
+
+	</script>
+ </head>
+ <body>
+
+ </body>
+</html>

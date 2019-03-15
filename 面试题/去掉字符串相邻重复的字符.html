@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function fn(str) {
+            if (str.length <= 1) return str;
+
+            for (var i = 0, len = str.length - 1; i < len; i++) {
+                if (str[i] === str[i + 1]) {
+                    break;
+                }
+            }
+            return (i === len ? (str) : (str.slice(0, i) + fn(str.slice(i + 1))))
+        }
+
+
+        var str = 'abcaaaaabcdddaabab';
+        // var str = 'ab';
+
+        console.log("start", str);
+        console.log("end", fn(str));
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .sec-left-item{
+            /* width:480px; */
+            box-sizing: border-box;
+            margin-left:35px;
+            border-bottom:1px solid #215892;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color:#000;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .sli-item1{ height: 180px;}
+        .sli-item1>p{display: inline-block;}
+        .sli-item1>p:nth-child(1){margin-right: 15px;}
+        .sli-item1>p:nth-child(3){margin-left: 15px;}
+        .sli-item2{height: 350px;}
+        .sli-item3{height: 430px;}
+
+        .showNumItem{
+            float: left;
+            margin: 0 5px;
+            width: 52px;
+            height: 80px;
+            overflow: hidden;
+            background-color: #602A1E;
+            text-align: center;
+            padding-bottom: 5px;
+        }
+        /* .oneNumbers{    transition: all 1s;} */
+        .digit{
+            font-size:65px;
+            color:#FFF900;
+            display: block;
+            transition: all 1s;
+            transform: translateY(0)
+        }
+        .isZero{color:#945342;}
+    </style>
+</head>
+<body>
+    <!-- 总任务数 -->
+    <div class="sec-left-item sli-item1">
+        <p>总任务数</p>
+        <div class="showNumber">
+            <div class="showNumItem">
+                <div class="oneNumbers">
+                    <span class='digit'>0</span>
+                    <span class='digit'>1</span>
+                    <span class='digit'>2</span>
+                    <span class='digit'>3</span>
+                    <span class='digit'>4</span>
+                    <span class='digit'>5</span>
+                    <span class='digit'>6</span>
+                    <span class='digit'>7</span>
+                    <span class='digit'>8</span>
+                    <span class='digit'>9</span>
+                    <span class='digit'>0</span> 
+                </div>                            
+            </div>
+            <div class="showNumItem">
+                <div class="oneNumbers">
+                    <span class='digit'>0</span>
+                    <span class='digit'>1</span>
+                    <span class='digit'>2</span>
+                    <span class='digit'>3</span>
+                    <span class='digit'>4</span>
+                    <span class='digit'>5</span>
+                    <span class='digit'>6</span>
+                    <span class='digit'>7</span>
+                    <span class='digit'>8</span>
+                    <span class='digit'>9</span>
+                    <span class='digit'>0</span> 
+                </div>                            
+            </div>
+            <div class="showNumItem">
+                <div class="oneNumbers">
+                    <span class='digit'>0</span>
+                    <span class='digit'>1</span>
+                    <span class='digit'>2</span>
+                    <span class='digit'>3</span>
+                    <span class='digit'>4</span>
+                    <span class='digit'>5</span>
+                    <span class='digit'>6</span>
+                    <span class='digit'>7</span>
+                    <span class='digit'>8</span>
+                    <span class='digit'>9</span>
+                    <span class='digit'>0</span> 
+                </div>                            
+            </div>
+            <div class="showNumItem">
+                <div class="oneNumbers">
+                    <span class='digit'>0</span>
+                    <span class='digit'>1</span>
+                    <span class='digit'>2</span>
+                    <span class='digit'>3</span>
+                    <span class='digit'>4</span>
+                    <span class='digit'>5</span>
+                    <span class='digit'>6</span>
+                    <span class='digit'>7</span>
+                    <span class='digit'>8</span>
+                    <span class='digit'>9</span>
+                    <span class='digit'>0</span> 
+                </div>                            
+            </div>
+            <div class="showNumItem">
+                <div class="oneNumbers">
+                    <span class='digit'>0</span>
+                    <span class='digit'>1</span>
+                    <span class='digit'>2</span>
+                    <span class='digit'>3</span>
+                    <span class='digit'>4</span>
+                    <span class='digit'>5</span>
+                    <span class='digit'>6</span>
+                    <span class='digit'>7</span>
+                    <span class='digit'>8</span>
+                    <span class='digit'>9</span>
+                    <span class='digit'>0</span> 
+                </div>                            
+            </div>
+        </div>
+        <p>笔</p>
+    </div>
+
+
+    <script src="./jslib/jquery.min.js"></script>
+    <script src="./js/numberScroll.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function fn(arr) {
+            let obj = {};
+            arr.map((item) => {
+                if (obj[item] === undefined) {
+                    obj[item] = 1;
+                } else {
+                    obj[item] += 1;
+                }
+            })
+
+            let newArr = new Array(arr.length);
+            console.log("obj", obj)
+            for (let key in obj) {
+                newArr.splice(obj[key], 0, key)
+            }
+            console.log("newArr", newArr)
+
+            let SetArr = new Set(newArr);
+
+            newArr = Array.from(SetArr);
+            newArr.splice(0, 1);
+            console.log("newArr set", newArr)
+            let returnArr = [];
+            for (let i = newArr.length - 1; i >= 0; i--) {
+                if (returnArr.length >= 10) break;
+                returnArr.push(newArr[i])
+            }
+
+            return returnArr
+        }
+
+        var str = 'meta react title head body script doctype html css function js vue reactnative node php meta react title head body script doctype html css function meta react title head body script meta react title react title react';
+        var strArr = str.split(' ');
+        console.log("str, strArr", str, strArr);
+
+        console.log("new Arr :", fn(strArr));
+
+
+
+    </script>
+</body>
+
+</html>

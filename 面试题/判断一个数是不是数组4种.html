@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <script>
+    var n=5,s="Hello",b=true,
+        nu=null, un=undefined,
+        f=function(){},
+        obj1=[1,2,3],  obj2={},  obj3=new Date(),
+        obj4={};
+        obj4.__proto__=obj1;
+    console.log(
+      typeof n,//number
+      typeof s,//string
+      typeof b,//boolean
+      typeof nu,//Object
+      typeof un,//undefined
+      typeof f,//function
+      typeof obj1,//Array
+      typeof obj2,//Object
+      typeof obj3 //Date
+    );
+    //方法一: 判断爹
+    console.log(
+      Array.prototype.isPrototypeOf(obj1),//true
+      Array.prototype.isPrototypeOf(obj2),//false
+      Array.prototype.isPrototypeOf(obj3),//false
+      Array.prototype.isPrototypeOf(obj4),//true
+    );
+    //方法一: 判断妈
+    //2种方式: 
+    //console.log(
+      //obj1.constructor===Array,
+      //obj2.constructor===Array,
+      //obj3.constructor===Array,
+      //obj4.constructor===Array
+    //);
+    console.log(
+      obj1 instanceof Array,
+        //obj1.constructor===Array,
+      obj2 instanceof Array,
+      obj3 instanceof Array,
+      obj4 instanceof Array
+    );
+    //3. 判断DNA:"[object Array]"
+    console.log(
+      Object.prototype.toString.call(obj1)
+        =="[object Array]", //true
+      Object.prototype.toString.call(obj2)
+        =="[object Array]", //false
+      Object.prototype.toString.call(obj3)
+        =="[object Array]", //false
+      Object.prototype.toString.call(obj4)
+        =="[object Array]"  //false
+    );
+    //4. isArray()
+    console.log(
+      Array.isArray(obj1),
+      Array.isArray(obj2),
+      Array.isArray(obj3),
+      Array.isArray(obj4)
+    );
+  </script>
+ </body>
+</html>

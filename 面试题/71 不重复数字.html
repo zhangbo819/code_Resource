@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//const fibonacci=((s)=>(f=(i)=>s[i]||(s[i]=f(i-1)+f(i-2))))([0,1,1])
+			
+		const uniqueNums=(n)=>{
+			var s={};
+			var arr=[];
+			while(n--){
+				if(arr.length>=31) break;
+				var index = Math.floor(2+Math.random()*(33-2));
+				if(!s[index]){
+					arr.push(index);
+					s[index]=1;
+				}
+				else{
+					n++;
+					continue;
+				}
+			
+			}
+			return arr
+		}
+//		console.log(uniqueNums(4));
+//		console.log(uniqueNums(15));
+		var arr = uniqueNums(31);
+		console.log(arr);
+		arr.sort((a,b)=> a-b);
+		console.log(arr);
+	</script>
+</body>
+</html>

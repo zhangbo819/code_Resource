@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function abc(){
+		  this.lala = "lala";
+			this.name = "zhangbo"
+		}
+	  
+		var obj1 = new abc();
+		console.log(obj1.name);
+		console.log(Object.getOwnPropertyDescriptor(obj1,"name"));//{value: "zhangbo", writable: true, enumerable: true, configurable: true}
+		for (var i in obj1)
+		{
+			console.log(i)//能
+		}
+    
+		Object.defineProperties(obj1,{
+		   "name":{value: "zhangbo", writable: true, enumerable: false, configurable: true}
+		})
+		
+		for (var i in obj1)
+		{
+			console.log(i)//不能
+		}
+
+
+	</script>
+</body>
+</html>

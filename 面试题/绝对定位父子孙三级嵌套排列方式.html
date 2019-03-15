@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>绝对定位父子孙三级嵌套排列方式</title>
+	<style>
+		.d1{
+		  width:400px;
+			height:400px;
+			border:1px solid red;
+			position:relative;
+			top: 100px;
+      left: 100px;
+		}
+		.d2{
+		  width:200px;
+			height:200px;
+			border:1px solid red;
+			position:absolute;
+			top: 50px;
+      left: 50px;
+		}
+		.d3{
+		  width:100px;
+			height:100px;
+			border:1px solid red;
+			position:absolute;
+			top: 10px;
+      left: 10px;
+		}
+		span{
+			color:red;
+		}
+	</style>
+</head>
+<body>
+	<p>绝对定位的元素的位置相对于 最近的<span>已定位(包括绝对定位)</span>祖先元素 ，如果元素没有已定位的祖先元素，那么它的位置相对于最初的包含块</p>
+	<div class="d1">
+		<div class="d2">
+			<div class="d3"></div>
+		</div>
+	</div>
+
+
+</body>
+</html>
