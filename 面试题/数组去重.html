@@ -1,31 +1,42 @@
 <!doctype html>
 <html lang="en">
- <head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <style></style>
-  <script></script>
-  <script>
-		var arr=[20,3,20,41,99,99,45,21,3,41,41];
-		function fn(arr){
-			var newarr=[];
-			var obj={};
 
-			for(var i=0;i<arr.length;i++){
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style></style>
+	<script></script>
+	<script>
+		
+		function fn(arr) {
+			var newarr = [];
+			var obj = {};
 
-				if(!obj[arr[i]]){
+			for (var i = 0; i < arr.length; i++) {
+
+				if (!obj[arr[i]]) {
 					newarr.push(arr[i]);
-					obj[arr[i]]=1;
+					obj[arr[i]] = 1;
 				}
 			}
 			return newarr
 		}
-	
+
+		function fn2(arr) {
+			return Array.from(new Set(arr))
+		}
+
+		var arr = [20, 3, 20, 41, 99, 99, 45, 21, 3, 41, 41];
 		console.log(arr);
 		console.log(fn(arr));
-  </script>
- </head>
- <body>
-  
- </body>
+		var arr2 = [200, 3, 20, 41, 99, 99, 45, 21, 3, 41, 41];
+		console.log(fn2(arr2));
+
+	</script>
+</head>
+
+<body>
+
+</body>
+
 </html>
