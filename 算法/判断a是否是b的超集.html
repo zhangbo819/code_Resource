@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function judge(a, b) {
+            console.log('输入: a, b', a, b)
+
+            var Objb = getAllCounts(b);
+            // console.log('Objb', Objb)
+
+            for (var key in Objb) {
+                if (getCountsByChart(key, a) < Objb[key]) {
+                    console.log('失败, ' + key + '不是')
+                    return false
+                }
+            }
+            console.log('成功, a是b的超集')
+            return true
+
+            function getCountsByChart(chart, str) {
+                // 判断指定字符在一个字符串中出现的次数
+                var count = 0;
+                for (var i = 0, len = str.length; i < len; i++) {
+                    if (str[i] === chart) {
+                        count++;
+                    }
+                }
+                return count;
+            }
+
+            function getAllCounts(str) {
+                // 查找所有元素 返回一个对象
+                var obj = {};
+                for (var i = 0, len = str.length; i < len; i++) {
+                    if (obj[str[i]] === undefined) {
+                        obj[str[i]] = 1;
+                    } else {
+                        obj[str[i]]++;
+                    }
+                }
+                return obj
+            }
+        }
+
+        console.log(judge('abbccdd', 'abcdd'))
+        console.log(judge('abbccd', 'abcdd'))
+
+    </script>
+</body>
+
+</html>

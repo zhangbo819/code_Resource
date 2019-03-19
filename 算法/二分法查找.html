@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var arr = [16, 23, 232, 434, 345, 34, 63, 5, 30, 23, 1, 77]
+        function binarySearch(arr, key, low, hight) {
+            var mid = Math.floor((low + hight) / 2);
+            var result = -1;
+            console.log(key, low, hight, mid);
+            if (key == arr[mid]) {
+                result = mid;
+                return result;
+            } else if (key > arr[mid]) {
+                hight = mid - 1;
+                binarySearch(arr, key, low, hight);
+            } else {
+                low = mid + 1;
+                binarySearch(arr, key, low, hight);
+            }
+            return result;
+        }
+        console.log(binarySearch(arr, 34, 0, arr.length - 1))
+    </script>
+</body>
+
+</html>

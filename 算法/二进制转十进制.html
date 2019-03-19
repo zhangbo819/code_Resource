@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html>
+
 <head lang="en">
-  <meta charset="UTF-8">
-  <title></title>
+	<meta charset="UTF-8">
+	<title></title>
 </head>
+
 <body>
 
-<script>
- function fn(num){
-	 num=num.toString();
-	 var sum=0;
-	 for(var i=1;i<num.length;i++){
-		 sum+=num[i]*Math.pow(2,num.length-i-1);
-	 }
-	 if(num[0]==0) sum*=-1;
-	 return sum;
- }
- console.log(fn(110));//1 1001
-											 // 2^3+2^2+2^1+2^0
-</script>
+	<script>
+		function fn(num) {
+			num = num.toString();
+			var sum = 0;
+			for (var i = 1; i < num.length; i++) {
+				sum += num[i] * Math.pow(2, num.length - i - 1);
+			}
+			if (num[0] == 0) sum *= -1;
+			return sum;
+		}
+		console.log(fn(110));//1 1001
+		// 2 ^ 3 + 2 ^ 2 + 2 ^ 1 + 2 ^ 0
+	</script>
 </body>
+
 </html>
