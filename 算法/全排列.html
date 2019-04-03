@@ -5,39 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>js全排列</title>
 </head>
 
 <body>
     <script>
-        //js全排列
-        function sortAll(arr, start, resArr) {
-            var len = arr.length;
-            if (len == start) {
-                resArr.push([...arr]);
-            } else {
-                for (var i = start; i < arr.length; i++) {
-                    swap(arr, i, start);
-                    sortAll(arr, start + 1, resArr);
-                    swap(arr, i, start);
+        function sortAllByResult(arr, start) {
+            var resArr = [];
+            sortAll(arr, start, resArr);
+            return resArr
+            
+            function sortAll(arr, start = 0, resArr) {
+                //js全排列
+                var len = arr.length;
+                if (len == start) {
+                    resArr.push([...arr]);
+                } else {
+                    for (var i = start; i < arr.length; i++) {
+                        swap(arr, i, start);
+                        sortAll(arr, start + 1, resArr);
+                        swap(arr, i, start);
+                    }
                 }
-            }
-            function swap(arr, i, start) {
-                var temp = arr[i];
-                arr[i] = arr[start];
-                arr[start] = temp;
+                function swap(arr, i, start) {
+                    var temp = arr[i];
+                    arr[i] = arr[start];
+                    arr[start] = temp;
+                }
             }
         }
 
-        var res1 = [], res2 = [];
-        sortAll([0, 1, 2, 3], 0, res1)
-        sortAll([4, 5, 6, 7], 0, res2)
+        var res1 = sortAllByResult([0, 1, 2, 3])
+        var res2 = sortAllByResult([4, 5, 6, 7])
         console.log(res1, res2)
 
         var resAll = [];
         res1.forEach(i => {
             res2.forEach(j => {
-                resAll.push([...i,...j])
+                resAll.push([...i, ...j])
             })
         })
         console.log(resAll)
