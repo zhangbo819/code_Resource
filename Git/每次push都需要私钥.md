@@ -3,7 +3,7 @@ eval `ssh-agent`
 ssh-add
 ```
 
-###mac
+### mac
 ```
 ssh-add ~/.ssh/id_rsa 
 ```
