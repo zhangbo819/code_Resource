@@ -210,3 +210,7 @@ InteractionManager.runAfterInteractions（()=>{
 2. 模块通用样式写在模块通用样式类中
 3. 文件通用样式写在文件底部的const styles中
 4. 独有样式写在行style中
+
+## 参考文献
+
+[参考文献](https://juejin.im/post/5b1637806fb9a01e2950e281)
