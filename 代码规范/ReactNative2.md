@@ -71,21 +71,21 @@
 
 遵循以下的JSX语法缩进/格式。
 
-    ```javaScript
-    //bad
-    <Demo props1=""
-          props2=""/>
+```javaScript
+//bad
+<Demo props1=""
+      props2=""/>
 
-    //good 有多行属性，新建一行关闭标签
-    <Demo
-        props1=""
-        props2=""
-        />
+//good 有多行属性，新建一行关闭标签
+<Demo
+    props1=""
+    props2=""
+    />
 
-    //若能直接一行显示的，直接写成一行
-    <Demo props1=""/>
+//若能直接一行显示的，直接写成一行
+<Demo props1=""/>
 
-    ```
+```
 ## 单引号还是双引号
 - 对于JSX属性值总是使用双引号（""），其他都是用单引号
    
@@ -154,9 +154,9 @@ let name='value';
 
 1. 构造函数 
 2. rn的生命周期方法 
-3. render方法渲染视图 
-4. 自定renderXXX渲染子组件 
-5. 自定义方法（接口请求方法与接口API保持相同） 
+3. 自定renderXXX渲染子组件 
+4. 自定义方法（接口请求方法与接口API保持相同） 
+5. render方法渲染视图 
 6. 样式放在最后
 
 ```javaScript
@@ -214,3 +214,5 @@ InteractionManager.runAfterInteractions（()=>{
 ## 参考文献
 
 [参考文献](https://juejin.im/post/5b1637806fb9a01e2950e281)
+
+**[⬆ 回到顶部](#ReactNative项目实践编码规范)**

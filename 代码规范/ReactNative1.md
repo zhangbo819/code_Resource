@@ -96,7 +96,7 @@
     正例:
     ```javaScript
     var superman = {
-        klass:: 'alien',
+        klass: 'alien',
         hidden: true
     };
     ```
@@ -299,7 +299,7 @@
     正例:
     ```javaScript
     function processInput(input) {
-    return { left, right, top, bottom };
+        return { left, right, top, bottom };
     }
 
     const { left, right } = processInput(input);
@@ -307,7 +307,7 @@
     反例:
     ```javaScript
     function processInput(input) {
-    return [left, right, top, bottom];
+        return [left, right, top, bottom];
     }
     ```
 
@@ -320,13 +320,13 @@
 
     ```javaScript
     nope(name, options, args) {
-        // todo
+        // to do
     }
     ```
     反例:
     ```javaScript
-    nope(name, options, arguments)) {
-        // todo
+    nope(name, options, arguments) {
+        // to do
     }
     ```
 
@@ -334,19 +334,21 @@
 说明：这样更简洁，而且绑定了 this。
     
     正例:
+
     ```javaScript
     // good
     [1, 2, 3].map((x) => {
-    return x * x;
+        return x * x;
     });
 
     // best
     [1, 2, 3].map(x => x * x);
     ```
     反例:
+
     ```javaScript
     [1, 2, 3].map(function (x) {
-    return x * x;
+        return x * x;
     });
     ```
 
@@ -369,13 +371,13 @@
     正例:
     ```javaScript
     function handleThings(opts = {}) {
-    // ...
+        // ...
     }
     ```
     反例:
     ```javaScript
     function handleThings(opts) {
-    opts = opts || {};
+        opts = opts || {};
     }
     ```
 
@@ -383,38 +385,41 @@
 
 1. 【推荐】优先使用 === 和 !== 而不是 == 和 !=。
 2. 【推荐】使用快捷方式，条件表达式例如 if 语句通过抽象方法 ToBoolean 强制计算它们的表达式并且总是遵守下面的规则:
-    1 ) 对象 被计算为 true
-    2 ) Undefined 被计算为 false
-    3 ) Null 被计算为 false
-    4 ) 布尔值 被计算为 布尔的值
-    5 ) 数字 如果是 +0、-0 或 NaN 被计算为 false,否则为 true
-    6 ) 字符串 如果是空字符串 '' 被计算为 false,否则为 true
+    1. 对象 被计算为 true
+    2. Undefined 被计算为 false
+    3. Null 被计算为 false
+    4. 布尔值 被计算为 布尔的值
+    5. 数字 如果是 +0、-0 或 NaN 被计算为 false,否则为 true
+    6. 字符串 如果是空字符串 '' 被计算为 false,否则为 true
 
     正例:
     ```javaScript
     if (collection.length) {
-        // todo
+        // to do
     }
 
     if (name) {
-        // todo
+        // to do
     }
     ```
     反例:
     ```javaScript
     if (name !== '') {
-        // todo
+        // to do
     }
 
     if (collection.length > 0) {
-        // todo
+        // to do
     }
     ```
 
 ### (十) 循环体
 1. 【强制】循环体 for( in ) 的性能损失是 for( of ) 或者 for(;;) 的 10 倍，所以尽量使用 for( of ) ，如果需要 index 的才使用 for(;;) ，而不是 for( in )取出数组下标。
-说明: Object 无法 .length ，所以不能改成相应的 for(;;) ，只能用 for( in ) 。
-Array 是可以 .length 的，所以使用 for( of ) 或者 for(;;) 皆可。
+
+    - 说明: 
+
+        Object 无法 .length ，所以不能改成相应的 for(;;) ，只能用 for( in ) 。
+        Array 是可以 .length 的，所以使用 for( of ) 或者 for(;;) 皆可。
 
 ### (十一)类型转换
 1. 【强制】使用 parseInt 转换数字时带上类型转换的基数。
@@ -509,8 +514,13 @@ Array 是可以 .length 的，所以使用 for( of ) 或者 for(;;) 皆可。
     ```
 
 8. 【强制】方法参数在定义和传入时,多个参数逗号后边必须加空格。
-    正例:下例中实参的" a "，后边必须要有一个空格。
+    
+    正例:
+    
+    下例中实参的" a "，后边必须要有一个空格。
+    ```javaScript
     method("a", "b", "c");
+    ```
 9. 【推荐】不同逻辑、不同语义、不同业务的代码之间插入一个空行分隔开来以提升可读性。
     说明:没有必要插入多个空行进行隔开。
 
@@ -538,13 +548,14 @@ Array 是可以 .length 的，所以使用 for( of ) 或者 for(;;) 皆可。
     说明: 
 
     此命令可以让此资源包在根目录进行获取(全局安装)，不利于资源管理。
-    【强制】每个项目必须配置一个 READMA.md 文件，内容包括测试，正式环境等相关配置文件以及注意事项。
-5. 【推荐】安装 npm 包时，推荐 ~ 来标识版本号，在需要稳定版本的时候去掉 package.json 中的 ^ 或 ~ 符号。
+5. 【强制】每个项目必须配置一个 READMA.md 文件，内容包括测试，正式环境等相关配置文件以及注意事项。
+6. 【推荐】安装 npm 包时，推荐 ~ 来标识版本号，在需要稳定版本的时候去掉 package.json 中的 ^ 或 ~ 符号。
 
     说明：
-
+    ```
     ~ 和 ^ 的作用和区别: ~ 会匹配最近的小版本依赖包，比如 ~1.2.3会匹配所有 1.2.x 版本，但是不包括 1.3.0。
     ^ 会匹配最新的大版本依赖包，比如 ^ 会匹配所有 1.x.x的包，包括 1.3.0，但是不包括 2.0.0。那么该如何选择呢？当然你可以指定特定版本号，直接写 1.2.3，前面什么前缀都没有，这样固然没有问题，但是如果依赖包发布新版本修复了一些小 bug，那么需要手动修改 package.json 文件，~ 和 ^则可以解决这个问题。但是需要注意 ^ 版本更新可能比较大，会造成项目代码错误，旧版本可能和新版本存在部分代码不兼容。所以推荐使用 ~ 来标记版本号，这样可以保证项目不会出现大的问题，也能保证包中的小 bug 可以得到修复，但是要求稳定版本的时候去掉 ^ 或 ~ 符号。
+    ```
 
 ### (十四) 控制语句
 
@@ -836,3 +847,5 @@ if (condition) statements;
 
 ## 参考文献
 [参考文献](https://www.jianshu.com/p/ac723fd826a4)
+
+**[⬆ 回到顶部](#内容目录)**

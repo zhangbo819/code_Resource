@@ -1,4 +1,4 @@
-# data.js 代码规范
+# data.js代码规范
 
 ## 文件夹命名
 
@@ -11,6 +11,34 @@
   3. 便于修改，如果要添加一个学一学或练一练的话，要将之后的所有相应文件夹的后缀数字都要加1，还要改动data.js中相应数据，改动量较大，分组后，如果要添加，只需在本组内改动，不影响别的组，改动量较小
 
 ### 例 古诗
+之前  
+```
+common
+
+logic1
+
+learn1 learn2 learn3 learn4
+
+exam1 exam2 exam3 exam4 exam5
+
+exam6 exam7
+
+...
+learn5 exam8 exam9 
+
+learn6 exam10 exam11 exam12
+
+learn7 exam13 exam14 
+...
+
+exam15 exam16
+
+exam17 exam18
+
+```
+
+
+之后
 ```
 common
 
@@ -35,3 +63,5 @@ g8e1 g8e2
 glaste1 glaste2
 
 ```
+
+**[⬆ 回到顶部](#data.js代码规范)**
