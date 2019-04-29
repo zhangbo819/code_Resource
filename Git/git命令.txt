@@ -1,2 +1,0 @@
-git rm --cache -r dist
-мёж╧в╥вы нд╪Ч╪пdist
