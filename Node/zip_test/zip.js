@@ -26,23 +26,25 @@ const createGzipByPromise = ({ filePath, outputPath, fileList }) => {
         archive.pipe(output);
 
         const filePathLs = ls(filePath);
-        fileList.forEach(item => {
+        fileList.forEach(({ path, directory = false }) => {
             if (!status) { return; }
 
-            if (item.includes('\/')) {
-                if (item[0] === '\/') {
-                    targetItem = item.slice(1).split('\/')[0];
+            if (path.includes('\/')) {
+                if (path[0] === '\/') {
+                    targetItem = path.slice(1).split('\/')[0];
                 } else {
-                    targetItem = item.split('\/')[0];
+                    targetItem = path.split('\/')[0];
                 }
             } else {
-                targetItem = item;
+                targetItem = path;
             }
 
             if (filePathLs.includes(targetItem)) {
-                archive.append(fs.createReadStream(filePath + item), { name: item })
+                directory ?
+                    archive.directory(filePath + path, path) :
+                    archive.append(fs.createReadStream(filePath + path), { name: path })
             } else {
-                console.warn(`Error: 文件${filePath + item}不存在`)
+                console.warn(`Error: 文件${filePath + path}不存在`)
                 status = false;
                 resolve(false);
             }
@@ -57,7 +59,7 @@ const createGzipByPromise = ({ filePath, outputPath, fileList }) => {
 createGzipByPromise({
     filePath: __dirname,
     outputPath: __dirname + '/output.zip',
-    fileList: ['/input.txt', '/src/input1.txt']
+    fileList: [{ path: '/input.txt' }, { path: '/src', directory: true }]
 })
 
 module.exports = {
