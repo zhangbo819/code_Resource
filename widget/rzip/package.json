@@ -1,7 +1,8 @@
 {
   "name": "rzip",
   "bin": {
-    "rzip": "./index.js"
+    "rzip": "./index.js",
+    "ruhuarn": "./ruhuarn.sh"
   },
   "version": "1.0.0",
   "description": "",

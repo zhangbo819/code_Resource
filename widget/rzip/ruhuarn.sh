@@ -1,0 +1,1 @@
+/usr/bin/php /Users/zzb/work/txb_admin/exec/cli_cron.php ruhua.txbapp.cn -rn
