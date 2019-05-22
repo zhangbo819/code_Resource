@@ -56,11 +56,11 @@ const createGzipByPromise = ({ filePath, outputPath, fileList }) => {
 }
 
 // test
-createGzipByPromise({
-    filePath: __dirname,
-    outputPath: __dirname + '/output.zip',
-    fileList: [{ path: '/input.txt' }, { path: '/src', directory: true }]
-})
+// createGzipByPromise({
+//     filePath: __dirname,
+//     outputPath: __dirname + '/output.zip',
+//     fileList: [{ path: '/input.txt' }, { path: '/src', directory: true }]
+// })
 
 module.exports = {
     createGzipByPromise
