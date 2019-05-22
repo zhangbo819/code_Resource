@@ -1,7 +1,14 @@
+# OSX
+#
+.DS_Store
+
+# to do
+*/node_modules
+*/*/node_modules
+
 Node/test/inputData.js
 widget/changeJS/output
-widget/*/node_modules
 
 代码规范/data.js*.md
 
-.DS_Store
+Node/zip_test/*.zip
