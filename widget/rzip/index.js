@@ -8,7 +8,8 @@ let outputVersion = require("./outputVersion.json");
 // 异步读取
 console.log('rzip start')
 
-const targetPath = '/Users/zzb/work/txbstyle/RN_chinese/ReactNative/sheet/data.js';
+const filePath = '/Users/zzb/work/txbstyle/RN_chinese/ReactNative/';
+const targetPath = filePath + 'sheet/data.js';
 // const targetPath = 'data_bak.js';
 
 const writeFileByPromise = ({ targetPath, data }) => {
@@ -65,14 +66,14 @@ fs.readFile(targetPath, async (err, data) => {
     }
     console.log(`${zipOutputNameHalf} ${versionNum}`);
     outputVersion[zipOutputNameHalf] = versionNum;
-    
+
     outputVersion = JSON.stringify(outputVersion);
     const outputNameRes = writeFileByPromise({ data: outputVersion, targetPath: "./outputVersion.json" });
     console.log(`版本更新${outputNameRes ? '成功' : '失败'}`)
 
     const zipRes = await zip.createGzipByPromise({
-        filePath: '/Users/zzb/work/txbstyle/RN_chinese/ReactNative/',
-        outputPath: `/Users/zzb/work/txbstyle/RN_chinese/ReactNative/${zipOutputNameHalf}-v${versionNum}.zip`,
+        filePath,
+        outputPath: `${filePath}${zipOutputNameHalf}-v${versionNum}.zip`,
         fileList: [
             { path: 'package.json' },
             { path: 'index.js' },
