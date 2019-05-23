@@ -68,7 +68,8 @@ fs.readFile(targetPath, async (err, data) => {
     outputVersion[zipOutputNameHalf] = versionNum;
 
     outputVersion = JSON.stringify(outputVersion);
-    const outputNameRes = writeFileByPromise({ data: outputVersion, targetPath: "./outputVersion.json" });
+    // to do mkdir & git rm
+    const outputNameRes = await writeFileByPromise({ data: outputVersion, targetPath: __dirname + "/outputVersion.json" });
     console.log(`版本更新${outputNameRes ? '成功' : '失败'}`)
 
     const zipRes = await zip.createGzipByPromise({
