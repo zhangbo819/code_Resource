@@ -13,7 +13,7 @@ const createGzipByPromise = ({ filePath, outputPath, fileList }) => {
 
         output.on('close', function () {
             // console.log('archiver has been finalized and the output file descriptor has closed.');
-            console.log(`压缩成功, 大小: ${archive.pointer()} 字节, 压缩包路径: ${outputPath}`);
+            console.log(`\n压缩成功, 大小: ${(archive.pointer() / 1000 / 1000).toFixed(1)} MB, 压缩包路径: ${outputPath}`);
             resolve(true)
         });
 
