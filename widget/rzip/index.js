@@ -67,7 +67,7 @@ fs.readFile(targetPath, async (err, data) => {
     console.log(`${zipOutputNameHalf} ${versionNum}`);
     outputVersion[zipOutputNameHalf] = versionNum;
 
-    outputVersion = JSON.stringify(outputVersion);
+    outputVersion = JSON.stringify(outputVersion, null, '  ');
     // to do mkdir & git rm
     const outputNameRes = await writeFileByPromise({ data: outputVersion, targetPath: __dirname + "/outputVersion.json" });
     console.log(`版本更新${outputNameRes ? '成功' : '失败'}`)
