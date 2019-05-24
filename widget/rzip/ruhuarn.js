@@ -3,14 +3,17 @@
 require('shelljs/global');
 const inquirer = require('inquirer');
 
+const { projectPath } = require('./config');
+
 main();
 
 async function main() {
     // console.log('test', pwd().stdout)
 
-    console.log(__dirname, __filename, pwd().stdout)
+    console.log('projectPath', projectPath)
+    console.log(`${__dirname}\n${__filename}\n${pwd().stdout}`)
 
-    cd('/Users/zzb/work/txbstyle/RN_chinese/ReactNative')
+    cd(projectPath)
 
     const choices = ls()
         .filter(i => i.slice(-4) === '.zip')

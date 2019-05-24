@@ -8,11 +8,9 @@ const shell = require('shelljs');
 
 const zip = require("../../Node/zip_test/zip");
 let outputVersion = require("./data/outputVersion.json");  // to do create
+const { projectPath } = require('./config');
 
-// 异步读取
-console.log('rzip start')
-
-const filePath = '/Users/zzb/work/txbstyle/RN_chinese/ReactNative/';
+const filePath = projectPath;
 const targetPath = filePath + 'sheet/data.js';
 const questions = [
     {
@@ -23,87 +21,77 @@ const questions = [
 ];
 
 
-
-
+console.log('rzip start')
 main();
 
 async function main() {
     const { inputZipName } = await inquirer.prompt(questions);
     // console.log('inputZipName', inputZipName)
 
-    fs.readFile(targetPath, async (err, data) => {
-        if (err) {
-            return console.error(err);
-        }
-        console.log(`异步读取: ${targetPath} 成功`);
+    const data = fs.readFileSync(targetPath);
+    console.log(`读取: ${targetPath} 成功`);
 
-        // console.log('data: ', data)
+    const json_data_original = data.toString('utf8');
+    const json_data = json_data_original.replace(/http\:\/\/test\.txbimg\.com\/RN_chinese\/ReactNative\/sheet\//ig, '');
 
-        // const json_data_original = JSON.stringify(data);
-        const json_data_original = data.toString('utf8');
-        // console.log('json_data_original', json_data_original)
-        const json_data = json_data_original.replace(/http\:\/\/test\.txbimg\.com\/RN_chinese\/ReactNative\/sheet\//ig, '');
+    const changeData = json_data;
 
-        // console.log('json_data', json_data)
+    const res = await writeFileByPromise({ data: changeData, targetPath });
+    console.log(`替换删除写入${res ? '成功' : '失败'}`);
+    if (!res) return;
 
-        const changeData = json_data;
+    console.log('开始压缩');
 
-        const res = await writeFileByPromise({ data: changeData, targetPath });
-        console.log(`替换删除写入${res ? '成功' : '失败'}`);
-        if (!res) return;
+    let now = new Date();
+    now = now.getFullYear() + fillZero(now.getMonth() + 1) + fillZero(now.getDate());
+    const zipOutputNameHalf = `${inputZipName || ''}-${now}`;
+    let versionNum = outputVersion[zipOutputNameHalf];
 
-        console.log('开始压缩');
+    if (versionNum === undefined) {
+        versionNum = 1;
+    } else {
+        versionNum++;
+    }
+    console.log(`${zipOutputNameHalf} ${versionNum}`);
+    outputVersion[zipOutputNameHalf] = versionNum;
 
-        let now = new Date();
-        now = now.getFullYear() + fillZero(now.getMonth() + 1) + fillZero(now.getDate());
-        const zipOutputNameHalf = `${inputZipName || ''}-${now}`;
-        let versionNum = outputVersion[zipOutputNameHalf];
+    outputVersion = JSON.stringify(outputVersion, null, 4);
+    const outputNameRes = await writeFileByPromise({ data: outputVersion, targetPath: __dirname + "/data/outputVersion.json" });
+    console.log(`版本更新${outputNameRes ? '成功' : '失败'}`)
 
-        if (versionNum === undefined) {
-            versionNum = 1;
-        } else {
-            versionNum++;
-        }
-        console.log(`${zipOutputNameHalf} ${versionNum}`);
-        outputVersion[zipOutputNameHalf] = versionNum;
+    // loading start
+    const loader = ['/ Compressing files', '| Compressing files', '\\ Compressing files', '- Compressing files'];
+    let i = 4;
+    const ui = new BottomBar({ bottomBar: loader[i % 4] });
+    const timer = setInterval(() => {
+        ui.updateBottomBar(loader[i++ % 4]);
+    }, 150);
 
-        outputVersion = JSON.stringify(outputVersion, null, 4);
-        const outputNameRes = await writeFileByPromise({ data: outputVersion, targetPath: __dirname + "/data/outputVersion.json" });
-        console.log(`版本更新${outputNameRes ? '成功' : '失败'}`)
+    const zipRes = await zip.createGzipByPromise({
+        filePath,
+        outputPath: `${filePath}${zipOutputNameHalf}-v${versionNum}.zip`,
+        fileList: [
+            { path: 'package.json' },
+            { path: 'index.js' },
+            { path: 'node_modules', directory: true },
+            { path: 'sheet', directory: true },
+            { path: 'src', directory: true }
+        ]
+    })
 
-        // loading start
-        const loader = ['/ Installing', '| Installing', '\\ Installing', '- Installing'];
-        let i = 4;
-        const ui = new BottomBar({ bottomBar: loader[i % 4] });
-        const timer = setInterval(() => {
-            ui.updateBottomBar(loader[i++ % 4]);
-        }, 150);
+    // loading end
+    clearInterval(timer);
+    // ui.updateBottomBar('Installation done!\n');
 
-        const zipRes = await zip.createGzipByPromise({
-            filePath,
-            outputPath: `${filePath}${zipOutputNameHalf}-v${versionNum}.zip`,
-            fileList: [
-                { path: 'package.json' },
-                { path: 'index.js' },
-                { path: 'node_modules', directory: true },
-                { path: 'sheet', directory: true },
-                { path: 'src', directory: true }
-            ]
-        })
+    if (!zipRes) {
+        console.log('文件压缩失败')
+    }
 
-        // loading end
-        clearInterval(timer);
-        // ui.updateBottomBar('Installation done!\n');
+    console.log(`开始复原文件 ${targetPath}`);
+    const recoverRes = await writeFileByPromise({ data: json_data_original, targetPath });
+    console.log(`复原${recoverRes ? '成功' : '失败'}`);
 
-        if (!zipRes) {
-            console.log('文件压缩失败')
-        }
-
-        console.log(`开始复原 ${targetPath}`);
-        const recoverRes = await writeFileByPromise({ data: json_data_original, targetPath });
-        console.log(`文件 ${targetPath} 恢复${recoverRes ? '成功' : '失败'}`);
-        shell.exit(recoverRes ? 1 : 0)
-    });
+    shell.exit(recoverRes ? 1 : 0)
 }
 
 function writeFileByPromise({ targetPath, data }) {
