@@ -12,5 +12,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^6.3.1",
+    "shelljs": "^0.8.3"
+  }
 }
