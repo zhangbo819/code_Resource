@@ -8,7 +8,7 @@ const shell = require('shelljs');
 
 const zip = require("../../Node/zip_test/zip");
 let outputVersion = require("./data/outputVersion.json");  // to do create
-const { projectPath } = require('./config');
+const { projectPath, STORAGE_KEY } = require('./config');
 
 const filePath = projectPath;
 const targetPath = filePath + 'sheet/data.js';
@@ -25,7 +25,8 @@ console.log('rzip start')
 main();
 
 async function main() {
-    const { inputZipName } = await inquirer.prompt(questions);
+    const inputZipName = STORAGE_KEY;
+    // const { inputZipName } = await inquirer.prompt(questions);
     // console.log('inputZipName', inputZipName)
 
     const data = fs.readFileSync(targetPath);
