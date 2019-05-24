@@ -8,6 +8,7 @@
 
 Node/test/inputData.js
 widget/changeJS/output
+widget/rzip/data/*
 
 代码规范/data.js*.md
 

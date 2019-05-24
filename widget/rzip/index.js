@@ -7,7 +7,7 @@ const BottomBar = require('inquirer/lib/ui/bottom-bar');
 const shell = require('shelljs');
 
 const zip = require("../../Node/zip_test/zip");
-let outputVersion = require("./outputVersion.json");
+let outputVersion = require("./data/outputVersion.json");  // to do create
 
 // 异步读取
 console.log('rzip start')
@@ -68,8 +68,7 @@ async function main() {
         outputVersion[zipOutputNameHalf] = versionNum;
 
         outputVersion = JSON.stringify(outputVersion, null, 4);
-        // to do mkdir & git rm
-        const outputNameRes = await writeFileByPromise({ data: outputVersion, targetPath: __dirname + "/outputVersion.json" });
+        const outputNameRes = await writeFileByPromise({ data: outputVersion, targetPath: __dirname + "/data/outputVersion.json" });
         console.log(`版本更新${outputNameRes ? '成功' : '失败'}`)
 
         // loading start
