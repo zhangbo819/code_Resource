@@ -10,8 +10,8 @@ main();
 async function main() {
     // console.log('test', pwd().stdout)
 
-    console.log('projectPath', projectPath)
-    console.log(`${__dirname}\n${__filename}\n${pwd().stdout}`)
+    // console.log('projectPath', projectPath)
+    // console.log(`${__dirname}\n${__filename}\n${pwd().stdout}`)
 
     cd(projectPath)
 
