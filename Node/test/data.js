@@ -6,7 +6,7 @@ var a3 = {
     "sentenceAudio": {
         "url": "http://test.txbimg.com/RN_chinese/ReactNative/sheet/audio/explain1.mp3",
         "timedown": 2,
-        // "url": require('../rooter/images/test.png'),
+        "url": require('../rooter/images/test.png'),
     },
 };
 

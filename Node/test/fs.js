@@ -4,7 +4,7 @@ var fs = require("fs");
 console.log('fs start')
 const data = require('./data');
 
-const changeData = 'export const sheetData = ' + JSON.stringify(data);
+const changeData = 'export const sheetData = ' + JSON.stringify(data, null, '    ');
 
 fs.writeFile('inputData.js', changeData, function (err) {
     if (err) {
