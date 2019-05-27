@@ -1,45 +1,49 @@
 var fs = require("fs");
+require('shelljs/global');
 
 const targetFile = 'data.js';
+const outputDir = 'dist';
+const outputFile = targetFile;
 
 main();
+
 
 async function main() {
     // 同步读取
     let data = await fs.readFileSync(targetFile);
 
-    data = data.toString('UTF-8');
+    // console.log("同步读取: ", data);
 
-    console.log("同步读取: ", data);
-
-
-    data = data.replace(/^require\(([*]?)\)$/ig, (s) => {
-        console.log("ssssssss", s)
+    data = data.toString('UTF-8').replace(/require\([\s\S]+?\)/ig, (s) => {
+        // console.log("first sssss", s)
+        return `\"${s}\"`;
     });
 
+    if (!ls().some(i => i === outputDir)) {
+        mkdir(outputDir)
+    }
+    cd(outputDir)
 
     // appendFile
-    let res = await fs.writeFileSync('inputData.js', data);
+    await fs.writeFileSync(outputFile, data);
 
-    console.log(res)
+    const rData = require('./dist/data');
+
+    const changerData = 'export const sheetData = ' + JSON.stringify(rData.sheetData, null, '    ');
+
+    await fs.writeFileSync(outputFile, changerData);
+
+    let outputrdata = await fs.readFileSync(outputFile);
+    outputrdata = outputrdata
+        .toString('UTF-8')
+        .replace(/\"require\([\s\S]+?\)\"/ig, (s) => {
+            // console.log("last ssssssss", s.slice(1, -1))
+            return s.slice(1, -1);
+        });
+
+    await fs.writeFileSync(outputFile, outputrdata);
+    
+    exit(0);
 }
-
-
-// fs.writeFile('inputData.js', changeData, function (err) {
-//     if (err) {
-//         return console.error(err);
-//     }
-//     console.log("数据写入成功！");
-// });
-
-// fs.readFile('data.js', async (err, data) => {
-//     if (err) {
-//         return console.error(err);
-//     }
-//     console.log("异步读取: " + data);
-
-//     console.log("准备写入文件");
-
-// });
 
 
