@@ -1,3 +1,5 @@
+const arr = [1, 2, 3, 4];
+
 var a1 = {
     a: 1,
     sentenceAudio: {
@@ -5,6 +7,10 @@ var a1 = {
         "timedown": 1,
         "pic": require('../rooter/images/test1.png'),
     },
+    arr,
+    get outArr() {
+        return this.arr
+    }
 };
 var a2 = {
     a: 2,
