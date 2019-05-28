@@ -5,26 +5,44 @@ const targetFile = 'data.js';
 const outputDir = 'dist';
 const outputFile = targetFile;
 
-main();
+ruleFile();
+
+function exportToES5(str = '') {
+    let rmodule = '{';
+
+    // 处理 require
+    str = str.toString('UTF-8').replace(/require\([\s\S]+?\)/ig, (s) => {
+        // console.log("first sssss", s)
+        return `\"${s}\"`;
+    });
+
+    // to do function & 结构
+    // 处理 module.exports
+    str = str.replace(/export const ([\s\S]+?)=([\s\S]+?);/ig, (all, $1, $2) => {
+        // console.log("second ", $2)
+        rmodule += `${$1}:${$2}`;
+        return '';
+    });
+
+    rmodule += "}";
+    rmodule = 'module.exports = ' + rmodule;
+    // console.log(str)
+    return {
+        rmodule,
+        str
+    }
+}
 
 
-async function main() {
+async function ruleFile() {
     // 同步读取
     let data = await fs.readFileSync(targetFile);
 
     // console.log("同步读取: ", data);
 
-    // 处理 require
-    data = data.toString('UTF-8').replace(/require\([\s\S]+?\)/ig, (s) => {
-        // console.log("first sssss", s)
-        return `\"${s}\"`;
-    });
+    const { rmodule, str } = exportToES5(data);
 
-    // 处理 module.exports
-    data = data.replace(/export const sheetData = \[([\s\S]+?)\];/ig, (s, a) => {
-        // console.log("second sssss", a)
-        return `module.exports = { sheetData: [${a}] }`;
-    });
+    data = (str + rmodule);
 
     if (!ls().some(i => i === outputDir)) {
         mkdir(outputDir)
@@ -50,7 +68,11 @@ async function main() {
 
     await fs.writeFileSync(outputFile, outputrdata);
 
+    cd('../')
     exit(0);
 }
 
-
+module.exports = {
+    ruleFile,
+    exportToES5
+};
