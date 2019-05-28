@@ -2,9 +2,7 @@
 #
 .DS_Store
 
-# to do
-*/node_modules
-*/*/node_modules
+**/node_modules
 
 Node/test/inputData.js
 Node/test/dist/*
