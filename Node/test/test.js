@@ -14,9 +14,16 @@ async function main() {
 
     // console.log("同步读取: ", data);
 
+    // 处理 require
     data = data.toString('UTF-8').replace(/require\([\s\S]+?\)/ig, (s) => {
         // console.log("first sssss", s)
         return `\"${s}\"`;
+    });
+
+    // 处理 module.exports
+    data = data.replace(/export const sheetData = \[([\s\S]+?)\];/ig, (s, a) => {
+        // console.log("second sssss", a)
+        return `module.exports = { sheetData: [${a}] }`;
     });
 
     if (!ls().some(i => i === outputDir)) {
@@ -29,7 +36,7 @@ async function main() {
 
     const rData = require('./dist/data');
 
-    const changerData = 'export const sheetData = ' + JSON.stringify(rData.sheetData, null, '    ');
+    const changerData = 'export const sheetData = ' + JSON.stringify(rData.sheetData, null, 4);
 
     await fs.writeFileSync(outputFile, changerData);
 
@@ -42,7 +49,7 @@ async function main() {
         });
 
     await fs.writeFileSync(outputFile, outputrdata);
-    
+
     exit(0);
 }
 
