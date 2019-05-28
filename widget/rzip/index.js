@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
 const fs = require("fs");
+var child_process = require('child_process');
 
-const inquirer = require("inquirer");
+// const inquirer = require("inquirer");
 const BottomBar = require('inquirer/lib/ui/bottom-bar');
 const shell = require('shelljs');
 
@@ -92,7 +93,12 @@ async function main() {
     const recoverRes = await writeFileByPromise({ data: json_data_original, targetPath });
     console.log(`复原${recoverRes ? '成功' : '失败'}`);
 
-    shell.exit(recoverRes ? 1 : 0)
+    child_process.exec(`open ${filePath}`, function (err, stdout, stderr) {
+        console.log(err, stdout, stderr);
+        if (err) throw err;
+
+        shell.exit(recoverRes ? 0 : 1)
+    });
 }
 
 function writeFileByPromise({ targetPath, data }) {

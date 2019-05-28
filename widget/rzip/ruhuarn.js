@@ -19,7 +19,7 @@ async function main() {
         .filter(i => i.slice(-4) === '.zip')
         .map(name => ({ name, checked: true }));   // disabled: 'out of stock'
 
-    console.log(choices)
+    // console.log(choices)
 
     if (choices.length !== 0) {
         choices.unshift(new inquirer.Separator(' === Select the items to delete === '));

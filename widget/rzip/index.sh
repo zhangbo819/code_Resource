@@ -1,0 +1,1 @@
+./updateKey.js && ./index.js
