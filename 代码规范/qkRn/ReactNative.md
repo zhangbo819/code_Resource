@@ -13,13 +13,11 @@
         7. [state/props](#state/props)
         8. [样式 StyleSheet.create](#样式)
         9. [模板](#模板)
-    - src结构
-        1. [main.js改动]()
-        2. [增加config]()
 
 ### import
 
 1. import出来的组件名建议使用大驼峰，与文件名、类名一致
+	
     ```js
     // bad 
     import demoPgae from './DemoPage';
@@ -28,22 +26,24 @@
     import DemoPage from './DemoPage';
     ```
 2. 常用写法
+	
    ```js
     // default
     import React from 'react';
 
     // 单个
     import { View } from 'react-native';
+    
     // 多个
     import {
-            View,
-            Platform,
-            DeviceEventEmitter,
-            Animated,
-            TouchableWithoutFeedback,
-            Image,
-            Text,
-            TouchableOpacity
+        View,
+        Platform,
+        DeviceEventEmitter,
+        Animated,
+        TouchableWithoutFeedback,
+        Image,
+        Text,
+        TouchableOpacity
     } from 'react-native';
 
     // 尽量不用as起别名，为了使同一个属性或方法在各个文件中保持一致
@@ -51,6 +51,7 @@
     import { STORAGE_KEY as key } from './config/storeKey';
    ```
 3. 建议在import的结尾处添加；
+	
     ```js
     // bad 
     import demoPgae from './DemoPage';import demoPgae from './DemoPage'
@@ -64,6 +65,7 @@
     import demoPgae from './DemoPage';
     ```
 4. import顺序
+	
    ```js
     // 先导react和react-native包里面的组件
     import React, { Component } from 'react';
@@ -96,24 +98,18 @@
     import { STORAGE_KEY } from './config/storeKey';
    ```
 
-
-
-
-
-
-
-
 ### 生命周期
 
 #### 图示
-<img src='./image/react_life_cycle.png' title='react_life_cycle' width="450" />
+<img src='./image/react_life_cycle.png' title='react_life_cycle' width="100%" />
 
-#### react v16.3 之前
+#### 注意事项
 1. 从上到下按照使用顺序排列，初始化 -> 挂载 -> 更新 -> 销毁
 2. 在constructor中不能使用async await
 3. 建议将网络请求、事件监听函数绑定放在componentDidMount中，加快加载速度
 4. 在componentWillUnmount中销毁定时器，解绑事件监听函数，防止内存泄漏
 5. 删除空的生命周期
+
 ```js
 class Demo extends React.Component { 
     constructor(props) {
@@ -157,6 +153,7 @@ class Demo extends React.Component {
 #### react v16.3 之后
 
 从 v16.3 开始，React为了提升性能在底层架构引入了fiber，而引入了fiber后 原来的三个生命周期 API componentWillMount、componentWillUpdate、componentWillReceiveProps 有可能会被调用两次，所以他们被标记为不安全的，并会在未来的版本中被废弃，取而代之的是两个全新的生命周期:
+
 ```js
 class Demo extends React.Component { 
     static getDerivedStateFromProps() {}
@@ -191,6 +188,7 @@ export default class Main extends PureComponent {}
 ### 自定义方法
 #### 命名
 1. 函数命名，统一使用驼峰法，应该使用箭头函数
+
    ```js
     // bad
     export default class Demo extends PureComponent {
@@ -216,7 +214,9 @@ export default class Main extends PureComponent {}
        }
    }
    ```
+   
 2. 对于渲染组件型使用renderXXX()
+	
     ```js
     // bad
     showXXX () {}
@@ -226,6 +226,7 @@ export default class Main extends PureComponent {}
 
     ```
 3. 对于用户事件类的使用handleXXX()
+
    ```js
     // bad
     clickXXX () {}
@@ -233,7 +234,9 @@ export default class Main extends PureComponent {}
     // good
     handleXXX = () => {}
    ```
+   
 4. 对于获取某个数据，带有返回值的工具类的函数使用getXXX()
+	
     ```js
     // bad
     calcXXX () {}
@@ -241,11 +244,13 @@ export default class Main extends PureComponent {}
     // good
     getXXX = () => {}
    ```
+   
 #### 渲染列表
 1. 推荐使用map来渲染列表
 2. 推荐为每个子项添加唯一的key
 3. 推荐不省略掉 {} 和 return
 4. 使用结构定义变量并赋予默认值
+
 ```js
 // bad
 renderItem = ({ name = '' }, i) => <View key={i}><Text>{name}</Text></View>
@@ -286,6 +291,7 @@ renderList = () => {
 2. render中可以写逻辑return不同的组件
 3. render中不要写带有可能会导致重新渲染的方法，如this.setState等
 4. 将常用的值定义为变量或常量
+
 ```js
 render() {
     const { nowData, nowType } = this.state;
@@ -321,12 +327,14 @@ render() {
         src/pages/PersonPage.js
 
     - 文件组件规范
+    	
         ```js
         export default class PersonPage extends Component{
 
         }
         ```
 3. 模块命名 模块使用当前文件名一样的名称，但不推荐使用index.js作为入口文件，突出Page承担的概念以及对开发IDE的适用
+	
    ```js
    // bad
    import DemoPage from './DemoPage/index';
@@ -334,6 +342,7 @@ render() {
    // good
    import DemoPage from './DemoPage/DemoPage';
    ```
+   
 4. 引用命名，React模块名使用帕斯卡（大驼峰）命名，实例使用小驼峰法命名
 
     ```js
@@ -349,6 +358,7 @@ render() {
 1. 使用驼峰法
 2. 不应该将rn框架提供的表示成其他意义的属性
 3. 如果属性值为true，可以直接省略
+
 ```js
 <Component demoProps="属性值" />
 
@@ -361,7 +371,9 @@ render() {
 // good
 <Demo hidden />
 ```
+
 4. 对于组件，总是加上defaultProps
+
 ```js
 const defaultProps = {
     title : 'defaultProps'
@@ -398,7 +410,7 @@ Test.defaultProps = defaultProps;
 
 ```
 
-1. 对于JSX属性值总是使用双引号（""）
+6. 对于JSX属性值总是使用双引号（""）
    
 ```js
 // bad
@@ -410,6 +422,7 @@ Test.defaultProps = defaultProps;
 
 
 7. 总是在标签关闭前加一个空格, 不要在JSX {} 括号内两边都加空格
+
 ```js
 // good
 <Demo />
@@ -420,6 +433,7 @@ Test.defaultProps = defaultProps;
 
 #### Refs
 - 总是在Refs里使用回调函数
+
 ```js
 // bad
 <Demo ref="myRef" />
@@ -442,6 +456,7 @@ Test.defaultProps = defaultProps;
 1. 【强制】当页面组件不需要跟随动态值重新 render 从而更新界面的时候，不要把值动态存储在 state 里。
    
     正例:
+    
     ```js
     constructor(props) {
         super(props);
@@ -462,7 +477,9 @@ Test.defaultProps = defaultProps;
         );
     }
     ```
+    
     反例:
+    
     ```js
     constructor(props) {
         super(props);
@@ -492,6 +509,7 @@ Test.defaultProps = defaultProps;
 3. 【推荐】当使用多个 state时，推荐使用解构，统一写在方法开头。
 
     正例：
+    
     ```js
         const {
             text,
@@ -504,6 +522,7 @@ Test.defaultProps = defaultProps;
 2. 【强制】不需要改变的 props，要保持引用地址唯一。PropTypes 类型是　funcation，需要绑定 this，不需要传递额外的参数，强制使用箭头函数的方式，需要传参数的时候推荐使用 bind 方式，不需要更改的 style 强制使用 StyleSheet 来创建样式并进行引用。
 
     正例：
+    
     ```js
     class Login extends PureComponent {
 
@@ -541,11 +560,12 @@ Test.defaultProps = defaultProps;
 3. 【推荐】当使用多个 props 时，推荐使用解构，统一写在方法开头。
     
     正例：
+    
     ```js
-        const {
-            size,
-            color
-        } = this.props;
+    const {
+        size,
+        color
+    } = this.props;
     ```
 
 
@@ -556,6 +576,7 @@ Test.defaultProps = defaultProps;
 3. 文件通用样式写在文件底部的const styles中
 4. 独有样式写在行style中
 5. 推荐使用StyleSheet.create, 不推荐行内样式, 但在使用动画属性时可以使用行内样式
+
 ```js
 import React, { Component } from 'react';
 import {
@@ -707,5 +728,5 @@ const styles = StyleSheet.create({
 ```
 
 
-**[⬆ 回到顶部](#ReactNative代码规范)**
+<!-- **[⬆ 回到顶部](#ReactNative代码规范)** -->
 **[⬅ 返回上层](./目录.md)**
