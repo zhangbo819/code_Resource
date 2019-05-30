@@ -1,46 +1,58 @@
 var fs = require("fs");
 require('shelljs/global');
 
-const targetFile = './data.js';
-const outputDir = 'dist';
-const outputFile = targetFile;
 
-ruleFile();
+ruleFile({
+    targetFile: './data.js',
+    outputDir: 'dist',
+    get outputFile() {
+        return this.targetFile;
+    }
+});
 
 
-async function ruleFile() {
+async function ruleFile({ targetFile, outputDir = null, outputFile }) {
     // 同步读取
     let data = await fs.readFileSync(targetFile);
-
     // console.log("同步读取: ", data);
+
+    const data_original = data.toString('utf8');
 
     const { rmodule, str } = exportToES5(data);
 
     data = (str + rmodule);
 
-    if (!ls().some(i => i === outputDir)) {
-        mkdir(outputDir)
+    if (outputDir !== null) {
+        if (!ls().some(i => i === outputDir)) {
+            mkdir(outputDir)
+        }
     }
-    cd(outputDir)
 
     // appendFile
     await fs.writeFileSync(outputFile, data);
 
-    const rData = require('./dist/data');
+    const rData = require(`./${outputDir === null ? '' : (outputDir + '/')}${outputFile}'`);
 
     let changerData = 'export const sheetData = ' + JSON.stringify(rData.sheetData, null, 4);
 
-    changerData = changerData
-        .toString('UTF-8')
+    // 恢复require
+    changerData = changerData.toString('UTF-8')
         .replace(/\"require\([\s\S]+?\)\"/ig, (s) => {
             // console.log("last ssssssss", s.slice(1, -1))
             return s.slice(1, -1);
         });
 
-    await fs.writeFileSync(outputFile, outputrdata);
+    // 替换audio
+    changerData = changerData
+        .replace(/http\:\/\/test\.txbimg\.com\/RN_chinese\/ReactNative\/sheet\//ig, '');
 
-    cd('../')
-    exit(0);
+    await fs.writeFileSync(outputFile, changerData);
+
+    // console.log(`ruleFile ${res ? '成功' : '失败'}`);
+
+    return { data_original };
+
+    // exit(0);
 }
 
 function exportToES5(str = '') {

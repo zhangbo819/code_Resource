@@ -23,6 +23,7 @@ const createGzipByPromise = ({ filePath, outputPath, fileList }) => {
             throw err;
         });
 
+        // to do pipe use console
         archive.pipe(output);
 
         const filePathLs = ls(filePath);

@@ -1,43 +1,52 @@
 #!/usr/bin/env node
 
 const fs = require("fs");
-var child_process = require('child_process');
+const child_process = require('child_process');
 
 // const inquirer = require("inquirer");
 const BottomBar = require('inquirer/lib/ui/bottom-bar');
 const shell = require('shelljs');
 
 const zip = require("../../Node/zip_test/zip");
-let outputVersion = require("./data/outputVersion.json");  // to do create
 const { projectPath, STORAGE_KEY } = require('./config');
+const { ruleFile } = require("./ruleFile");
 
 const filePath = projectPath;
 const targetPath = filePath + 'sheet/data.js';
-const questions = [
-    {
-        type: 'input',
-        name: 'inputZipName',
-        message: "请输入压缩包前缀名称(课程名称)"
-    },
-];
+const outputVersionDir = 'data';
+const outputVersionJson = 'outputVersion.json';
+// const questions = [
+//     {
+//         type: 'input',
+//         name: 'inputZipName',
+//         message: "请输入压缩包前缀名称(课程名称)"
+//     },
+// ];
 
 
-console.log('rzip start')
-main();
+// console.log('rzip start')
+_main();
 
-async function main() {
+async function _main() {
+    await _checkoutputVersion();
+    const outputVersionPath = `${__dirname}/${outputVersionDir}/${outputVersionJson}`
+    let outputVersion = require(outputVersionPath);
+
     const inputZipName = STORAGE_KEY;
     // const { inputZipName } = await inquirer.prompt(questions);
     // console.log('inputZipName', inputZipName)
 
 
-    const { res: ruleFileRes, data_original } = await ruleFile();
-
-    console.log('开始压缩');
+    const { data_original } = await ruleFile({
+        targetFile: targetPath,
+        outputFile: targetPath
+    });
 
     // let now = new Date();
-    // now = now.getFullYear() + fillZero(now.getMonth() + 1) + fillZero(now.getDate());
+    // now = now.getFullYear() + _fillZero(now.getMonth() + 1) + _fillZero(now.getDate());
     // const zipOutputNameHalf = `${inputZipName || ''}-${now}`;
+    
+    // to do zipOutputNameHalf add -
     const zipOutputNameHalf = `${inputZipName || ''}`;
     let versionNum = outputVersion[zipOutputNameHalf];
 
@@ -50,9 +59,10 @@ async function main() {
     outputVersion[zipOutputNameHalf] = versionNum;
 
     outputVersion = JSON.stringify(outputVersion, null, 4);
-    const outputNameRes = await writeFileByPromise({ data: outputVersion, targetPath: __dirname + "/data/outputVersion.json" });
+    const outputNameRes = await _writeFileByPromise({ data: outputVersion, targetPath: outputVersionPath });
     console.log(`版本更新${outputNameRes ? '成功' : '失败'}`)
 
+    console.log('开始压缩');
     // loading start
     const loader = ['/ Compressing files', '| Compressing files', '\\ Compressing files', '- Compressing files'];
     let i = 4;
@@ -82,7 +92,7 @@ async function main() {
     }
 
     console.log(`开始复原文件 ${targetPath}`);
-    const recoverRes = await writeFileByPromise({ data: data_original, targetPath });
+    const recoverRes = await _writeFileByPromise({ data: data_original, targetPath });
     console.log(`复原${recoverRes ? '成功' : '失败'}`);
 
     child_process.exec(`open ${filePath}`, function (err, stdout, stderr) {
@@ -93,7 +103,7 @@ async function main() {
     });
 }
 
-function writeFileByPromise({ targetPath, data }) {
+function _writeFileByPromise({ targetPath, data }) {
     return new Promise((resolve, reject) => {
         fs.writeFile(targetPath, data, function (err) {
             if (err) {
@@ -105,82 +115,27 @@ function writeFileByPromise({ targetPath, data }) {
     });
 }
 
-function fillZero(num) {
+function _fillZero(num) {
     if (num > 0 && num < 10) {
         num = '0' + num;
     }
     return num.toString()
 }
 
-async function ruleFile() {
+async function _checkoutputVersion() {
 
-    let data = fs.readFileSync(targetPath);
-    // console.log(`读取: ${targetPath} 成功`);
-
-    const data_original = data.toString('utf8');
-
-    const { rmodule, str } = exportToES5(data);
-
-    data = (str + rmodule);
-
-    // if (!ls().some(i => i === outputDir)) {
-    //     mkdir(outputDir)
-    // }
-    // cd(outputDir)
-
-    // appendFile
-    await fs.writeFileSync(targetPath, data);
-
-    const rData = require(targetPath);
-
-    const changerData = 'export const sheetData = ' + JSON.stringify(rData.sheetData, null, 4);
-
-    await fs.writeFileSync(targetPath, changerData);
-
-    let outputrdata = await fs.readFileSync(targetPath);
-
-    // require 还原
-    outputrdata = outputrdata
-        .toString('UTF-8')
-        .replace(/\"require\([\s\S]+?\)\"/ig, (s) => {
-            // console.log("last ssssssss", s.slice(1, -1))
-            return s.slice(1, -1);
-        });
-
-    // 替换audio
-    outputrdata = outputrdata.replace(/http\:\/\/test\.txbimg\.com\/RN_chinese\/ReactNative\/sheet\//ig, '');
-    const res = await writeFileByPromise({ data: outputrdata, targetPath });
-    console.log(`ruleFile ${res ? '成功' : '失败'}`);
-
-    return { res, data_original };
-}
-
-function exportToES5(str = '') {
-    let rmodule = '{';
-
-    // 处理 require
-    str = str.toString('UTF-8').replace(/require\([\s\S]+?\)/ig, (s) => {
-        // console.log("first sssss", s)
-        return `\"${s}\"`;
-    });
-
-    // to do function & 结构
-    // 处理 module.exports
-    // to do \];
-    str = str.replace(/export const ([\s\S]+?)=([\s\S]+?)\];/ig, (all, $1, $2) => {
-        // console.log("second ", $2)
-        rmodule += `${$1}:${$2}]`;
-        return '';
-    });
-
-    rmodule += "}";
-    rmodule = 'module.exports = ' + rmodule;
-    // console.log(str)
-    return {
-        rmodule,
-        str
+    if (!shell.ls().some(f => f === outputVersionDir)) {
+        shell.mkdir(outputVersionDir)
     }
+
+    shell.cd(outputVersionDir)
+    if (!shell.ls().some(f => f === outputVersionJson)) {
+        const res = await _writeFileByPromise({ targetPath: outputVersionJson, data: "{}" });
+    }
+    shell.cd('../')
 }
+
+
 
 
 
