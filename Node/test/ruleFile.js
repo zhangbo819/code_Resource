@@ -1,11 +1,47 @@
 var fs = require("fs");
 require('shelljs/global');
 
-const targetFile = 'data.js';
+const targetFile = './data.js';
 const outputDir = 'dist';
 const outputFile = targetFile;
 
 ruleFile();
+
+
+async function ruleFile() {
+    // 同步读取
+    let data = await fs.readFileSync(targetFile);
+
+    // console.log("同步读取: ", data);
+
+    const { rmodule, str } = exportToES5(data);
+
+    data = (str + rmodule);
+
+    if (!ls().some(i => i === outputDir)) {
+        mkdir(outputDir)
+    }
+    cd(outputDir)
+
+    // appendFile
+    await fs.writeFileSync(outputFile, data);
+
+    const rData = require('./dist/data');
+
+    let changerData = 'export const sheetData = ' + JSON.stringify(rData.sheetData, null, 4);
+
+    changerData = changerData
+        .toString('UTF-8')
+        .replace(/\"require\([\s\S]+?\)\"/ig, (s) => {
+            // console.log("last ssssssss", s.slice(1, -1))
+            return s.slice(1, -1);
+        });
+
+    await fs.writeFileSync(outputFile, outputrdata);
+
+    cd('../')
+    exit(0);
+}
 
 function exportToES5(str = '') {
     let rmodule = '{';
@@ -32,45 +68,6 @@ function exportToES5(str = '') {
         rmodule,
         str
     }
-}
-
-
-async function ruleFile() {
-    // 同步读取
-    let data = await fs.readFileSync(targetFile);
-
-    // console.log("同步读取: ", data);
-
-    const { rmodule, str } = exportToES5(data);
-
-    data = (str + rmodule);
-
-    if (!ls().some(i => i === outputDir)) {
-        mkdir(outputDir)
-    }
-    cd(outputDir)
-
-    // appendFile
-    await fs.writeFileSync(outputFile, data);
-
-    const rData = require('./dist/data');
-
-    const changerData = 'export const sheetData = ' + JSON.stringify(rData.sheetData, null, 4);
-
-    await fs.writeFileSync(outputFile, changerData);
-
-    let outputrdata = await fs.readFileSync(outputFile);
-    outputrdata = outputrdata
-        .toString('UTF-8')
-        .replace(/\"require\([\s\S]+?\)\"/ig, (s) => {
-            // console.log("last ssssssss", s.slice(1, -1))
-            return s.slice(1, -1);
-        });
-
-    await fs.writeFileSync(outputFile, outputrdata);
-
-    cd('../')
-    exit(0);
 }
 
 module.exports = {
