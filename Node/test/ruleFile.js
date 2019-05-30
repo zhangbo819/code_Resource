@@ -18,9 +18,10 @@ function exportToES5(str = '') {
 
     // to do function & 结构
     // 处理 module.exports
-    str = str.replace(/export const ([\s\S]+?)=([\s\S]+?);/ig, (all, $1, $2) => {
+    // to do \];
+    str = str.replace(/export const ([\s\S]+?)=([\s\S]+?)\];/ig, (all, $1, $2) => {
         // console.log("second ", $2)
-        rmodule += `${$1}:${$2}`;
+        rmodule += `${$1}:${$2}]`;
         return '';
     });
 
