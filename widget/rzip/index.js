@@ -30,23 +30,15 @@ async function main() {
     // const { inputZipName } = await inquirer.prompt(questions);
     // console.log('inputZipName', inputZipName)
 
-    const data = fs.readFileSync(targetPath);
-    console.log(`读取: ${targetPath} 成功`);
 
-    const json_data_original = data.toString('utf8');
-    const json_data = json_data_original.replace(/http\:\/\/test\.txbimg\.com\/RN_chinese\/ReactNative\/sheet\//ig, '');
-
-    const changeData = json_data;
-
-    const res = await writeFileByPromise({ data: changeData, targetPath });
-    console.log(`替换删除写入${res ? '成功' : '失败'}`);
-    if (!res) return;
+    const { res: ruleFileRes, data_original } = await ruleFile();
 
     console.log('开始压缩');
 
-    let now = new Date();
-    now = now.getFullYear() + fillZero(now.getMonth() + 1) + fillZero(now.getDate());
-    const zipOutputNameHalf = `${inputZipName || ''}-${now}`;
+    // let now = new Date();
+    // now = now.getFullYear() + fillZero(now.getMonth() + 1) + fillZero(now.getDate());
+    // const zipOutputNameHalf = `${inputZipName || ''}-${now}`;
+    const zipOutputNameHalf = `${inputZipName || ''}`;
     let versionNum = outputVersion[zipOutputNameHalf];
 
     if (versionNum === undefined) {
@@ -90,7 +82,7 @@ async function main() {
     }
 
     console.log(`开始复原文件 ${targetPath}`);
-    const recoverRes = await writeFileByPromise({ data: json_data_original, targetPath });
+    const recoverRes = await writeFileByPromise({ data: data_original, targetPath });
     console.log(`复原${recoverRes ? '成功' : '失败'}`);
 
     child_process.exec(`open ${filePath}`, function (err, stdout, stderr) {
@@ -118,6 +110,76 @@ function fillZero(num) {
         num = '0' + num;
     }
     return num.toString()
+}
+
+async function ruleFile() {
+
+    let data = fs.readFileSync(targetPath);
+    // console.log(`读取: ${targetPath} 成功`);
+
+    const data_original = data.toString('utf8');
+
+    const { rmodule, str } = exportToES5(data);
+
+    data = (str + rmodule);
+
+    // if (!ls().some(i => i === outputDir)) {
+    //     mkdir(outputDir)
+    // }
+    // cd(outputDir)
+
+    // appendFile
+    await fs.writeFileSync(targetPath, data);
+
+    const rData = require(targetPath);
+
+    const changerData = 'export const sheetData = ' + JSON.stringify(rData.sheetData, null, 4);
+
+    await fs.writeFileSync(targetPath, changerData);
+
+    let outputrdata = await fs.readFileSync(targetPath);
+
+    // require 还原
+    outputrdata = outputrdata
+        .toString('UTF-8')
+        .replace(/\"require\([\s\S]+?\)\"/ig, (s) => {
+            // console.log("last ssssssss", s.slice(1, -1))
+            return s.slice(1, -1);
+        });
+
+    // 替换audio
+    outputrdata = outputrdata.replace(/http\:\/\/test\.txbimg\.com\/RN_chinese\/ReactNative\/sheet\//ig, '');
+    const res = await writeFileByPromise({ data: outputrdata, targetPath });
+    console.log(`ruleFile ${res ? '成功' : '失败'}`);
+
+    return { res, data_original };
+}
+
+function exportToES5(str = '') {
+    let rmodule = '{';
+
+    // 处理 require
+    str = str.toString('UTF-8').replace(/require\([\s\S]+?\)/ig, (s) => {
+        // console.log("first sssss", s)
+        return `\"${s}\"`;
+    });
+
+    // to do function & 结构
+    // 处理 module.exports
+    // to do \];
+    str = str.replace(/export const ([\s\S]+?)=([\s\S]+?)\];/ig, (all, $1, $2) => {
+        // console.log("second ", $2)
+        rmodule += `${$1}:${$2}]`;
+        return '';
+    });
+
+    rmodule += "}";
+    rmodule = 'module.exports = ' + rmodule;
+    // console.log(str)
+    return {
+        rmodule,
+        str
+    }
 }
 
 

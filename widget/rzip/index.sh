@@ -1,1 +1,1 @@
-./updateKey.js && ./index.js
+cd /Users/zzb/WEB/code_Resource/widget/rzip && ./updateKey.js && ./index.js && cd -

@@ -50,7 +50,7 @@ async function main() {
         console.log('No zip')
     }
 
-    exit(1);
+    exit(0);
 }
 
 
