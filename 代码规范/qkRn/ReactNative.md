@@ -25,6 +25,7 @@
     // good
     import DemoPage from './DemoPage';
     ```
+
 2. 常用写法
 	
    ```js
@@ -50,6 +51,7 @@
     import * as util from './util/util.js';
     import { STORAGE_KEY as key } from './config/storeKey';
    ```
+
 3. 建议在import的结尾处添加；
 	
     ```js
@@ -64,6 +66,7 @@
     import demoPgae from './DemoPage';
     import demoPgae from './DemoPage';
     ```
+
 4. import顺序
 	
    ```js
@@ -150,6 +153,7 @@ class Demo extends React.Component {
     }
 }
 ```
+
 #### react v16.3 之后
 
 从 v16.3 开始，React为了提升性能在底层架构引入了fiber，而引入了fiber后 原来的三个生命周期 API componentWillMount、componentWillUpdate、componentWillReceiveProps 有可能会被调用两次，所以他们被标记为不安全的，并会在未来的版本中被废弃，取而代之的是两个全新的生命周期:
@@ -225,6 +229,7 @@ export default class Main extends PureComponent {}
     renderXXX = () => {}
 
     ```
+
 3. 对于用户事件类的使用handleXXX()
 
    ```js
@@ -329,10 +334,11 @@ render() {
     - 文件组件规范
     	
         ```js
-        export default class PersonPage extends Component{
+        export default class PersonPage extends Component {
 
         }
         ```
+        
 3. 模块命名 模块使用当前文件名一样的名称，但不推荐使用index.js作为入口文件，突出Page承担的概念以及对开发IDE的适用
 	
    ```js
@@ -355,7 +361,7 @@ render() {
     ```
 
 #### 属性
-1. 使用驼峰法
+1. 使用小驼峰法
 2. 不应该将rn框架提供的表示成其他意义的属性
 3. 如果属性值为true，可以直接省略
 
