@@ -9,10 +9,13 @@ const shell = require('shelljs');
 
 const zip = require("../../Node/zip_test/zip");
 const { projectPath, STORAGE_KEY } = require('./config');
-const { ruleFile } = require("./ruleFile");
+const { ruleFile, TYPE_COVER_NOSAVE } = require("./ruleFile");
 
 const filePath = projectPath;
-const targetPath = filePath + 'sheet/data.js';
+const targetFile = 'data.js';
+const targetDirPath = `${projectPath}sheet`;
+const targetFilePath = `${targetDirPath}/${targetFile}`;
+
 const outputVersionDir = 'data';
 const outputVersionJson = 'outputVersion.json';
 // const questions = [
@@ -38,14 +41,16 @@ async function _main() {
 
 
     const { data_original } = await ruleFile({
-        targetFile: targetPath,
-        outputFile: targetPath
+        type: TYPE_COVER_NOSAVE,
+        targetDirPath,
+        targetFile,
+        replaceAudio: true
     });
 
     // let now = new Date();
     // now = now.getFullYear() + _fillZero(now.getMonth() + 1) + _fillZero(now.getDate());
     // const zipOutputNameHalf = `${inputZipName || ''}-${now}`;
-    
+
     // to do zipOutputNameHalf add -
     const zipOutputNameHalf = `${inputZipName || ''}`;
     let versionNum = outputVersion[zipOutputNameHalf];
@@ -91,8 +96,8 @@ async function _main() {
         console.log('文件压缩失败')
     }
 
-    console.log(`开始复原文件 ${targetPath}`);
-    const recoverRes = await _writeFileByPromise({ data: data_original, targetPath });
+    console.log(`开始复原文件 ${targetFilePath}`);
+    const recoverRes = await _writeFileByPromise({ data: data_original, targetPath: targetFilePath });
     console.log(`复原${recoverRes ? '成功' : '失败'}`);
 
     child_process.exec(`open ${filePath}`, function (err, stdout, stderr) {
