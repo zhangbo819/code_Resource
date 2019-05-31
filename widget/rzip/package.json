@@ -2,7 +2,8 @@
   "name": "rzip",
   "bin": {
     "rzip": "./index.sh",
-    "ruhuarn": "./ruhuarn.sh"
+    "ruhuarn": "./ruhuarn.sh",
+    "ruleFile": "./RFindex.js"
   },
   "version": "1.0.0",
   "description": "",

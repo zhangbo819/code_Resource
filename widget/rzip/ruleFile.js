@@ -1,19 +1,50 @@
 var fs = require("fs");
 require('shelljs/global');
 
+const TYPE_COVER_NOSAVE = "coverNoSave";
+const TYPE_COVER_SAVE = "coverSave";
+const TYPE_OUTPUT = "output";
 
-ruleFile({
-    targetFile: './data.js',
-    outputDir: 'dist',
-    get outputFile() {
-        return this.targetFile;
+// ruleFile({
+//     targetFilePath: './data.js',
+//     outputDir: 'dist',
+//     get outputFile() {
+//         return this.targetFilePath;
+//     }
+// });
+
+
+async function ruleFile(options) {
+    let {
+        type = TYPE_OUTPUT,
+        targetDirPath, targetFile,
+        outputDir, outputFile,
+        replaceAudio = false
+    } = options;
+
+    let isCoverNoSave = false;
+    let isCoverSave = false;
+    let isOutput = false;
+
+    switch (type) {
+        case TYPE_COVER_NOSAVE:
+            isCoverNoSave = true;
+            break;
+        case TYPE_COVER_SAVE:
+            isCoverSave = true;
+            break;
+        case TYPE_OUTPUT:
+            isOutput = true;
+            break;
     }
-});
 
+    const IS_COVER = (isCoverNoSave || isCoverSave);
 
-async function ruleFile({ targetFile, outputDir = null, outputFile }) {
+    const targetFilePath = `${targetDirPath}/${targetFile}`;
+    const outputFilePath = `${targetDirPath}/${IS_COVER ? targetFile : (outputDir + '/' + outputFile)}`;
+
     // 同步读取
-    let data = await fs.readFileSync(targetFile);
+    let data = await fs.readFileSync(targetFilePath);
     // console.log("同步读取: ", data);
 
     const data_original = data.toString('utf8');
@@ -22,37 +53,48 @@ async function ruleFile({ targetFile, outputDir = null, outputFile }) {
 
     data = (str + rmodule);
 
-    if (outputDir !== null) {
+    cd(targetDirPath)
+    if (isOutput || isCoverSave) {
         if (!ls().some(i => i === outputDir)) {
             mkdir(outputDir)
         }
+        cd(outputDir)
     }
 
-    // appendFile
-    await fs.writeFileSync(outputFile, data);
+    // 第一次写入 转ES5
+    await fs.writeFileSync(IS_COVER ? targetFilePath : outputFilePath, data);
 
-    const rData = require(`./${outputDir === null ? '' : (outputDir + '/')}${outputFile}'`);
+    const rData = require(outputFilePath);
 
-    let changerData = 'export const sheetData = ' + JSON.stringify(rData.sheetData, null, 4);
+    data = 'export const sheetData = ' + JSON.stringify(rData.sheetData, null, 4);
 
     // 恢复require
-    changerData = changerData.toString('UTF-8')
-        .replace(/\"require\([\s\S]+?\)\"/ig, (s) => {
-            // console.log("last ssssssss", s.slice(1, -1))
-            return s.slice(1, -1);
-        });
+    data = data.toString('UTF-8').replace(/\"require\([\s\S]+?\)\"/ig, (s) => {
+        return s.slice(1, -1);
+    });
 
     // 替换audio
-    changerData = changerData
-        .replace(/http\:\/\/test\.txbimg\.com\/RN_chinese\/ReactNative\/sheet\//ig, '');
+    if (replaceAudio) {
+        data = data.replace(/http\:\/\/test\.txbimg\.com\/RN_chinese\/ReactNative\/sheet\//ig, '');
+    }
 
-    await fs.writeFileSync(outputFile, changerData);
+    // 第二次写入 去除逻辑
+    await fs.writeFileSync(IS_COVER ? targetFilePath : outputFilePath, data);
+
+    if (isCoverSave) {
+        await fs.writeFileSync(`${targetDirPath}/${outputDir}/${outputFile}`, data_original);
+    }
 
     // console.log(`ruleFile ${res ? '成功' : '失败'}`);
 
-    return { data_original };
+    cd(__dirname)
 
     // exit(0);
+
+    return {
+        data_original,
+        changer_data: data
+    };
 }
 
 function exportToES5(str = '') {
@@ -74,7 +116,7 @@ function exportToES5(str = '') {
     });
 
     rmodule += "}";
-    rmodule = 'module.exports = ' + rmodule;
+    rmodule = '\n module.exports = ' + rmodule;
     // console.log(str)
     return {
         rmodule,
@@ -84,5 +126,8 @@ function exportToES5(str = '') {
 
 module.exports = {
     ruleFile,
-    exportToES5
+    exportToES5,
+    TYPE_COVER_NOSAVE,
+    TYPE_COVER_SAVE,
+    TYPE_OUTPUT
 };
