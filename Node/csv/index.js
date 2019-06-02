@@ -1,35 +1,18 @@
-const program = require('commander');
+// const program = require('commander');
 const csv = require('csv');
 const fs = require('fs');
-const inquirer = require('inquirer');
 
-program
-  .version('0.0.1')
-  .option('-l, --list [list]', 'List of customers in CSV')
-  .parse(process.argv)
+// program
+//   .version('0.0.1')
+//   .option('-l, --list [list]', 'List of customers in CSV')
+//   .parse(process.argv)
 
-let questions = [
-    {
-        type: "input",
-        name: "sender.email",
-        message: "Sender's email address - "
-    },
-    {
-        type: "input",
-        name: "sender.name",
-        message: "Sender's name - "
-    },
-    {
-        type: "input",
-        name: "subject",
-        message: "Subject - "
-    }
-];
+const targePath = './input/employees.csv';
 
 let contactList = [];
 let parse = csv.parse;
-console.log(program.list)
-let stream = fs.createReadStream(program.list)
+// console.log(program.list)
+let stream = fs.createReadStream(targePath)
     .pipe(parse({ delimiter: "," }));
 
 stream
@@ -42,7 +25,5 @@ stream
         contactList.push({ name: name, email: email });
     })
     .on("end", function () {
-        inquirer.prompt(questions).then(function (answers) {
-            console.log(answers);
-        });
+        console.log('end contactList \n', JSON.stringify(contactList, null, 4))
     });
