@@ -68,13 +68,13 @@ async function _main() {
     console.log(`版本更新${outputNameRes ? '成功' : '失败'}`)
 
     console.log('开始压缩');
-    // loading start
-    const loader = ['/ Compressing files', '| Compressing files', '\\ Compressing files', '- Compressing files'];
-    let i = 4;
-    const ui = new BottomBar({ bottomBar: loader[i % 4] });
-    const timer = setInterval(() => {
-        ui.updateBottomBar(loader[i++ % 4]);
-    }, 150);
+    // // loading start
+    // const loader = ['/ Compressing files', '| Compressing files', '\\ Compressing files', '- Compressing files'];
+    // let i = 4;
+    // const ui = new BottomBar({ bottomBar: loader[i % 4] });
+    // const timer = setInterval(() => {
+    //     ui.updateBottomBar(loader[i++ % 4]);
+    // }, 150);
 
     const zipRes = await zip.createGzipByPromise({
         filePath,
@@ -88,9 +88,9 @@ async function _main() {
         ]
     })
 
-    // loading end
-    clearInterval(timer);
-    // ui.updateBottomBar('Installation done!\n');
+    // // loading end
+    // clearInterval(timer);
+    // // ui.updateBottomBar('Installation done!\n');
 
     if (!zipRes) {
         console.log('文件压缩失败')
