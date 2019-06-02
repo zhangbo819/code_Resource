@@ -17,17 +17,21 @@ function createGzipByPromise({ filePath, outputPath, fileList }) {
         var stream = fs.createWriteStream(outputPath);
         var archive = archiver('zip');
         let status = true;
+        var passedLength = 0;
 
         stream.on('close', function () {
             // console.log('archiver has been finalized and the output file descriptor has closed.');
             console.log(`\n压缩成功, 大小: ${(archive.pointer() / 1000 / 1000).toFixed(1)} MB, 压缩包路径: ${outputPath}`);
+            clearInterval(timer);
             resolve(true)
         });
 
         // to do console data
-        // archive.on('data', function (data) {
-        //     console.log('data', JSON.stringify(data))
-        // });
+        archive.on('data', function (chunk) {
+            passedLength += chunk.length;
+            // console.log('passedLength', passedLength)
+            // console.log('data', JSON.stringify(data))
+        });
 
         archive.on('error', function (err) {
             console.warn(err)
@@ -65,6 +69,10 @@ function createGzipByPromise({ filePath, outputPath, fileList }) {
 
         // 开始压缩
         status && archive.finalize();
+
+        var timer = setInterval(() => {
+            console.log('passedLength', passedLength)
+        }, 1000)
     })
 }
 
