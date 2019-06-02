@@ -1,0 +1,1 @@
+console.log('target.js in', Date.now())
