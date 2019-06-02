@@ -7,7 +7,7 @@ const fs = require('fs');
 //   .option('-l, --list [list]', 'List of customers in CSV')
 //   .parse(process.argv)
 
-const targePath = './input/employees.csv';
+// const targePath = './input/employees.csv';
 
 let contactList = [];
 let parse = csv.parse;
