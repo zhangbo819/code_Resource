@@ -19,7 +19,8 @@ async function ruleFile(options) {
         type = TYPE_OUTPUT,
         targetDirPath, targetFile,
         outputDir, outputFile,
-        replaceAudio = false
+        replaceAudio = false,
+        isNeedclearCache = false
     } = options;
 
     let isCoverNoSave = false;
@@ -64,9 +65,14 @@ async function ruleFile(options) {
     // 第一次写入 转ES5
     await fs.writeFileSync(IS_COVER ? targetFilePath : outputFilePath, data);
 
+    if (isNeedclearCache) {
+        delete require.cache[require.resolve(outputFilePath)];
+    }
     const rData = require(outputFilePath);
 
     data = 'export const sheetData = ' + JSON.stringify(rData.sheetData, null, 4);
+
+
 
     // 恢复require
     data = data.toString('UTF-8').replace(/\"require\([\s\S]+?\)\"/ig, (s) => {
