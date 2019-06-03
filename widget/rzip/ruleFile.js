@@ -83,15 +83,25 @@ async function ruleFile(options) {
     }
 
     // 进度条处理
-    // var a = './images/propcess/g3/g2.png'
-    // a.match(/\.\/images\/propcess\/([\s\S]+?)\//ig, (i) => {})
-
     let arrProcessBar = [];
     data = data.replace(/\"\@\@\@\@\@([\s\S]+?)\@\@\@\@\@\"/ig, (all, $1) => {
-        arrProcessBar.push(...$1.match(/\.\/images\/propcess\/([\s\S]+?)\//ig, (i, $i) => $i))
+        arrProcessBar.push(/\.\/images\/propcess\/([\s\S]+?)\//ig.exec(data)[1])
         return `require${$1}`
     })
+    arrProcessBar = [...new Set(arrProcessBar)];
     console.log("arrProcessBar", arrProcessBar)
+
+    const processBarDirPath = `${__dirname}/data/`;
+    const processBarFile = `processBar.json`;
+    const processBarFilePath = `${processBarDirPath}${processBarFile}`;
+    // 保存进度条数据
+    const isExist = fs.accessSync(processBarFilePath);
+    if (!isExist) {
+        cd(processBarDirPath)
+        touch(processBarFile)
+        cd('-')
+    }
+    await fs.writeFileSync(processBarFilePath, { processBar: arrProcessBar, date: new Date() })
 
     // 第二次写入 去除逻辑
     await fs.writeFileSync(IS_COVER ? targetFilePath : outputFilePath, data);
