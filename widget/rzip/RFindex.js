@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var inquirer = require('inquirer');
+require('shelljs/global');
 
 const { projectPath } = require('./config');
 const {
@@ -10,12 +11,16 @@ const {
     TYPE_OUTPUT
 } = require("./ruleFile");
 
+const objChoices = {
+    'Do not covered and save the new file': TYPE_OUTPUT,
+    'covered and save the original file': TYPE_COVER_SAVE,
+    'Directly covered': TYPE_COVER_NOSAVE,
+}
 
 const choices = [
-    'Directly covered',
-    'covered and save the original file',
-    'Do not covered and save the new file',
-    // new inquirer.Separator(),
+    ...Object.keys(objChoices),
+    new inquirer.Separator(),
+    'clear output'
     // {
     //   name: 'Contact support',
     //   disabled: 'Unavailable at this time'
@@ -33,15 +38,23 @@ inquirer.prompt([
         // }
     },
 ]).then(answers => {
-    const ruleTypeArr = [TYPE_COVER_NOSAVE, TYPE_COVER_SAVE, TYPE_OUTPUT];
+    const index = choices.findIndex(i => i === answers.ruleType);
+    const targetDirPath = `${projectPath}sheet`;
+    const outputDir = process.argv[2] || 'output';
 
-    // console.log(ruleTypeArr[choices.findIndex(i => i === answers.ruleType)]);
-
-    ruleFile({
-        type: ruleTypeArr[choices.findIndex(i => i === answers.ruleType)],
-        targetDirPath: `${projectPath}sheet`,
-        targetFile: 'data.js',
-        outputDir: process.argv[2] || 'output',
-        outputFile: 'data.js',
-    });
+    switch (index) {
+        case 1:
+        case 2:
+        case 3:
+            ruleFile({
+                type: objChoices[answers.ruleType],
+                targetDirPath,
+                targetFile: 'data.js',
+                outputDir,
+                outputFile: 'data.js',
+            });
+            break;
+        case 4:
+            rm('-rf', `${targetDirPath}/${outputDir}`);
+    }
 });
