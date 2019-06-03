@@ -22,8 +22,8 @@ async function main() {
     // console.log(choices)
 
     if (choices.length !== 0) {
-        choices.unshift(new inquirer.Separator(' === Select the items to delete === '));
-        choices.push(new inquirer.Separator(' ========================== '));
+        choices.unshift(new inquirer.Separator(' ===== Select the items to delete ===== '));
+        choices.push(new inquirer.Separator(' ====================================== '));
 
         const { toppings } = await inquirer.prompt([
             {
