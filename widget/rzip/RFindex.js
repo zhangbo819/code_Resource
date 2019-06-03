@@ -38,23 +38,23 @@ inquirer.prompt([
         // }
     },
 ]).then(answers => {
-    const index = choices.findIndex(i => i === answers.ruleType);
+    const { ruleType } = answers;
+    const index = choices.findIndex(i => i === ruleType);
     const targetDirPath = `${projectPath}sheet`;
     const outputDir = process.argv[2] || 'output';
 
-    switch (index) {
-        case 1:
-        case 2:
-        case 3:
+    switch (true) {
+        case (ruleType in objChoices):
             ruleFile({
-                type: objChoices[answers.ruleType],
+                type: objChoices[ruleType],
                 targetDirPath,
                 targetFile: 'data.js',
                 outputDir,
                 outputFile: 'data.js',
             });
             break;
-        case 4:
+        case index === 4:
             rm('-rf', `${targetDirPath}/${outputDir}`);
+            break;
     }
 });
