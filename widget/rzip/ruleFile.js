@@ -72,8 +72,6 @@ async function ruleFile(options) {
 
     data = 'export const sheetData = ' + JSON.stringify(rData.sheetData, null, 4);
 
-
-
     // 恢复require
     data = data.toString('UTF-8').replace(/\"require\([\s\S]+?\)\"/ig, (s) => {
         return s.slice(1, -1);
@@ -83,6 +81,17 @@ async function ruleFile(options) {
     if (replaceAudio) {
         data = data.replace(/http\:\/\/test\.txbimg\.com\/RN_chinese\/ReactNative\/sheet\//ig, '');
     }
+
+    // 进度条处理
+    // var a = './images/propcess/g3/g2.png'
+    // a.match(/\.\/images\/propcess\/([\s\S]+?)\//ig, (i) => {})
+
+    let arrProcessBar = [];
+    data = data.replace(/\"\@\@\@\@\@([\s\S]+?)\@\@\@\@\@\"/ig, (all, $1) => {
+        arrProcessBar.push(...$1.match(/\.\/images\/propcess\/([\s\S]+?)\//ig, (i, $i) => $i))
+        return `require${$1}`
+    })
+    console.log("arrProcessBar", arrProcessBar)
 
     // 第二次写入 去除逻辑
     await fs.writeFileSync(IS_COVER ? targetFilePath : outputFilePath, data);
