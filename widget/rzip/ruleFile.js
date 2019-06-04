@@ -20,7 +20,8 @@ async function ruleFile(options) {
         targetDirPath, targetFile,
         outputDir, outputFile,
         replaceAudio = false,
-        isNeedclearCache = false
+        isNeedclearCache = false,
+        isUpdateProcess = true
     } = options;
 
     let isCoverNoSave = false;
@@ -88,20 +89,22 @@ async function ruleFile(options) {
         arrProcessBar.push(/\.\/images\/propcess\/([\s\S]+?)\//ig.exec(data)[1])
         return `require${$1}`
     })
-    arrProcessBar = [...new Set(arrProcessBar)];
-    console.log("arrProcessBar", arrProcessBar)
 
-    const processBarDirPath = `${__dirname}/data/`;
-    const processBarFile = `processBar.json`;
-    const processBarFilePath = `${processBarDirPath}${processBarFile}`;
     // 保存进度条数据
-    const isExist = fs.existsSync(processBarFilePath);
-    if (!isExist) {
-        cd(processBarDirPath)
-        touch(processBarFile)
-        cd('-')
+    if (isUpdateProcess) {
+        arrProcessBar = [...new Set(arrProcessBar)];
+        console.log("arrProcessBar", arrProcessBar)
+        const processBarDirPath = `${__dirname}/data/`;
+        const processBarFile = `processBar.json`;
+        const processBarFilePath = `${processBarDirPath}${processBarFile}`;
+        const isExist = fs.existsSync(processBarFilePath);
+        if (!isExist) {
+            cd(processBarDirPath)
+            touch(processBarFile)
+            cd('-')
+        }
+        await fs.writeFileSync(processBarFilePath, JSON.stringify({ processBar: arrProcessBar, date: new Date() }, null, 4))
     }
-    await fs.writeFileSync(processBarFilePath, JSON.stringify({ processBar: arrProcessBar, date: new Date() }, null, 4))
 
     // 第二次写入 去除逻辑
     await fs.writeFileSync(IS_COVER ? targetFilePath : outputFilePath, data);

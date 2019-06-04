@@ -128,16 +128,13 @@ function _fillZero(num) {
 }
 
 async function _checkoutputVersion() {
-
-    if (!shell.ls().some(f => f === outputVersionDir)) {
+    if (!fs.existsSync(outputVersionDir)) {
         shell.mkdir(outputVersionDir)
     }
 
-    shell.cd(outputVersionDir)
-    if (!shell.ls().some(f => f === outputVersionJson)) {
+    if (!fs.existsSync(outputVersionDir + '/' + outputVersionJson)) {
         const res = await _writeFileByPromise({ targetPath: outputVersionJson, data: "{}" });
     }
-    shell.cd('../')
 }
 
 
