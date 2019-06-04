@@ -11,19 +11,21 @@ const {
     TYPE_COVER_SAVE,
     TYPE_OUTPUT
 } = require("./ruleFile");
+const { rProcess } = require("./rProcess");
 
 const objChoices = {
     'Do not covered and save the new file': TYPE_OUTPUT,
-    'covered and save the original file': TYPE_COVER_SAVE,
+    'Covered and save the original file': TYPE_COVER_SAVE,
     'Directly covered': TYPE_COVER_NOSAVE,
 }
 
 const choices = [
-    new inquirer.Separator(),
+    // new inquirer.Separator(),
     ...Object.keys(objChoices),
-    new inquirer.Separator(),
-    'watch targetFile',
-    'clear output'
+    // new inquirer.Separator(),
+    'Watch targetFile',
+    'Clear output',
+    'Replace the progress bar'
     // {
     //   name: 'Contact support',
     //   disabled: 'Unavailable at this time'
@@ -50,12 +52,12 @@ inquirer.prompt([
     console.log(index, objChoices[ruleType])
 
     switch (index) {
+        case 0:
         case 1:
         case 2:
-        case 3:
             ruleFileStart({ type: objChoices[ruleType] })
             break;
-        case 5:
+        case 3:
             fs.watch(targetDirPath, (eventType, filename) => {
                 if (filename === targetFile) {
                     console.log(`事件类型是: ${eventType}`);
@@ -63,8 +65,14 @@ inquirer.prompt([
                 }
             });
             break;
-        case 6:
+        case 4:
             rm('-rf', `${targetDirPath}/${outputDir}`);
+            break;
+        case 5:
+            rProcess({
+                processResourcesPath: '/Users/zzb/work/新进度条/',
+                outputDirPath: targetDirPath + '/images/process/'
+            });
             break;
     }
 

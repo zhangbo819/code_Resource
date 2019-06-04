@@ -12,7 +12,7 @@ async function rProcess({ processResourcesPath, outputDirPath }) {
     let { processBar, date } = data;
 
     processBar = processBar.map((item) => {
-        return `${processResourcesPath}${item.slice(1)}/`;
+        return `${processResourcesPath}${item}/`;
     });
 
     console.log(new Date(date).toLocaleString(), '\n', processBar)
@@ -21,6 +21,7 @@ async function rProcess({ processResourcesPath, outputDirPath }) {
         shell.mkdir(outputDirPath)
     }
 
+    shell.rm('-rf', outputDirPath + '*')
     shell.cp('-Rf', processBar, outputDirPath)
 }
 
