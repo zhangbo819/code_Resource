@@ -1,6 +1,6 @@
 var fs = require("fs");
 
-const targetPath = __dirname + '/exists.js';
+const targetPath = __dirname + '/test';
 
 // fs.exists(targetPath, (isExist) => {
 //     console.log(isExist)
