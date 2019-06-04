@@ -86,7 +86,7 @@ async function ruleFile(options) {
     // 进度条处理
     let arrProcessBar = [];
     data = data.replace(/\"\@\@\@\@\@([\s\S]+?)\@\@\@\@\@\"/ig, (all, $1) => {
-        arrProcessBar.push(/\.\/images\/propcess\/([\s\S]+?)\//ig.exec(data)[1])
+        arrProcessBar.push(/\.\/images\/process\/([\s\S]+?)\//ig.exec($1)[1])
         return `require${$1}`
     })
 
