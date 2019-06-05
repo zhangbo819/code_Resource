@@ -52,17 +52,13 @@ inquirer.prompt([
     },
 ]).then(answers => {
     console.log(JSON.stringify(answers, null, '  '));
-
     const { index } = answers;
     if (index === indexChoices[0]) {
-        child_process.exec(`cd ${__dirname} && ./updateKey.js && ./index.js`,
-            function (err, stdout, stderr) {
-                if (err) { console.warn(err); }
-                console.log(stdout);
-            }
-        );
+        createChildrenProcessBySpawn('sh', [`${__dirname}/index.sh`]);
     } else if (index === indexChoices[1]) {
-        child_process.exec(`cd ${__dirname} && npm run ruhuanrn`,
+        // to do use createChildrenProcessBySpawn
+        // createChildrenProcessBySpawn('sh', [`${__dirname}/ruhuarn.sh`]);
+        child_process.exec(`sh ${__dirname}/ruhuarn.sh`,
             function (err, stdout, stderr) {
                 if (err) { throw err; }
                 console.log(stdout);
@@ -117,4 +113,21 @@ function ruleFileStart(answers) {
             isNeedclearCache
         });
     }
+}
+
+function createChildrenProcessBySpawn(p1, p2) {
+    const { spawn } = child_process;
+    const child = spawn(p1, p2);
+
+    child.stdout.setEncoding('utf8');
+    child.stdout.on('data', (data) => {
+        process.stdout.write(data)
+    })
+    child.stderr.on('data', (data) => {
+        console.log(`stderr: ${data}`);
+    });
+
+    child.on('close', (code) => {
+        console.log(`child process exited with code ${code}`);
+    });
 }
