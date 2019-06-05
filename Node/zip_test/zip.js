@@ -1,4 +1,6 @@
 var fs = require('fs');
+var readline = require('readline');
+
 var archiver = require('archiver');
 require('shelljs/global');
 
@@ -33,6 +35,7 @@ function createGzipByPromise({ filePath, outputPath, fileList }) {
             passedLength += chunk.length;
             // out.clearLine();
             // out.cursorTo(0);
+            readline.cursorTo(process.stdout, 0);
             out.write(`正在压缩, 已压缩: ${(passedLength / 1000 / 1000).toFixed(1)} MB`)
             // console.log('data', JSON.stringify(data))
         });
