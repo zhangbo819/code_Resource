@@ -22,7 +22,7 @@ function createGzipByPromise({ filePath, outputPath, fileList }) {
 
         stream.on('close', function () {
             // console.log('archiver has been finalized and the output file descriptor has closed.');
-            out.cursorTo(0);
+            // out.cursorTo(0);
             out.write(`\n压缩成功, 大小: ${(archive.pointer() / 1000 / 1000).toFixed(1)} MB, 压缩包路径: ${outputPath}\n`);
             // clearInterval(timer);
             resolve(true)
@@ -32,7 +32,7 @@ function createGzipByPromise({ filePath, outputPath, fileList }) {
         archive.on('data', function (chunk) {
             passedLength += chunk.length;
             // out.clearLine();
-            out.cursorTo(0);
+            // out.cursorTo(0);
             out.write(`正在压缩, 已压缩: ${(passedLength / 1000 / 1000).toFixed(1)} MB`)
             // console.log('data', JSON.stringify(data))
         });

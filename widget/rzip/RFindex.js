@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 var fs = require("fs");
+var child_process = require('child_process');
 
 var inquirer = require('inquirer');
 require('shelljs/global');
@@ -19,6 +20,7 @@ const objChoices = {
     'Directly covered': TYPE_COVER_NOSAVE,
 }
 
+const indexChoices = ['rzip', 'ruhuarn', 'ruleFile'];
 const choices = [
     // new inquirer.Separator(),
     ...Object.keys(objChoices),
@@ -31,18 +33,47 @@ const choices = [
     //   disabled: 'Unavailable at this time'
     // },
 ];
-
 inquirer.prompt([
+    {
+        type: 'list',
+        name: 'index',
+        message: 'Please select a script',
+        choices: indexChoices,
+    },
     {
         type: 'list',
         name: 'ruleType',
         message: 'Which type do you want to choose?',
         choices,
-        // filter: function (val) {
-        //     return val.toLowerCase();
-        // }
+        when: function (answers) {
+            // console.log('answers', answers)
+            return answers.index === indexChoices[2];
+        }
     },
 ]).then(answers => {
+    console.log(JSON.stringify(answers, null, '  '));
+
+    const { index } = answers;
+    if (index === indexChoices[0]) {
+        child_process.exec(`cd ${__dirname} && ./updateKey.js && ./index.js`,
+            function (err, stdout, stderr) {
+                if (err) { console.warn(err); }
+                console.log(stdout);
+            }
+        );
+    } else if (index === indexChoices[1]) {
+        child_process.exec(`cd ${__dirname} && npm run ruhuanrn`,
+            function (err, stdout, stderr) {
+                if (err) { throw err; }
+                console.log(stdout);
+            }
+        );
+    } else if (index === indexChoices[2]) {
+        ruleFileStart(answers)
+    }
+});
+
+function ruleFileStart(answers) {
     const { ruleType } = answers;
     const index = choices.findIndex(i => i === ruleType);
     const targetDirPath = `${projectPath}sheet`;
@@ -86,4 +117,4 @@ inquirer.prompt([
             isNeedclearCache
         });
     }
-});
+}

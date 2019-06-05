@@ -9,7 +9,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "rzip": "cd /Users/zzb/WEB/code_Resource/widget/rzip && ./updateKey.js && ./index.js && cd -",
+    "ruhuanrn": "./ruhuarn.sh"
   },
   "keywords": [],
   "author": "",
