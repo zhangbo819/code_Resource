@@ -6,4 +6,4 @@
 - [小工具](https://github.com/zhangbo819/code_Resource/tree/master/widget) -->
 
 [index](https://zhangbo819.github.io/code_Resource/)
-[.gitignore语法](https://www.jianshu.com/p/ea6341224e89) 
+[.gitignore语法](https://www.jianshu.com/p/ea6341224e89)
