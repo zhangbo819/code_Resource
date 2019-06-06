@@ -100,12 +100,12 @@ async function _main() {
     const recoverRes = await _writeFileByPromise({ data: data_original, targetPath: targetFilePath });
     console.log(`复原${recoverRes ? '成功' : '失败'}`);
 
-    child_process.exec(`open ${filePath}`, function (err, stdout, stderr) {
-        console.log(err, stdout, stderr);
-        if (err) throw err;
+    // child_process.exec(`open ${filePath}`, function (err, stdout, stderr) {
+    //     console.log(err, stdout, stderr);
+    //     if (err) throw err;
 
-        shell.exit(recoverRes ? 0 : 1)
-    });
+    //     shell.exit(recoverRes ? 0 : 1)
+    // });
 }
 
 function _writeFileByPromise({ targetPath, data }) {
