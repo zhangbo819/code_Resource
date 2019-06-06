@@ -20,7 +20,14 @@ const objChoices = {
     'Directly covered': TYPE_COVER_NOSAVE,
 }
 
-const indexChoices = ['rzip', 'ruhuarn', 'ruleFile'];
+const indexChoices = [
+    'rzip',
+    {
+        name: 'ruhuarn',
+        disabled: 'Temporary does not support'
+    },
+    'ruleFile'
+];
 const choices = [
     // new inquirer.Separator(),
     ...Object.keys(objChoices),
@@ -28,10 +35,6 @@ const choices = [
     'Watch targetFile',
     'Clear output',
     'Replace the progress bar'
-    // {
-    //   name: 'Contact support',
-    //   disabled: 'Unavailable at this time'
-    // },
 ];
 inquirer.prompt([
     {

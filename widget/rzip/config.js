@@ -9,7 +9,7 @@ const {
 
 const { STORAGE_KEY } = require(outputFile);
 
-console.log('STORAGE_KEY', STORAGE_KEY)
+// console.log('STORAGE_KEY', STORAGE_KEY)
 
 // to do 读取sh
 // var data = fs.readFileSync('ruhuarn.sh');

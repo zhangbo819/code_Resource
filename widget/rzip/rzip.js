@@ -36,6 +36,7 @@ async function _main() {
     let outputVersion = require(outputVersionPath);
 
     const inputZipName = STORAGE_KEY;
+    console.log('STORAGE_KEY', STORAGE_KEY)
     // const { inputZipName } = await inquirer.prompt(questions);
     // console.log('inputZipName', inputZipName)
 
