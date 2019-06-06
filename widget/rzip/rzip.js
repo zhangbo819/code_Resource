@@ -129,6 +129,7 @@ function _fillZero(num) {
 
 async function _checkoutputVersion() {
     if (!fs.existsSync(outputVersionDir)) {
+        // to do use -p
         shell.mkdir(outputVersionDir)
     }
 
