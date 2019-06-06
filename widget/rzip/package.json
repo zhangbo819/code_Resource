@@ -1,17 +1,14 @@
 {
   "name": "rzip",
   "bin": {
-    "rzip": "./index.sh",
     "ruhuarn": "./ruhuarn.sh",
-    "ruleFile": "./RFindex.js"
+    "ruleFile": "./index.js"
   },
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "rzip": "cd /Users/zzb/WEB/code_Resource/widget/rzip && ./updateKey.js && ./index.js && cd -",
-    "ruhuanrn": "./ruhuarn.sh"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",

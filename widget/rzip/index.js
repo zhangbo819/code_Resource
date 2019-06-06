@@ -54,7 +54,7 @@ inquirer.prompt([
     console.log(JSON.stringify(answers, null, '  '));
     const { index } = answers;
     if (index === indexChoices[0]) {
-        createChildrenProcessBySpawn('sh', [`${__dirname}/index.sh`]);
+        createChildrenProcessBySpawn('sh', [`${__dirname}/rzip.sh`]);
     } else if (index === indexChoices[1]) {
         // to do use createChildrenProcessBySpawn
         // createChildrenProcessBySpawn('sh', [`${__dirname}/ruhuarn.sh`]);
