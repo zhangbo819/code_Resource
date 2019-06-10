@@ -189,15 +189,20 @@ function watchThenRuleFile({
     ruleFile_targetDirPath = targetDirPath,
     ruleFile_outputDir = outputDir
 }) {
+    update();
     fs.watch(target, (eventType, filename) => {
         if (filename === targetFile) {
             console.log(`事件类型是: ${eventType}`);
-            ruleFileBytype({
-                type: TYPE_OUTPUT,
-                targetDirPath: ruleFile_targetDirPath,
-                outputDir: ruleFile_outputDir,
-                isNeedclearCache: true
-            })
+            update()
         }
     });
+
+    function update() {
+        ruleFileBytype({
+            type: TYPE_OUTPUT,
+            targetDirPath: ruleFile_targetDirPath,
+            outputDir: ruleFile_outputDir,
+            isNeedclearCache: true
+        })
+    }
 }
