@@ -15,26 +15,24 @@ const {
 const { rProcess } = require("./rProcess");
 
 
+const targetDirPath = `${projectPath}sheet`;
+const outputDir = process.argv[2] || 'output';
+const targetFile = 'data.js';
+
 const ruleTypeChoices = [
     // new inquirer.Separator(),
     // new inquirer.Separator(),
     {
         name: 'Do not covered and save the new file',
-        callback: () => {
-            ruleFileBytype({ type: TYPE_OUTPUT })
-        }
+        callback: ruleFileBytype.bind(this, { type: TYPE_OUTPUT })
     },
     {
         name: 'Covered and save the original file',
-        callback: () => {
-            ruleFileBytype({ type: TYPE_COVER_SAVE })
-        }
+        callback: ruleFileBytype.bind(this, { type: TYPE_COVER_SAVE })
     },
     {
         name: 'Directly covered',
-        callback: () => {
-            ruleFileBytype({ type: TYPE_COVER_NOSAVE })
-        }
+        callback: ruleFileBytype.bind(this, { type: TYPE_COVER_NOSAVE })
     },
     {
         name: 'Watch targetFile',
@@ -49,26 +47,21 @@ const ruleTypeChoices = [
     },
     {
         name: 'Clear output',
-        callback: () => {
-            rm('-rf', `${targetDirPath}/${outputDir}`);
-        }
+        callback: rm.bind(this, '-rf', `${targetDirPath}/${outputDir}`)
     },
     {
         name: 'Replace the progress bar',
-        callback: () => {
-            rProcess({
-                processResourcesPath: '/Users/zzb/work/新进度条/',
-                outputDirPath: targetDirPath + '/images/process/'
-            });
-        }
+        callback: rProcess.bind(this, {
+            processResourcesPath: '/Users/zzb/work/新进度条/',
+            outputDirPath: targetDirPath + '/images/process/'
+        })
+
     },
 ];
 const scriptChoices = [
     {
         name: 'rzip',
-        callback: () => {
-            createChildrenProcessBySpawn('sh', [`${__dirname}/rzip.sh`]);
-        }
+        callback: createChildrenProcessBySpawn.bind(this, 'sh', [`${__dirname}/rzip.sh`])
     },
     {
         name: 'ruleFile',
@@ -89,11 +82,6 @@ const scriptChoices = [
         }
     },
 ];
-
-const targetDirPath = `${projectPath}sheet`;
-const outputDir = process.argv[2] || 'output';
-const targetFile = 'data.js';
-
 
 inquirer.prompt([
     {
