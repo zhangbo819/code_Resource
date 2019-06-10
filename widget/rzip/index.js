@@ -44,10 +44,8 @@ const watchFileChoices = [
         }
     },
     {
-        name: 'Restore data.js according to input && clear',
-        callback: () => {
-            cp('-Rf', `${inputDirPath}/${targetFile}`, `${targetDirPath}/${targetFile}`)
-        }
+        name: 'Restore data.js according to input',
+        callback: cp.bind(this, '-Rf', `${inputDirPath}/${targetFile}`, `${targetDirPath}/${targetFile}`)
     },
     {
         name: 'wathFile by output',
