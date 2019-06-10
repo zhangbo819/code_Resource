@@ -18,10 +18,55 @@ const { rProcess } = require("./rProcess");
 const targetDirPath = `${projectPath}sheet`;
 const outputDir = process.argv[2] || 'output';
 const targetFile = 'data.js';
+const inputDir = 'input';
+const inputDirPath = `${targetDirPath}/${inputDir}`;
 
+const watchFileChoices = [
+    {
+        name: 'wathFile by input',
+        callback: () => {
+            const _targetDirPath = `${targetDirPath}/${inputDir}`;
+            watchThenRuleFile({
+                target: _targetDirPath,
+                ruleFile_targetDirPath: _targetDirPath,
+                ruleFile_outputDir: '../',
+            })
+        }
+    },
+    {
+        name: 'create input according to data.js',
+        callback: () => {
+            if (!fs.existsSync()) {
+                // to do use -p
+                mkdir(inputDirPath)
+            }
+            cp('-Rf', `${targetDirPath}/${targetFile}`, inputDirPath)
+        }
+    },
+    {
+        name: 'Restore data.js according to input && clear',
+        callback: () => {
+            cp('-Rf', `${inputDirPath}/${targetFile}`, `${targetDirPath}/${targetFile}`)
+        }
+    },
+    {
+        name: 'wathFile by output',
+        callback: () => {
+            watchThenRuleFile({
+                target: targetDirPath,
+                ruleFile_targetDirPath: targetDirPath,
+                ruleFile_outputDir: outputDir,
+            })
+        }
+    }
+];
 const ruleTypeChoices = [
     // new inquirer.Separator(),
     // new inquirer.Separator(),
+    {
+        name: 'Watch file',
+        callback: inquirerAfter('Watch file', watchFileChoices),
+    },
     {
         name: 'Do not covered and save the new file',
         callback: ruleFileBytype.bind(this, { type: TYPE_OUTPUT })
@@ -35,17 +80,6 @@ const ruleTypeChoices = [
         callback: ruleFileBytype.bind(this, { type: TYPE_COVER_NOSAVE })
     },
     {
-        name: 'Watch targetFile',
-        callback: () => {
-            fs.watch(targetDirPath, (eventType, filename) => {
-                if (filename === targetFile) {
-                    console.log(`事件类型是: ${eventType}`);
-                    ruleFileStart({ type: TYPE_OUTPUT, isNeedclearCache: true })
-                }
-            });
-        }
-    },
-    {
         name: 'Clear output',
         callback: rm.bind(this, '-rf', `${targetDirPath}/${outputDir}`)
     },
@@ -55,7 +89,6 @@ const ruleTypeChoices = [
             processResourcesPath: '/Users/zzb/work/新进度条/',
             outputDirPath: targetDirPath + '/images/process/'
         })
-
     },
 ];
 const scriptChoices = [
@@ -65,7 +98,7 @@ const scriptChoices = [
     },
     {
         name: 'ruleFile',
-        callback: inquirerAfter('ruleType', ruleTypeChoices)
+        callback: inquirerAfter('ruleFile', ruleTypeChoices)
     },
     {
         name: 'ruhuarn',
@@ -92,28 +125,43 @@ inquirer.prompt([
     },
     {
         type: 'list',
-        name: 'ruleType',
+        name: 'ruleFile',
         message: 'Which type do you want to choose?',
         choices: ruleTypeChoices,
         when: function (answers) {
             return answers.script === 'ruleFile';
         }
     },
+    {
+        type: 'list',
+        name: 'Watch file',
+        message: 'What kind of watch should you choose?',
+        choices: watchFileChoices,
+        when: function (answers) {
+            return answers.ruleFile === 'Watch file';
+        }
+    },
 ]).then(inquirerAfter('script', scriptChoices));
 
 function inquirerAfter(key, choices) {
     return function (answers) {
-        console.log(answers[key]);
-        choices.find(({ name }) => name === answers[key]).callback(answers);
+        choices
+            .find(({ name }) => name === answers[key])
+            .callback(answers);
     }
 }
 
-function ruleFileBytype({ type, isNeedclearCache = false }) {
+function ruleFileBytype({
+    type,
+    targetDirPath: _targetDirPath = targetDirPath,
+    outputDir: _outputDir = outputDir,
+    isNeedclearCache = false
+}) {
     ruleFile({
         type,
-        targetDirPath,
+        targetDirPath: _targetDirPath,
         targetFile,
-        outputDir,
+        outputDir: _outputDir,
         outputFile: targetFile,
         isNeedclearCache
     });
@@ -133,5 +181,23 @@ function createChildrenProcessBySpawn(p1, p2) {
 
     child.on('close', (code) => {
         console.log(`child process exited with code ${code}`);
+    });
+}
+
+function watchThenRuleFile({
+    target,
+    ruleFile_targetDirPath = targetDirPath,
+    ruleFile_outputDir = outputDir
+}) {
+    fs.watch(target, (eventType, filename) => {
+        if (filename === targetFile) {
+            console.log(`事件类型是: ${eventType}`);
+            ruleFileBytype({
+                type: TYPE_OUTPUT,
+                targetDirPath: ruleFile_targetDirPath,
+                outputDir: ruleFile_outputDir,
+                isNeedclearCache: true
+            })
+        }
     });
 }

@@ -1,6 +1,6 @@
 var fs = require("fs");
 
-// 异步读取
+// 异步读取1
 console.log('fs start')
 const data = require('./data');
 
