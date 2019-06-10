@@ -45,7 +45,9 @@ const watchFileChoices = [
     },
     {
         name: 'Restore data.js according to input',
-        callback: cp.bind(this, '-Rf', `${inputDirPath}/${targetFile}`, `${targetDirPath}/${targetFile}`)
+        callback: () => {
+            cp('-Rf', `${inputDirPath}/${targetFile}`, `${targetDirPath}/${targetFile}`)
+        }
     },
     {
         name: 'wathFile by output',
@@ -91,12 +93,12 @@ const ruleTypeChoices = [
 ];
 const scriptChoices = [
     {
-        name: 'rzip',
-        callback: createChildrenProcessBySpawn.bind(this, 'sh', [`${__dirname}/rzip.sh`])
-    },
-    {
         name: 'ruleFile',
         callback: inquirerAfter('ruleFile', ruleTypeChoices)
+    },
+    {
+        name: 'rzip',
+        callback: createChildrenProcessBySpawn.bind(this, 'sh', [`${__dirname}/rzip.sh`])
     },
     {
         name: 'ruhuarn',
