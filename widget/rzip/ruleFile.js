@@ -21,7 +21,7 @@ async function ruleFile(options) {
         outputDir, outputFile,
         replaceAudio = false,
         isNeedclearCache = false,
-        isUpdateProcess = true
+        isUpdateProcess = false
     } = options;
 
     let isCoverNoSave = false;
@@ -86,7 +86,9 @@ async function ruleFile(options) {
     // 进度条处理
     let arrProcessBar = [];
     data = data.replace(/\"\@\@\@\@\@([\s\S]+?)\@\@\@\@\@\"/ig, (all, $1) => {
-        arrProcessBar.push(/\.\/images\/process\/([\s\S]+?)\//ig.exec($1)[1])
+        if (isUpdateProcess) {
+            arrProcessBar.push(/\.\/images\/process\/([\s\S]+?)\//ig.exec($1)[1])
+        }
         return `require${$1}`
     })
 
