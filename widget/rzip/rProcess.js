@@ -47,7 +47,7 @@ async function rProcess({
     let processBar = [];
     JSON.stringify(rData.sheetData)
         .replace(/\"\@\@\@\@\@([\s\S]+?)\@\@\@\@\@\"/ig, (all, $1) => {
-            processBar.push(/\.\/images\/process\/([\s\S]+?)\//ig.exec($1)[1])
+            processBar.push(/\.\/images\/process\/p([\s\S]+?)\//ig.exec($1)[1])
             return `require${$1}`
         })
 
@@ -72,7 +72,7 @@ async function rProcess({
     }
 
     processBar = processBar.map((item) => {
-        return `${processResourcesPath}${item}/`;
+        return `${processResourcesPath}p${item}/`;
     });
 
     console.log(new Date().toLocaleString(), '\n', processBar)
