@@ -3,6 +3,13 @@
 
 ```
 git rm --cache -r dist
+
+```
+
+## 删除提交的commit
+
+```
+git reset [commit id]
 ```
 
 ## 删除远程分支
