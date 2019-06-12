@@ -23,7 +23,7 @@ const inputDirPath = `${targetDirPath}/${inputDir}`;
 
 const watchFileChoices = [
     {
-        name: 'wathFile by input',
+        name: 'watchFile by input',
         callback: () => {
             const _targetDirPath = `${targetDirPath}/${inputDir}`;
             watchThenRuleFile({
@@ -50,13 +50,57 @@ const watchFileChoices = [
         }
     },
     {
-        name: 'wathFile by output',
+        name: 'watchFile by output',
         callback: () => {
             watchThenRuleFile({
                 target: targetDirPath,
                 ruleFile_targetDirPath: targetDirPath,
                 ruleFile_outputDir: outputDir,
             })
+        }
+    },
+    {
+        name: 'watch and replace images for Photoshop slice',
+        callback: () => {
+            let questions = [
+                {
+                    type: 'input',
+                    name: 'targetDir',
+                    message: "Please enter the folder you want to watch"
+                },
+            ];
+
+            inquirer.prompt(questions).then(answers => {
+                const { targetDir } = answers;
+                const watchDirPath = `${projectPath}sheet/images/${targetDir}`;     // 观察文件夹路径
+                const watchImagesDirPath = `${watchDirPath}/images`;                // Photoshop导出文件夹路径
+
+                if (!fs.existsSync(watchDirPath)) {
+                    console.log(`文件夹${watchDirPath}不存在`)
+                    return;
+                }
+
+                console.log('watch start');
+                if (!fs.existsSync(watchImagesDirPath)) {
+                    console.log(`mkdir ${watchImagesDirPath}`)
+                    mkdir(watchImagesDirPath)
+                }
+                fs.watch(watchImagesDirPath, (eventType, filename) => {
+                    if (
+                        filename !== '.DS_Store' &&
+                        eventType === 'rename' &&
+                        filename.includes('_') &&
+                        (filename.slice(-4) === '.jpg' || filename.slice(-4) === '.png')
+                    ) {
+                        const mvTarget = `${watchImagesDirPath}/${filename}`;
+                        if (fs.existsSync(mvTarget)) {
+                            const mvOutput = `${watchDirPath}/${filename.replace(/\_([\s\S])./, '')}`;
+                            mv('-f', mvTarget, mvOutput);
+                            console.log(`mv ${mvTarget} -> ${mvOutput} success`);
+                        }
+                    }
+                });
+            });
         }
     }
 ];
