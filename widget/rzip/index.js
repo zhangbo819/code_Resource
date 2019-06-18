@@ -124,8 +124,10 @@ const ruleTypeChoices = [
         callback: ruleFileBytype.bind(this, { type: TYPE_COVER_NOSAVE })
     },
     {
-        name: 'Clear output',
-        callback: rm.bind(this, '-rf', `${targetDirPath}/${outputDir}`)
+        name: 'Clear output & input',
+        callback() {
+            rm('-rf', `${targetDirPath}/${outputDir}`, `${targetDirPath}/${inputDir}`)
+        }
     },
     {
         name: 'Replace the progress bar',
