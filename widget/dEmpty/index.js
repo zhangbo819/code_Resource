@@ -5,6 +5,9 @@ const child_process = require("child_process");
 let emptyCount = 0;
 let needRmCount = 0;
 
+// cd 
+process.chdir('/Users/zzb/work/txbstyle/RN_chinese/ReactNative/sheet/images');
+
 child_process.exec("find . -mindepth 1 -maxdepth 1 -type d", {
     maxBuffer: 1024 * 500   // maxBuffer 指定stdout或stderr上允许的最大数据量 - 如果超过此值，则子进程将被终止。
                             // 默认 200KB 当前为500KB
