@@ -5,4 +5,6 @@
 ### 解决
 ```sh
 chmod -R 777 [/Users/zzb/work/...](目标文件)
+
+chmod -R 777 /Users/zzb/work/txbstyle/RN_chinese/ReactNative/sheet/audio
 ```
