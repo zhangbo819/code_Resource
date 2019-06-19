@@ -62,7 +62,7 @@ const watchFileChoices = [
     {
         name: 'watch and replace images for Photoshop slice',
         callback: () => {
-            let questions = [
+            const questions = [
                 {
                     type: 'input',
                     name: 'targetDir',
@@ -145,6 +145,36 @@ const scriptChoices = [
     {
         name: 'rzip',
         callback: createChildrenProcessBySpawn.bind(this, 'sh', [`${__dirname}/rzip.sh`])
+    },
+    {
+        name: 'arr mkdir',
+        callback() {
+            const questions = [
+                {
+                    type: 'input',
+                    name: 'arrMkdir',
+                    message: "Enter a prefix and an array, such as: g1e 1-10"
+                },
+            ];
+
+            inquirer.prompt(questions).then(answers => {
+                let { arrMkdir } = answers;
+                arrMkdir = arrMkdir.split(' ');
+
+                let result = [];
+                const prefix = arrMkdir[0];
+                const min = arrMkdir[1].split('-')[0];
+                const max = arrMkdir[1].split('-')[1];
+                const targetPath = '/Users/zzb/work/txbstyle/RN_chinese/ReactNative/sheet/images/';
+
+                for (let i = min; i <= max; i++) {
+                    result.push(`${targetPath}${prefix}${i}`);
+                    console.log(`${prefix}${i}`)
+                }
+
+                mkdir(result)
+            })
+        }
     },
     {
         name: 'ruhuarn',
