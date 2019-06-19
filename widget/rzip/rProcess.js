@@ -29,11 +29,7 @@ async function rProcess({
     if (!fs.existsSync(temporaryFileDirPath)) {
         shell.mkdir(temporaryFileDirPath)
     }
-    if (!fs.existsSync(temporaryFilePath)) {
-        shell.cd(temporaryFileDir);
-        shell.touch(temporaryFilePath)
-        shell.cd('-')
-    }
+    
     await fs.writeFileSync(temporaryFilePath, data);
 
     // 读取临时文件
@@ -58,12 +54,10 @@ async function rProcess({
         const processBarDirPath = `${__dirname}/data/`;
         const processBarFile = `processBar.json`;
         const processBarFilePath = `${processBarDirPath}${processBarFile}`;
-        const isExist = fs.existsSync(processBarFilePath);
-        if (!isExist) {
-            cd(processBarDirPath)
-            touch(processBarFile)
-            cd('-')
+        if (!fs.existsSync(processBarDirPath)) {
+            shell.mkdir(processBarDirPath)
         }
+       
         fs.writeFile(processBarFilePath, JSON.stringify({ processBar, date: new Date() }, null, 4), (err) => {
             if (err) {
                 return console.error(err);
