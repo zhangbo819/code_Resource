@@ -6,10 +6,12 @@ class KVue {
 
         this.observe(this.$data);
 
-        new Watcher();
-        this.$data.name;
-        new Watcher();
-        this.$data.msg.age;
+        // new Watcher();
+        // this.$data.name;
+        // new Watcher();
+        // this.$data.msg.age;
+
+        this.Compile = new Compile(options.el, this);
     }
 
     observe(value) {
