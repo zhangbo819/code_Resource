@@ -29,11 +29,19 @@
                 msg: {
                     age: '3',
                 }
+            },
+            created() {
+                console.log('create in')
+
+                setTimeout(() => {
+                    this.$data.name = 'zzb 000';
+                    console.log('create timeout this.name', this)
+                }, 2000)
             }
         })
 
-        app.$data.name = 'lalala';
-        app.$data.msg.age = '18';
+        // app.$data.name = 'lalala';
+        // app.$data.msg.age = '18';
         // console.log(app);
     </script>
 </body>

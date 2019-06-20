@@ -12,6 +12,10 @@ class KVue {
         // this.$data.msg.age;
 
         this.Compile = new Compile(options.el, this);
+
+        if (options.created) {
+            options.created.call(this);
+        }
     }
 
     observe(value) {
@@ -20,6 +24,7 @@ class KVue {
         }
         Object.keys(value).forEach((key) => {
             this.defineReactive(value, key, value[key]);
+
         })
     }
 
@@ -30,6 +35,7 @@ class KVue {
 
         Object.defineProperty(obj, key, {
             get() {
+                // console.log(`${key} get in ${Dep.target}`);
                 Dep.target && dep.addDep(Dep.target)
                 return val;
             },
@@ -61,11 +67,19 @@ class Dep {
 }
 
 class Watcher {
-    constructor() {
+    constructor(vm, key, cb) {
+        this.$vm = vm;
+        this.$key = key;
+        this.$cb = cb;
+
         Dep.target = this;
+        this.$vm.$data[key];
+        Dep.target = null;
     }
 
     update() {
-        console.log('属性改变了!')
+        // console.log('属性改变了!')
+
+        this.$cb.call(this.$vm, this.$vm.$data[this.$key])
     }
 }
