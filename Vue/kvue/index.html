@@ -11,9 +11,7 @@
 <body>
     <div id="app">
         <p>{{name}}</p>
-        <span>
-            {{msg.age}}
-        </span>
+        <span>{{msg.age}}</span>
         <h1>lalala</h1>
     </div>
 
@@ -34,9 +32,9 @@
                 console.log('create in')
 
                 setTimeout(() => {
-                    this.$data.name = 'zzb 000';
+                    this.name = 'zzb 000';
                     console.log('create timeout this.name', this)
-                }, 2000)
+                }, 1000)
             }
         })
 

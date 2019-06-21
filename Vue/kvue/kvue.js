@@ -24,7 +24,7 @@ class KVue {
         }
         Object.keys(value).forEach((key) => {
             this.defineReactive(value, key, value[key]);
-
+            this.proxyData(key)
         })
     }
 
@@ -46,6 +46,17 @@ class KVue {
                 val = newVal;
                 // console.log(`${key}更新了：${newVal}`);
                 dep.notify();
+            }
+        })
+    }
+
+    proxyData(key) {
+        Object.defineProperty(this, key, {
+            get() {
+                return this.$data[key];
+            },
+            set(newVal) {
+                this.$data[key] = newVal;
             }
         })
     }
@@ -73,13 +84,13 @@ class Watcher {
         this.$cb = cb;
 
         Dep.target = this;
-        this.$vm.$data[key];
+        this.$vm[key];
         Dep.target = null;
     }
 
     update() {
         // console.log('属性改变了!')
 
-        this.$cb.call(this.$vm, this.$vm.$data[this.$key])
+        this.$cb.call(this.$vm, this.$vm[this.$key])
     }
 }

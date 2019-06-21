@@ -18,7 +18,7 @@ class Compile {
         const flag = document.createDocumentFragment();
         let child;
 
-        while (child = el.lastChild) {
+        while (child = el.firstChild) {
             flag.appendChild(child)
         }
 
@@ -52,7 +52,9 @@ class Compile {
     update(node, vm, exp, dir) {
         const updateFn = this[dir + 'Updater'];
 
-        updateFn && updateFn(node, vm.$data[exp]);
+        const value = this.getDeepValue(vm.$data, exp);
+
+        updateFn && updateFn(node, value);
 
         new Watcher(vm, exp, function (value) {
             updateFn && updateFn(node, value);
@@ -70,5 +72,18 @@ class Compile {
 
     isTnterpolation(node) {
         return node.nodeType === 3 && /\{\{(.*)\}\}/.test(node.textContent);
+    }
+
+    getDeepValue(obj, exp) {
+        if (!exp.includes('.')) {
+            return obj[exp];
+        }
+
+        return exp.split('.').reduce((r, i) => {
+            if (typeof r === 'object') {
+                r = r[i];
+            }
+            return r;
+        }, obj)
     }
 }
