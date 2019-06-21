@@ -39,10 +39,12 @@ class Compile {
                     let dir = '';
                     if (this.isDir(name)) {
                         dir = name.slice(2);
-                        this[dir] && this[dir](node, value);
+                        
+                        this[dir] && this[dir](this.$vm, node, value);
                     } else if (this.isEvent(name)) {
                         dir = name.slice(1);
-                        this[dir] && this[dir](this.$vm, node, value);
+                        
+                        this.eventHandler(this.$vm, node, value, dir);
                     }
                 })
             } else if (this.isTnterpolation(node)) {
@@ -56,15 +58,26 @@ class Compile {
 
     }
 
-    text(node, value) {
-        this.update(node, this.$vm, value, 'text');
+    text(vm, node, value) {
+        this.update(node, vm, value, 'text');
     }
 
-    click(vm, node, exp) {
-        const fn = vm.$options.methods && vm.$options.methods[exp] && vm.$options.methods[exp];
+    html(vm, node, value) {
+        this.update(node, vm, value, 'html');
+    }
 
-        if (fn) {
-            node.addEventListener('click', fn.bind(vm))
+    model(vm, node, exp) {
+        this.update(node, vm, exp, 'model');
+
+        node.addEventListener('input', (e) => {
+            vm[exp] = e.target.value;
+        })
+    }
+
+    eventHandler(vm, node, exp, dir) {
+        const fn = vm.$options.methods && vm.$options.methods[exp];
+        if (dir && fn) {
+            node.addEventListener(dir, fn.bind(vm))
         }
     }
 
@@ -85,8 +98,16 @@ class Compile {
         // console.log("vm.$data[exp]", vm.$data[exp], exp)
     }
 
+    htmlUpdater(node, value) {
+        node.innerHTML = value;
+    }
+
     textUpdater(node, value) {
         node.textContent = value;
+    }
+
+    modelUpdater(node, value) {
+        node.value = value;
     }
 
     isDir(name) {

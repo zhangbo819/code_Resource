@@ -16,10 +16,11 @@
 <body>
     <div id="app">
         <p>{{name}}</p>
-        <p k-text=name></p>
-        <button @click=handleBtn>{{count}}</button>
+        <p k-text="name"></p>
+        <button @click="handleBtn">{{count}}</button>
         <br />
-        <input @></input>
+        <input k-model="name"></input>
+        <p k-html="html"></p>
     </div>
 
 
@@ -32,6 +33,7 @@
             data: {
                 name: 'zzb',
                 count: 0,
+                html: '<span>html in</span>',
                 msg: {
                     btn: '点我快',
                     count1: 0,   // to do use msg.count
