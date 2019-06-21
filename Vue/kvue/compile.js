@@ -33,7 +33,18 @@ class Compile {
 
             if (this.isElement(node)) {
                 // 元素
-                console.log('编译元素', node.nodeName)
+                // console.log('编译元素')
+                Array.from(node.attributes).map(i => {
+                    const { name, value } = i;
+                    let dir = '';
+                    if (this.isDir(name)) {
+                        dir = name.slice(2);
+                        this[dir] && this[dir](node, value);
+                    } else if (this.isEvent(name)) {
+                        dir = name.slice(1);
+                        this[dir] && this[dir](this.$vm, node, value);
+                    }
+                })
             } else if (this.isTnterpolation(node)) {
                 // 插值
                 this.compileText(node)
@@ -43,6 +54,18 @@ class Compile {
             }
         })
 
+    }
+
+    text(node, value) {
+        this.update(node, this.$vm, value, 'text');
+    }
+
+    click(vm, node, exp) {
+        const fn = vm.$options.methods && vm.$options.methods[exp] && vm.$options.methods[exp];
+
+        if (fn) {
+            node.addEventListener('click', fn.bind(vm))
+        }
     }
 
     compileText(node) {
@@ -64,6 +87,14 @@ class Compile {
 
     textUpdater(node, value) {
         node.textContent = value;
+    }
+
+    isDir(name) {
+        return name.indexOf('k-') === 0;
+    }
+
+    isEvent(name) {
+        return name.indexOf('@') === 0;
     }
 
     isElement(node) {

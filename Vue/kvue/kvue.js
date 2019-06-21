@@ -1,6 +1,6 @@
 class KVue {
     constructor(options) {
-        this.options = options;
+        this.$options = options;
 
         this.$data = options.data;
 

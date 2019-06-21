@@ -6,13 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        button {
+            padding: 2px 10px;
+        }
+    </style>
 </head>
 
 <body>
     <div id="app">
         <p>{{name}}</p>
-        <span>{{msg.age}}</span>
-        <h1>lalala</h1>
+        <p k-text=name></p>
+        <button @click=handleBtn>{{count}}</button>
+        <br />
+        <input @></input>
     </div>
 
 
@@ -24,8 +31,15 @@
             el: '#app',
             data: {
                 name: 'zzb',
+                count: 0,
                 msg: {
-                    age: '3',
+                    btn: '点我快',
+                    count1: 0,   // to do use msg.count
+                }
+            },
+            methods: {
+                handleBtn() {
+                    this.count = typeof this.count === 'number' ? this.count + 1 : 1;
                 }
             },
             created() {
@@ -33,7 +47,7 @@
 
                 setTimeout(() => {
                     this.name = 'zzb 000';
-                    console.log('create timeout this.name', this)
+                    console.log('create timeout this.name', this.name)
                 }, 1000)
             }
         })
