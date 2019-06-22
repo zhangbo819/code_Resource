@@ -88,7 +88,8 @@ class Compile {
     update(node, vm, exp, dir) {
         const updateFn = this[dir + 'Updater'];
 
-        const value = this.getDeepValue(vm.$data, exp);
+        console.log('getDeepValue in', vm)
+        const value = getDeepValue(vm.$data, exp);
 
         updateFn && updateFn(node, value);
 
@@ -96,6 +97,19 @@ class Compile {
             updateFn && updateFn(node, value);
         });
         // console.log("vm.$data[exp]", vm.$data[exp], exp)
+
+        function getDeepValue(obj, key) {
+            if (!key.includes('.')) {
+                return obj[key];
+            }
+            
+            return key.split('.').reduce((r, k) => {
+                if (typeof r === 'object') {
+                    r = r[k];
+                }
+                return r
+            }, obj)
+        }
     }
 
     htmlUpdater(node, value) {
