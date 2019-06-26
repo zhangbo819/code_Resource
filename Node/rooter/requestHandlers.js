@@ -78,5 +78,36 @@ function hello(query, response) {
     response.end();
 }
 
+function index(query, response) {
+    fs.readFile('./index.html', function (err, html) {
+        if (err) {
+            throw err;
+        }
+        response.writeHeader(200, { "Content-Type": "text/html" });
+        response.write(html);
+        response.end();
+    });
+}
+
+function download(query, res) {
+    console.log('download start')
+
+    fs.readFile('./a.apk', function (isErr, data) {
+        if (isErr) {
+            res.end("Read file failed!");
+            return;
+        }
+        fileName = 'a.apk';
+        res.writeHead(200, {
+            'Content-Type': 'application/octet-stream', // 告诉浏览器这是一个二进制文件  
+            'Content-Disposition': 'attachment; filename=' + fileName, // 告诉浏览器这是一个需要下载的文件  
+        });
+        res.end(data)
+        console.log('download over')
+    })
+}
+
 exports.get = get;
 exports.hello = hello;
+exports.index = index;
+exports.download = download;
