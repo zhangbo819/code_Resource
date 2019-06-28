@@ -92,12 +92,15 @@ function index(query, response) {
 function download(query, res) {
     console.log('download start')
 
-    fs.readFile('./a.apk', function (isErr, data) {
+    // const fileName = 'a.apk';
+    const fileName = 'test.png';
+
+    fs.readFile(`./images/${fileName}`, function (isErr, data) {
         if (isErr) {
             res.end("Read file failed!");
             return;
         }
-        fileName = 'a.apk';
+
         res.writeHead(200, {
             'Content-Type': 'application/octet-stream', // 告诉浏览器这是一个二进制文件  
             'Content-Disposition': 'attachment; filename=' + fileName, // 告诉浏览器这是一个需要下载的文件  
