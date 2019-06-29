@@ -1,8 +1,9 @@
 import Vue from 'vue';
-import Router from 'vue-router';
-import Home from './views/Home.vue'
-import List from './views/List.vue'
-import Detail from './views/Detail.vue'
+// import Router from 'vue-router';
+import Router from './krouter';
+import Home from './views/Home.vue';
+import List from './views/List.vue';
+import Detail from './views/Detail.vue';
 
 Vue.use(Router)
 
@@ -35,23 +36,27 @@ const routes = [
   }
 ]
 
-const router = new Router();
-router.addRoutes(routes);
-// 守卫
-router.beforeEach((to, from, next) => {
-  // 要访问/about且未登录需要去登录
-  if (to.meta.auth && !window.isLogin) {
-    // next('/login') 
-    if (window.confirm("请登录")) {
-      window.isLogin = true;
-      next();   // 登录成功，继续  
+// const router = new Router();
+// router.addRoutes(routes);
+// // 守卫
+// router.beforeEach((to, from, next) => {
+//   // 要访问/about且未登录需要去登录
+//   if (to.meta.auth && !window.isLogin) {
+//     // next('/login') 
+//     if (window.confirm("请登录")) {
+//       window.isLogin = true;
+//       next();   // 登录成功，继续  
 
-    } else {
-      next('/');// 放弃登录，回首页
-    }
-  } else {
-    next(); // 不需登录，继续   
-  }
-});
+//     } else {
+//       next('/');// 放弃登录，回首页
+//     }
+//   } else {
+//     next(); // 不需登录，继续   
+//   }
+// });
+
+const router = new Router({
+  routes: [{ path: "/", component: Home }, { path: "/about", component: () => import(/* webpackChunkName: "about" */ './views/About.vue') }]
+})
 
 export default router
