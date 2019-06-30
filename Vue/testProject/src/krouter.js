@@ -64,7 +64,7 @@ Krouter.install = function () {
             }
         }
     })
-}
+}   
 
 
 export default Krouter;

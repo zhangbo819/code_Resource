@@ -1,5 +1,6 @@
 import Vue from "vue";
-import Vuex from "vuex";
+// import Vuex from "vuex";
+import Vuex from "./kvuex";
 
 Vue.use(Vuex);
 
@@ -12,7 +13,7 @@ export default new Vuex.Store({
   },
   getters: {
     score(state) {
-      return `共扔出：${state.count}`
+      return `共扔出：${state.count}`;
     }
   },
   actions: {
