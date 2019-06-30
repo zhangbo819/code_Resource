@@ -13,6 +13,9 @@ export default {
     add() {
       // 修改状态用commit
       this.$store.commit("increment");
+      
+      // 为什么也能改？ mutations？
+      // this.$store.state.count += 1;
     },
     addAsync() {
       this.$store.dispatch("incrementAsync");

@@ -5,6 +5,7 @@ import Home from './views/Home.vue';
 import List from './views/List.vue';
 import Detail from './views/Detail.vue';
 
+console.log('vue use')
 Vue.use(Router)
 
 const routes = [
@@ -36,8 +37,9 @@ const routes = [
   }
 ]
 
-// const router = new Router();
-// router.addRoutes(routes);
+const router = new Router();
+console.log('addRoutes')
+router.addRoutes(routes);
 // // 守卫
 // router.beforeEach((to, from, next) => {
 //   // 要访问/about且未登录需要去登录
@@ -54,9 +56,5 @@ const routes = [
 //     next(); // 不需登录，继续   
 //   }
 // });
-
-const router = new Router({
-  routes: [{ path: "/", component: Home }, { path: "/about", component: () => import(/* webpackChunkName: "about" */ './views/About.vue') }]
-})
 
 export default router

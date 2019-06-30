@@ -1,9 +1,10 @@
 import Vue from "vue";
 
 class Krouter {
-    constructor(options) {
+    constructor(options = {}) {
         this.$options = options;
         this.routeMap = {};
+        this.$options.routes = options.routes ? options.routes : [];
 
         this.app = new Vue({
             data() {
@@ -53,6 +54,10 @@ class Krouter {
             }
         })
     }
+
+    addRoutes = (routes) => {
+        this.$options.routes = [...this.$options.routes, ...routes];
+    }
 }
 
 Krouter.install = function () {
@@ -60,11 +65,12 @@ Krouter.install = function () {
         beforeCreate() {
             if (this.$options.router) {
                 Vue.prototype.$router = this.$options.router;
+                console.log('init')
                 this.$options.router.init();
             }
         }
     })
-}   
+}
 
 
 export default Krouter;
