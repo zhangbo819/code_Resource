@@ -137,15 +137,7 @@ const ruleTypeChoices = [
         })
     },
 ];
-const scriptChoices = [
-    {
-        name: 'ruleFile',
-        callback: inquirerAfter('ruleFile', ruleTypeChoices)
-    },
-    {
-        name: 'rzip',
-        callback: createChildrenProcessBySpawn.bind(this, 'sh', [`${__dirname}/rzip.sh`])
-    },
+const widgetChoices = [
     {
         name: 'arr mkdir',
         callback() {
@@ -175,6 +167,26 @@ const scriptChoices = [
                 mkdir(result)
             })
         }
+    },
+    {
+        name: 'cdn url',
+        callback() {
+            echo('http://cdn2.txbimg.com/video/2019/07/041018_5d1d61f7bf35a.zip')
+        }
+    },
+];
+const scriptChoices = [
+    {
+        name: 'ruleFile',
+        callback: inquirerAfter('ruleFile', ruleTypeChoices)
+    },
+    {
+        name: 'rzip',
+        callback: createChildrenProcessBySpawn.bind(this, 'sh', [`${__dirname}/rzip.sh`])
+    },
+    {
+        name: 'widget',
+        callback: inquirerAfter('widget', widgetChoices)
     },
     {
         name: 'ruhuarn',
@@ -215,6 +227,15 @@ inquirer.prompt([
         choices: watchFileChoices,
         when: function (answers) {
             return answers.ruleFile === 'Watch file';
+        }
+    },
+    {
+        type: 'list',
+        name: 'widget',
+        message: 'Select the widget you want',
+        choices: widgetChoices,
+        when: function (answers) {
+            return answers.script === 'widget';
         }
     },
 ]).then(inquirerAfter('script', scriptChoices));
