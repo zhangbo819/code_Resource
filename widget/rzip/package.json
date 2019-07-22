@@ -2,6 +2,7 @@
   "name": "rzip",
   "bin": {
     "ruhuarn": "./ruhuarn.sh",
+    "newruhuarn": "./newruhuarn.sh",
     "ruleFile": "./index.js"
   },
   "version": "1.0.0",

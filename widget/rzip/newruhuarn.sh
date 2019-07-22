@@ -1,0 +1,1 @@
+sudo /usr/bin/php /Users/zzb/work/qingke_admin/exec/cli_cron.php ruhua.txbapp.cn -template

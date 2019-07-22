@@ -3,7 +3,6 @@
 const fs = require("fs");
 const child_process = require('child_process');
 
-// const inquirer = require("inquirer");
 const BottomBar = require('inquirer/lib/ui/bottom-bar');
 const shell = require('shelljs');
 
@@ -18,14 +17,6 @@ const targetFilePath = `${targetDirPath}/${targetFile}`;
 
 const outputVersionDir = 'data';
 const outputVersionJson = 'outputVersion.json';
-// const questions = [
-//     {
-//         type: 'input',
-//         name: 'inputZipName',
-//         message: "请输入压缩包前缀名称(课程名称)"
-//     },
-// ];
-
 
 // console.log('rzip start')
 _main();
@@ -37,9 +28,6 @@ async function _main() {
 
     const inputZipName = STORAGE_KEY;
     console.log('STORAGE_KEY', STORAGE_KEY)
-    // const { inputZipName } = await inquirer.prompt(questions);
-    // console.log('inputZipName', inputZipName)
-
 
     const { data_original } = await ruleFile({
         type: TYPE_COVER_NOSAVE,
@@ -47,10 +35,6 @@ async function _main() {
         targetFile,
         replaceAudio: true
     });
-
-    // let now = new Date();
-    // now = now.getFullYear() + _fillZero(now.getMonth() + 1) + _fillZero(now.getDate());
-    // const zipOutputNameHalf = `${inputZipName || ''}-${now}`;
 
     // to do zipOutputNameHalf add -
     const zipOutputNameHalf = `${inputZipName || ''}`;
@@ -119,13 +103,6 @@ function _writeFileByPromise({ targetPath, data }) {
             resolve(true);
         })
     });
-}
-
-function _fillZero(num) {
-    if (num > 0 && num < 10) {
-        num = '0' + num;
-    }
-    return num.toString()
 }
 
 async function _checkoutputVersion() {
