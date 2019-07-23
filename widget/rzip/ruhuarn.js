@@ -1,8 +1,16 @@
 
+const program = require('commander');
 require('shelljs/global');
 const inquirer = require('inquirer');
 
 const { projectPath } = require('./config');
+
+program
+    .option('-t, --type <type>', 'add the specified type of cheese', 'old')
+    .parse(process.argv);
+
+const { type } = program;
+// console.log('program type', type)
 
 main();
 
@@ -12,7 +20,12 @@ async function main() {
     // console.log('projectPath', projectPath)
     // console.log(`${__dirname}\n${__filename}\n${pwd().stdout}`)
 
-    cd(projectPath)
+    const targetPath = {
+        'ole': projectPath,
+        'new': '/Users/zzb/work/txbstyle/new_RN_chinese/ReactNative'
+    }[type];
+
+    cd(targetPath)
 
     const choices = ls()
         .filter(i => i.slice(-4) === '.zip')
