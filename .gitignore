@@ -11,6 +11,7 @@ Node/fs/stream/output/*
 widget/changeJS/output
 widget/rzip/data/*
 widget/rzip/storeKey.js
+widget/rzip/password.sh
 
 代码规范/qkRn/*
 !代码规范/qkRn/ReactNative.md
