@@ -13,3 +13,5 @@ RCTStatusBarManager module requires that the UIViewControllerBasedStatusBarAppea
 ## 解决方案：
 
 在info.plist中，add row添加View controller-based status bar appearance并设置为NO即可
+
+[原链接](https://www.jianshu.com/p/2fbc9329bb43)
