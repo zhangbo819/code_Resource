@@ -39,3 +39,9 @@ git branch -dr [remote/branch]
 ```
 git remote rm origin
 ```
+
+## 创建一个全新的分支，不包含原分支的提交历史，Gihthub项目主页分支用这个。
+
+```
+git checkout --orphan gh-pages
+```
