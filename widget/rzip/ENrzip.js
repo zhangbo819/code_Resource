@@ -31,7 +31,7 @@ async function main() {
 
     const outputVersion = require(version_json_path);
 
-    const filePath = '/Users/zzb/work/txbstyle/new_RN_chinese/ReactNative/';
+    const filePath = '/Users/zzb/work/qingke_html/react_native/s026/ReactNative/';
 
     // inquirer.prompt(questions).then(e => { console.log(e) });   // todo use input
 
