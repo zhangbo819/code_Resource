@@ -35,21 +35,23 @@ async function main() {
 
     // inquirer.prompt(questions).then(e => { console.log(e) });   // todo use input
 
-    const { inputZipName = 'NEW-EN' } = {};
+    // const { inputZipName = 'NEW-EN' } = {};
 
-    let now = new Date();
-    now = now.getFullYear() + _fillZero(now.getMonth() + 1) + _fillZero(now.getDate());
-    const zipOutputNameHalf = `${inputZipName ? (inputZipName + '-') : ''}${now}`;
+    // let now = new Date();
+    // now = now.getFullYear() + _fillZero(now.getMonth() + 1) + _fillZero(now.getDate());
+    // const zipOutputNameHalf = `${inputZipName ? (inputZipName + '-') : ''}${now}`;
 
-    let versionNum = outputVersion[zipOutputNameHalf] || 0;
+    // let versionNum = outputVersion[zipOutputNameHalf] || 0;
 
-    outputVersion[zipOutputNameHalf] = ++versionNum;
+    // outputVersion[zipOutputNameHalf] = ++versionNum;
 
-    fs.writeFile(version_json_path, JSON.stringify(outputVersion, null, 4), function () { })
+    // fs.writeFile(version_json_path, JSON.stringify(outputVersion, null, 4), function () { })
+
+    const outputPath = `${filePath}item.zip`;
 
     await zip.createGzipByPromise({
         filePath,
-        outputPath: `${filePath}${zipOutputNameHalf}-v${versionNum}.zip`,
+        outputPath,
         fileList: [
             { path: 'package.json' },
             { path: 'index.js' },
@@ -57,6 +59,16 @@ async function main() {
             { path: 'src', directory: true }
         ]
     })
+
+    await cp('-Rf', outputPath, '/Users/zzb/work/rnapp/template')
+
+    console.log('cp success')
+    
+    rm('-rf', outputPath)
+
+    console.log('rm success')
+
+    // todo sh newruhuarn.sh
 }
 
 function _fillZero(num) {

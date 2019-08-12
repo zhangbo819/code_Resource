@@ -1,5 +1,5 @@
 sh /Users/zzb/WEB/code_Resource/widget/rzip/password.sh && 
-/usr/bin/php /Users/zzb/work/qingke_admin/exec/cli_cron.php ruhua.txbapp.cn -template fixedAndroidFont 1 &&
+/usr/bin/php /Users/zzb/work/qingke_admin/exec/cli_cron.php ruhua.txbapp.cn -template $1 $2 &&
 Node /Users/zzb/WEB/code_Resource/widget/rzip/ruhuarn.js --type new 
 
 # todo $1 $2
