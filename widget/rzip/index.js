@@ -181,8 +181,12 @@ const scriptChoices = [
         callback: inquirerAfter('ruleFile', ruleTypeChoices)
     },
     {
-        name: 'rzip by new EN',
+        name: 'rzip by s026',
         callback: createChildrenProcessBySpawn.bind(this, 'node', [`${__dirname}/ENrzip.js`])
+    },
+    {
+        name: 'rzip by s024',
+        callback: createChildrenProcessBySpawn.bind(this, 'node', [`${__dirname}/ENrzip2.js`])
     },
     {
         name: 'rzip by old',
