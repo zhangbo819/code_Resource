@@ -60,13 +60,9 @@ async function main() {
         ]
     })
 
-    await cp('-Rf', outputPath, '/Users/zzb/work/rnapp/template')
+    await mv('-f', outputPath, '/Users/zzb/work/rnapp/template')
 
-    console.log('cp success')
-    
-    rm('-rf', outputPath)
-
-    console.log('rm success')
+    console.log('mv success')
 
     // todo sh newruhuarn.sh
 }
