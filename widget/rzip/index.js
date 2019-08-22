@@ -182,11 +182,11 @@ const scriptChoices = [
     },
     {
         name: 'rzip by s026',
-        callback: createChildrenProcessBySpawn.bind(this, 'node', [`${__dirname}/ENrzip.js`])
+        callback: newRuhuaScript.bind(this, { name: 's26_rn_package_name', loadType: 2, ruhuaScirpt: 'ENrzip.js' })
     },
     {
         name: 'rzip by s024',
-        callback: createChildrenProcessBySpawn.bind(this, 'node', [`${__dirname}/ENrzip2.js`])
+        callback: newRuhuaScript.bind(this, { name: 's24_rn_package_name', loadType: 1, ruhuaScirpt: 'ENrzip2.js' })
     },
     {
         name: 'rzip by old',
@@ -272,7 +272,7 @@ function ruleFileBytype({
     });
 }
 
-function createChildrenProcessBySpawn(p1, p2) {
+function createChildrenProcessBySpawn(p1, p2, cb) {
     const { spawn } = child_process;
     const child = spawn(p1, p2);
 
@@ -286,6 +286,10 @@ function createChildrenProcessBySpawn(p1, p2) {
 
     child.on('close', (code) => {
         console.log(`child process exited with code ${code}`);
+        if (typeof cb === 'function') {
+            console.log(`cb in`);
+            cb();
+        }
     });
 }
 
@@ -310,4 +314,29 @@ function watchThenRuleFile({
             isNeedclearCache: true
         })
     }
+}
+
+// 新版本ruhua上传脚本 输入名字 压缩 上传
+function newRuhuaScript({
+    name,
+    loadType,       // 1 s24 | 2 s26
+    ruhuaScirpt     // todo only one
+}) {
+    inquirer.prompt([{
+        type: 'input',
+        name,
+        message: "input rn package name"
+    }]).then(answers => {
+        let packageName = answers[name];
+
+        if (packageName.includes(' ')) {
+            packageName = packageName.replace(/ /g, '-')
+        }
+
+        console.log('rn package name', packageName)
+
+        createChildrenProcessBySpawn('node', [`${__dirname}/${ruhuaScirpt}`], () => {
+            createChildrenProcessBySpawn('sh', [`${__dirname}/newruhuarn.sh`, packageName, loadType])
+        })
+    });
 }
