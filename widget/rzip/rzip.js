@@ -61,9 +61,11 @@ async function _main() {
     //     ui.updateBottomBar(loader[i++ % 4]);
     // }, 150);
 
+    const outputPath = `${filePath}${zipOutputNameHalf}-v${versionNum}.zip`;
+
     const zipRes = await zip.createGzipByPromise({
         filePath,
-        outputPath: `${filePath}${zipOutputNameHalf}-v${versionNum}.zip`,
+        outputPath,
         fileList: [
             { path: 'package.json' },
             { path: 'index.js' },
@@ -80,6 +82,8 @@ async function _main() {
     if (!zipRes) {
         console.log('文件压缩失败')
     }
+
+    shell.mv('-f', outputPath, '/Users/zzb/work/rnapp/template/item.zip')
 
     console.log(`开始复原文件 ${targetFilePath}`);
     const recoverRes = await _writeFileByPromise({ data: data_original, targetPath: targetFilePath });

@@ -186,16 +186,18 @@ const scriptChoices = [
         callback: inquirerAfter('ruleFile', ruleTypeChoices)
     },
     {
+        name: 'rzip by chinese',
+        callback: createChildrenProcessBySpawn.bind(this, 'sh', [`${__dirname}/rzip.sh`], () => {
+            createChildrenProcessBySpawn('sh', [`${__dirname}/scripts/ruhuaUpdateZip/ruhuaUpdateZip.sh`])
+        })
+    },
+    {
         name: 'rzip by s026',
         callback: newRuhuaScript.bind(this, { name: 's26_rn_package_name', loadType: 2, ruhuaScirpt: 'ENrzip.js' })
     },
     {
         name: 'rzip by s024',
         callback: newRuhuaScript.bind(this, { name: 's24_rn_package_name', loadType: 1, ruhuaScirpt: 'ENrzip2.js' })
-    },
-    {
-        name: 'rzip by old',
-        callback: createChildrenProcessBySpawn.bind(this, 'sh', [`${__dirname}/rzip.sh`])
     },
     {
         name: 'widget',
@@ -290,9 +292,9 @@ function createChildrenProcessBySpawn(p1, p2, cb) {
     });
 
     child.on('close', (code) => {
-        console.log(`child process exited with code ${code}`);
+        // console.log(`child process exited with code ${code}`);
         if (typeof cb === 'function') {
-            console.log(`cb in`);
+            console.log(`\ncb in`);
             cb();
         }
     });
