@@ -13,6 +13,7 @@ const {
     TYPE_OUTPUT
 } = require("./ruleFile");
 const { rProcess } = require("./rProcess");
+const { audioReName } = require('./scripts/audioReName/audioReName')
 
 
 const targetDirPath = `${projectPath}sheet`;
@@ -22,6 +23,10 @@ const inputDir = 'input';
 const inputDirPath = `${targetDirPath}/${inputDir}`;
 
 const watchFileChoices = [
+    {
+        name: 'audio rename',
+        callback: audioReName.bind(this, '/Users/zzb/work/txbstyle/RN_chinese/ReactNative/sheet/audio')
+    },
     {
         name: 'watchFile by input',
         callback: () => {
