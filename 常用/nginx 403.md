@@ -10,4 +10,6 @@ chmod -R 777 /Users/zzb/work/txbstyle/RN_chinese/ReactNative/sheet/audio
 
 chmod -R 777 /Users/zzb/work/txbstyle/assets/common
 
+chmod -R 777 /Users/zzb/work/RN语文资料
+
 ```
