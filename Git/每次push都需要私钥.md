@@ -7,3 +7,9 @@ ssh-add
 ```
 ssh-add ~/.ssh/id_rsa 
 ```
+
+
+### 永久保存
+```
+ssh-add -K
+```

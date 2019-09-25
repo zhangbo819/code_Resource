@@ -21,3 +21,8 @@
 2. 删除 SuccessfulExit 属性。
 3. 将 RunAtLoad / KeepAlive 均设为 <false/>
 ```
+
+
+## 开机自动启动sh
+- [http://makaiqian.com/setting-boot/](http://makaiqian.com/setting-boot/)
+- [示例](./start.sh)
