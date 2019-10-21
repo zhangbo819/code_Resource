@@ -6,7 +6,7 @@
 
 Node/test/inputData.js
 Node/test/dist/*
-Node/test/test.js
+Node/test/test
 Node/fs/stream/output/*
 widget/changeJS/output
 widget/rzip/data/*
