@@ -45,3 +45,9 @@ git remote rm origin
 ```
 git checkout --orphan gh-pages
 ```
+
+## 强制推送到远程分支并覆盖
+
+```
+git push origin master --force
+```
