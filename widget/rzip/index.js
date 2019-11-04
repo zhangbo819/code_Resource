@@ -192,6 +192,10 @@ const scriptChoices = [
         })
     },
     {
+        name: 'rzip by s038',
+        callback: newRuhuaScript.bind(this, { name: 's38_rn_package_name', loadType: 3, ruhuaScirpt: 'scripts/afterZip/ENrzip3.js' })
+    },
+    {
         name: 'rzip by s026',
         callback: newRuhuaScript.bind(this, { name: 's26_rn_package_name', loadType: 2, ruhuaScirpt: 'ENrzip.js' })
     },
@@ -326,7 +330,7 @@ function watchThenRuleFile({
 // 新版本ruhua上传脚本 输入名字 压缩 上传
 function newRuhuaScript({
     name,
-    loadType,       // 1 s24 | 2 s26
+    loadType,       // 1 s24-专题课 | 2 s26-AI直播课 | 3 s38-AI直播
     ruhuaScirpt     // todo only one
 }) {
     inquirer.prompt([{
