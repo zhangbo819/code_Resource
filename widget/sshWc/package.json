@@ -1,0 +1,15 @@
+{
+  "name": "ssh-wc",
+  "version": "1.0.0",
+  "description": "快速登录超子ssh",
+  "main": "index.js",
+  "bin": {
+    "sshWc": "sshWc.sh"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
