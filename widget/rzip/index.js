@@ -192,8 +192,12 @@ const scriptChoices = [
         })
     },
     {
+        name: 'rzip by s042',
+        callback: newRuhuaScript.bind(this, { name: 's42_rn_package_name', loadType: 4, ruhuaScirpt: 'scripts/afterZip/ENrzip3.js', ScriptParam: ['/Users/zzb/work/qingke_html/react_native/s042/ReactNative/'] })
+    },
+    {
         name: 'rzip by s038',
-        callback: newRuhuaScript.bind(this, { name: 's38_rn_package_name', loadType: 3, ruhuaScirpt: 'scripts/afterZip/ENrzip3.js' })
+        callback: newRuhuaScript.bind(this, { name: 's38_rn_package_name', loadType: 3, ruhuaScirpt: 'scripts/afterZip/ENrzip3.js', ScriptParam: ['/Users/zzb/work/qingke_html/react_native/s038/ReactNative/'] })
     },
     {
         name: 'rzip by s026',
@@ -207,20 +211,20 @@ const scriptChoices = [
         name: 'widget',
         callback: inquirerAfter('widget', widgetChoices)
     },
-    {
-        name: 'ruhuarn',
-        disabled: 'Temporary does not support',
-        callback: () => {
-            // to do use createChildrenProcessBySpawn
-            // createChildrenProcessBySpawn('sh', [`${__dirname}/ruhuarn.sh`]);
-            child_process.exec(`sh ${__dirname}/ruhuarn.sh`,
-                function (err, stdout, stderr) {
-                    if (err) { throw err; }
-                    console.log(stdout);
-                }
-            );
-        }
-    },
+    // {
+    //     name: 'ruhuarn',
+    //     disabled: 'Temporary does not support',
+    //     callback: () => {
+    //         // to do use createChildrenProcessBySpawn
+    //         // createChildrenProcessBySpawn('sh', [`${__dirname}/ruhuarn.sh`]);
+    //         child_process.exec(`sh ${__dirname}/ruhuarn.sh`,
+    //             function (err, stdout, stderr) {
+    //                 if (err) { throw err; }
+    //                 console.log(stdout);
+    //             }
+    //         );
+    //     }
+    // },
 ];
 
 inquirer.prompt([
@@ -330,8 +334,9 @@ function watchThenRuleFile({
 // 新版本ruhua上传脚本 输入名字 压缩 上传
 function newRuhuaScript({
     name,
-    loadType,       // 1 s24-专题课 | 2 s26-AI直播课 | 3 s38-AI直播
-    ruhuaScirpt     // todo only one
+    loadType,       // 1 s24-专题课 | 2 s26-AI直播课 | 3 s38-AI直播 | 4 s42-练习场
+    ruhuaScirpt,    // todo only one
+    ScriptParam = []
 }) {
     inquirer.prompt([{
         type: 'input',
@@ -346,7 +351,7 @@ function newRuhuaScript({
 
         console.log('rn package name', packageName)
 
-        createChildrenProcessBySpawn('node', [`${__dirname}/${ruhuaScirpt}`], () => {
+        createChildrenProcessBySpawn('node', [`${__dirname}/${ruhuaScirpt}`, ...ScriptParam], () => {
             createChildrenProcessBySpawn('sh', [`${__dirname}/newruhuarn.sh`, packageName, loadType])
         })
     });

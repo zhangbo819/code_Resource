@@ -32,7 +32,9 @@ async function main() {
 
     const outputVersion = require(version_json_path);
 
-    const filePath = '/Users/zzb/work/qingke_html/react_native/s038/ReactNative/';
+    // const filePath = '/Users/zzb/work/qingke_html/react_native/s038/ReactNative/';
+    
+    const filePath = process.argv[2];
 
     // inquirer.prompt(questions).then(e => { console.log(e) });   // todo use input
 
