@@ -192,19 +192,23 @@ const scriptChoices = [
         })
     },
     {
-        name: 'rzip by s042',
-        callback: newRuhuaScript.bind(this, { name: 's42_rn_package_name', loadType: 4, ruhuaScirpt: 'scripts/afterZip/ENrzip3.js', ScriptParam: ['/Users/zzb/work/qingke_html/react_native/s042/ReactNative/'] })
+        name: 'rzip by s045 AI动画课',
+        callback: newRuhuaScript.bind(this, { name: 's42_rn_package_name', loadType: 5, ruhuaScirpt: 'scripts/afterZip/ENrzip3.js', ScriptParam: ['/Users/zzb/work/qingke_html/react_native/s045/ReactNative/'] })
     },
     {
-        name: 'rzip by s038',
+        name: 'rzip by s038 AI伪直播',
         callback: newRuhuaScript.bind(this, { name: 's38_rn_package_name', loadType: 3, ruhuaScirpt: 'scripts/afterZip/ENrzip3.js', ScriptParam: ['/Users/zzb/work/qingke_html/react_native/s038/ReactNative/'] })
     },
     {
-        name: 'rzip by s026',
+        name: 'rzip by s042 练习场',
+        callback: newRuhuaScript.bind(this, { name: 's42_rn_package_name', loadType: 4, ruhuaScirpt: 'scripts/afterZip/ENrzip3.js', ScriptParam: ['/Users/zzb/work/qingke_html/react_native/s042/ReactNative/'] })
+    },
+    {
+        name: 'rzip by s026 通用题型',
         callback: newRuhuaScript.bind(this, { name: 's26_rn_package_name', loadType: 2, ruhuaScirpt: 'ENrzip.js' })
     },
     {
-        name: 'rzip by s024',
+        name: 'rzip by s024 专题课',
         callback: newRuhuaScript.bind(this, { name: 's24_rn_package_name', loadType: 1, ruhuaScirpt: 'ENrzip2.js' })
     },
     {
