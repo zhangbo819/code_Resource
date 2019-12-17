@@ -193,23 +193,23 @@ const scriptChoices = [
     },
     {
         name: 'rzip by s045 AI动画课',
-        callback: newRuhuaScript.bind(this, { name: 's42_rn_package_name', loadType: 5, ruhuaScirpt: 'scripts/afterZip/ENrzip3.js', ScriptParam: ['/Users/zzb/work/qingke_html/react_native/s045/ReactNative/'] })
+        callback: newRuhuaScript.bind(this, { name: 's45_rn_package_name', loadType: 5, ruhuaScirpt: 'scripts/afterZip/ENrzip.js', ScriptParam: ['/Users/zzb/work/qingke_html/react_native/s045/ReactNative/'] })
     },
     {
         name: 'rzip by s038 AI伪直播',
-        callback: newRuhuaScript.bind(this, { name: 's38_rn_package_name', loadType: 3, ruhuaScirpt: 'scripts/afterZip/ENrzip3.js', ScriptParam: ['/Users/zzb/work/qingke_html/react_native/s038/ReactNative/'] })
+        callback: newRuhuaScript.bind(this, { name: 's38_rn_package_name', loadType: 3, ruhuaScirpt: 'scripts/afterZip/ENrzip.js', ScriptParam: ['/Users/zzb/work/qingke_html/react_native/s038/ReactNative/'] })
     },
     {
         name: 'rzip by s042 练习场',
-        callback: newRuhuaScript.bind(this, { name: 's42_rn_package_name', loadType: 4, ruhuaScirpt: 'scripts/afterZip/ENrzip3.js', ScriptParam: ['/Users/zzb/work/qingke_html/react_native/s042/ReactNative/'] })
+        callback: newRuhuaScript.bind(this, { name: 's42_rn_package_name', loadType: 4, ruhuaScirpt: 'scripts/afterZip/ENrzip.js', ScriptParam: ['/Users/zzb/work/qingke_html/react_native/s042/ReactNative/'] })
     },
     {
-        name: 'rzip by s026 通用题型',
-        callback: newRuhuaScript.bind(this, { name: 's26_rn_package_name', loadType: 2, ruhuaScirpt: 'ENrzip.js' })
+        name: 'rzip by s026 AI直播课',
+        callback: newRuhuaScript.bind(this, { name: 's26_rn_package_name', loadType: 2, ruhuaScirpt: 'scripts/afterZip/ENrzip.js', ScriptParam: ['/Users/zzb/work/qingke_html/react_native/s026/ReactNative/'] })
     },
     {
         name: 'rzip by s024 专题课',
-        callback: newRuhuaScript.bind(this, { name: 's24_rn_package_name', loadType: 1, ruhuaScirpt: 'ENrzip2.js' })
+        callback: newRuhuaScript.bind(this, { name: 's24_rn_package_name', loadType: 1, ruhuaScirpt: 'scripts/afterZip/ENrzip.js', ScriptParam: ['/Users/zzb/work/qingke_html/react_native/s024/ReactNative/'] })
     },
     {
         name: 'widget',
@@ -243,7 +243,7 @@ inquirer.prompt([
         name: 'ruleFile',
         message: 'Which type do you want to choose?',
         choices: ruleTypeChoices,
-        when: function (answers) {
+        when (answers) {
             return answers.script === 'ruleFile';
         }
     },
@@ -252,7 +252,7 @@ inquirer.prompt([
         name: 'Watch file',
         message: 'What kind of watch should you choose?',
         choices: watchFileChoices,
-        when: function (answers) {
+        when (answers) {
             return answers.ruleFile === 'Watch file';
         }
     },
@@ -261,7 +261,7 @@ inquirer.prompt([
         name: 'widget',
         message: 'Select the widget you want',
         choices: widgetChoices,
-        when: function (answers) {
+        when (answers) {
             return answers.script === 'widget';
         }
     },
@@ -338,8 +338,8 @@ function watchThenRuleFile({
 // 新版本ruhua上传脚本 输入名字 压缩 上传
 function newRuhuaScript({
     name,
-    loadType,       // 1 s24-专题课 | 2 s26-AI直播课 | 3 s38-AI直播 | 4 s42-练习场
-    ruhuaScirpt,    // todo only one
+    loadType,       // 1 s24-专题课 | 2 s26-AI直播课 | 3 s38-AI直播 | 4 s42-练习场 | 5 s45-AI动画课
+    ruhuaScirpt,
     ScriptParam = []
 }) {
     inquirer.prompt([{
