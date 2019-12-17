@@ -71,8 +71,7 @@ async function _main() {
             { path: 'index.js' },
             { path: 'node_modules', directory: true },
             { path: 'sheet', directory: true },
-            { path: 'src', directory: true },
-            { path: 'devData.js', isRequired: false }
+            { path: 'src', directory: true }
         ]
     })
 

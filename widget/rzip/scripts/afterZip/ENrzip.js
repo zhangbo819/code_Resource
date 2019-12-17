@@ -59,7 +59,8 @@ async function main() {
             { path: 'package.json' },
             { path: 'index.js' },
             { path: 'node_modules', directory: true },
-            { path: 'src', directory: true }
+            { path: 'src', directory: true },
+            { path: 'devData.js', isRequired: false }
         ]
     })
 
