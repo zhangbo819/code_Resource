@@ -46,7 +46,7 @@ function createGzipByPromise({ filePath, outputPath, fileList }) {
         archive.pipe(stream);
 
         const filePathLs = ls(filePath);
-        fileList.forEach(({ path, directory = false }) => {
+        fileList.forEach(({ path, directory = false, isRequired = true }) => {
             if (!status) { return; }
 
             if (path.includes('\/')) {
@@ -63,7 +63,7 @@ function createGzipByPromise({ filePath, outputPath, fileList }) {
                 directory ?
                     archive.directory(filePath + path, path) :
                     archive.append(fs.createReadStream(filePath + path), { name: path })
-            } else {
+            } else if (isRequired) {
                 console.warn(`Error: 文件${filePath + path}不存在`)
                 status = false;
                 resolve(false);
