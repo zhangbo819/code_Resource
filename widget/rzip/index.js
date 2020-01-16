@@ -182,8 +182,24 @@ const widgetChoices = [
 ];
 const scriptChoices = [
     {
-        name: 'ruleFile',
-        callback: inquirerAfter('ruleFile', ruleTypeChoices)
+        name: 'rzip by s045 AI动画课',
+        callback: newRuhuaScript.bind(this, { name: 's45_rn_package_name', loadType: 5, ruhuaScirpt: 'scripts/afterZip/ENrzip.js', ScriptParam: ['/Users/zzb/work/qingke_rn/common_template/s045/ReactNative/'] })
+    },
+    {
+        name: 'rzip by s038 AI伪直播',
+        callback: newRuhuaScript.bind(this, { name: 's38_rn_package_name', loadType: 3, ruhuaScirpt: 'scripts/afterZip/ENrzip.js', ScriptParam: ['/Users/zzb/work/qingke_rn/common_template/s038/ReactNative/'] })
+    },
+    {
+        name: 'rzip by s042 练习场',
+        callback: newRuhuaScript.bind(this, { name: 's42_rn_package_name', loadType: 4, ruhuaScirpt: 'scripts/afterZip/ENrzip.js', ScriptParam: ['/Users/zzb/work/qingke_rn/common_template/s042/ReactNative/'] })
+    },
+    {
+        name: 'rzip by s026 AI直播课',
+        callback: newRuhuaScript.bind(this, { name: 's26_rn_package_name', loadType: 2, ruhuaScirpt: 'scripts/afterZip/ENrzip.js', ScriptParam: ['/Users/zzb/work/qingke_rn/common_template/s026/ReactNative/'] })
+    },
+    {
+        name: 'rzip by s024 专题课',
+        callback: newRuhuaScript.bind(this, { name: 's24_rn_package_name', loadType: 1, ruhuaScirpt: 'scripts/afterZip/ENrzip.js', ScriptParam: ['/Users/zzb/work/qingke_rn/common_template/s024/ReactNative/'] })
     },
     {
         name: 'rzip by chinese',
@@ -192,24 +208,8 @@ const scriptChoices = [
         })
     },
     {
-        name: 'rzip by s045 AI动画课',
-        callback: newRuhuaScript.bind(this, { name: 's45_rn_package_name', loadType: 5, ruhuaScirpt: 'scripts/afterZip/ENrzip.js', ScriptParam: ['/Users/zzb/work/qingke_html/react_native/s045/ReactNative/'] })
-    },
-    {
-        name: 'rzip by s038 AI伪直播',
-        callback: newRuhuaScript.bind(this, { name: 's38_rn_package_name', loadType: 3, ruhuaScirpt: 'scripts/afterZip/ENrzip.js', ScriptParam: ['/Users/zzb/work/qingke_html/react_native/s038/ReactNative/'] })
-    },
-    {
-        name: 'rzip by s042 练习场',
-        callback: newRuhuaScript.bind(this, { name: 's42_rn_package_name', loadType: 4, ruhuaScirpt: 'scripts/afterZip/ENrzip.js', ScriptParam: ['/Users/zzb/work/qingke_html/react_native/s042/ReactNative/'] })
-    },
-    {
-        name: 'rzip by s026 AI直播课',
-        callback: newRuhuaScript.bind(this, { name: 's26_rn_package_name', loadType: 2, ruhuaScirpt: 'scripts/afterZip/ENrzip.js', ScriptParam: ['/Users/zzb/work/qingke_html/react_native/s026/ReactNative/'] })
-    },
-    {
-        name: 'rzip by s024 专题课',
-        callback: newRuhuaScript.bind(this, { name: 's24_rn_package_name', loadType: 1, ruhuaScirpt: 'scripts/afterZip/ENrzip.js', ScriptParam: ['/Users/zzb/work/qingke_html/react_native/s024/ReactNative/'] })
+        name: 'ruleFile',
+        callback: inquirerAfter('ruleFile', ruleTypeChoices)
     },
     {
         name: 'widget',

@@ -22,7 +22,7 @@ async function main() {
 
     const targetPath = {
         'ole': projectPath,
-        'new': '/Users/zzb/work/qingke_html/react_native/s026/ReactNative'
+        'new': '/Users/zzb/work/qingke_rn/common_template/s026/ReactNative'
     }[type];
 
     cd(targetPath)

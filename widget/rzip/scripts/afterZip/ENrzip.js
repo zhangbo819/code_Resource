@@ -32,7 +32,7 @@ async function main() {
 
     const outputVersion = require(version_json_path);
 
-    // const filePath = '/Users/zzb/work/qingke_html/react_native/s038/ReactNative/';
+    // const filePath = '/Users/zzb/work/qingke_rn/common_template/s038/ReactNative/';
     
     const filePath = process.argv[2];
 
