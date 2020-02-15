@@ -182,24 +182,32 @@ const widgetChoices = [
 ];
 const scriptChoices = [
     {
+        name: 'rzip by one app',
+        callback: newRuhuaScript.bind(this, { name: 'one_app_rn_package_name', loadType: 6, ScriptParam: ['/Users/zzb/work/qingke_rn/common_template/APP/'] })
+    },
+    {
+        name: 'rzip by one tv',
+        callback: newRuhuaScript.bind(this, { name: 'one_app_rn_package_name', loadType: 7, useCrn: true, ScriptParam: ['/Users/zzb/work/qingke_rn/common_template/TV/'] })
+    },
+    {
         name: 'rzip by s045 AI动画课',
-        callback: newRuhuaScript.bind(this, { name: 's45_rn_package_name', loadType: 5, ruhuaScirpt: 'scripts/afterZip/ENrzip.js', ScriptParam: ['/Users/zzb/work/qingke_rn/common_template/s045/ReactNative/'] })
+        callback: newRuhuaScript.bind(this, { name: 's45_rn_package_name', loadType: 5, ScriptParam: ['/Users/zzb/work/qingke_rn/common_template/s045/ReactNative/'] })
     },
     {
         name: 'rzip by s038 AI伪直播',
-        callback: newRuhuaScript.bind(this, { name: 's38_rn_package_name', loadType: 3, ruhuaScirpt: 'scripts/afterZip/ENrzip.js', ScriptParam: ['/Users/zzb/work/qingke_rn/common_template/s038/ReactNative/'] })
+        callback: newRuhuaScript.bind(this, { name: 's38_rn_package_name', loadType: 3, ScriptParam: ['/Users/zzb/work/qingke_rn/common_template/s038/ReactNative/'] })
     },
     {
         name: 'rzip by s042 练习场',
-        callback: newRuhuaScript.bind(this, { name: 's42_rn_package_name', loadType: 4, ruhuaScirpt: 'scripts/afterZip/ENrzip.js', ScriptParam: ['/Users/zzb/work/qingke_rn/common_template/s042/ReactNative/'] })
+        callback: newRuhuaScript.bind(this, { name: 's42_rn_package_name', loadType: 4, ScriptParam: ['/Users/zzb/work/qingke_rn/common_template/s042/ReactNative/'] })
     },
     {
         name: 'rzip by s026 AI直播课',
-        callback: newRuhuaScript.bind(this, { name: 's26_rn_package_name', loadType: 2, ruhuaScirpt: 'scripts/afterZip/ENrzip.js', ScriptParam: ['/Users/zzb/work/qingke_rn/common_template/s026/ReactNative/'] })
+        callback: newRuhuaScript.bind(this, { name: 's26_rn_package_name', loadType: 2, ScriptParam: ['/Users/zzb/work/qingke_rn/common_template/s026/ReactNative/'] })
     },
     {
         name: 'rzip by s024 专题课',
-        callback: newRuhuaScript.bind(this, { name: 's24_rn_package_name', loadType: 1, ruhuaScirpt: 'scripts/afterZip/ENrzip.js', ScriptParam: ['/Users/zzb/work/qingke_rn/common_template/s024/ReactNative/'] })
+        callback: newRuhuaScript.bind(this, { name: 's24_rn_package_name', loadType: 1, ScriptParam: ['/Users/zzb/work/qingke_rn/common_template/s024/ReactNative/'] })
     },
     {
         name: 'rzip by chinese',
@@ -243,7 +251,7 @@ inquirer.prompt([
         name: 'ruleFile',
         message: 'Which type do you want to choose?',
         choices: ruleTypeChoices,
-        when (answers) {
+        when(answers) {
             return answers.script === 'ruleFile';
         }
     },
@@ -252,7 +260,7 @@ inquirer.prompt([
         name: 'Watch file',
         message: 'What kind of watch should you choose?',
         choices: watchFileChoices,
-        when (answers) {
+        when(answers) {
             return answers.ruleFile === 'Watch file';
         }
     },
@@ -261,7 +269,7 @@ inquirer.prompt([
         name: 'widget',
         message: 'Select the widget you want',
         choices: widgetChoices,
-        when (answers) {
+        when(answers) {
             return answers.script === 'widget';
         }
     },
@@ -338,9 +346,9 @@ function watchThenRuleFile({
 // 新版本ruhua上传脚本 输入名字 压缩 上传
 function newRuhuaScript({
     name,
-    loadType,       // 1 s24-专题课 | 2 s26-AI直播课 | 3 s38-AI直播 | 4 s42-练习场 | 5 s45-AI动画课
-    ruhuaScirpt,
-    ScriptParam = []
+    loadType,       // 1 s24-专题课 | 2 s26-AI直播课 | 3 s38-AI直播 | 4 s42-练习场 | 5 s45-AI动画课 | 6 app合一 | 7 tv合一
+    ScriptParam = [],
+    useCrn = false
 }) {
     inquirer.prompt([{
         type: 'input',
@@ -355,8 +363,11 @@ function newRuhuaScript({
 
         console.log('rn package name', packageName)
 
+        const ruhuaScirpt = useCrn ? 'scripts/afterZip/CRNrzip.js' : 'scripts/afterZip/ENrzip.js';
+
         createChildrenProcessBySpawn('node', [`${__dirname}/${ruhuaScirpt}`, ...ScriptParam], () => {
-            createChildrenProcessBySpawn('sh', [`${__dirname}/newruhuarn.sh`, packageName, loadType])
+            const SH_PATH = useCrn ? `${__dirname}/scripts/ruhuaSH/crnruhua.sh` : `${__dirname}/newruhuarn.sh`;
+            createChildrenProcessBySpawn('sh', [SH_PATH, packageName, loadType])
         })
     });
 }
