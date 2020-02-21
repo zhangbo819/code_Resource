@@ -34,7 +34,7 @@ async function main() {
         ]
     })
 
-    await mv('-f', outputPath, '/Users/zzb/work/rnapp/template')
+    await mv('-f', outputPath, '/Users/zzb/work/rnapp/newtemplate')
 
     console.log('mv success')
 
