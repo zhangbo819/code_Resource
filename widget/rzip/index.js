@@ -185,13 +185,17 @@ const scriptChoices = [
         name: 'rzip by one app',
         callback: newRuhuaScript.bind(this, { name: 'one_app_rn_package_name', loadType: 6, ScriptParam: ['/Users/zzb/work/qingke_rn/common_template/APP/'] })
     },
+    // {
+    //     name: 'rzip by one tv',
+    //     callback: newRuhuaScript.bind(this, { name: 'one_app_rn_package_name', loadType: 7, ScriptParam: ['/Users/zzb/work/qingke_rn/common_template/TV/'] })
+    // },
     {
         name: 'rzip by crn one tv',
-        callback: newRuhuaScript.bind(this, { name: 'one_app_rn_package_name', loadType: 1, useCrn: true, ScriptParam: ['/Users/zzb/work/qingke_rn/common_template/TV/'] })
+        callback: newRuhuaScript.bind(this, { name: 'one_app_rn_package_name', loadType: 7, useCrn: true, ScriptParam: ['/Users/zzb/work/qingke_rn/common_template/TV/'] })
     },
     {
-        name: 'rzip by one tv',
-        callback: newRuhuaScript.bind(this, { name: 'one_app_rn_package_name', loadType: 7, ScriptParam: ['/Users/zzb/work/qingke_rn/common_template/TV/'] })
+        name: 'cp && crn pack',
+        callback: createChildrenProcessBySpawn.bind(this, 'sh', [`${__dirname}/scripts/old_to_crn_pack/index.sh`])
     },
     {
         name: 'rzip by s045 AI动画课',
