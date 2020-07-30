@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 const context = React.createContext();
 
-const { Provider } = context;
+const { Provider, Consumer } = context;
 
 export default class Context extends Component {
     state = {
@@ -16,16 +16,16 @@ export default class Context extends Component {
         return <Provider value={{ counter: this.state.counter, add: this.add }}>
             <Border />
 
-            {/* <Consumer>
+            <Consumer>
                 {value => <Child {...value}></Child>}
-            </Consumer> */}
+            </Consumer>
         </Provider>
     }
 }
 
 class Border extends Component {
     // static contextType = context;
-    
+
     render() {
         return <div style={{ padding: '5px', backgroundColor: '#f008' }}>
             <Child ></Child>
