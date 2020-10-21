@@ -1,3 +1,4 @@
+// 斐波那契数列
 function rob(arr) {
   var dp = [];
   dp[0] = 0;
