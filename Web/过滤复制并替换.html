@@ -1,0 +1,98 @@
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+  <base href="" />
+  <style type="text/css">
+  </style>
+</head>
+
+<body>
+  <div id="conversation-content" contenteditable="true" style="width:500px;height:300px;background:#f00;">
+
+  </div>
+</body>
+
+</html>
+<script src="http://www.w3school.com.cn/jquery/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+  function filterHtml(str, callback) {
+    var s = '';
+    var imgWidth = 200;
+    var d = str.replace(/(&nbsp;)/ig, '');//先过滤空格
+    var sd = d.replace(/<br([^<>]+|\s?)>/ig, '||||');//替换br标签
+    var div = document.createElement('div');
+    div.id = 'cache_Id';
+    div.style.display = 'none';
+    div.innerHTML = sd;
+    document.body.appendChild(div);
+    var dssD = document.getElementById('cache_Id');
+    var text = dssD.innerText;//过滤html标签
+    text = text.replace(/\|\|\|\|/g, '<br>');//还原br
+    var imagesCount = 0;
+    try {
+      var temp = '';
+      var img = dssD.getElementsByTagName('img');
+      if (img.length > 0) {
+        for (var i = 0; i < img.length; i++) {
+          var imgObj = new Image();
+          imgObj.onload = function () {
+            imagesCount++;
+            var w = this.width;
+            var h = this.height;
+            if (w > imgWidth) {
+              temp += '<img src="' + this.src + '" width="' + imgWidth + '" /><br>';
+            } else {
+              temp += '<img src="' + this.src + '" width="' + w + '" /><br>';
+            }
+            if (imagesCount == img.length) {
+              text += temp;
+              s = text;
+              var n = document.getElementById('cache_Id');
+              if (n && n.parentNode && n.tagName != 'BODY') {
+                n.parentNode.removeChild(n);
+              }
+              if (callback) {
+                callback(s);
+              }
+            }
+          }
+          imgObj.onerror = onabort = function () {
+            console.log(imagesCount);
+            imagesCount++;
+            if (imagesCount == img.length) {
+              s = text;
+              var n = document.getElementById('cache_Id');
+              if (n && n.parentNode && n.tagName != 'BODY') {
+                n.parentNode.removeChild(n);
+              }
+              if (callback) {
+                callback(s);
+              }
+            }
+          }
+          imgObj.src = img[i].src;
+        }
+      } else {
+        s = text;
+        var n = document.getElementById('cache_Id');
+        if (n && n.parentNode && n.tagName != 'BODY') {
+          n.parentNode.removeChild(n);
+        }
+        if (callback) {
+          callback(s);
+        }
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  $('#conversation-content')[0].onpaste = function () {
+    console.log(1);
+    setTimeout(function () {
+      filterHtml($('#conversation-content').html(), function (str) {
+        $('#conversation-content').html(str);
+      });
+    }, 300);
+  }
+</script>
