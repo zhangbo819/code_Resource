@@ -1,7 +1,7 @@
 const csv = require('csv');
 const fs = require('fs');
 
-const targePath = './input/1734-1yzv7issFVUIFz0jFjlF.csv';
+const targePath = './input/input.csv';
 
 // let contactList = "empl_id,name,page,currenthref";
 let contactList = [];
