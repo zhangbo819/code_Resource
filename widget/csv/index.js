@@ -27,7 +27,7 @@ stream
 
 // 数据导入完成
 function end() {
-    // 根据id生成数据，并计算次数
+    // 根据id生成map数据，并计算次数
     const data_map = contactList.reduce((r, i) => {
         // console.log('contactList i', i)
         const { empl_id, currenthref } = i;
@@ -45,6 +45,7 @@ function end() {
             } else {
                 r[empl_id].push(i)
             }
+
         } else if (empl_id !== '') {
             // 过滤掉没登录的
             if (typeof r[empl_id] === 'undefined') {
@@ -55,35 +56,82 @@ function end() {
         return r
     }, {});
 
-    // console.log(data_map)
+    // console.log(data_map[103492])
+    // return
 
-
-    // 转化为csv形式
-    let csv_data = "empl_id,name,currenthref,访问次数";
+    // 根据data_map，转换成个人信息的数组
+    const data_arr = [];
     for (let key in data_map) {
         const item = data_map[key];
 
-        // 排序
-        item.sort((a, b) => b.count - a.count)
-
-        // 总次数
-        all_count = item.reduce((r, i) => {
-            r += i.count;
-            return r
-        }, 0);
-        csv_data += '\n' + [item[0].empl_id, item[0].name, '累计', all_count].join(',')
-
-        // 每条
-        item.forEach(({ empl_id, name, currenthref, count }) => {
-            // csv_data += '\n' + [empl_id, name, currenthref, count].join(',')
-            csv_data += '\n' + ['', '', currenthref, count].join(',')
+        // console.log('item', item)
+        // 设置初始值
+        const init_data = { name: '', empl_id: '', 总访问次数: 0 };
+        const r_proxy = new Proxy(init_data, {
+            get(obj, key) {
+                return typeof obj[key] === 'undefined' ? 0 : obj[key]
+            }
         })
+
+        // 生成每个人的数据
+        const person_item = item.reduce((r, page, index) => {
+            if (index === 0) {
+                r.name = page.name
+                r.empl_id = page.empl_id
+            }
+
+            // 总次数
+            r.总访问次数 += page.count;
+
+            // 页面计数
+            set_page_count(page, r)
+
+            return r
+        }, r_proxy)
+
+        data_arr.push(person_item)
     }
+
+    // console.log('data_arr', data_arr)
+
+    // return
+
+    // 转化为csv形式
+    let csv_data = "name,empl_id,总访问次数,自定义菜单,被关注回复,渠道二维码,智能推送,角色管理,角色管理_名单详情,人员管理,公众号编辑,创建渠道二维码,智能推送编辑页,服务工具箱_资料下载,服务工具箱_数据统计,服务工具箱_分享,服务工具箱_编辑,图文消息发送,消息审核管理,创建审核消息,公众号授权,公众号图文消息审核,公众号图文消息详情"; // 表头
+
+    data_arr.forEach((item) => {
+        const p_item = new Proxy(item, {
+            get(obj, key) {
+                return obj[key] === 0 ? '' : obj[key]
+            }
+        })
+        const { name, empl_id, 总访问次数, 自定义菜单, 被关注回复, 渠道二维码, 智能推送, 角色管理, 角色管理_名单详情, 人员管理, 公众号编辑, 创建渠道二维码, 智能推送编辑页, 服务工具箱_资料下载, 服务工具箱_数据统计, 服务工具箱_分享, 服务工具箱_编辑, 图文消息发送, 消息审核管理, 创建审核消息, 公众号授权, 公众号图文消息审核, 公众号图文消息详情 } = p_item;
+        csv_data += '\n' + [name, empl_id, 总访问次数, 自定义菜单, 被关注回复, 渠道二维码, 智能推送, 角色管理, 角色管理_名单详情, 人员管理, 公众号编辑, 创建渠道二维码, 智能推送编辑页, 服务工具箱_资料下载, 服务工具箱_数据统计, 服务工具箱_分享, 服务工具箱_编辑, 图文消息发送, 消息审核管理, 创建审核消息, 公众号授权, 公众号图文消息审核, 公众号图文消息详情].join(',');
+    })
+    // for (let key in data_map) {
+    //     const item = data_map[key];
+
+    //     // 排序
+    //     item.sort((a, b) => b.count - a.count)
+
+    //     // 总次数
+    //     all_count = item.reduce((r, i) => {
+    //         r += i.count;
+    //         return r
+    //     }, 0);
+    //     csv_data += '\n' + [item[0].empl_id, item[0].name, '累计', all_count].join(',')
+
+    //     // 每条
+    //     item.forEach(({ empl_id, name, currenthref, count }) => {
+    //         // csv_data += '\n' + [empl_id, name, currenthref, count].join(',')
+    //         csv_data += '\n' + ['', '', currenthref, count].join(',')
+    //     })
+    // }
     // console.log('csv_data', csv_data)
 
     // return
     // 写入csv
-    const output_path = './input/埋点数据.csv';
+    const output_path = `./input/蜂鸟埋点数据${new Date().toLocaleString()}.csv`;
     fs.writeFile(output_path, csv_data, function (err) {
         // fs.writeFile(output_path, JSON.stringify(obj, null, 4), function (err) {
         if (err) {
@@ -95,4 +143,52 @@ function end() {
         const spawn = require('child_process').spawn;
         const cmd = spawn('open', [output_path]);
     });
+}
+
+// 计算各个页面的次数
+function set_page_count(page, r) {
+    const { currenthref, count } = page;
+    if (currenthref.includes("/interactive/customMenu")) {
+        r.自定义菜单 += count;
+    } else if (currenthref.includes("/interactive/followedReply")) {
+        r.被关注回复 += count;
+    } else if (currenthref.includes("/interactive/channelQrcode")) {
+        r.渠道二维码 += count;
+    } else if (currenthref.includes("/interactive/smartPush")) {
+        r.智能推送 += count;
+    } else if (currenthref.includes("/permission/rolesManage")) {
+        r.角色管理 += count;
+    } else if (currenthref.includes("/permission/rolesManage/roster")) {
+        r.角色管理_名单详情 += count;
+    } else if (currenthref.includes("/permission/peopleManage")) {
+        r.人员管理 += count;
+    } else if (currenthref.includes("/interactive/followedReply/OfficialEditor")) {
+        r.公众号编辑 += count;
+    } else if (currenthref.includes("/interactive/channelQrcode/CreateQrcode")) {
+        r.创建渠道二维码 += count;
+    } else if (currenthref.includes("/interactive/smartPush/operateSmart/editSmart")) {
+        r.智能推送编辑页 += count;
+    } else if (currenthref.includes('/message/send/list')) {
+        r.图文消息发送 += count;
+    } else if (currenthref.includes('/message/check/list')) {
+        r.消息审核管理 += count;
+    } else if (currenthref.includes("/message/send/creatMsg")) {
+        r.创建审核消息 += count;
+    } else if (currenthref.includes("/authorization/index")) {
+        r.公众号授权 += count;
+    } else if (currenthref.includes("/m-approve")) {
+        r.公众号图文消息审核 += count;
+    } else if (currenthref.includes("/m-textContent")) {
+        r.公众号图文消息详情 += count;
+    } else if (currenthref.includes("/serviceTools/dataDown")) {
+        r.服务工具箱_资料下载 += count;
+    } else if (currenthref.includes("/serviceTools/dataStatistics")) {
+        r.服务工具箱_数据统计 += count;
+    } else if (currenthref.includes("/serviceTools/toolShare")) {
+        r.服务工具箱_分享 += count;
+    } else if (currenthref.includes("/serviceTools/addOrEdit")) {
+        r.服务工具箱_编辑 += count;
+    }
+
+
 }
