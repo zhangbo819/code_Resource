@@ -126,19 +126,136 @@ console.log(10/3 | 0) // 0.3
 
 类似于react的this.props.children
 
-```vue
+#### 普通写法
 
-父组件 <slot name=‘aaa’ />
-子组件
-<Comp>
-	<template v-slot:default />
-        <template v-slot:aaa />
-</Comp>
+父组件中，在组件内部加入要传入的内容
+
+```js
+
+<navigation-link url="/profile">
+  Your Profile
+</navigation-link>
+```
+
+子组件中，slot标签就是父组件中的内容，插槽起到了一个占位的作用
+
+```js
+
+<a
+  v-bind:href="url"
+  class="nav-link"
+>
+  Front text
+  <slot></slot>
+  Rear text
+</a>
+```
+
+也可以插入其他组件
+
+```js
+
+<navigation-link url="/profile">
+  <!-- 添加一个图标的组件 -->
+  <font-awesome-icon name="user"></font-awesome-icon>
+  Your Profile
+</navigation-link>
+
+```
+
+#### 具名插槽
+
+具名插槽是将多个插槽进行区分，如
+
+子组件中
+
+```js
+
+<div class="container">
+  <header>
+    <!-- 我们希望把页头放这里 -->
+  </header>
+  <main>
+    <!-- 我们希望把主要内容放这里 -->
+  </main>
+  <footer>
+    <!-- 我们希望把页脚放这里 -->
+  </footer>
+</div>
+```
+
+我们可以定义不同的name
+
+```js
+
+<div class="container">
+  <header>
+    <slot name="header"></slot>
+  </header>
+  <main>
+    <slot></slot>
+  </main>
+  <footer>
+    <slot name="footer"></slot>
+  </footer>
+</div>
+```
+
+父组件中传入
+
+```js
+<base-layout>
+  <template v-slot:header>
+    <h1>Here might be a page title</h1>
+  </template>
+
+  <p>A paragraph for the main content.</p>
+  <p>And another one.</p>
+
+  <template v-slot:footer>
+    <p>Here's some contact info</p>
+  </template>
+</base-layout>
 ```
 
 #### 作用域插槽
 
-父组件中指定上下文对象, 子组件中绑定变量, 进行使用
+作用域插槽的目的让在父组件中定义的插槽占位符，可以更简单的访问到子组件中的属性，如
+
+其中的user，就是子组件中的属性
+
+父组件
+
+```js
+
+<current-user v-slot="{ user }">
+  <template v-slot:header>
+    <h1>Here might be a page title</h1>
+  </template>
+
+  <p>A paragraph for the main content.</p>
+  <p>{{ user.firstName }}</p>
+
+  <template v-slot:footer>
+    <p>Here's some contact info</p>
+  </template>
+</current-user>
+```
+
+子组件, script中
+
+```js
+
+export default {
+  data() {
+    return {
+      user: {
+        firstName: 'zhang',
+      }
+    }
+  }
+}
+```
 
 #### vue组件通信
 
