@@ -19,3 +19,6 @@ widget/csv/input
 
 Node/zip_test/*.zip
 Node/myServer/*.zip
+
+widget/微信文档地区名称转换/wxData.json
+widget/微信文档地区名称转换/a.txt
