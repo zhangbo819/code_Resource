@@ -36,27 +36,36 @@ function end() {
             i.count = 1
         }
 
-        const target = r[empl_id];
-        if (target) {
-            const page_item = r[empl_id].find(item => (item.currenthref === currenthref));
-            // console.log('page_item', page_item)
-            if (page_item) {
-                page_item.count = page_item.count + 1;
-            } else {
+        if (/^https?:\/\/scrm.100tal.com/.test(currenthref)) {
+            // 正式环境
+            const target = r[empl_id];
+            // map对象里有
+            if (target) {
+                const page_item = r[empl_id].find(item => (item.currenthref === currenthref));
+                // console.log('page_item', page_item)
+                if (page_item) {
+                    page_item.count = page_item.count + 1;
+                } else {
+                    r[empl_id].push(i)
+                }
+
+            } else if (empl_id !== '') {
+                // map对象里没有 第一次存入数据
+                // 过滤掉没登录的
+                if (typeof r[empl_id] === 'undefined') {
+                    r[empl_id] = []
+                }
                 r[empl_id].push(i)
             }
-
-        } else if (empl_id !== '') {
-            // 过滤掉没登录的
-            if (typeof r[empl_id] === 'undefined') {
-                r[empl_id] = []
-            }
-            r[empl_id].push(i)
+        } else if (/^https?:\/\/scrm.chengjiukehu.com/.test(currenthref)) {
+            // 测试环境
+        } else if (/^https?:\/\/localhost/.test(currenthref)) {
+            // 开发环境
         }
         return r
     }, {});
 
-    // console.log(data_map[103492])
+    // console.log(data_map[121846])
     // return
 
     // 根据data_map，转换成个人信息的数组
@@ -141,7 +150,8 @@ function end() {
 
         // open打开
         const spawn = require('child_process').spawn;
-        const cmd = spawn('open', [output_path]);
+        // const cmd = spawn('open', [output_path]);
+        const cmd = spawn('open', ['./input']);
     });
 }
 
@@ -162,11 +172,11 @@ function set_page_count(page, r) {
         r.角色管理_名单详情 += count;
     } else if (currenthref.includes("/permission/peopleManage")) {
         r.人员管理 += count;
-    } else if (currenthref.includes("/interactive/followedReply/OfficialEditor")) {
+    } else if (currenthref.includes("/OfficialEditor")) {
         r.公众号编辑 += count;
-    } else if (currenthref.includes("/interactive/channelQrcode/CreateQrcode")) {
+    } else if (currenthref.includes("/CreateQrcode")) {
         r.创建渠道二维码 += count;
-    } else if (currenthref.includes("/interactive/smartPush/operateSmart/editSmart")) {
+    } else if (currenthref.includes("/editSmart")) {
         r.智能推送编辑页 += count;
     } else if (currenthref.includes('/message/send/list')) {
         r.图文消息发送 += count;
