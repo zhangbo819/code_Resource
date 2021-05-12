@@ -65,7 +65,7 @@ function end() {
         return r
     }, {});
 
-    // console.log(data_map[121846])
+    // console.log(data_map[148158])
     // return
 
     // 根据data_map，转换成个人信息的数组
@@ -106,7 +106,7 @@ function end() {
     // return
 
     // 转化为csv形式
-    let csv_data = "name,empl_id,总访问次数,自定义菜单,被关注回复,渠道二维码,智能推送,角色管理,角色管理_名单详情,人员管理,公众号编辑,创建渠道二维码,智能推送编辑页,服务工具箱_资料下载,服务工具箱_数据统计,服务工具箱_分享,服务工具箱_编辑,图文消息发送,消息审核管理,创建审核消息,公众号授权,公众号图文消息审核,公众号图文消息详情,高级群发_列表,高级群发_新建图文,高级群发_新建文本图片,任务宝_列表,任务宝_推广,任务宝_创建编辑"; // 表头
+    let csv_data = "name,empl_id,总访问次数,自定义菜单,被关注回复,渠道二维码,智能推送,角色管理,角色管理_名单详情,人员管理,公众号编辑,创建渠道二维码,智能推送编辑页,服务工具箱_资料下载,服务工具箱_数据统计,服务工具箱_分享,服务工具箱_编辑,图文消息发送,消息审核管理,创建审核消息,公众号授权,公众号图文消息审核,公众号图文消息详情,高级群发_列表,高级群发_新建图文,高级群发_新建文本图片,任务宝_列表,任务宝_推广,任务宝_创建编辑,关键词回复,关键词回复_查看关键词,关键词回复_新建编辑规则"; // 表头
 
     data_arr.forEach((item) => {
         const p_item = new Proxy(item, {
@@ -121,7 +121,8 @@ function end() {
             图文消息发送, 消息审核管理, 创建审核消息,
             公众号授权, 公众号图文消息审核, 公众号图文消息详情,
             高级群发_列表, 高级群发_新建图文, 高级群发_新建文本图片,
-            任务宝_列表,任务宝_推广,任务宝_创建编辑
+            任务宝_列表, 任务宝_推广, 任务宝_创建编辑,
+            关键词回复, 关键词回复_查看关键词, 关键词回复_新建编辑规则
         } = p_item;
         csv_data += '\n' + [name, empl_id, 总访问次数,
             自定义菜单, 被关注回复, 渠道二维码, 智能推送,
@@ -130,7 +131,8 @@ function end() {
             图文消息发送, 消息审核管理, 创建审核消息,
             公众号授权, 公众号图文消息审核, 公众号图文消息详情,
             高级群发_列表, 高级群发_新建图文, 高级群发_新建文本图片,
-            任务宝_列表,任务宝_推广,任务宝_创建编辑
+            任务宝_列表, 任务宝_推广, 任务宝_创建编辑,
+            关键词回复, 关键词回复_查看关键词, 关键词回复_新建编辑规则
         ].join(',');
     })
     // for (let key in data_map) {
@@ -182,6 +184,12 @@ function set_page_count(page, r) {
         r.渠道二维码 += count;
     } else if (currenthref.includes("/interactive/smartPush")) {
         r.智能推送 += count;
+    } else if (currenthref.includes("/interactive/keyWord/findData")) {
+        r.关键词回复_查看关键词 += count;
+    } else if (currenthref.includes("/interactive/keyWord")) {
+        r.关键词回复 += count;
+    } else if (currenthref.includes("/keyWord/editKey")) {
+        r.关键词回复_新建编辑规则 += count;
     } else if (currenthref.includes("/permission/rolesManage")) {
         r.角色管理 += count;
     } else if (currenthref.includes("/permission/rolesManage/roster")) {
