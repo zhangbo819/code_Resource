@@ -1,7 +1,18 @@
 const csv = require('csv');
 const fs = require('fs');
 
-const targePath = './input/input.csv';
+// const targePath = './input/input.csv';
+const targePath = process.argv[2]; // 获取的参数 input/input1212-1213.csv
+
+// 时间后缀处理
+let target_suffix = /(input\/)?input([\s\S]*)\.csv/ig.exec(targePath)
+if (target_suffix && Array.isArray(target_suffix)) {
+    target_suffix = target_suffix[2]
+} else {
+    target_suffix = ''
+}
+
+if (!targePath) return
 
 // let contactList = "empl_id,name,page,currenthref";
 let contactList = [];
@@ -15,11 +26,12 @@ stream
     })
     .on("data", function (data) {
         try {
-            const { empl_id, name, page, currenthref } = JSON.parse(data[16]).data;
+            const { empl_id, name, page, currenthref } = JSON.parse(data[15]).data;
             // contactList += '\n' + [empl_id, name, page, currenthref].join(',')
             // contactList.push([empl_id, name, page, currenthref].join(','))
             contactList.push({ empl_id, name, currenthref })
         } catch (err) {
+            console.log(err)
         }
     })
     .on("end", end);
@@ -158,7 +170,7 @@ function end() {
 
     // return
     // 写入csv
-    const output_path = `./input/蜂鸟埋点数据${new Date().toLocaleString()}.csv`;
+    const output_path = `./input/蜂鸟埋点数据${target_suffix}.csv`;
     fs.writeFile(output_path, csv_data, function (err) {
         // fs.writeFile(output_path, JSON.stringify(obj, null, 4), function (err) {
         if (err) {
