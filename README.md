@@ -5,13 +5,13 @@
 ## 基础知识
 
 * JS基础
-* es6
-* css基础
+* ES6
+* CSS基础 BFC、回流重绘
 * 网络基础 http、dns、tcp、cdn、缓存
 
 ## 工程化
 
-* webpack
+* Webpack
 * Babel
 * 前端安全
 * 性能优化
@@ -21,7 +21,8 @@
 
 * Vue、React 工作机制、各自特点
 * Diff
-* Mvvm
+* MVVM, MVC, MVP
+* Vue Computed, Wactch实现原理，为什么Computed可以依赖另一个Computed
 
 ## node
 
@@ -49,13 +50,51 @@
 
 ## 基础知识
 
-### 一、Js基础
+### 一、JS基础
 
 #### 作用域
 
 程序中定义变量的区域，他绝对了当前执行代码对变量的访问权限
 
 <https://juejin.cn/post/6844904165672484871>
+
+#### 事件循环 Event Loop
+
+> [浏览器与Node事件循环有何不同](https://juejin.cn/post/6844903761949753352#heading-13)
+
+Node运行机制如下:
+
+- V8引擎解析JavaScript脚本。
+- 解析后的代码，调用Node API。
+- libuv库负责Node API的执行。它将不同的任务分配给不同的线程，形成一个Event Loop（事件循环），以异步的方式将任务的执行结果返回给V8引擎。V8引擎再将结果返回给用户。
+
+```js
+
+console.log('start')
+setTimeout(() => {
+  console.log('timer1')
+  Promise.resolve().then(function() {
+    console.log('promise1')
+  })
+}, 0)
+setTimeout(() => {
+  console.log('timer2')
+  Promise.resolve().then(function() {
+    console.log('promise2')
+  })
+}, 0)
+Promise.resolve().then(function() {
+  console.log('promise3')
+})
+console.log('end')
+//start=>end=>promise3=>timer1=>timer2=>promise1=>promise2
+
+```
+
+- 一开始执行栈的同步任务（这属于宏任务）执行完毕后（依次打印出start end，并将2个timer依次放入timer队列）,会先去执行微任务（**这点跟浏览器端的一样**），所以打印出promise3
+- 然后进入timers阶段，执行timer1的回调函数，打印timer1，并将promise.then回调放入microtask队列，同样的步骤执行timer2，打印timer2；这点跟浏览器端相差比较大，**timers阶段有几个setTimeout/setInterval都会依次执行**，并不像浏览器端，每执行一个宏任务后就去执行一个微任务（关于Node与浏览器的 Event Loop 差异，下文还会详细介绍）。
+
+
 
 #### 宏任务微任务
 
@@ -138,13 +177,20 @@ Generator
 
 <https://juejin.cn/post/6881565341856563213>
 
-### 五、http
+### 五、HTTP
 
 http详解  <https://juejin.cn/post/6844904045572800525>
 
 基础知识 <https://juejin.cn/post/6844904087524229133>
 
 #### 缓存
+
+##### 你能说说缓存么
+
+小提示：如果平常有遇到过缓存的坑或者很好的利用缓存，可以讲解一下自己的使用场景。如果没有使用注意过缓存问题你也可以尝试讲解一下和我们息息相关的Webpack构建（每一次构建静态资源名称的hash值都会变化），它其实就跟缓存相关。有兴趣的同学可以查看张云龙的博客大公司里怎样开发和部署前端代码？。
+
+> 缓存分为强缓存和协商缓存。强缓存不过服务器，协商缓存需要过服务器，协商缓存返回的状态码是304。两类缓存机制可以同时存在，强缓存的优先级高于协商缓存。当执行强缓存时，如若缓存命中，则直接使用缓存数据库中的数据，不再进行缓存协商。
+
 
 ##### 协商缓存
 
