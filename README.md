@@ -52,6 +52,73 @@
 
 ### 一、JS基础
 
+#### 继承
+
+实现一个寄生组合继承
+
+```js
+
+function Parent(name) {
+  this.name = name;
+  this.say = () => {
+    console.log(111);
+  };
+}
+Parent.prototype.play = () => {
+  console.log(222);
+};
+function Children(name) {
+  Parent.call(this);
+  this.name = name;
+}
+Children.prototype = Object.create(Parent.prototype);
+Children.prototype.constructor = Children;
+
+// let child = new Children("111");
+// // console.log(child.name);
+// // child.say();
+// // child.play();
+
+```
+
+#### new
+
+new 操作符做了哪些事
+
+* 创建一个新的对象
+* 将函数的prototype指向这个对象（链接到原型）
+* 将this绑定到这个函数并执行
+* 如果有执行结果为对象，则返回执行结果，否则，返回创造的对象
+
+手写 new
+
+```js
+
+function myNew(fn, ...args) {
+  let obj = Object.create(fn.prototype);
+  let res = fn.call(obj, ...args);
+  if (res && (typeof res === "object" || typeof res === "function")) {
+    return res;
+  }
+  return obj;
+}
+
+
+// function Person(name, age) {
+//   this.name = name;
+//   this.age = age;
+// }
+// Person.prototype.say = function() {
+//   console.log(this.age);
+// };
+// let p1 = myNew(Person, "lihua", 18);
+// console.log(p1.name);
+// console.log(p1);
+// p1.say();
+
+
+```
+
 #### 作用域
 
 程序中定义变量的区域，他绝对了当前执行代码对变量的访问权限
@@ -64,9 +131,9 @@
 
 Node运行机制如下:
 
-- V8引擎解析JavaScript脚本。
-- 解析后的代码，调用Node API。
-- libuv库负责Node API的执行。它将不同的任务分配给不同的线程，形成一个Event Loop（事件循环），以异步的方式将任务的执行结果返回给V8引擎。V8引擎再将结果返回给用户。
+* V8引擎解析JavaScript脚本。
+* 解析后的代码，调用Node API。
+* libuv库负责Node API的执行。它将不同的任务分配给不同的线程，形成一个Event Loop（事件循环），以异步的方式将任务的执行结果返回给V8引擎。V8引擎再将结果返回给用户。
 
 ```js
 
@@ -91,10 +158,8 @@ console.log('end')
 
 ```
 
-- 一开始执行栈的同步任务（这属于宏任务）执行完毕后（依次打印出start end，并将2个timer依次放入timer队列）,会先去执行微任务（**这点跟浏览器端的一样**），所以打印出promise3
-- 然后进入timers阶段，执行timer1的回调函数，打印timer1，并将promise.then回调放入microtask队列，同样的步骤执行timer2，打印timer2；这点跟浏览器端相差比较大，**timers阶段有几个setTimeout/setInterval都会依次执行**，并不像浏览器端，每执行一个宏任务后就去执行一个微任务（关于Node与浏览器的 Event Loop 差异，下文还会详细介绍）。
-
-
+* 一开始执行栈的同步任务（这属于宏任务）执行完毕后（依次打印出start end，并将2个timer依次放入timer队列）,会先去执行微任务（**这点跟浏览器端的一样**），所以打印出promise3
+* 然后进入timers阶段，执行timer1的回调函数，打印timer1，并将promise.then回调放入microtask队列，同样的步骤执行timer2，打印timer2；这点跟浏览器端相差比较大，**timers阶段有几个setTimeout/setInterval都会依次执行**，并不像浏览器端，每执行一个宏任务后就去执行一个微任务（关于Node与浏览器的 Event Loop 差异，下文还会详细介绍）。
 
 #### 宏任务微任务
 
@@ -171,11 +236,58 @@ Generator
 
 一种可暂停执行的特殊函数
 
-### 四、CSS
+### 三、CSS基础
 
 #### flex布局
 
 <https://juejin.cn/post/6881565341856563213>
+
+#### flex: 1
+
+> flex 实际上是 flex-grow、flex-shrink 和 flex-basis 三个属性的缩写。
+
+```text
+
+flex: 1;
+
+// 等于
+
+flex-grow: 1;
+flex-shrink: 1;
+flex-basis: 0%;
+
+```
+
+* flex-grow：定义项目的的放大比例；
+
+```text
+
+默认为0，即 即使存在剩余空间，也不会放大；
+所有项目的flex-grow为1：等分剩余空间（自动放大占位）；
+flex-grow为n的项目，占据的空间（放大的比例）是flex-grow为1的n倍。
+
+```
+
+* flex-shrink：定义项目的缩小比例；
+
+```text
+
+默认为1，即 如果空间不足，该项目将缩小；
+所有项目的flex-shrink为1：当空间不足时，缩小的比例相同；
+flex-shrink为0：空间不足时，该项目不会缩小；
+flex-shrink为n的项目，空间不足时缩小的比例是flex-shrink为1的n倍。
+
+
+```
+
+* flex-basis： 定义在分配多余空间之前，项目占据的主轴空间（main size），浏览器根据此属性计算主轴是否有多余空间
+
+```text
+
+默认值为auto，即 项目原本大小；
+设置后项目将占据固定空间。
+
+```
 
 ### 五、HTTP
 
@@ -190,7 +302,6 @@ http详解  <https://juejin.cn/post/6844904045572800525>
 小提示：如果平常有遇到过缓存的坑或者很好的利用缓存，可以讲解一下自己的使用场景。如果没有使用注意过缓存问题你也可以尝试讲解一下和我们息息相关的Webpack构建（每一次构建静态资源名称的hash值都会变化），它其实就跟缓存相关。有兴趣的同学可以查看张云龙的博客大公司里怎样开发和部署前端代码？。
 
 > 缓存分为强缓存和协商缓存。强缓存不过服务器，协商缓存需要过服务器，协商缓存返回的状态码是304。两类缓存机制可以同时存在，强缓存的优先级高于协商缓存。当执行强缓存时，如若缓存命中，则直接使用缓存数据库中的数据，不再进行缓存协商。
-
 
 ##### 协商缓存
 
@@ -223,6 +334,24 @@ If-None-Match： 再次请求服务器时，浏览器的请求报文头部会包
 * 对于频繁变动的资源，可以使用 Cache-Control: no-cache 并配合 ETag 使用，表示该资源已被缓存，但是每次都会发送请求询问资源是否更新
 * 对于代码文件来说，通常使用 Cache-Control: max-age=31536000 并配合策略缓存使用，然后对文件进行指纹处理，一旦文件名变动就会立刻下载新的文件
   
+## 工程化
+
+### Webpack
+
+### Babel
+
+Babel 是一个 JavaScript 编译器。他把最新版的 javascript 编译成当下可以执行的版本，简言之，利用 babel 就可以让我们在当前的项目中随意的使用这些新最新的 es6，甚至 es7 的语法。
+Babel 的三个主要处理步骤分别是： 解析（parse），转换（transform），生成（generate）。
+
+> * 解析
+将代码解析成抽象语法树（AST），每个 js 引擎（比如 Chrome 浏览器中的 V8 引擎）都有自己的 AST 解析器，而 Babel 是通过 Babylon 实现的。在解析过程中有两个阶段：词法分析和语法分析，词法分析阶段把字符串形式的代码转换为令牌（tokens）流，令牌类似于 AST 中节点；而语法分析阶段则会把一个令牌流转换成 AST 的形式，同时这个阶段会把令牌中的信息转换成 AST 的表述结构。
+> * 转换
+在这个阶段，Babel 接受得到 AST 并通过 babel-traverse 对其进行深度优先遍历，在此过程中对节点进行添加、更新及移除操作。这部分也是 Babel 插件介入工作的部分。
+> * 生成
+将经过转换的 AST 通过 babel-generator 再转换成 js 代码，过程就是深度优先遍历整个 AST，然后构建可以表示转换后代码的字符串。
+
+还想深入了解的可以看 [Babel 原理](https://juejin.cn/post/6844903760603398151)
+
 ## 其他
 
 ### 三、TS
