@@ -54,7 +54,7 @@
 
 #### 继承
 
-实现一个寄生组合继承
+* 实现一个寄生组合继承
 
 ```js
 
@@ -80,6 +80,53 @@ Children.prototype.constructor = Children;
 // // child.play();
 
 ```
+
+* prototype 和 \_\_proto\_\_
+
+[原链接摆上](https://www.zhihu.com/question/34183746)
+
+```js
+
+function foo () {}
+
+foo.__proto__ === Function.prototype // true
+
+// 向下
+
+var f1 = new foo()
+
+f1.__proto__ === foo.prototype // true
+
+// 向上
+// 函数
+Function.__proto__ === Function.prototype // true
+Function.prototype.__proto__ === Object.prototype // true
+
+
+// 对象
+Object.__proto__ === Function.prototype // true
+Object.prototype.__proto__ === null // true
+
+
+```
+
+> prototype 是函数的 原型对象，是个 **对象**
+> \_\_proto\_\_是 构造该对象的构造函数的原型对象，（**也是个原型对象, 只不过是他父级的原型对象**）
+> \_\_proto\_\_ 正常只有对象有，但js里**函数也是对象**，所以所有的函数也都有他的\_\_proto\_\_，**指向他父级的构造函数的原型对象**
+> Function是产生函数的函数，本质是函数，函数都有 \_\_proto\_\_，他的\_\_proto\_\_是他自己的原型 (函数最顶层的__proto__是Function.prototype)
+> 所有函数的原型对象的__proto__都是 Object.prototype (因为原型对象也是对象)
+> Object是产生对象的函数，本质也是函数，他的\_\_proto\_\_指向的是创造函数的函数Function的prototype
+> 而Object的原型对象，本质是也对象，其他的对象的\_\_proto\_\_会指向他，而他的\_\_proto\_\_是 null
+
+
+精简版
+
+<!-- > \_\_proto\_\_ 指向构造他的构造函数的原型对象 -->
+> 函数是特殊的对象，具有对象共有的特点
+> 对象有 \_\_proto\_\_，所以函数也有\_\_proto\_\_
+> 无论是函数还是对象他的 \_\_proto\_\_，都是一个对象
+> 对象的\_\_proto\_\_ 是 Object.prototype， 而Object.prototype的 \_\_proto\_\_是null
+> 函数的\_\_proto\_\_ 是 Function.prototype
 
 #### new
 
