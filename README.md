@@ -54,6 +54,8 @@
 
 #### 继承
 
+[参考链接 JS原型链与继承别再被问倒了](https://juejin.cn/post/6844903475021627400)
+
 * 实现一个寄生组合继承
 
 ```js
@@ -81,7 +83,7 @@ Children.prototype.constructor = Children;
 
 ```
 
-* prototype 和 \_\_proto\_\_
+#### prototype 和 \_\_proto\_\_
 
 [原链接摆上](https://www.zhihu.com/question/34183746)
 
