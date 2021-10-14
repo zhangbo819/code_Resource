@@ -1,15 +1,20 @@
 <!-- (https://github.com/poetries/FE-Interview-Questions/)[https://github.com/poetries/FE-Interview-Questions/] -->
 
-# 大纲
+# 目录
 
-## 基础知识
+[toc]
 
-* JS基础
+<!-- # 基础知识
+
+* [JS基础](#一js基础)
+  >
+  > * [继承](#继承)
+  > * [prototype 和 \_\_proto\_\_](#prototype-和-__proto__)
 * ES6
-* CSS基础 BFC、回流重绘
+* [CSS基础 BFC、回流重绘](#三css基础)
 * 网络基础 http、dns、tcp、cdn、缓存
 
-## 工程化
+# 工程化
 
 * Webpack
 * Babel
@@ -17,14 +22,14 @@
 * 性能优化
 * 部署发布
 
-## 框架/源码
+# 框架/源码
 
 * Vue、React 工作机制、各自特点
 * Diff
 * MVVM, MVC, MVP
 * Vue Computed, Wactch实现原理，为什么Computed可以依赖另一个Computed
 
-## node
+# node
 
 * 流、文件系统
 * 网络
@@ -32,29 +37,29 @@
 * 多线程
 * koa
 
-## 其他
+# 其他
 
 * TS
 
-## 计算机基础
+# 计算机基础
 
 * 算法
 * 数据结构
 * 设计模式
 
-## 面试题
+# 面试题
 
-* 待定
+* 待定 -->
 
-# 正文
+# 基础知识
 
-## 基础知识
+## 一、JS基础
 
-### 一、JS基础
-
-#### 继承
+### 继承
 
 [参考链接 JS原型链与继承别再被问倒了](https://juejin.cn/post/6844903475021627400)
+
+* 几种继承方法，各自优缺点
 
 * 实现一个寄生组合继承
 
@@ -83,7 +88,7 @@ Children.prototype.constructor = Children;
 
 ```
 
-#### prototype 和 \_\_proto\_\_
+### prototype 和 \_\_proto\_\_
 
 [原链接摆上](https://www.zhihu.com/question/34183746)
 
@@ -120,7 +125,6 @@ Object.prototype.__proto__ === null // true
 > Object是产生对象的函数，本质也是函数，他的\_\_proto\_\_指向的是创造函数的函数Function的prototype
 > 而Object的原型对象，本质是也对象，其他的对象的\_\_proto\_\_会指向他，而他的\_\_proto\_\_是 null
 
-
 精简版
 
 <!-- > \_\_proto\_\_ 指向构造他的构造函数的原型对象 -->
@@ -130,7 +134,7 @@ Object.prototype.__proto__ === null // true
 > 对象的\_\_proto\_\_ 是 Object.prototype， 而Object.prototype的 \_\_proto\_\_是null
 > 函数的\_\_proto\_\_ 是 Function.prototype
 
-#### new
+### new
 
 new 操作符做了哪些事
 
@@ -168,13 +172,33 @@ function myNew(fn, ...args) {
 
 ```
 
-#### 作用域
+### 手写 instanceof
+
+```js
+
+// 模拟 instanceof
+function instance_of(L, R) {
+  //L 表示左表达式，R 表示右表达式
+  var O = R.prototype; // 取 R 的显示原型
+  L = L.__proto__; // 取 L 的隐式原型
+  while (true) {
+    if (L === null) return false;
+    if (O === L)
+      // 这里重点：当 O 严格等于 L 时，返回 true
+      return true;
+    L = L.__proto__;
+  }
+}
+
+```
+
+### 作用域
 
 程序中定义变量的区域，他绝对了当前执行代码对变量的访问权限
 
 <https://juejin.cn/post/6844904165672484871>
 
-#### 事件循环 Event Loop
+### 事件循环 Event Loop
 
 > [浏览器与Node事件循环有何不同](https://juejin.cn/post/6844903761949753352#heading-13)
 
@@ -210,7 +234,7 @@ console.log('end')
 * 一开始执行栈的同步任务（这属于宏任务）执行完毕后（依次打印出start end，并将2个timer依次放入timer队列）,会先去执行微任务（**这点跟浏览器端的一样**），所以打印出promise3
 * 然后进入timers阶段，执行timer1的回调函数，打印timer1，并将promise.then回调放入microtask队列，同样的步骤执行timer2，打印timer2；这点跟浏览器端相差比较大，**timers阶段有几个setTimeout/setInterval都会依次执行**，并不像浏览器端，每执行一个宏任务后就去执行一个微任务（关于Node与浏览器的 Event Loop 差异，下文还会详细介绍）。
 
-#### 宏任务微任务
+### 宏任务微任务
 
 ```js
 
@@ -274,7 +298,83 @@ Promise 3 then
 
 ```
 
-### 二、ES6
+### 简单防抖
+
+```js
+
+function debounce (fn, wait = 1000) {
+  let timeOutId
+
+  return function () {
+    let context = this
+
+    if (timeOutId) {
+      clearTimeout(timeOutId)
+    }
+
+    timeOutId = setTimeout(() => {
+      fn.apply(context, arguments)
+    }, wait)
+  }
+}
+
+
+```
+
+### 带立即执行参数
+
+```js
+
+function debounceImmediate (fn, wait = 1000, immediate) {
+  let timeOutId, context, args
+
+  const later = (immediate) => setTimeout(() => {
+    if (!immediate) {
+      fn.apply(context, args)
+      timeOutId = context = args = null
+    }
+  }, wait)
+
+  return function () {
+    if (!timeOutId) {
+      timeOutId = later(true)
+
+      if (immediate) {
+        fn.apply(this, arguments)
+      }
+
+      context = this
+      args = arguments
+    } else {
+      clearTimeout(timeOutId)
+      timeOutId = later(false)
+    }
+  }
+}
+
+```
+
+### 节流
+
+```js
+
+function throttle (fn, wait) {
+  let timeoutId = null
+  return function () {
+    let context = this
+    if (!timeoutId) {
+      timeoutId = setTimeout(() => {
+        fn.apply(context, arguments)
+        timeoutId = null
+      }, wait)
+    }
+  }
+}
+
+
+```
+
+## 二、ES6
 
 阮一峰文档 <https://es6.ruanyifeng.com/#docs/reflect>
 
@@ -285,13 +385,20 @@ Generator
 
 一种可暂停执行的特殊函数
 
-### 三、CSS基础
+## 三、CSS基础
 
-#### flex布局
+### 绝对定位
+
+[例子](./CSS/子元素相当于父元素的什么进行定位.html)
+
+> top, left, right, bottom不设置或为auto时，相对于padding内
+> 设置为0时，相对于border内
+
+### flex布局
 
 <https://juejin.cn/post/6881565341856563213>
 
-#### flex: 1
+### flex: 1
 
 > flex 实际上是 flex-grow、flex-shrink 和 flex-basis 三个属性的缩写。
 
@@ -338,21 +445,21 @@ flex-shrink为n的项目，空间不足时缩小的比例是flex-shrink为1的n�
 
 ```
 
-### 五、HTTP
+## 四、HTTP
 
 http详解  <https://juejin.cn/post/6844904045572800525>
 
 基础知识 <https://juejin.cn/post/6844904087524229133>
 
-#### 缓存
+### 缓存
 
-##### 你能说说缓存么
+#### 你能说说缓存么
 
 小提示：如果平常有遇到过缓存的坑或者很好的利用缓存，可以讲解一下自己的使用场景。如果没有使用注意过缓存问题你也可以尝试讲解一下和我们息息相关的Webpack构建（每一次构建静态资源名称的hash值都会变化），它其实就跟缓存相关。有兴趣的同学可以查看张云龙的博客大公司里怎样开发和部署前端代码？。
 
 > 缓存分为强缓存和协商缓存。强缓存不过服务器，协商缓存需要过服务器，协商缓存返回的状态码是304。两类缓存机制可以同时存在，强缓存的优先级高于协商缓存。当执行强缓存时，如若缓存命中，则直接使用缓存数据库中的数据，不再进行缓存协商。
 
-##### 协商缓存
+#### 协商缓存
 
 协商缓存需要进行对比判断是否可以使用缓存。浏览器第一次请求数据时，服务器会将缓存标识与数据一起响应给客户端，客户端将它们备份至缓存中。再次请求时，客户端会将缓存中的标识发送给服务器，服务器根据此标识判断。若未失效，返回304状态码，浏览器拿到此状态码就可以直接使用缓存数据了。
 
@@ -375,7 +482,7 @@ If-None-Match： 再次请求服务器时，浏览器的请求报文头部会包
 * F5就是告诉浏览器，别偷懒，好歹去服务器看看这个文件是否有过期了。于是浏览器就胆胆襟襟的发送一个请求带上If-Modify-since
 * Ctrl+F5告诉浏览器，你先把你缓存中的这个文件给我删了，然后再去服务器请求个完整的资源文件下来。于是客户端就完成了强行更新的操作
 
-##### 缓存场景
+#### 缓存场景
 
 对于大部分的场景都可以使用强缓存配合协商缓存解决，但是在一些特殊的地方可能需要选择特殊的缓存策略
 
@@ -383,11 +490,11 @@ If-None-Match： 再次请求服务器时，浏览器的请求报文头部会包
 * 对于频繁变动的资源，可以使用 Cache-Control: no-cache 并配合 ETag 使用，表示该资源已被缓存，但是每次都会发送请求询问资源是否更新
 * 对于代码文件来说，通常使用 Cache-Control: max-age=31536000 并配合策略缓存使用，然后对文件进行指纹处理，一旦文件名变动就会立刻下载新的文件
   
-## 工程化
+# 工程化
 
-### Webpack
+## Webpack
 
-### Babel
+## Babel
 
 Babel 是一个 JavaScript 编译器。他把最新版的 javascript 编译成当下可以执行的版本，简言之，利用 babel 就可以让我们在当前的项目中随意的使用这些新最新的 es6，甚至 es7 的语法。
 Babel 的三个主要处理步骤分别是： 解析（parse），转换（transform），生成（generate）。
@@ -401,8 +508,8 @@ Babel 的三个主要处理步骤分别是： 解析（parse），转换（trans
 
 还想深入了解的可以看 [Babel 原理](https://juejin.cn/post/6844903760603398151)
 
-## 其他
+# 其他
 
-### 三、TS
+## 三、TS
 
 掘金1.8w字文档 <https://juejin.cn/post/6872111128135073806>

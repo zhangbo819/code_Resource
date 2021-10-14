@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<style type="text/css">
+  #father {
+    position: relative;
+    width: 600px;
+    margin: 20px;
+    padding: 20px;
+    height: 400px;
+    border: 10px solid red;
+  }
+
+  #son1 {
+    position: absolute;
+    /* top: 0; */
+    /* left: 0; */
+    background: #f0f0f0;
+  }
+
+  #son2 {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background: blue;
+  }
+</style>
+
+<body>
+  <div id="father">
+    <div id="son1">没有设置top, left</div>
+    <div id="son2">设置了为0</div>
+  </div>
+</body>
+
+</html>
