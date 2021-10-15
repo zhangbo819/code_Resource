@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      background-color: #f0f3f9;
+    }
+
+    .box p {
+      outline: solid deepskyblue;
+      margin: 2em;
+    }
+
+    .flow-root {
+      /* 可以 */
+      
+      /* display: flow-root; */
+      /* display: table-cell; */
+      /* display: table-caption; */
+      /* display: inline-block; */
+      /* display: flex; */
+      /* display: inline-flex; */
+      /* overflow: hidden;  */
+      /* float: left;   */
+      /* column-span: all */
+
+      /* 可以 */
+
+      /* position: relative; relative sticky 不可以 */
+
+    }
+
+    /* 清除浮动 */
+    /* .flow-root::after {
+      content: '';
+      clear: both;
+      display: block;
+    } */
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <p>margin: 2em;</p>
+  </div>
+  <div class="box flow-root">
+    <p>margin: 2em;</p>
+  </div>
+</body>
+
+</html>
