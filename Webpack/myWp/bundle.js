@@ -15,16 +15,20 @@ const entry = entryFile => {
   traverse(ast, {
     //以函数的方式
 
+    // 拿路径
     ImportDeclaration({ node }) {
+      // console.log(node) 
       const dirname = path.dirname(entryFile);
       const newPath = "./" + path.join(dirname, node.source.value);
       dependecies[node.source.value] = newPath;
     }
   });
 
+  // 转换
   const { code } = transformFromAst(ast, null, {
     presets: ["@babel/preset-env"]
   });
+  // console.log(code)
 
   return {
     entryFile,
@@ -32,6 +36,10 @@ const entry = entryFile => {
     code
   };
 };
+
+// console.log(entry('./src/index.js'))
+// entry('./src/index.js')
+// return
 
 //分析出所有依赖关系
 
@@ -60,6 +68,10 @@ const Dependecies = entryFile => {
   });
   return obj;
 };
+
+
+// console.log(Dependecies('./src/index.js'))
+// return
 
 //生成代码
 
