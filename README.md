@@ -511,9 +511,20 @@ flex-shrink为n的项目，空间不足时缩小的比例是flex-shrink为1的n�
 
 ## 四、HTTP
 
-http详解  <https://juejin.cn/post/6844904045572800525>
+[http详解](https://juejin.cn/post/6844904045572800525)
 
-基础知识 <https://juejin.cn/post/6844904087524229133>
+[基础知识](https://juejin.cn/post/6844904087524229133)
+
+### GET 和 POST 的区别
+
+* 传送方式：GET 通过地址栏传输，POST 通过报文传输
+* 传送长度：GET 参数有长度限制（受限于url长度），而 POST 无限制
+* 安全性：GET 的安全性较差，因为所发送的数据是 URL 的一部分。POST 比 GET更安全，因为参数不会被保存在浏览器历史或web服务器日志中。
+* GET 可以被缓存，POST 不能被缓存
+* GET 产生一个 TCP 数据包：
+  > 对于 GET 方式的请求，浏览器会把 http header 和 data一并发送出去，服务器响应200(返回数据);
+* POST 产生两个 TCP数据包：
+  > 对于 POST，浏览器先发送header，服务器响应 100 continue，浏览器再发送data，服务器响应 200 ok（返回数据）
 
 ### 缓存
 
@@ -573,6 +584,30 @@ Babel 的三个主要处理步骤分别是： 解析（parse），转换（trans
 还想深入了解的可以看 [Babel 原理](https://juejin.cn/post/6844903760603398151)
 
 ## 安全
+
+### XSS
+
+XSS，即为（Cross Site Scripting）, 中文名为跨站脚本，是发生在目标用户的浏览器层面上的，当渲染DOM树的过程发生了不在预期内执行的js代码时，就发生了XSS 攻击。
+
+大多数XSS攻击的主要方式是嵌入一段远程或者第三方域上JS代码。实际上是在目标网站的作用域下执行了这段代码。
+
+XSS防御的总体思路是
+
+* cookie 设置 httpOnly
+
+* 转义页面上的输入内容和输出内容
+
+* 输入过滤，一般是用于对于输入格式的检查，过滤掉会导致脚本执行的相关内容
+
+### CSRF
+
+CSRF (Cross Site Request Forgery, 跨站请求伪造)，字面理解意思就是在别的站点伪造了一个请求。专业术语来说就是在受害者访问一个网站时，其 Cookie 还没有过期的情况下，攻击者伪造一个链接地址发送受害者并欺骗让其点击，从而形成 CSRF 攻击。
+
+防御 CSRF 攻击主要有三种策略：
+
+* 验证 HTTP Referer 字段；
+* 在请求地址中添加 token 并验证
+* 在 HTTP 头中自定义属性并验证
 
 ## 性能优化
 
