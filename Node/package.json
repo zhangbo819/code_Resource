@@ -19,6 +19,7 @@
     "commander": "^2.20.0",
     "csv": "^5.1.1",
     "inquirer": "^6.3.1",
+    "nodemailer": "^6.7.0",
     "puppeteer": "^5.2.1",
     "shelljs": "^0.8.3",
     "yargs": "^13.2.4"
