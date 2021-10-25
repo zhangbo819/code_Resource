@@ -1,3 +1,4 @@
+// 发送邮件脚本
 const nodemailer = require('nodemailer')
 const pass = require('./pass')
 
@@ -17,12 +18,19 @@ function send (html) {
   transporter.sendMail({
     from: userEmail,
     to: '3474893041@qq.com',
-    subject: 'node脚本测试',
-    text: 'text',
-    html: `<div>${html}<div>`
+    // to: userEmail,
+    subject: '宝子',
+    text: 'lalala',
+    html: `<div>
+      <p>${html}</p>
+      <p>${new Date().toLocaleString()}</p>
+      <img src="https://img1.baidu.com/it/u=1937403995,4064282499&fm=26&fmt=auto">
+    <div>`
   }).then(res => {
     console.log(res)
+  }).catch(err => {
+    console.log(err)
   })
 }
 
-send('小傻猪')
+send('hi 宝子')
