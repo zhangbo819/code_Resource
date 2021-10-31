@@ -135,7 +135,7 @@ Function.prototype.__proto__ === Object.prototype // true
 
 // 对象
 Object.__proto__ === Function.prototype // true
-Object.prototype.__proto__ === null // true
+Object.prototype.__proto__ === null // true 
 
 
 ```
