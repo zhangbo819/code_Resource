@@ -410,6 +410,25 @@ Generator
 
 ## 三、CSS基础
 
+### 标准盒子和怪异盒子
+
+[原链接](https://www.cnblogs.com/sun-web/p/10694697.html)
+
+怪异盒模型
+
+CSS3的box-sizing
+
+> box-sizing语法：
+box-sizing: content-box || border-box || inherit || initial
+
+> 当设置为box-sizing:content-box时，将采用标准模式解析计算，也是默认模式；
+当设置为box-sizing:border-box时，将采用怪异模式解析计算；
+
+IE盒模型或怪异盒模型显而易见的区别就是，width和height除了content区域外，还包含padding和border。
+
+> 只要在文档首部加了doctype申明，即使用了标准盒模型，而不加，则会由浏览器自己决定，比如，ie 浏览器中显示“ie盒子模型”，在 ff 浏览器中显示“标准 w3c 盒子模型”。
+> 当用编辑器新建一个html页面的时候最顶上都会有一个DOCTYPE标签，不定义DOCTYPE，会触发怪异模式
+
 ### BFC
 
 #### 什么是BFC
@@ -594,6 +613,12 @@ Babel 的三个主要处理步骤分别是： 解析（parse），转换（trans
 将经过转换的 AST 通过 babel-generator 再转换成 js 代码，过程就是深度优先遍历整个 AST，然后构建可以表示转换后代码的字符串。
 
 还想深入了解的可以看 [Babel 原理](https://juejin.cn/post/6844903760603398151)
+
+## SSR
+
+### SPA单页面应用和SSR服务端渲染的区别
+
+[SPA单页面应用和SSR服务端渲染的区别](https://blog.csdn.net/lbPro0412/article/details/107818239)
 
 ## 安全
 
