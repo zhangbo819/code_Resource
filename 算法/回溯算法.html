@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <pre id="pre"></pre>
+    <script>
+        // 有这么一个数据结构:
+
+        const data = [
+            {
+                "id": "1",
+                "sub": [
+                    {
+                        "id": "2",
+                        "sub": [
+                            {
+                                "id": "3",
+                                "sub": null
+                            },
+                            {
+                                "id": "4",
+                                "sub": [
+                                    {
+                                        "id": "6",
+                                        "sub": null
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "5",
+                                "sub": null
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "7",
+                "sub": [
+                    {
+                        "id": "8",
+                        "sub": [
+                            {
+                                "id": "9",
+                                "sub": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": "11",
+                        "sub": [
+                            {
+                                "id": "12",
+                                "sub": null
+                            },
+                            {
+                                "id": "13",
+                                "sub": [
+                                    {
+                                        "id": "18",
+                                        "sub": null
+                                    },
+                                    {
+                                        "id": "14",
+                                        "sub": [{
+                                            "id": "15",
+                                            "sub": [
+                                                {
+                                                    "id": "16",
+                                                    "sub": null
+                                                },
+                                                {
+                                                    "id": "17",
+                                                    "sub": null
+                                                }
+                                            ]
+                                        }]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+            },
+            {
+                "id": "10",
+                "sub": null
+            }
+        ]
+        // 现在给定一个id，要求实现一个函数
+
+        // 返回给定id在 data 里的路径
+        // 示例:
+
+        // id = "1" => ["1"]
+        // id = "9" => ["7", "8", "9"]
+        // id = "100"=> []
+        // PS: id 全局唯一，无序
+        // ```
+
+        function findPath(data, id) {
+            function _find(data, id) {
+                for (var i = 0; i < data.length; i++) {
+                    const item = data[i]
+                    if (item.id == id) {
+                        return [item.id]
+                    } else if (Array.isArray(item.sub)) {
+                        let sub = _find(item.sub, id)
+                        if (sub.length) {
+                            return [item.id].concat(sub)
+                        }
+                    }
+                }
+                return []
+            }
+
+            return _find(data, id)
+        }
+
+        document.getElementById('pre').innerHTML = `结果：${JSON.stringify(findPath(data, 17))}
+         \ndata: ${JSON.stringify(data, null, 4)}
+        `
+    </script>
+</body>
+
+</html>
