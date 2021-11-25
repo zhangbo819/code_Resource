@@ -710,6 +710,7 @@
     };
   }
 
+  //  3 Dep
   /*  */
 
   var uid = 0;
@@ -767,6 +768,7 @@
     Dep.target = targetStack[targetStack.length - 1];
   }
 
+  //  4 VNode
   /*  */
 
   var VNode = function VNode(
@@ -857,6 +859,8 @@
     return cloned
   }
 
+  //  5 数组方法
+
   /*
    * not type checking this file because flow doesn't play well with
    * dynamically accessing methods on Array prototype
@@ -917,6 +921,8 @@
   function toggleObserving(value) {
     shouldObserve = value;
   }
+
+  //  6 Observer
 
   /**
    * Observer class that is attached to each observed
