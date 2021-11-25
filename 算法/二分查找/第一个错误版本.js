@@ -22,11 +22,12 @@
         let high = n
         let mid
 
-        while (high - low > 1) {
-            mid = low + Math.floor((high - low) / 2)
+        while (high > low) {
+            // mid = low + Math.floor((high - low) / 2)
+            mid = low + ((high - low) >> 1)
             console.log(low, high, mid)
             if (isBadVersion(mid)) {
-                high = mid - 1
+                high = mid
             } else {
                 low = mid + 1
             }
@@ -34,7 +35,7 @@
         // console.log(isLow)
         console.log(low, high, mid)
         // console.log(isBadVersion(low), isBadVersion(high))
-        return isBadVersion(low) ? low : isBadVersion(high) ? high : high + 1
+        return low
     };
 };
 
