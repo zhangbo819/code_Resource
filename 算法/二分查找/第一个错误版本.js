@@ -1,4 +1,4 @@
-// https://leetcode-cn.com/problems/first-bad-version/
+// easy https://leetcode-cn.com/problems/first-bad-version/
 /**
  * Definition for isBadVersion()
  * 

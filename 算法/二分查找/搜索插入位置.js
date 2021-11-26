@@ -1,4 +1,4 @@
-// https://leetcode-cn.com/problems/search-insert-position/
+// easy https://leetcode-cn.com/problems/search-insert-position/
 
 /**
  * @param {number[]} nums
