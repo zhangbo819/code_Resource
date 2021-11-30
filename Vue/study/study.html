@@ -3,17 +3,33 @@
 <head></head>
 
 <body>
-    <div id="app">
+    <!-- <div id="app">
         {{ message }}
+    </div> -->
+    <div id="app">
+        app
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
     var app = new Vue({
         el: '#app',
+        template: `<div>
+            <p>{{ message }}</p>
+            <li v-for="item in data" :key="item.id">
+                {{ item.id }}
+            </li>
+        </div>`,
         data: {
-            message: 'See Vue again!'
+            message: 'See Vue again!',
+            data: [{ id: 0 }]
         },
+        mounted () {
+            setTimeout(() => {
+                this.message = 'mounted le';
+                this.data = [{ id: 1 }, { id: 2 }]
+            })
+        }
     })
 </script>
 

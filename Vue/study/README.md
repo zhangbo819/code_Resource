@@ -70,8 +70,8 @@ target是一个Watcher实例，target由pushTarget方法设置，pushTarget在Wa
 
 4. initGlobalAPI、$isServer、$ssrContext、FunctionalRenderContext、version
 
-    ```
-    initGlobalAPI:
+    ```js
+    // initGlobalAPI:
 
     Vue.config
     Vue.util = {
@@ -120,22 +120,118 @@ target是一个Watcher实例，target由pushTarget方法设置，pushTarget在Wa
 9.  Vue.compile = compileToFunctions;
 
 
-### 2. 执行中
+### 2. 初始化根Vue实例
 
 1. new Vue, 携带参数构建Vue实例， 执行_init, 合并处理参数
 
-2. 执行主体函数
+2. uid, 性能监控相关, _isVue, 有没有_isComponent, 有的话 initInternalComponent， 部分值重新赋值, 没有的话 mergeOptions, 将传入的不完全的option 转换成完全的option
+   
+   ```js
+
+    // 没有的话 mergeOptions
+    // 规范化parent和child并把他俩合到（同一个属性以child的准）一个新对象上return
+
+    function mergeOptions(
+        parent,
+        child,
+        vm
+    ) {
+        // ...
+
+        normalizeProps(child, vm); // 处理props，根组件一般没有
+        normalizeInject(child, vm); // 处理inject，根组件一般没有
+        normalizeDirectives(child); // 处理directives
+
+        // 处理 extends 和 mixins
+        if (!child._base) {
+            if (child.extends) {
+                parent = mergeOptions(parent, child.extends, vm);
+            }
+            if (child.mixins) {
+                for (var i = 0, l = child.mixins.length; i < l; i++) {
+                parent = mergeOptions(parent, child.mixins[i], vm);
+                }
+            }
+        }
+
+        // 将parent和child合并，生成新的options
+        var options = {};
+        var key;
+        // 先看parent
+        // component, directive, filter 合并到一个对象
+        // 多个生命周期存到一个数组中
+        for (key in parent) {
+            mergeField(key);
+        }
+        // 其他如 el, router, store父组件没有的或是自定义的，直接用
+        for (key in child) {
+            if (!hasOwn(parent, key)) {
+                mergeField(key);
+            }
+        }
+        function mergeField(key) {
+            var strat = strats[key] || defaultStrat;
+            options[key] = strat(parent[key], child[key], vm, key);
+        }
+        return options
+    }
+
+   ```
+
+3. 执行主体函数
 
     ```js
 
-    initLifecycle(vm);
-    initEvents(vm);
-    initRender(vm);  // 手动执行了defineReactive
-    callHook(vm, 'beforeCreate');
+    initLifecycle(vm); // 为Vue实例赋值空一些变量
+    initEvents(vm); // 赋值空的事件
+    initRender(vm);  // 赋值空的插槽VNode，赋值构建函数，手动执行 $attrs和$listeners的 defineReactive
+    callHook(vm, 'beforeCreate'); // beforeCreate 包含插件的beforeCreate，如vue-router， 在这里进行大量的配置及初始化
     initInjections(vm); // resolve injections before data/props
-    initState(vm);  // 处理data 执行 observe
-    initProvide(vm); // resolve provide after data/props
-    callHook(vm, 'created');
+    initState(vm);  // 初始化props, methods, data, computed, watch
+    initProvide(vm); // 有provide的话，执行
+    callHook(vm, 'created'); // created
 
     ```
-3. 最终挂载 vm.$mount
+4. 最终挂载 vm.$mount ？？
+
+
+### 3. 初始化渲染
+
+1. $mount -> compileToFunctions 生成构建器 -> mountComponent 组件挂载 
+2. mountComponent -> new Watcher -> 执行get -> 初始化：直接执行 this.getter.call(vm, vm) / watcher.before
+                                           <!-- -> 将自己放到有Dep -> 更新： Watcher.update -> queueWatcher -> flushSchedulerQueue -> watcher.before() -->
+3. watcher.before() -> updateComponent() -> vm._render 生成vnode（生成Vnode的过程中会触发Observer下的对应属性的Dep的getter,完成依赖收集，将watcher） -> vm._update 更新
+   
+   ```js
+
+    callHook(vm, 'beforeMount');
+
+    // 生成 updateComponent
+    updateComponent = function () {
+        var vnode = vm._render();
+        vm._update(vnode, hydrating);
+    }
+
+    new Watcher(vm, updateComponent, noop, {
+      before: function before() {
+        if (vm._isMounted && !vm._isDestroyed) {
+          callHook(vm, 'beforeUpdate');
+        }
+      }
+    }, true /* isRenderWatcher */);
+
+    hydrating = false;
+
+    // manually mounted instance, call mounted on self
+    // mounted is called for render-created child components in its inserted hook
+    if (vm.$vnode == null) {
+      vm._isMounted = true;
+      callHook(vm, 'mounted');
+    }
+    return vm
+
+   ```
+4. vm._update -> vm.\_\_patch\_\_() -> createElm -> 移除 -> invokeInsertHook
+
+
+### 4. 组件更新
