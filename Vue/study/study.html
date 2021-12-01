@@ -19,18 +19,58 @@
             <li v-for="item in data" :key="item.id">
                 {{ item.id }}
             </li>
+            <h3>{{ computed1 }}</h3>
+            <h3>{{ 'data.length: ' + computed2 }}</h3>
         </div>`,
         data: {
             message: 'See Vue again!',
             data: [{ id: 0 }]
         },
-        mounted () {
+        computed: {
+            computed1() {
+                return 'computed 111'
+            },
+            computed2() {
+                return this.data.length
+            }
+        },
+        watch: {
+            'data.length'(val) {
+                console.log('data.length', val)
+                this.message += val
+            }
+        },
+        mounted() {
+            console.log(this)
             setTimeout(() => {
                 this.message = 'mounted le';
-                this.data = [{ id: 1 }, { id: 2 }]
+                setTimeout(() => {
+                    this.data = [{ id: 1 }, { id: 2 }]
+                })
             })
         }
     })
+
+    // with (this) {
+    //     _c(
+    //         'div', 
+    //         [
+    //             _c('p', [_v(_s(message))]), 
+    //             _v(" "), 
+    //             _l((data), function (item) {
+    //                 _c('li', { key: item.id }[_v("\n                " + _s(item.id) + "\n            ")]) 
+    //                 return  
+    //             }), 
+    //             _v(" "), 
+    //             _c('h3', [_v(_s(computed1))]), 
+    //             _v(" "), 
+    //             _c('h3', [_v(_s('data.length: ' + computed2))])
+    //         ], 
+    //         2
+    //     )
+    //     return 
+    // }
+
 </script>
 
 </html>

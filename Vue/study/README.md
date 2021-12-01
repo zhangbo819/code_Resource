@@ -234,4 +234,22 @@ target是一个Watcher实例，target由pushTarget方法设置，pushTarget在Wa
 4. vm._update -> vm.\_\_patch\_\_() -> createElm -> 移除 -> invokeInsertHook
 
 
-### 4. 组件更新
+### 4. 属性更新
+
+1. 在属性第一次在render函数中执行的时候，就会触发该属性getter函数，同时将组件的watcher实例放入该属性的Dep实例中
+2. 在属性重新赋值后会触发setter函数，Dep实例执行notify，执行跟他关联的所有watcher实例的update方法，把自己放入queueWatcher队列开始启动
+3. queueWatcher -> nextTick -> timerFunc -> flushCallbacks -> flushSchedulerQueue -> 先执行before，再执行run
+4. 执行before, 调用生命周期更新方法, 执行run，会先执行this.get, 会执行初始化时传入的expOrFn函数，即执行vm._update(vm._render(), hydrating);
+5. render函数是一样的，生成的VNode是不同的，在进行update会将新旧VNode进行patch
+6. patch后就完成了属性更新，patch会对比新旧VNode，并从中选出最优的更新策略，进行DOM更新
+
+
+### 5. queueWatcher异步队列 (属性更新中的第三步详解)
+
+1. 判断flushing，没有处于刷新队列状态，直接入列，如果处于则按照顺序将自己的watcher.id插入 (flushing代表queue队列已经开始执行了)
+2. 异步队列直接走 nextTick(flushSchedulerQueue)
+3. nextTick将 flushSchedulerQueue 包装成一个新的函数，放入callbacks中，如果没有pedding，则执行timerFunc
+4. timerFunc会根据代码执行环境，选用Promise, MutationObserver, setImmediate, setTimeout 来执行 flushCallbacks
+5. pedding保障了 在timerFunc真正执行的期间push进callbacks的回调函数统一执行
+6. flushCallbacks 执行时会将pending设为false, 从callbacks中拿出，并将其清空, 然后执行从callbacks里保存的函数，即 flushSchedulerQueue
+7. flushSchedulerQueue 将queue挨个执行，执行后清空queue, 执行过程中先执行watcher.before, 在执行watcher.run
