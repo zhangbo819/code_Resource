@@ -244,7 +244,7 @@ target是一个Watcher实例，target由pushTarget方法设置，pushTarget在Wa
 6. patch后就完成了属性更新，patch会对比新旧VNode，并从中选出最优的更新策略，进行DOM更新
 
 
-### 5. queueWatcher异步队列 (属性更新中的第三步详解)
+### 5. queueWatcher异步队列 (属性更新中的第三步详解) 
 
 1. 判断flushing，没有处于刷新队列状态，直接入列，如果处于则按照顺序将自己的watcher.id插入 (flushing代表queue队列已经开始执行了)
 2. 异步队列直接走 nextTick(flushSchedulerQueue)
