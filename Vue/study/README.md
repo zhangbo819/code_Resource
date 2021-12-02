@@ -1,12 +1,16 @@
-# Vue 2.6源码部分拆分
+# Vue 2.6源码学习心得
 
 从Vue源码中移植，便于学习
 
 
+- [主学习文件](./study.html)
 - [基本工具函数]()
 - [配置/全局b变量]()
+- [Observer](./Observer.js)
 - [Dep](./Dep.js)
+- [Watcher](./Watcher.js)
 - [VNode]()
+- [patch]()
 
 
 ## 整体感想
@@ -15,6 +19,7 @@
 处理数据，数据变的时候 执行回调 更新视图
 
 ```
+
 new Vue() -> Observer -> 多个 defineReactive$$1 -> 多个 Dep -> get depend -> addDep -> 放置回调
                                                            -> set notify -> update -> 执行回调
 ```
@@ -23,23 +28,39 @@ new Vue() -> Observer -> 多个 defineReactive$$1 -> 多个 Dep -> get depend ->
 根据dom 生成多个 Watcher， Watcher中注册好更新视图的回调, 触发Dep的get 放置好回调
 
 ```
-Compile -> update -> 注册多个 Watcher 的回调 -> 改变Dep.taget -> 触发get/addDep/放置回调
+
+Compile -> _render -> 触发模板中所有的属性的getter，将 Watcher 存入 Dep, 生成VNode，完成依赖收集
+
 ```
 
 
 一个Vue对象，他的data对应一个Observer对象，Observer会遍历再通过defineReactive$$1，每条属性都注册一个Dep，如果还有子属性递归地为所有子元素注册Dep
 (并且设置setter/getter, getter放置回调, setter执行回调)
 
+### ?? Watcher如何保障同一个key不重复保存
+
 全局有无数个Dep实例，所有的Dep实例受Dep类下的target来控制注册，不管哪个Dep实例depend了，只有target下的才会去放置回调，
 target是一个Watcher实例，target由pushTarget方法设置，pushTarget在Watcher实例执行get方法的时候会将自己设置为Dep.target, 触发getting方法，然后在将Dep.target移除，一个Watcher下有多个Dep
 
-?? Dep和Watcher的关系
+### Dep 和 Watcher 的关系
 
-> 一个Watcher对应多个Dep, 在Watcher初始化(配置不是lazy)时候, 会执行this.get
-> this.get 会将自己设置为Dep.target，然后触发getter函数，这样就会触发 getter函数中的 Dep
-    >> getter -> dep.depend -> Dep.target.addDep(Watcher.addDep) -> Watcher 存下来 Dep, Dep也存下了 Watcher
+> Dep和响应式数据一一对应，一条响应式数据对应一个 Dep
+> 一个Dep可对应多个Watcher，表现为一条数据修改 触发多个 Watcher 回调函数执行
+>> 例子：两个 computed 都依赖了同一条属性，当这个属性更新时，会触发这两个 computed 的 Watcher 进行更新
+    
+>> 两个 computed 在 initState 的 initComputed 的 createComputedGetter 时，将属性绑定到 vm 实例上
+>> 在首次挂载，生成 VNode 节点时，触发 getter，随即触发 Watcher 下的 evaluate 进而触发 this.get, get中会将自己存在对应的Dep中，两个Watcher如果触发的是同一个属性，就会存入同一个 Dep
+<!-- >> 当属性修改时，会执行 Dep 下 的 notify，将保存在 subs 中的 Wachter 实例全部 update, 进而通知 -->
 
-> this.get执行的最后会执行 cleanupDeps， 用this.deps替换newDeps / this.depIds替换newDepIds, 并清空newDeps和newDepIds 
+> 一个 Watcher 对应多个Dep, 表现为一个 Watcher 回调函数触发，会造成多条数据进行更新
+>> 例子：在一个 Watcher 函数中，修改了多条数据
+
+>> 首先 initState -> initWatch -> $watch, 然后new 一个 Watcher 初始化(配置不是lazy)时候, 会执行this.get
+>> this.get 中 将自己存入 Dep.taget, 然后再执行回调函数，回调函数中调用了多条属性，于是那些属性的 Dep，就都存入了当前这个 Watcher
+<!-- >> this.get 会将自己设置为 Dep.target，然后触发 getter函数，这样就会触发 getter函数中的 Dep
+>> getter -> dep.depend -> Dep.target.addDep(Watcher.addDep) -> Watcher 存下来 Dep, Dep也存下了 Watcher
+>> this.get 执行的最后会执行 cleanupDeps， 用this.deps替换newDeps / this.depIds 替换 newDepIds, 并清空 newDeps 和 newDepIds  -->
+
 
 ## 断点调试
 
@@ -192,7 +213,7 @@ target是一个Watcher实例，target由pushTarget方法设置，pushTarget在Wa
     callHook(vm, 'created'); // created
 
     ```
-4. 最终挂载 vm.$mount ？？
+4. 最终挂载 vm.$mount， 有el属性会直接执行 vm.$mount，没有的话仅为注册，等待触发，[子组件如何挂载](#6-子组件如何挂载)
 
 
 ### 3. 初始化渲染
@@ -253,3 +274,6 @@ target是一个Watcher实例，target由pushTarget方法设置，pushTarget在Wa
 5. pedding保障了 在timerFunc真正执行的期间push进callbacks的回调函数统一执行
 6. flushCallbacks 执行时会将pending设为false, 从callbacks中拿出，并将其清空, 然后执行从callbacks里保存的函数，即 flushSchedulerQueue
 7. flushSchedulerQueue 将queue挨个执行，执行后清空queue, 执行过程中先执行watcher.before, 在执行watcher.run
+
+
+### 6. 子组件如何挂载
