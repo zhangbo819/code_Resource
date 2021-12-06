@@ -61,6 +61,18 @@ target是一个Watcher实例，target由pushTarget方法设置，pushTarget在Wa
 >> this.get 执行的最后会执行 cleanupDeps， 用this.deps替换newDeps / this.depIds 替换 newDepIds, 并清空 newDeps 和 newDepIds  -->
 
 
+### Computed 原理
+
+> 1. 本质是一个 lazy 的Watcher，在 new Vue -> initState -> initComputed 中处理该组件下所有Computed -> 每个 key 对应一个 Watcher 实例
+> 
+> 2. 通过 Watcher的 this.get 来实现数据的响应式，在 this.get 中会执行用户写的 getter 函数，如果里面依赖了其他数据，会将自己的 Watcher 添加到被依赖数据的Dep中，那样被依赖数据更新时，因为是 lazy 模式会将这个 Watcher 的 dirty 置为 true, 在真正用到这个属性的时候再执行 this.get
+> 
+> 3. 通过defineProperty手动绑定key至vm，仅在get函数做了三件事
+>> 1. 如果有 Dep.target 执行 watcher.depend。是一个 Computed 能够依赖其他响应式数据甚至是另一个 Computed 的关键。如果在触发当前这个 Computed 的 getter 时, 发现有 Dep.target（Dep.target是一个Watcher，仅在Watcher实例执行this.get时会被添加），说明一定有其他 Watcher 的 this.get 被触发，也就是说，正在被触发的数据用到了当前这个Computed，则当前这个 Computed 会被添加到被触发数据的 Dep 中
+>> 2. evaluate。Watcher里 lazy 实现的关键，因为是 lazy 模式，所以在 Watcher 初始化时并不会触发this.get，而在 update 中也是将 dirty 置为true, 在真正用到这个属性时再通过evaluate，触发this.get，执行用户写的触发函数
+>> 3. 返回 watcher.value。如果没有检测到 dirty 即没有更新，则不用触发get，直接返回 Watcher 对象中缓存的上次的 value 值
+
+
 ## 断点调试
 
 [原调试文件](./study.html)
