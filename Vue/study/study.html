@@ -1,37 +1,61 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
-<head></head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Vue</title>
+</head>
 
 <body>
     <!-- <div id="app">
         {{ message }}
     </div> -->
     <div id="app">
-        app
-    </div>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script>
-    var app = new Vue({
-        el: '#app',
-        template: `<div>
+        <div>
             <p>{{ message }}</p>
             <li v-for="item in data" :key="item.id">
                 {{ item.id }}
             </li>
             <h3>{{ computed1 }}</h3>
-            <h3>{{ 'data.length: ' + computed2 }}</h3>
-        </div>`,
-        data: {
-            message: 'See Vue again!',
-            data: [{ id: 0 }]
+            <!-- <h3>{{ 'data.length: ' + computed2 }}</h3> -->
+        </div>
+        <childcomp :msg="computed2" @rm="handleRM"></childcomp>
+        <!-- <childComp :msg="computed2" @rm="handleRM"></childComp> -->
+    </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    console.log(Vue.options)
+    var vm = new Vue({
+        el: '#app',
+        components: {
+            childcomp: {
+                props: ['msg'],
+                data() {
+                    return {
+
+                    }
+                },
+                template: `<div>
+                    {{ msg }} <button @click="$emit('rm')">x</button>
+                </div>`
+            }
+        },
+        data() {
+            return {
+                message: 'See Vue again!',
+                data: [{ id: 0 }]
+            }
         },
         computed: {
             computed1() {
                 return 'computed 111'
             },
             computed2() {
-                return this.data.length
+                return this.data.length + this.computed1
             }
         },
         watch: {
@@ -42,12 +66,17 @@
         },
         mounted() {
             console.log(this)
-            setTimeout(() => {
+            this.$nextTick(() => {
                 this.message = 'mounted le';
                 setTimeout(() => {
                     this.data = [{ id: 1 }, { id: 2 }]
                 })
             })
+        },
+        methods: {
+            handleRM() {
+                console.log('handleRM')
+            }
         }
     })
 
