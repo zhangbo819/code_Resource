@@ -1,6 +1,6 @@
 # Vue patch阶段
 
-1. 对比新旧 VNode, 然后增删改
+1. 对比新旧 VNode, 然后找到合适的方法对旧 VNode 进行操作使其变成新 VNode
 2. 处理 VNode 中 Hook 及其他事件行为
 3. 执行相应 DOM 操作
 
@@ -46,5 +46,7 @@
 >      }
 > ```
 > 2. 判断如果旧节点为空，则为新建，createElm(vnode, insertedVnodeQueue);
-> 3. 新旧都有，先比较新旧 VNode， 旧VNode不为真实存在，且是否为同一个，则更新VNode patchVnode
-> 4. 不是则 ？？
+> 3. 新旧都有，先比较新旧 VNode， 旧VNode不为真实存在，且是否为同一个，则继续进一步比较 VNode patchVnode
+> 4. patchVnode 比较其中各个属性，都一样则比较children -> updateChildren
+> 5. updateChildren 中，比较的是新旧节点的children，由于children是数组，则为两个数组各使用了双指针，逐步找出旧节点需要如何移动/删除/添加，才和新节点一样
+> 6. 在查找的过程中进行了操作了旧节点，通过 nodeOps 中的方法进行了真实的DOM操作
