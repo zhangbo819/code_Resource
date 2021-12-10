@@ -47,16 +47,16 @@
         data() {
             return {
                 message: 'See Vue again!',
-                data: [{ id: 0 }]
+                data: [{ id: 0 }, { id: 2 }]
             }
         },
         computed: {
             computed1() {
                 return 'computed 111'
             },
-            computed2() {
-                return this.data.length + this.computed1
-            }
+            // computed2() {
+            //     return this.data.length + this.computed1
+            // }
         },
         watch: {
             'data.length'(val) {
@@ -69,7 +69,7 @@
             this.$nextTick(() => {
                 this.message = 'mounted le';
                 setTimeout(() => {
-                    this.data = [{ id: 1 }, { id: 2 }]
+                    this.data = [{ id: 1 }, { id: 2 }, { id: 3 }]
                 })
             })
         },
