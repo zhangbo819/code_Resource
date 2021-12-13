@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue-router</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- {{ $route }} -->
+        <h3>app</h3>
+        
+        <router-view></router-view>
+    </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="./router.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        // data() {
+        //     return {
+        //         message: 'See Vue again!',
+        //         data: [{ id: 0 }, { id: 2 }]
+        //     }
+        // },
+        router: new VueRouter({
+            // mode: 'history',
+            routes: [
+                {
+                    path: '/',
+                    name: 'index',
+                    component: {
+                        template: `<div>
+                            <p>index</p> 
+                            <router-link to="/login">go login</router-link>
+                        </div>`
+                    },
+                    meta: {
+                        title: 'home'
+                    }
+                },
+                {
+                    path: '/login',
+                    name: 'index',
+                    component: {
+                        template: `<div>
+                            <p>login</p>
+                            <router-link to="/">go home</router-link>
+                        </div>`
+                    },
+                    meta: {
+                        title: 'login'
+                    }
+                },
+            ]
+        })
+    })
+</script>
+
+</html>
