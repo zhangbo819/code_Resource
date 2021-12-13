@@ -9,6 +9,7 @@ const entryFile = 'bundle.js'
 const ast = parser.parse(fs.readFileSync(entryFile, "utf-8"), {
   sourceType: "module"
 });
+
 const { code } = transformFromAst(ast, null, {
   presets: ["@babel/preset-env"]
 });

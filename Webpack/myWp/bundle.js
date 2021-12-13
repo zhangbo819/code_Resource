@@ -10,6 +10,7 @@ const entry = entryFile => {
   const ast = parser.parse(content, {
     sourceType: "module"
   });
+  console.log(ast)
 
   const dependecies = {};
   traverse(ast, {
