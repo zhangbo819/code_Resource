@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="el">
+        <div @click="say">
+            {{ name }}
+        </div>
+        <p>{{obj}}</p>
+        <!-- {{ aaa }} -->
+    </div>
+
+</body>
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue@3.2.24/dist/vue.global.js"></script> -->
+<script src="./vue.global.js"></script>
+<script>
+    console.log(Vue)
+    const { createApp, ref, reactive, isReactive, isRef } = Vue
+    createApp({
+        setup() {
+            console.log('setup in')
+            const name = ref('zzbyry')
+            const obj = ref({ a: 1 })
+            const reactiveOjb = reactive({ a: 2 })
+            function say() {
+                console.log('啦啦啦')
+                name.value = Math.random()
+            }
+            console.log(isRef(obj), obj, reactiveOjb)
+            return {
+                name,
+                say,
+                obj,
+                reactiveOjb
+            }
+        },
+        beforeCreated () {
+            console.log('beforeCreated in')
+        },
+        created () {
+            console.log('created in ')
+        },
+        mounted() {
+            console.log('mounted')
+            setTimeout(() => {
+                this.name = 'zzzbyry'
+            })
+        }
+    }).mount('#el')
+</script>
+
+</html>

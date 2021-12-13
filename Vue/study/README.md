@@ -9,7 +9,7 @@
 - [Dep](./Dep.js)
 - [Watcher](./Watcher.js)
 - [VNode]()
-- [patch]()
+- [patch](./Patch.md)
 
 
 ## 整体感想
