@@ -601,8 +601,44 @@ If-None-Match： 再次请求服务器时，浏览器的请求报文头部会包
 
 ## Vue Router原理
 
+是相当于在不刷新页面的情况下，动态局部刷新Vue组件，实现*跳转*的操作
 
-  
+### hash模式
+
+基于location.hash，就是URL#号后面的值，这部分变化页面不会刷新，所以可以将定义的路由和参数都在#号后，达到切换路由的效果
+通过 hashchange 事件，获取当前路由，切换显示页面上的组件
+
+特性：
+
+- hash只是客户端的状态，当向服务器发起请求时，hash不会被发送
+- hash 值的改变，都会在浏览器的访问历史中增加一个记录。因此我们能通过浏览器的回退、前进按钮控制hash 的切换。
+- 我们可以使用 hashchange 事件来监听 hash 的变化。
+
+
+可以通过a标签的href, 跳转触发 hashchange
+```html
+<a href="#search">search</a>
+
+```
+
+也可以主动跳转，触发 hashchange
+```js
+location.hash="#search"
+
+```
+
+### history模式
+
+利用 H5 的 History API，其中的 history.pushState() 和 history.repalceState()，同样可以**改变当前url的同时不刷新当前页面**
+
+但由于url会变化，所以刷新页面后请求的地址也发生了变化，需要对服务器进行配置
+
+特性：
+
+- pushState 和 repalceState 的标题（title）：一般浏览器会忽略，最好传入 null ；
+- 我们可以使用 popstate  事件来监听 url 的变化；
+- history.pushState() 或 history.replaceState() 不会触发 popstate 事件，这时我们需要手动触发页面渲染；
+
 # 工程化
 
 ## Webpack
