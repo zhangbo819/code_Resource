@@ -55,6 +55,12 @@
 
 ## 一、JS基础
 
+[字节跳动最爱考的前端面试题：JavaScript 基础](https://juejin.cn/post/6934500357091360781)
+[32个手写JS，巩固你的JS基础（面试高频）](https://juejin.cn/post/6875152247714480136)
+[2万字 | 前端基础拾遗90问](https://juejin.cn/post/6844904116552990727)
+[冴羽的博客](https://github.com/mqyqingfeng/Blog)
+[sl1673495的博客](https://github.com/sl1673495/blogs)
+
 ### JS数据类型
 
 [原链接](https://juejin.cn/post/6844903870712283149)
@@ -695,6 +701,7 @@ CSRF (Cross Site Request Forgery, 跨站请求伪造)，字面理解意思就是
 
 # 性能优化
 
+[前端性能优化 24 条建议（2020）](https://juejin.cn/post/6892994632968306702#heading-11)
 
 # 其他
 
