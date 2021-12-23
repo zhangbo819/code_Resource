@@ -31,7 +31,7 @@
             const obj = ref({ a: 1 })
             const reactiveOjb = reactive({ a: 2 })
             function say() {
-                console.log('啦啦啦')
+                console.log('啦啦啦', reactive)
                 name.value = Math.random()
             }
             console.log(isRef(obj), obj, reactiveOjb)
