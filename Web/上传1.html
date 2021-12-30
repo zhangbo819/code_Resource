@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <section id="app">
+
+        <input type="file" name="file" @change="handleFilterChange" />
+
+        <button @click="handleSubimt">提交</button>
+
+        <p>{{message}}</p>
+    </section>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                message: new Date().toLocaleString(),
+                file: null
+            }
+        },
+        methods: {
+            handleFilterChange(e) {
+                this.file = e.target.files[0]
+                console.log('file', this.file)
+            },
+
+            handleSubimt() {
+                const form = new FormData()
+                form.append('name', 'file')
+                form.append('file', this.file)
+                console.log(form)
+            }
+        }
+    })
+</script>
+
+</html>
