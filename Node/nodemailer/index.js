@@ -14,7 +14,7 @@ let transporter = nodemailer.createTransport({
   }
 })
 
-function send (html) {
+function send(html) {
   transporter.sendMail({
     from: userEmail,
     to: '3474893041@qq.com',
@@ -27,9 +27,9 @@ function send (html) {
       <img src="https://img1.baidu.com/it/u=1937403995,4064282499&fm=26&fmt=auto">
     <div>`
   }).then(res => {
-    console.log(res)
+    console.log('res', res)
   }).catch(err => {
-    console.log(err)
+    console.log('err', err)
   })
 }
 
