@@ -1,6 +1,6 @@
 // 发送邮件脚本
 const nodemailer = require('nodemailer')
-const pass = require('./pass')
+// const pass = require('./pass')
 
 const userEmail = '297234792@qq.com'
 
@@ -10,7 +10,7 @@ let transporter = nodemailer.createTransport({
   secureConnetion: true,
   auth: {
     user: userEmail,
-    pass
+    pass: process.argv[2]
   }
 })
 
@@ -34,3 +34,5 @@ function send(html) {
 }
 
 send('hi 宝子')
+
+// console.log('process.argv', process.argv[2])
