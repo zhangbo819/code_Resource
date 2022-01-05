@@ -14,15 +14,15 @@ let transporter = nodemailer.createTransport({
   }
 })
 
-function send(html) {
+function send(title) {
   transporter.sendMail({
     from: userEmail,
     to: '3474893041@qq.com',
     // to: userEmail,
-    subject: '宝子',
+    subject: '宝子好呀',
     text: 'lalala',
     html: `<div>
-      <p>${html}</p>
+      <p>${title}</p>
       <p>${new Date().toLocaleString()}</p>
       <img src="https://img1.baidu.com/it/u=1937403995,4064282499&fm=26&fmt=auto">
     <div>`
@@ -33,6 +33,6 @@ function send(html) {
   })
 }
 
-send('hi 宝子')
+send('from github actions')
 
 // console.log('process.argv', process.argv[2])
