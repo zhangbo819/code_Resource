@@ -17,7 +17,8 @@ function getWeatherTips(url) {
                 let water = $('.wea_about span').text().trim()
                 let win = $('.wea_about em').text().trim()
                 let tips = $('.wea_tips em').text().trim()
-                let words = `今日天气：北京市-海淀区\n${desc}\n温度：${temp}\n湿度：${water}\n风力：${win}\n${tips}`
+                let Air = $('.wea_alert em').text().trim()
+                let words = `今日天气提示：${tips}\n北京市-海淀区 ${desc}\n温度：${temp}\n空气指数: ${Air}\n风力：${win}\n湿度：${water}\n`
                 resolve(words)
             } else {
                 reject(error)
