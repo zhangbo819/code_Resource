@@ -18,7 +18,7 @@ function send({ one, weather }) {
   transporter.sendMail({
     from: userEmail,
     to: ['3474893041@qq.com', userEmail],
-    // to: userEmail,
+    // to: [userEmail],
     subject: '早上好',
     text: '每日问侯',
     // <p>${new Date().toLocaleString()}</p>
@@ -34,7 +34,7 @@ function send({ one, weather }) {
     <body>
       <div>
         <pre style="margin-top: 8px">${weather}</pre>
-        <p>${one}</p>
+        <i>${one}</i>
       <div>
     </body>
     </html>`
