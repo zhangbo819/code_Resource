@@ -724,6 +724,11 @@ CSRF (Cross Site Request Forgery, 跨站请求伪造)，字面理解意思就是
 
 [传送门](./面试题/README.md)
 
+# 学习资料
+
+[迷茫时学习Node.js最好的方法](https://zhuanlan.zhihu.com/p/29625882)
+[很棒的微型 npm 包 (适合学习源码)](https://github.com/parro-it/awesome-micro-npm-packages)
+
 # 参考链接
 
 [面试分享：两年工作经验成功面试阿里P6总结](https://juejin.cn/post/6844903928442667015)
