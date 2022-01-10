@@ -12,14 +12,18 @@ function getWeatherTips(url) {
             if (!error) {
                 let html = res.body || "";
                 let $ = cheerio.load(html)
+                let tips = $('.wea_tips em').text().trim()
                 let temp = $('.wea_weather em').text().trim() + '℃'
                 let desc = $('.wea_weather b').text().trim()
                 let water = $('.wea_about span').text().trim()
                 let win = $('.wea_about em').text().trim()
-                let tips = $('.wea_tips em').text().trim()
                 let Air = $('.wea_alert em').text().trim()
-                let words = `今日天气提示：${tips}\n北京市-海淀区 ${desc}\n温度：${temp}\n空气指数: ${Air}\n风力：${win}\n湿度：${water}\n`
-                resolve(words)
+                let words = `北京市-海淀区 ${desc}\n温度：${temp}\n空气指数: ${Air}\n风力：${win}\n湿度：${water}\n`
+
+                resolve({
+                    tips: `早上好，今日天气提示：${tips}`,
+                    words
+                })
             } else {
                 reject(error)
             }

@@ -14,12 +14,12 @@ let transporter = nodemailer.createTransport({
   }
 })
 
-function send({ html }) {
-  transporter.sendMail({
+function send({ subject, html }) {
+  return transporter.sendMail({
     from: userEmail,
     to: ['3474893041@qq.com', userEmail],
     // to: [userEmail],
-    subject: '早上好',
+    subject,
     text: '每日问侯',
     // <p>${new Date().toLocaleString()}</p>
     // <img src="https://img1.baidu.com/it/u=1937403995,4064282499&fm=26&fmt=auto">

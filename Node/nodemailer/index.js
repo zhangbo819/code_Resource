@@ -18,13 +18,13 @@ async function main() {
     </head>
     <body>
       <div>
-        <pre>${weather}</pre>
+        <pre>${weather.words}</pre>
         <i>每日一句：${one}</i>
       <div>
     </body>
     </html>`.trim()
 
-    send({ html })
+    send({ subject: weather.tips, html })
     // fs.writeFile('./test.html', html, function () { })
 }
 
