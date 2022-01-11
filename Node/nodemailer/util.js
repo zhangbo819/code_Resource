@@ -8,12 +8,13 @@ const greetingURL = 'http://wufazhuce.com/'
 
 // 获取墨迹天气提示信息
 function getWeatherTips(url) {
-    let weatherData
+    let weatherData = {}
 
     try {
         weatherData = require('./weatherData')
     } catch (err) {
         console.log('no history')
+        weatherData = { temp: 0 }
     }
     console.log('weatherData', weatherData)
 
