@@ -38,7 +38,8 @@ function getWeatherTips(url) {
                 }))
 
                 resolve({
-                    tips: `早上好，今日天气提示：${tips}`,
+                    // tips: `早上好，今日天气提示：${tips}`,
+                    tips: `早上好，${tips}`,
                     words
                 })
             } else {
