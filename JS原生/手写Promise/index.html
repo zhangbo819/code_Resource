@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./MyPromise.js"></script>
+    <script>
+        function fn() {
+            const pro = new Promise((resolve, reject) => {
+                setTimeout(resolve, 1000)
+                setTimeout(reject, 2000)
+            })
+
+            pro
+                .then(() => {
+                    console.log('2_1')
+                    const newPro = new Promise((resolve, reject) => {
+                        console.log('2_2')
+                        setTimeout(reject, 2000)
+                    })
+                    console.log('2_3')
+                    console.log(' ')
+                    return newPro
+                })
+                .then(
+                    () => {
+                        console.log('2_4')
+                    },
+                    () => {
+                        console.log('2_5')
+                    }
+                )
+
+            pro
+                .then(
+                    data => {
+                        console.log('3_1')
+                        throw new Error()
+                    },
+                    data => {
+                        console.log('3_2')
+                    }
+                )
+                .then(
+                    () => {
+                        console.log('3_3')
+                    },
+                    e => {
+                        console.log('3_4')
+                    }
+                )
+
+
+            // 2 _1
+            // 2 _2
+            // 2 _3 // 先走第一个链
+            // 3 _1 // 走第二个链的
+            // 3 _4 // 
+            // 2 _5
+        }
+
+        // 2
+        function fn2() {
+            var pro = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(1)
+                }, 300)
+                setTimeout(() => {
+                    reject(1) // 先触发了resolve后 reject就失效了
+                }, 400)
+            }).then(res => {
+                console.log('res', res)
+            }).then(res => {
+                console.log('res', res)
+            }).catch(err => {
+                console.log('err', err)
+            })
+        }
+
+        // 3
+        function f3() {
+            var pro = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(1)
+                }, 300)
+            }).then(res => {
+                console.log('then 1', res)
+                throw new Error('出错拉')
+            }).then(res => {
+                console.log('then 2', res) // 一个出错，后续的then被短路
+            }).catch(err => {
+                console.log('catch', err)
+            })
+
+            // 输出
+            // then 1 1
+            // catch Error: 出错拉
+        }
+
+        function f4() {
+            var pro = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(1)
+                }, 300)
+            })
+
+            pro.then(res => {
+                console.log('pro 1 then 1', res)
+            }).then(res => {
+                console.log('pro 1 then 2', res)
+            }).catch(err => {
+                console.log('pro 1 catch', err)
+            })
+
+            pro.then(res => {
+                console.log('pro 2 then 1', res)
+            }).then(res => {
+                console.log('pro 2 then 2', res)
+            }).catch(err => {
+                console.log('pro 2 catch', err)
+            })
+
+            // 输出 交叉进行
+            // pro 1 then 1 1
+            // pro 2 then 1 1
+            // pro 1 then 2 undefined
+            // pro 2 then 2 undefined
+        }
+
+        function f5() {
+            var pro = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(1)
+                }, 300)
+            })
+
+            pro.then(res => {
+                console.log('pro 1 then 1', res)
+            }).then(res => {
+                console.log('pro 1 then 2', res)
+            }).catch(err => {
+                console.log('pro 1 catch', err)
+            })
+
+            pro.then(res => {
+                console.log('pro 2 then 1', res)
+            }).then(res => {
+                console.log('pro 2 then 2', res)
+            }).catch(err => {
+                console.log('pro 2 catch', err)
+            })
+
+            // 输出
+            // pro 1 then 1 1
+            // pro 2 then 1 1
+            // pro 1 then 2 undefined // pro1能继续，本质上pro1和pro2是两个链
+            // pro 2 catch Error: 出错拉
+        }
+
+        function fn6() {
+            var pro = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(1)
+                }, 300)
+            })
+
+            pro
+                .then(
+                    res => {
+                        throw new Error('出错拉')
+                    },
+                    err => {
+                        console.log('pro err 1', res)
+                    }
+                )
+                .then(
+                    res => {
+                        console.log('pro then 2', res)
+                    },
+                    err => {
+                        console.log('pro err 2', err) // 捕获的实际上市前一个then中的错误
+                    }
+                )
+                .then(
+                    res => {
+                        console.log('pro then 3') // 因为前面捕获了，又能继续往下走了
+                    },
+                    err => {
+                        console.log('pro err 3', err)
+                    }
+                )
+                .catch(err => {
+                    console.log('pro catch', err) // 是最后捕获错误的，前面then里如果有错误方法，就走前面的了
+                })
+
+            // 输出
+            // pro err 2 Error: 出错拉
+            // pro then 3
+        }
+
+        // fn()
+        fn6()
+    </script>
+</body>
+
+</html>
