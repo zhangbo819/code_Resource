@@ -11,6 +11,7 @@ function getWeatherTips(url) {
     let weatherData = {}
 
     try {
+        // TODO 在容器中没有历史文件 导致永远也取不到历史数据
         weatherData = require('./weatherData')
     } catch (err) {
         console.log('no history')
