@@ -1,3 +1,4 @@
+// 简版
 class MyPromise {
     constructor(exe) {
         this.status = 'pending'

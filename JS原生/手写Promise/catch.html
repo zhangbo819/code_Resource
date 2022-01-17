@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./all.js"></script>
+    <script>
+        // 为什么 catch 可以捕获 reject 中的错误 ?
+        var p1 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                reject('err 出错啦')
+            }, 300)
+        })
+
+        function step1() {
+            p1.then(res => {
+                consoloe.log('res里', res)
+            }).catch(err => {
+                console.log('err里', err)
+            })
+
+            // 输出
+            // err里 err 出错啦                    // 很好理解，p1中的错被catch捕获了
+        }
+
+        function stpe2() {
+            p1.then(res => {
+                consoloe.log('res里', res)
+            }).then(null, err => {
+                console.log('err里', err)         // catch相当于这个写法
+            })
+
+            // 输出
+            // err里 err 出错啦                    // 这块就有问题了，第二个then里捕获的应该是第一个then里的错误，但第一个实际都没执行，为什么会捕获到p1中的错误
+        }
+
+        function stpe3() {
+            var p2 = new Promise((resolve, reject) => {
+                reject('err 出错啦')
+            })                                    // 第一个then相当于这个写法 
+            
+            p2.then(null, err => {
+                console.log('err里', err)         // 因为 status 已经变成 failure了，所以这个then直接执行 错误的函数
+            })
+        }
+
+        stpe2()
+    </script>
+</body>
+
+</html>
