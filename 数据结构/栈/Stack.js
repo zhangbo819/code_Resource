@@ -10,7 +10,7 @@ class Stack {
   }
 
   top() {
-    return this.items[0]
+    return this.items[this.items.length - 1]
   }
 
   isEmpty() {
