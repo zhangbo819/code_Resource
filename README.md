@@ -55,12 +55,12 @@
 
 ## 一、JS基础
 
-[外链 - 字节跳动最爱考的前端面试题：JavaScript 基础](https://juejin.cn/post/6934500357091360781)
-[外链 -「2021」高频前端面试题汇总之JavaScript篇（上）](https://juejin.cn/post/6940945178899251230)
-[外链 - 32个手写JS，巩固你的JS基础（面试高频）](https://juejin.cn/post/6875152247714480136)
-[外链 - 2万字 | 前端基础拾遗90问](https://juejin.cn/post/6844904116552990727)
-[外链 - 冴羽的博客](https://github.com/mqyqingfeng/Blog)
-[外链 - sl1673495的博客](https://github.com/sl1673495/blogs)
+- [外链 - 字节跳动最爱考的前端面试题：JavaScript 基础](https://juejin.cn/post/6934500357091360781)
+- [外链 -「2021」高频前端面试题汇总之JavaScript篇（上）](https://juejin.cn/post/6940945178899251230)
+- [外链 - 32个手写JS，巩固你的JS基础（面试高频）](https://juejin.cn/post/6875152247714480136)
+- [外链 - 2万字 | 前端基础拾遗90问](https://juejin.cn/post/6844904116552990727)
+- [外链 - 冴羽的博客](https://github.com/mqyqingfeng/Blog)
+- [外链 - sl1673495的博客](https://github.com/sl1673495/blogs)
 
 ### JS数据类型
 
@@ -661,9 +661,9 @@ location.hash="#search"
 
 特性：
 
-* pushState 和 repalceState 的标题（title）：一般浏览器会忽略，最好传入 null ；
-* 我们可以使用 popstate  事件来监听 url 的变化；
-* history.pushState() 或 history.replaceState() 不会触发 popstate 事件，这时我们需要手动触发页面渲染；
+- pushState 和 repalceState 的标题（title）：一般浏览器会忽略，最好传入 null ；
+- 我们可以使用 popstate  事件来监听 url 的变化；
+- history.pushState() 或 history.replaceState() 不会触发 popstate 事件，这时我们需要手动触发页面渲染；
 
 # 工程化
 
@@ -690,6 +690,8 @@ Babel 的三个主要处理步骤分别是： 解析（parse），转换（trans
 [SPA单页面应用和SSR服务端渲染的区别](https://blog.csdn.net/lbPro0412/article/details/107818239)
 
 ## 安全
+
+[外链 -「前端食堂」想进大厂必须要知道的Web安全问题](https://juejin.cn/post/6844904100945985543)
 
 ### XSS
 
@@ -744,26 +746,6 @@ CSRF (Cross Site Request Forgery, 跨站请求伪造)，字面理解意思就是
 # 面试题
 
 [内链 - 面试题](./面试题/README.md)
-
-## 从输入网址到内容返回解析的全过程
-
-### 简版
-
-1. DNS解析，多次查询找到ip地址 （可缓存、DNS负载均衡、CDN）
-2. TCP连接 （三次握手）
-3. 发送HTTP请求
-4. 服务器处理请求并返回HTTP报文
-5. 浏览器解析渲染页面
-6. 连接结束
-
-### 详版
-
-[内链 - 从输入网址到页面解析的全过程](./面试题/从输入网址到页面解析的全过程.md)
-
-### 参考链接
-
-[外链 - 前端经典面试题: 从输入URL到页面加载发生了什么？](https://segmentfault.com/a/1190000006879700)
-[外链 - 从输入网址到内容返回解析的全过程，前端工程师需要掌握这些知识](https://ttc.zhiyinlou.com/#/articleDetail?id=4534)
 
 # 学习资料
 

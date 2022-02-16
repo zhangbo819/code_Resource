@@ -189,7 +189,7 @@
                 )
                 .then(
                     res => {
-                        console.log('pro then 3') // 因为前面捕获了，又能继续往下走了
+                        console.log('pro then 3') // 因为前面捕获了，但没继续抛出错误，又能继续往下走了
                     },
                     err => {
                         console.log('pro err 3', err)

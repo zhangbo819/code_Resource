@@ -2,6 +2,110 @@
 
 [toc]
 
+# 正文
+
+## 跨域问题
+
+### 1.CORS
+
+- 服务端设置 Access-Control-Allow-Origin 就可以开启 CORS。 该属性表示哪些域名可以访问资源，如果设置通配符则表示所有网站都可以访问资源。
+- CORS需要浏览器和服务器同时支持
+
+设置为CORS后，请求会分成**简单请求**和**复杂请求**
+
+#### 简单请求
+
+条件1：使用下列方法之一：
+
+- GET
+- HEAD
+- POST
+
+条件2：Content-Type 的值仅限于下列三者之一：
+
+- text/plain
+- multipart/form-data
+- application/x-www-form-urlencoded
+
+请求中的任意 XMLHttpRequestUpload 对象均没有注册任何事件监听器； XMLHttpRequestUpload 对象可以使用 XMLHttpRequest.upload 属性访问。
+
+#### 复杂请求
+
+- 不符合以上条件的请求就肯定是复杂请求了。
+- 复杂请求的CORS请求，会在正式通信之前，**增加一次HTTP查询请求**，称为"预检"请求,该请求是 option 方法的，通过该请求来知道服务端是否允许跨域请求。
+
+### 2.NGINX 反向代理
+
+相当于将跨域地址映射到自己的域名下，访问自己的即可拿到跨域地址信息，仅在本地有效
+
+### 3.代理服务器
+
+相当于增加一个本域名下的服务器，请求本域名下服务器，再让他去请求跨域服务器，将结果回传
+
+### 4.JSONP
+
+JSONP 主要就是利用了 script 标签没有跨域限制的这个特性来完成的。
+
+相当于在本地注册一个回调函数，然后去请求会跨域资源的script，在服务端将结果信息以参数的形式传入，然后执行本地注册好的回调函数
+
+这样在本地就拿到了跨域的信息
+### 5.Websocket
+
+这种方式本质没有使用了 HTTP 的响应头, 因此也没有跨域的限制，可以直接与跨域服务器通信
+
+### 6.postMessage
+
+- 「window.postMessage()」 方法可以安全地实现跨源通信。
+- 通常，对于两个不同页面的脚本，只有当执行它们的页面位于具有相同的协议（通常为 https），端口号（443 为 https 的默认值），以及主机 (两个页面的模数 Document.domain设置为相同的值) 时，这两个脚本才能相互通信。
+
+用途
+
+1. 页面和其打开的新窗口的数据传递
+2. 多窗口之间消息传递
+3. 页面与嵌套的 iframe 消息传递
+
+index.html
+
+```html
+
+<iframe src="http://localhost:8080" frameborder="0" id="iframe" onload="load()"></iframe>
+<script>
+  function load() {
+    iframe.contentWindow.postMessage("秋风的笔记", "http://localhost:8080");
+    window.onmessage = e => { console.log(e.data); };
+  }
+</script>
+
+```
+
+another.html
+
+```html
+
+<div>hello</div>
+<script>
+  window.onmessage = e => { 
+    console.log(e.data);
+    e.source.postMessage(e.data, e.origin);
+  };
+</script>
+
+```
+
+## 从输入网址到内容返回解析的全过程
+
+### 简版
+
+1. DNS解析，多次查询找到ip地址 （可缓存、DNS负载均衡、CDN）
+2. TCP连接 （三次握手）
+3. 发送HTTP请求
+4. 服务器处理请求并返回HTTP报文
+5. 浏览器解析渲染页面
+6. 连接结束
+
+### 详版
+
+[内链 - 从输入网址到页面解析的全过程](./从输入网址到页面解析的全过程.md)
 # 文章
 
 - [揭秘前端路由本质](https://mp.weixin.qq.com/s?__biz=MzI3NTM5NDgzOA==&mid=2247485173&idx=1&sn=0eb7739aaf8e456d1b7a58dd353107ef&chksm=eb043e8cdc73b79a16f3982662041aed684b63198d772d3b6a47b5a89816e524e09dd8d92781&cur_album_id=1692321392169402371&scene=190#11111)
