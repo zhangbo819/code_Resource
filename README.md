@@ -553,6 +553,10 @@ flex-shrink为n的项目，空间不足时缩小的比例是flex-shrink为1的n�
 
 [外链 - 基础知识](https://juejin.cn/post/6844904087524229133)
 
+### HTTPS
+
+[外链 - 图解SSL/TLS协议](http://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html)
+
 ### GET 和 POST 的区别
 
 * 传送方式：GET 通过地址栏传输，POST 通过报文传输
@@ -606,7 +610,6 @@ If-None-Match： 再次请求服务器时，浏览器的请求报文头部会包
 
 <img src="https://images2015.cnblogs.com/blog/408483/201605/408483-20160525182943272-204994049.png" />
 
-
 #### 缓存场景
 
 对于大部分的场景都可以使用强缓存配合协商缓存解决，但是在一些特殊的地方可能需要选择特殊的缓存策略
@@ -615,8 +618,11 @@ If-None-Match： 再次请求服务器时，浏览器的请求报文头部会包
 * 对于频繁变动的资源，可以使用 Cache-Control: no-cache 并配合 ETag 使用，表示该资源已被缓存，但是每次都会发送请求询问资源是否更新
 * 对于代码文件来说，通常使用 Cache-Control: max-age=31536000 并配合策略缓存使用，然后对文件进行指纹处理，一旦文件名变动就会立刻下载新的文件
 
-
 # 框架
+
+## Vue源码
+
+[内链 - Vue 2.6源码学习心得](./Vue/study3/README.md)
 
 ## Vue Router原理
 
@@ -629,18 +635,19 @@ If-None-Match： 再次请求服务器时，浏览器的请求报文头部会包
 
 特性：
 
-- hash只是客户端的状态，当向服务器发起请求时，hash不会被发送
-- hash 值的改变，都会在浏览器的访问历史中增加一个记录。因此我们能通过浏览器的回退、前进按钮控制hash 的切换。
-- 我们可以使用 hashchange 事件来监听 hash 的变化。
-
+* hash只是客户端的状态，当向服务器发起请求时，hash不会被发送
+* hash 值的改变，都会在浏览器的访问历史中增加一个记录。因此我们能通过浏览器的回退、前进按钮控制hash 的切换。
+* 我们可以使用 hashchange 事件来监听 hash 的变化。
 
 可以通过a标签的href, 跳转触发 hashchange
+
 ```html
 <a href="#search">search</a>
 
 ```
 
 也可以主动跳转，触发 hashchange
+
 ```js
 location.hash="#search"
 
@@ -654,9 +661,9 @@ location.hash="#search"
 
 特性：
 
-- pushState 和 repalceState 的标题（title）：一般浏览器会忽略，最好传入 null ；
-- 我们可以使用 popstate  事件来监听 url 的变化；
-- history.pushState() 或 history.replaceState() 不会触发 popstate 事件，这时我们需要手动触发页面渲染；
+* pushState 和 repalceState 的标题（title）：一般浏览器会忽略，最好传入 null ；
+* 我们可以使用 popstate  事件来监听 url 的变化；
+* history.pushState() 或 history.replaceState() 不会触发 popstate 事件，这时我们需要手动触发页面渲染；
 
 # 工程化
 
@@ -718,7 +725,6 @@ CSRF (Cross Site Request Forgery, 跨站请求伪造)，字面理解意思就是
 
 # 其他
 
-
 # 计算机基础
 
 ## 算法
@@ -738,6 +744,26 @@ CSRF (Cross Site Request Forgery, 跨站请求伪造)，字面理解意思就是
 # 面试题
 
 [内链 - 面试题](./面试题/README.md)
+
+## 从输入网址到内容返回解析的全过程
+
+### 简版
+
+1. DNS解析，多次查询找到ip地址 （可缓存、DNS负载均衡、CDN）
+2. TCP连接 （三次握手）
+3. 发送HTTP请求
+4. 服务器处理请求并返回HTTP报文
+5. 浏览器解析渲染页面
+6. 连接结束
+
+### 详版
+
+[内链 - 从输入网址到页面解析的全过程](./面试题/从输入网址到页面解析的全过程.md)
+
+### 参考链接
+
+[外链 - 前端经典面试题: 从输入URL到页面加载发生了什么？](https://segmentfault.com/a/1190000006879700)
+[外链 - 从输入网址到内容返回解析的全过程，前端工程师需要掌握这些知识](https://ttc.zhiyinlou.com/#/articleDetail?id=4534)
 
 # 学习资料
 

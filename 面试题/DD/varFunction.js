@@ -5,4 +5,7 @@ function a() {
 
 a();
 
-// 声明提前 变量在函数前面
+// VM614:1 Uncaught SyntaxError: Identifier 'a' has already been declared
+// at <anonymous>:1:1
+
+// 声明提前 变量永远在函数前面

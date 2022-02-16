@@ -7,9 +7,9 @@ const b = {
     // fn: this,
 };
 
-b.fn();
+b.fn();          // undefined
 const c = b.fn;
-c();
+c();             // undefined
 
 // console.log("Window === this", Window === this)
 // console.log("this instanceof Window", this instanceof Window)
