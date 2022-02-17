@@ -106,6 +106,10 @@ another.html
 ### 详版
 
 [内链 - 从输入网址到页面解析的全过程](./从输入网址到页面解析的全过程.md)
+
+## 继承
+
+[内链 - 继承](./继承.md)
 # 文章
 
 - [揭秘前端路由本质](https://mp.weixin.qq.com/s?__biz=MzI3NTM5NDgzOA==&mid=2247485173&idx=1&sn=0eb7739aaf8e456d1b7a58dd353107ef&chksm=eb043e8cdc73b79a16f3982662041aed684b63198d772d3b6a47b5a89816e524e09dd8d92781&cur_album_id=1692321392169402371&scene=190#11111)
