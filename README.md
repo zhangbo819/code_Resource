@@ -730,6 +730,8 @@ CSRF (Cross Site Request Forgery, 跨站请求伪造)，字面理解意思就是
 
 [外链 - 前端性能优化 24 条建议（2020）](https://juejin.cn/post/6892994632968306702#heading-11)
 
+[内链 - 性能优化](./面试题/性能优化.md)
+
 # 其他
 
 # 计算机基础
