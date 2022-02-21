@@ -1,8 +1,11 @@
 <!doctype html>
 <html>
 <style type="text/css">
+  #top {
+    /* position: relative; */
+  }
   #father {
-    position: relative;
+    /* position: relative; */
     width: 600px;
     margin: 20px;
     padding: 20px;
@@ -26,9 +29,11 @@
 </style>
 
 <body>
-  <div id="father">
-    <div id="son1">没有设置top, left</div>
-    <div id="son2">设置了为0</div>
+  <div id="top">
+    <div id="father">
+      <div id="son1">没有设置top, left</div>
+      <div id="son2">设置了为0</div>
+    </div>
   </div>
 </body>
 
