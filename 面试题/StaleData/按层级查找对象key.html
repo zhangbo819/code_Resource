@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let obj = {
+      a: {
+        b: {
+          c: {
+            d: 1,
+          },
+        },
+      },
+      e: 2,
+      f: {
+        g: 3,
+      },
+    };
+    // result
+    // [[a, e, f], [b, g], [c], [d]]
+
+    function fn (obj, arr = [], index = 0) {
+      const keys = Object.keys(obj)
+      if (!keys.length) return
+
+      if (arr[index]) {
+        keys.forEach(item => arr[index].push(item))
+      } else {
+        arr[index] = keys
+      }
+
+      for (let key in obj) {
+        if (Object.prototype.toString.call(obj[key]) === '[object Object]') {
+          fn(obj[key], arr, index + 1)
+        }
+      }
+      return arr
+    }
+
+    console.log(fn(obj))
+  </script>
+</body>
+
+</html>
