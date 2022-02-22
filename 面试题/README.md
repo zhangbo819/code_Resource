@@ -24,6 +24,16 @@
 
 [内链 - 继承](./继承.md)
 
+## Es6的Map和普通对象区别
+
+1. key的类型无限制
+2. Map的key有顺序，普通对象的key不一定，看浏览器
+3. Map有自己的api，set，get，includes，clear，delete
+
+## vue-router 两种路由原理
+
+[内链 - VueRouter两种路由原理](./VueRouter两种路由原理.md)
+
 ## 性能优化
 
 [内链 - 性能优化](./性能优化.md)
