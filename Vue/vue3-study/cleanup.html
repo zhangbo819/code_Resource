@@ -11,32 +11,12 @@
 <body>
 </body>
 
-<script>
-  let activeEffect
-  function effect(fn) {
-    const effectFn = () => {
-      cleanup(effectFn)
-      activeEffect = effectFn
-      fn()
-    }
-
-    effectFn.deps = []
-
-    effectFn()
-  }
-
-  function cleanup(effectFn) {
-    for (let i = 0; i < effectFn.deps.length; i++) {
-      const deps = effectFn.deps[i]
-      deps.delete(effectFn)
-    }
-    effectFn.deps.length = 0
-  }
-</script>
+<script src="./effect.js"></script>
 
 <script>
   const bucket = new WeakMap()
-  const data = { ok: true, text: 'hello vue3' }
+  // const data = { ok: true, text: 'hello vue3' }
+  const data = { foo: true, bar: true }
   const obj = new Proxy(data, {
     get(target, key) {
       track(target, key)
@@ -74,14 +54,21 @@
     console.log(bucket)
 
     const effects = depsMap.get(key)
-    
-    const effectsToRun = new Set(effects)
+
+    const effectsToRun = new Set()
+    effects && effects.forEach(effectFn => {
+      // 防止无限递归
+      if (effectFn !== activeEffect) {
+        effectsToRun.add(effectFn)
+      }
+    })
+
     effectsToRun.forEach(effectFn => effectFn())
   }
-
 </script>
 
-<script>
+<!-- cleanup -->
+<!-- <script>
   debugger
   effect(() => {
     // console.log('effect run')
@@ -91,14 +78,31 @@
   console.log(bucket)
   obj.ok = false
   obj.text = '111'
-  // effect(() => {
-    // 
-  // })
 
 
   // setTimeout(() => {
   //   obj.notEs = '111'
   // }, 1000)
+</script> -->
+
+
+<!-- 嵌套 effect -->
+<script>
+  let temp1, temp2
+  // debugger
+  effect(function effectFn1() {
+    console.log("effectFn1 执行")
+    effect(function efffectFn2() {
+      console.log("effectFn2 执行")
+      temp2 = obj.bar
+    })
+    temp1 = obj.foo
+  })
+  // console.log(bucket)
+  setTimeout(() => {
+    obj.foo = false
+  }, 1000)
+  // obj.bar = false
 </script>
 
 </html>
