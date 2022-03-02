@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var a = new Map()
+    var b = new WeakMap();
+
+    (function () {
+      const foo = { foo: 1 }
+      const bar = { bar: 2 }
+      a.set(foo, 1)
+      b.set(bar, 2)
+    })()
+
+    console.log(a, b)
+
+    var s = new Set()
+    var ws = new WeakSet();
+
+    (function () {
+      const foo2 = { foo: 1 }
+      const bar2 = { bar: 2 }
+      s.add(foo2)
+      ws.add(bar2)
+    })()
+    console.log(s.size, ws.size)
+  </script>
+</body>
+
+</html>
