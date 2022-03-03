@@ -12,6 +12,7 @@
 </body>
 
 <script src="./effect.js"></script>
+<script src="./computed.js"></script>
 
 <script>
   const bucket = new WeakMap()
@@ -51,7 +52,7 @@
   function trigger(target, key) {
     const depsMap = bucket.get(target)
     if (!depsMap) return
-    console.log(bucket)
+    // console.log(bucket)
 
     const effects = depsMap.get(key)
 
@@ -63,7 +64,14 @@
       }
     })
 
-    effectsToRun.forEach(effectFn => effectFn())
+    effectsToRun.forEach(effectFn => {
+      // 调用调度器
+      if (effectFn.options.scheduler) {
+        effectFn.options.scheduler(effectFn)
+      } else {
+        effectFn()
+      }
+    })
   }
 </script>
 
@@ -87,7 +95,7 @@
 
 
 <!-- 嵌套 effect -->
-<script>
+<!-- <script>
   let temp1, temp2
   // debugger
   effect(function effectFn1() {
@@ -103,6 +111,43 @@
     obj.foo = false
   }, 1000)
   // obj.bar = false
+</script> -->
+
+<!-- 调度器 和 异步队列 -->
+<!-- <script>
+  effect(() => {
+    console.log(obj.foo)
+  }, {
+    // 调度器 scheduler 是一个函数
+    scheduler (fn) {
+      // 添加进队列中
+      jobQueue.add(fn)
+      // 调用队列
+      flushJob()
+    }
+  })
+  obj.foo++
+  obj.foo++
+
+  console.log('结束了')
+</script> -->
+
+<!-- 计算属性 和 lazy -->
+<script>
+  const sm = computed(() => obj.foo + obj.bar)
+
+  // console.log(sm.value)
+  // console.log(sm.value)
+  // console.log(sm.value)
+
+  // obj.foo++
+  // console.log(sm.value)
+
+  effect(() => {
+    console.log(sm.value)
+  })
+
+  obj.foo++
 </script>
 
 </html>
