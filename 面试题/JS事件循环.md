@@ -69,4 +69,5 @@ TODO
 
 ## 参考链接
 
+[外链 - 面试题：说说事件循环机制(满分答案来了)](https://juejin.cn/post/6844904079353708557#heading-4)
 [外链 - 一次弄懂Event Loop（彻底解决此类面试问题）](https://juejin.cn/post/6844903764202094606#heading-6)
