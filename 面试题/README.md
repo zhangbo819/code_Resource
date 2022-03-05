@@ -58,6 +58,13 @@
 
 [内链 - VueRouter两种路由原理](./VueRouter两种路由原理.md)
 
+## vue中props和$attrs区别
+
+1. props 需要先声明才能获取值，而 attrs 则不用
+2. props 声明过的属性，attrs 里面不会在出现
+3. props 不包含事件，attrs 包含
+4. props 支持 string 以外的类型，而 attrs 只有 string 类型
+
 ## 性能优化
 
 [内链 - 性能优化](./性能优化.md)
