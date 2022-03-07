@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 错误 没有key -->
+    <!-- <childcomp v-for="(item, index) in arr" :msg="item" /> -->
+
+    <!-- 错误 key用index -->
+    <childcomp v-for="(item, index) in arr" :msg="item" :key="index" />
+    
+    <!-- 正确 key用唯一的标识 -->
+    <!-- <childcomp v-for="(item, index) in arr" :msg="item" :key="item" /> -->
+  </div>
+</body>
+<script src="./vue.js"></script>
+<script>
+  // 验证没有key 或 使用index作为key的影响
+  var app = new Vue({
+    el: '#app',
+    components: {
+      childcomp: {
+        props: ['msg'],
+        template: `<div>{{ msg }}</div>`,
+        created() {
+          console.log(this.msg)
+        }
+      }
+    },
+    data() {
+      return {
+        arr: [1, 2, 3, 4, 5]
+      }
+    },
+    created() {
+      setTimeout(() => {
+        console.log('setTimeout in')
+        this.arr.splice(2, 0, 'new1', 'new2')
+        debugger
+      }, 3000)
+    }
+  })
+</script>
+
+</html>
