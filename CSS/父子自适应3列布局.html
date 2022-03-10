@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .father {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      background-color: #ff08;
+    }
+
+    .item {
+      flex-grow: 1;
+      margin: 0 5px 10px;
+      width: 30%;
+      /* height: 0; */
+    }
+    
+    .item-son {
+      padding-bottom: 200%;
+      background-color: #f008;
+    }
+
+    .empty {
+      flex-grow: 1;
+      margin: 0 5px 10px;
+      width: 30%;
+    }
+
+    .block {
+      width: 100px;
+      height: 100px;
+      background-color: #f008;
+      animation: a 5s linear none;
+      animation-iteration-count: infinite;
+      transform-origin: 100% 0%;
+    }
+
+    @keyframes a {
+      0% {
+        transform: rotate(0);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="father">
+    <div class="item">
+      <div class="item-son"></div>
+    </div>
+    <div class="item">
+      <div class="item-son"></div>
+    </div>
+    <div class="item">
+      <div class="item-son"></div>
+    </div>
+    <div class="item">
+      <div class="item-son"></div>
+    </div>
+    <div class="item">
+      <div class="item-son"></div>
+    </div>
+    <div class="item">
+      <div class="item-son"></div>
+    </div>
+    <div class="item">
+      <div class="item-son"></div>
+    </div>
+    <div class="item">
+      <div class="item-son"></div>
+    </div>
+    
+    <div class="empty"></div>
+  </div>
+
+  <div class="block"></div>
+</body>
+
+</html>
