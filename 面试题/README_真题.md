@@ -234,3 +234,32 @@ element-ui的form、formitem工作原理
 
 es6 import和require
 事件循环标记过程
+mixins 父子覆盖机制
+
+## 场景视频 1面
+
+项目做了哪些优化
+mixins用法
+事件循环手写题
+
+```js
+async function async1() {
+    console.log('as 1')
+    await async2()
+    console.log('as 2')
+}
+function async2() {
+    console.log('as 2 in')
+}
+console.log('wai 1')
+async1()
+console.log('wai 2')
+setTimeout(() => {
+    console.log('setTimeout in')
+})
+new Promise(r => {
+    r(1)
+}).then(res => console.log('p', res))
+console.log('wai 3')
+
+```
