@@ -263,3 +263,56 @@ new Promise(r => {
 console.log('wai 3')
 
 ```
+
+## 神策 1面
+
+什么情况下会内存泄漏
+浏览器存储方式，localStorage失效时间、怎么判断大小
+git规范
+Babel各个模块都是干什么的
+进程、线程
+栈、堆的区别与联系
+浏览器线程都有哪些
+node是单线程的吗
+
+## 美餐 2面
+
+手写题 字符串转数字
+跨域问题，cors 设置，option预检返回什么
+强缓存、协商缓存
+http 2 新增了什么
+输入url到页面显示
+如何让css提前加载，prefetch和preload
+
+```js
+
+// 题目：
+// 写一个方法，把字符串转为数字，比如 str="1234"，变成 int 1234。并且测试这个程序。
+
+function fn (str = '') {
+  if (isNaN(str)) return ''
+  
+  let flag = false
+  if (str[0] === '-') {
+    str = str.slice(1)
+    flag = true
+  }
+  let res = 0, index = 0
+  for (let i = str.length - 1; i >= 0; i--) {
+      res += str[i] * Math.pow(10, index++)
+  }
+  if (flag) {
+    res = 0 - res
+  }
+  return res
+}
+
+console.log(fn('11999999999999999999999999999999999999978'))
+console.log(fn('-12'))
+console.log(fn('+12'))
+console.log(fn('x001'))
+'1.2e+40'
+'00n'
+'+100'
+
+```
