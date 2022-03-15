@@ -316,3 +316,34 @@ console.log(fn('x001'))
 '+100'
 
 ```
+
+## 广联达
+
+Css盒模型
+说下Js继承
+说下js事件循环
+垃圾回收机制
+项目遇到的问题
+在上家公司最大的成长是什么
+近期又在关注什么技术
+
+## 掌阅 2面
+
+遇到哪些移动端适配问题
+移动端做过哪些性能优化
+decodeURI与decodeURIComponent区别
+vue路由懒加载原理，文件会什么时候进行加载
+Js-bridge如何双向通信，有哪些安全隐患，如何避免？域名白名单
+vue-Router, history模式 nginx 如何配置
+v-html有什么安全隐患？1.script 2. img src 3. Style, 4 绑定事件
+
+## Authing
+
+1. 物理像素、实际像素
+2. Vue的key有什么用，为什么有时候我们不写也没问题，以及什么情况下不写会出问题
+3. Vue3数组类型响应式原理，比Vue2的一些优化
+4. Vue3的组合式api 比Vue2的option形式好在哪
+5. 能说下Vue页面渲染到更新的一个过程
+6. webpack原理
+7. webpack、rollup，vite差别、各自优缺点
+8. 项目里做的比较好的点
