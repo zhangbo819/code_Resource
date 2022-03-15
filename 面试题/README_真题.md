@@ -340,10 +340,11 @@ v-html有什么安全隐患？1.script 2. img src 3. Style, 4 绑定事件
 ## Authing
 
 1. 物理像素、实际像素
-2. Vue的key有什么用，为什么有时候我们不写也没问题，以及什么情况下不写会出问题
-3. Vue3数组类型响应式原理，比Vue2的一些优化
-4. Vue3的组合式api 比Vue2的option形式好在哪
-5. 能说下Vue页面渲染到更新的一个过程
-6. webpack原理
-7. webpack、rollup，vite差别、各自优缺点
-8. 项目里做的比较好的点
+2. 微前端遇到哪些坑
+3. Vue的key有什么用，为什么有时候我们不写也没问题，以及什么情况下不写会出问题
+4. Vue3数组类型响应式原理，比Vue2的一些优化
+5. Vue3的组合式api 比Vue2的option形式好在哪
+6. 能说下Vue页面渲染到更新的一个过程
+7. webpack原理
+8. webpack、rollup，vite差别、各自优缺点
+9. 项目里做的比较好的点
