@@ -4,10 +4,6 @@
 
 **/node_modules
 
-Node/test/inputData.js
-Node/test/dist/*
-Node/test/test
-Node/fs/stream/output/*
 widget/changeJS/output
 widget/rzip/data/*
 widget/rzip/storeKey.js
@@ -17,8 +13,13 @@ widget/csv/input
 代码规范/qkRn/*
 !代码规范/qkRn/ReactNative.md
 
+Node/test/inputData.js
+Node/test/dist/*
+Node/test/test
+Node/fs/stream/output/*
 Node/zip_test/*.zip
 Node/myServer/*.zip
+Node/patu/image
 
 widget/微信文档地区名称转换/wxData.json
 widget/微信文档地区名称转换/a.txt
