@@ -630,6 +630,10 @@ If-None-Match： 再次请求服务器时，浏览器的请求报文头部会包
 
 [内链 - Vue 2.6源码学习心得](./Vue/study3/README.md)
 
+## Pinia
+
+[外链 - 是时候 该让别人卷一下 Pinia 了](https://juejin.cn/post/7102816190178787359)
+
 ## Vue Router原理
 
 是相当于在不刷新页面的情况下，动态局部刷新Vue组件，实现*跳转*的操作
