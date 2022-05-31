@@ -1,0 +1,27 @@
+# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: emall schedule
+
+on:
+  schedule:
+    - cron: "0 6 * * *" # 该时间为UTC时间，比北京时间晚8个小时（需要注意该时间不准时，会有不同程度的分钟数的延迟）
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # strategy:
+    #   matrix:
+    #     node-version: [12.x, 14.x, 16.x]
+    # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    # - name: Use Node.js ${{ matrix.node-version }}
+    #   uses: actions/setup-node@v2
+    #   with:
+    #     node-version: ${{ matrix.node-version }}
+    #     cache: "npm"
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Project
+        run: cd Node && npm install && cd axios && node send.js ${{ secrets.HOOK }}

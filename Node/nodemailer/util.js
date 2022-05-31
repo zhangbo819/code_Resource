@@ -30,13 +30,13 @@ function getWeatherTips(url) {
                 const water = $('.wea_about span').text().trim()
                 const win = $('.wea_about em').text().trim()
                 const Air = $('.wea_alert em').text().trim()
-                const history = `(较昨日${temp > weatherData.temp ? '上升' : '下降'}${Math.abs(temp - weatherData.temp)}度)`
-                const words = `北京市-海淀区 ${desc}\n温度：${temp}℃${history}\n空气指数: ${Air}\n风力：${win}\n湿度：${water}\n`
+                // const history = `(较昨日${temp > weatherData.temp ? '上升' : '下降'}${Math.abs(temp - weatherData.temp)}度)`
+                const words = `北京市-海淀区 ${desc}\n温度：${temp}℃\n空气指数: ${Air}\n风力：${win}\n湿度：${water}\n`
 
                 // 保留至历史数据
-                fs.writeFileSync('./weatherData.js', 'module.exports = ' + JSON.stringify({
-                    temp,
-                }))
+                // fs.writeFileSync('./weatherData.js', 'module.exports = ' + JSON.stringify({
+                //     temp,
+                // }))
 
                 resolve({
                     // tips: `早上好，今日天气提示：${tips}`,
