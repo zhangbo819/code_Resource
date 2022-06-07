@@ -27,6 +27,8 @@ function send(url, content) {
   })
 }
 
+// TODO 外部联系人方式
+
 
 async function main () {
   const res = await Promise.all([getWeatherTips(), getDailyGreeting()])
