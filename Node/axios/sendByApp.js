@@ -1,5 +1,7 @@
 const axios = require('axios')
 
+const { getWeatherTips, getDailyGreeting, getDiffDate } = require('../nodemailer/util')
+
 const corpid = 'wwae54290a69d43e83'
 
 // 获取 access_token
@@ -71,14 +73,15 @@ async function AppSend() {
 
   const access_token = await getAccessToken()
   axios.post(`https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=${access_token}`, {
-    "touser": "ZhangBo|Mo",
+    // "touser": "ZhangBo|Mo",
+    "touser": "ZhangBo",
     // "toparty": "PartyID1|PartyID2",
     // "totag": "TagID1 | TagID2",
     "msgtype": "text",
     "agentid": 1000002,
     "text": {
       // "content": "你的快递已到，请携带工卡前往邮件中心领取。\n出发前可查看<a href=\"http://work.weixin.qq.com\">邮件中心视频实况</a>，聪明避开排队。"
-      "content": `${data[0].tips}\n>${data[0].words}\n\n><font color="info">${data[1]}</font>`
+      "content": `${getDiffDate()}\n${data[0].tips}\n>${data[0].words}\n\n><font color="info">${data[1]}</font>`
     },
     // "safe": 0,
     // "enable_id_trans": 0,

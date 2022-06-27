@@ -1,6 +1,6 @@
 const request = require("request")
 const cheerio = require("cheerio")
-const fs = require("fs")
+// const fs = require("fs")
 
 const weatherURL = 'https://tianqi.moji.com/weather/china/beijing/haidian-district'
 
@@ -17,7 +17,7 @@ function getWeatherTips(url) {
         console.log('no history')
         weatherData = { temp: 0 }
     }
-    console.log('weatherData', weatherData)
+    // console.log('weatherData', weatherData)
 
     return new Promise((resolve, reject) => {
         request(weatherURL, (error, res, body) => {
@@ -40,7 +40,7 @@ function getWeatherTips(url) {
 
                 resolve({
                     // tips: `早上好，今日天气提示：${tips}`,
-                    tips: `早上好，${tips}`,
+                    tips: `今日天气提示：${tips}`,
                     words
                 })
             } else {
@@ -75,14 +75,14 @@ function getDailyGreeting() {
 }
 
 // 计算在一起的日子
-function getDiffDate(targetDate) {
+function getDiffDate(targetDate = 1610553600000) {
     let date1 = new Date(targetDate);
     let date2 = new Date();
     date1 = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate());
     date2 = new Date(date2.getFullYear(), date2.getMonth(), date2.getDate());
     const diff = date2.getTime() - date1.getTime();
     const diffDate = diff / (24 * 60 * 60 * 1000);
-    return `宝贝，这是我们在一起的${diffDate}天`
+    return `宝贝早上好，今天是我们在一起的${diffDate}天`
 }
 
 module.exports = {
