@@ -73,8 +73,8 @@ async function AppSend() {
 
   const access_token = await getAccessToken()
   axios.post(`https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=${access_token}`, {
-    // "touser": "ZhangBo|Mo",
-    "touser": "ZhangBo",
+    "touser": "ZhangBo|Mo",
+    // "touser": "ZhangBo",
     // "toparty": "PartyID1|PartyID2",
     // "totag": "TagID1 | TagID2",
     "msgtype": "text",
