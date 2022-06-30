@@ -22,6 +22,7 @@ function send(url, content) {
       mentioned_list: ["@all"]
     }
   }
+  // webhook url 是一个接口，调了就会发，所以放到参数里
   axios.post(url, markdown).then(res => {
     // console.log('res', res.data)
   })
