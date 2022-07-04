@@ -29,6 +29,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Run Project
         # 通过 群机器人 发送
-        # run: cd widget/Wecom && pnpm install && cd src && node webhook.js ${{ secrets.HOOK }} 
+        # run: cd widget/WeCom && pnpm install && cd src && node webhook.js ${{ secrets.HOOK }} 
         # 通过 应用 发送
-        run: cd widget/Wecom && pnpm install && cd src && node sendByApp.js ${{ secrets.QW_APP_S }}
+        run: cd widget/WeCom && pnpm install && cd src && node sendByApp.js ${{ secrets.QW_APP_S }}
