@@ -6,7 +6,7 @@ name: qiweiRot schedule
 on:
   schedule:
     # `分 时 天 月 周` 时按照标准时间 北京时间=标准时间+8 18表示北京时间早上2点
-    - cron: "0 23 * * *"
+    - cron: "16 1 * * *"
     # 中午 11 点
     # - cron: "15 2 * * *" 
 
@@ -30,4 +30,4 @@ jobs:
         # 通过 群机器人 发送
         # run: cd widget/WeCom && npm install && cd src && node webhook.js ${{ secrets.HOOK }} 
         # 通过 应用 发送
-        run: cd widget/WeCom && npm install && cd src && node sendByApp.js ${{ secrets.QW_APP_S }}
+        run: cd widget/WeCom && npm install -g pnpm && pnpm install && cd src && node sendByApp.js ${{ secrets.QW_APP_S }}
