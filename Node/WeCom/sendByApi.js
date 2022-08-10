@@ -1,5 +1,5 @@
 const { AppMessageSend, getAccessToken } = require('./axios')
-const { getWeatherTips, getDailyGreeting, getDiffDate } = require('../nodemailer/util')
+const { getWeatherTips, getDailyGreeting, getDiffDate } = require('./util')
 
 // 脚本应用发送消息
 async function AppSend(type = 'markdown') {
