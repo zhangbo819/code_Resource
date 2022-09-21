@@ -22,23 +22,36 @@
 // 不能取连续的两个，找到最优路线
 function rob(arr) {
   var dp = [];
-  dp[0] = 0;
-  dp[1] = arr[0];
+  dp[0] = arr[0];
+  dp[1] = Math.max(arr[0], arr[1]);
 
-  console.log('arr', arr)
-  for (var i = 2; i <= arr.length; i++) {
-    console.log('dp', dp)
-    // 对于每次计算，当前的最优是对比 前1个 与 前2个和现在的和 更大的一个
-    dp[i] = Math.max(dp[i - 1], dp[i - 2] + arr[i - 1])
-    console.log('i, dp[i]', i, dp[i])
-    // console.log('\n')
+  // console.log('arr', arr)
+  // arr [1, 2, 3, 2, 5, 3]
+  // dp  [1, 2]
+  // dp  [1, 2, max(2, 1 + 3)]
+  for (var i = 2; i < arr.length; i++) {
+    dp[i] = Math.max(dp[i - 1], dp[i - 2] + arr[i])
   }
+
+  // console.log(dp)
 
   return dp[dp.length - 1]
 }
 
+// 优化 不用数组 降低空间复杂度
+const rob = (nums) => {
+  const size = nums.length;
+  let first = nums[0], second = Math.max(nums[0], nums[1]);
+  for (let i = 2; i < size; i++) {
+    let temp = second;
+    second = Math.max(first + nums[i], second);
+    first = temp;
+  }
+  return second;
+}
 
-console.log(rob([1, 2, 3, 2, 5, 3]))
-// console.log(rob([2, 7, 9, 3, 1]))
+
+console.log(rob([1, 2, 3, 2, 5, 3])) // 9
+console.log(rob([2, 7, 9, 3, 1])) // 12
 
 module.exports = { rob }
