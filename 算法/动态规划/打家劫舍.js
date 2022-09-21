@@ -39,7 +39,7 @@ function rob(arr) {
 }
 
 // 优化 不用数组 降低空间复杂度
-const rob = (nums) => {
+function rob (nums) {
   const size = nums.length;
   let first = nums[0], second = Math.max(nums[0], nums[1]);
   for (let i = 2; i < size; i++) {
