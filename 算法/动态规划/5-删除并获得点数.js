@@ -55,7 +55,7 @@
 //   return dp
 // };
 
-const { rob } = require('./打家劫舍.js')
+const { rob } = require('./3-打家劫舍.js')
 
 var deleteAndEarn = function(nums) {
   let maxVal = 0;

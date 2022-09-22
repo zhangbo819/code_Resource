@@ -26,7 +26,7 @@
 //  [2, 1, 1]
 //  [1, 1, 3]
 
-const { rob } = require('./打家劫舍.js')
+const { rob } = require('./3-打家劫舍.js')
 function rob2(arr = []) {
   // 其实就是把环拆成两个队列，一个是从0到n-1，另一个是从1到n，然后返回两个结果最大的。
   return Math.max(rob(arr.slice(0, -1)), rob(arr.slice(1)))
