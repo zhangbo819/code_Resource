@@ -46,6 +46,14 @@ git push origin <分支名> --force
 
 ## 删除远程分支
 
+### 查看远程分支
+
+```git
+git branch -a
+```
+
+### 删除
+
 ```git
 git push origin --delete [branch-name]
 git branch -dr [remote/branch]
