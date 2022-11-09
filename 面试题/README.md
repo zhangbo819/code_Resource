@@ -6,9 +6,22 @@
 
 [外链 - CSS 隐藏元素的八种方法](https://juejin.cn/post/6844903456545701901)
 
-## 说下 flex: 1
+### 说下 flex: 1
 
 [内链 - flex: 1](./flex:1.md)
+
+### position 属性都是相对于什么来定位
+
+- static：首先 position 属性的默认值是 static，static 没有定位，元素出现在正常的流中，会默认忽略 top、bottom、left、right。与脱离文档流的元素一起 z-index 会失效
+
+- relative：其次 relative 也未脱离文档流，relative 生成相对定位的元素，相对于**自身的正常位置**做定位，因此，"left:20" 会向元素的 LEFT 位置添加 20 像素。相当于元素往右偏移20个元素；
+
+- absolute: 绝对定位，absolute 相对于**除去 static 定位以外的第一个父元素进行定位**
+
+- fixed: 固定定位是相对于浏览器窗口的定位，无论页面的上拉下滑，fixed 定位元素相对于**浏览器窗口**的位置不变，一般用来做弹出窗口或者广告定位。
+
+- inherit: 规定应该从**父元素继承** position 属性的值（任何版本的ie浏览器都不支持该属性）
+
 
 ## 跨域问题
 
