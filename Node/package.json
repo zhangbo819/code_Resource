@@ -26,6 +26,7 @@
     "inquirer": "^6.3.1",
     "moment": "^2.29.4",
     "nodemailer": "^6.7.0",
+    "openai": "^3.1.0",
     "puppeteer": "^5.2.1",
     "request": "^2.88.2",
     "shelljs": "^0.8.5",
