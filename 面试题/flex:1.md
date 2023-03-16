@@ -2,7 +2,7 @@
 
 ## flex: 1
 
-flex: flex-grow, flex-shrink 和 flex-basis的简写
+flex: flex-grow, flex-shrink 和 flex-basis 的简写
 
 默认值:
 
