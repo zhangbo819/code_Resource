@@ -27,9 +27,10 @@
 
 [内链 - 跨域问题](./跨域问题.md)
 
-## 说下 http状态码
+## 说下 http 状态码
 
 [内链 - http状态码](./http状态码.md)
+
 ## 从输入网址到内容返回解析的全过程
 
 ### 简版
@@ -53,25 +54,25 @@
 
 [内链 - 箭头函数和普通函数的区别](./箭头函数和普通函数的区别.md)
 
-## ES6的Map和普通对象区别
+## ES6 的 Map 和普通对象区别
 
-1. key的类型无限制
-2. Map的key有顺序，普通对象的key不一定，看浏览器
-3. Map有自己的api，set，get，includes，clear，delete
+1. key 的类型无限制
+2. Map 的 key 有顺序，普通对象的 key 不一定，看浏览器
+3. Map 有自己的 api，set，get，includes，clear，delete
 
 ## offsetWidth、offsetLeft、clientWidth和scrollWidth
 
 [内链 - clientWidth和offset](./clientWidth和offset.md)
 
-## js事件循环
+## js 事件循环
 
-[内链 - js事件循环](./JS事件循环.md)
+[内链 - js 事件循环](./JS事件循环.md)
 
 ## vue-router 两种路由原理
 
-[内链 - VueRouter两种路由原理](./VueRouter两种路由原理.md)
+[内链 - VueRouter 两种路由原理](./VueRouter两种路由原理.md)
 
-## vue中props和$attrs区别
+## vue 中 props 和 $attrs 区别
 
 1. props 需要先声明才能获取值，而 attrs 则不用
 2. props 声明过的属性，attrs 里面不会在出现

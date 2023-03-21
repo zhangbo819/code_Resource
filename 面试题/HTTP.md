@@ -1,5 +1,7 @@
 # HTTP 总体
 
+## HTTP 1.0
+
 ## HTTP 1.1
 
 ## HTTP2
