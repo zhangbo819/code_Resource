@@ -76,3 +76,35 @@ git checkout --orphan gh-pages
 ```git
 git push origin master --force
 ```
+
+## ip 地址更换，git 报错
+
+报错
+
+```git
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the RSA key sent by the remote host is
+SHA256:**************************.
+Please contact your system administrator.
+Add correct host key in /Users/*/.ssh/known_hosts to get rid of this message.
+Offending RSA key in /Users/*/.ssh/known_hosts:1
+Host key for github.com has changed and you have requested strict checking.
+Host key verification failed.
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+```
+
+解决
+
+```git
+ssh-keygen -R github.com
+```
