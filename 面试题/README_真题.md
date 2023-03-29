@@ -1,5 +1,22 @@
 # 面试收集的各种真题
 
+## Funplus
+
+区块链钱包项目我做了什么，底层有了解吗
+css 渐变边框、渐变文字
+react hook 用了哪些，说说自己实现的一个自定义hook，hook 底层有了解吗
+Vue2 和 Vue3 响应式原理
+实现 New
+call、apply、bind
+强缓存、协商缓存，返回的 200 里面两种情况
+跨域问题，Nginx 的形式有了解吗
+手写分割 url 参数，多个相同的放到数组里，decode、hash
+
+```js
+// http://www.baidu.com?a=1&b=2&a=3&c=4
+// 输出 { a: [1, 3], b: 2, c: 4 }
+```
+
 ## 字节 抖音
 
 Css如何隐藏一个元素
