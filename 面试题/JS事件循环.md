@@ -2,7 +2,7 @@
 
 ## Event Loop
 
-在JavaScript中，任务被分为两种，一种宏任务（MacroTask）也叫Task，一种叫微任务（MicroTask）。
+在 JavaScript 中，任务被分为两种，一种宏任务（MacroTask）也叫 Task，一种叫微任务（MicroTask）。
 
 ### MacroTask（宏任务）
 
@@ -24,7 +24,7 @@
 
 Javascript 有一个 **main thread** 主线程和 **call-stack** 调用栈(执行栈)，所有的任务都会被放到调用栈等待主线程执行。
 
-### JS调用栈
+### JS 调用栈
 
 JS调用栈采用的是后进先出的规则，当函数执行的时候，会被添加到栈的顶部，当执行栈执行完成后，就会从栈顶移出，直到栈内被清空。
 
@@ -34,7 +34,7 @@ Javascript单线程任务被分为同步任务和异步任务，同步任务会�
 
 <img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/1/18/1685f03d7f88792b~tplv-t2oaga2asx-watermark.awebp">
 
-任务队列Task Queue，即队列，是一种先进先出的一种数据结构。
+任务队列 Task Queue，即队列，是一种先进先出的一种数据结构。
 
 <img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/1/18/1685f037d48da0de~tplv-t2oaga2asx-watermark.awebp">
 
