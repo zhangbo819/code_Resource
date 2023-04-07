@@ -4,7 +4,7 @@
 
 一句话总结:
 
-vue.js 采用数据劫持结合发布-订阅模式, 通过 Object.defineproperty 来劫持各个属性的 setter,getter,在数据变动时发布消息给订阅者,触发响应的监听回调
+vue.js 采用数据劫持结合发布-订阅模式, 通过 Object.defineproperty 来劫持各个属性的 setter,getter, 在数据变动时发布消息给订阅者, 触发响应的监听回调
 
 # 核心实现类
 
