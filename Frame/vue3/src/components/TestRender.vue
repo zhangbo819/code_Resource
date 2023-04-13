@@ -4,7 +4,7 @@
   <!-- <h1>{{ msg }}</h1> -->
 
   <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
+    <!-- <button type="button" @click="count++">count is {{ count }}</button> -->
   </div>
 
   <!-- Date.now() 用来检测是否重新 render -->
@@ -12,13 +12,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { watch } from "vue";
 
-defineProps<{ msg: string }>();
+const props = defineProps<{ msg?: number }>();
 
-const count = ref(0);
+// const count = ref(0);
 
-
+// watch(() => props.msg, (val) => {
+//   console.log("watch props", val);
+// });
 </script>
 
 <style scoped>

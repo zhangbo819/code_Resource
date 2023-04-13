@@ -3,6 +3,7 @@
     <!-- 和 Vue3 不同 传过去如果不用，那么就不会变 -->
     <!-- <p>TestRender</p> -->
     <!-- <p>TestRender {{ count }}</p> -->
+    {{ self }}
 
     {{ Date.now() }}
   </div>
@@ -14,12 +15,17 @@ export default {
   props: {
     count: Number,
   },
+  data() {
+    return {
+      self: 1,
+    };
+  },
   watch: {
     count() {
       // 这里能够打印，但页面不会重新渲染
-      console.log('count', this.count)
-    }
-  }
+      console.log("count", this.count);
+    },
+  },
 };
 </script>
 

@@ -24,6 +24,7 @@ export default {
   },
   created() {
     setInterval(() => {
+      // debugger
       this.count++;
     }, 2000);
   },

@@ -16,7 +16,8 @@ let timer: any;
 onMounted(() => {
   timer = setInterval(() => {
     count.value++;
-  }, 2000);
+    debugger
+  }, 1000);
 });
 
 onUnmounted(() => clearInterval(timer));
