@@ -1,6 +1,8 @@
 <!-- Vue2 -->
 
-# 原理
+# Vue 响应式原理
+
+## Vue2
 
 一句话总结:
 
@@ -13,3 +15,5 @@ vue.js 采用数据劫持结合发布-订阅模式, 通过 Object.defineproperty
 - Watcher : 观察者对象 , 实例分为渲染 watcher (render watcher),计算属性 watcher (computed watcher),侦听器 watcher（user watcher）三种
 
 <!-- TODO -->
+
+## Vue3

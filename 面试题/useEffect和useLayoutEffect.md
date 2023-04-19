@@ -6,4 +6,4 @@
 
 ## 参考链接
 
-[梳理useEffect和useLayoutEffect的原理与区别](https://juejin.cn/post/6921688408737710087)
+[梳理 useEffect 和 useLayoutEffect 的原理与区别](https://juejin.cn/post/6921688408737710087)
