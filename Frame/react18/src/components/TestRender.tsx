@@ -19,7 +19,7 @@ export const TestRender: FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const fn = () => {};
+  // const fn = () => {};
   const fnUseCb = useCallback(() => {}, []);
 
   return (
