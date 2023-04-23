@@ -5,10 +5,12 @@ specifiers:
   typescript: ^4.9.3
   vite: ^4.2.0
   vue: ^3.2.47
+  vue-draggable-next: ^2.1.1
   vue-tsc: ^1.2.0
 
 dependencies:
   vue: 3.2.47
+  vue-draggable-next: 2.1.1_vue@3.2.47
 
 devDependencies:
   '@vitejs/plugin-vue': 4.1.0_vite@4.2.1+vue@3.2.47
@@ -554,6 +556,15 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /vue-draggable-next/2.1.1_vue@3.2.47:
+    resolution: {integrity: sha512-f5lmA7t6LMaL4viR7dU30zzvqJzaKQs0ymL0Jy9UDT9uiZ2tXF3MzPzEvpTH2UODXZJkT+SnjeV1fXHMsgXLYA==}
+    peerDependencies:
+      sortablejs: ^1.14.0
+      vue: ^3.2.2
+    dependencies:
+      vue: 3.2.47
+    dev: false
 
   /vue-template-compiler/2.7.14:
     resolution: {integrity: sha512-zyA5Y3ArvVG0NacJDkkzJuPQDF8RFeRlzV2vLeSnhSpieO6LK2OVbdLPi5MPPs09Ii+gMO8nY4S3iKQxBxDmWQ==}

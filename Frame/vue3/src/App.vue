@@ -3,12 +3,15 @@
   <!-- 不传过去，不会重新渲染  -->
   <!-- <TestRender /> -->
   <!-- 传过去就会 -->
-  <TestRender :msg="count" />
+  <!-- <TestRender :msg="count" /> -->
+
+  <TestDrag />
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
 import TestRender from "./components/TestRender.vue";
+import TestDrag from "./components/TestDrag.vue";
 
 const count = ref(0);
 let timer: any;
@@ -16,7 +19,7 @@ let timer: any;
 onMounted(() => {
   timer = setInterval(() => {
     count.value++;
-    debugger
+    // debugger;
   }, 1000);
 });
 
