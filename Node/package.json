@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bes5": "babel ./test/data.js --out-file ./test/dist/data.js --presets es2015"
+    "bes5": "babel ./test/data.js --out-file ./test/dist/data.js --presets es2015",
+    "ts-node": "ts-node a.ts"
   },
   "keywords": [],
   "author": "zzb",
@@ -31,5 +32,8 @@
     "request": "^2.88.2",
     "shelljs": "^0.8.5",
     "yargs": "^13.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.1.4"
   }
 }
