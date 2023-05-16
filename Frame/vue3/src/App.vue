@@ -5,13 +5,16 @@
   <!-- 传过去就会 -->
   <!-- <TestRender :msg="count" /> -->
 
-  <TestDrag />
+  <!-- <TestDrag /> -->
+
+  <TestProps></TestProps>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
 import TestRender from "./components/TestRender.vue";
 import TestDrag from "./components/TestDrag.vue";
+import TestProps from "./components/TestProps/index.vue";
 
 const count = ref(0);
 let timer: any;
