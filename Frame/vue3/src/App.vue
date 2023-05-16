@@ -1,32 +1,15 @@
 <template>
-  <div>{{ count }}</div>
-  <!-- 不传过去，不会重新渲染  -->
-  <!-- <TestRender /> -->
-  <!-- 传过去就会 -->
-  <!-- <TestRender :msg="count" /> -->
+  <TestRender />
 
   <!-- <TestDrag /> -->
 
-  <TestProps></TestProps>
+  <!-- <TestProps /> -->
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from "vue";
-import TestRender from "./components/TestRender.vue";
+import TestRender from "./components/TestRender/index.vue";
 import TestDrag from "./components/TestDrag.vue";
 import TestProps from "./components/TestProps/index.vue";
-
-const count = ref(0);
-let timer: any;
-
-onMounted(() => {
-  timer = setInterval(() => {
-    count.value++;
-    // debugger;
-  }, 1000);
-});
-
-onUnmounted(() => clearInterval(timer));
 </script>
 
 <style scoped>
