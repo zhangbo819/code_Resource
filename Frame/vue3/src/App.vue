@@ -1,9 +1,9 @@
 <template>
-  <TestRender />
+  <!-- <TestRender /> -->
 
   <!-- <TestDrag /> -->
 
-  <!-- <TestProps /> -->
+  <TestProps />
 </template>
 
 <script setup lang="ts">
