@@ -17,3 +17,15 @@ vue.js 采用数据劫持结合发布-订阅模式, 通过 Object.defineproperty
 <!-- TODO -->
 
 ## Vue3
+
+Vue3 采用 Proxy 的方式监听，能直接代理整个对象, 对这个对象新增新的属性也会被监听到
+> 但对于对象套对象这种深层次的结构 依然需要递归遍历
+
+```js
+const data = new Proxy({ a: 1, obj: { key1: 1 } }, {
+    set(target, key, value, receiver) {
+        console.log('target, key, value, receiver', target, key, value, receiver) 
+        Reflect.set(target, key, value, receiver)
+    }
+})
+```
