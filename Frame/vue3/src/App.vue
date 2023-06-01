@@ -3,13 +3,16 @@
 
   <!-- <TestDrag /> -->
 
-  <TestProps />
+  <!-- <TestProps /> -->
+  
+  <TestForm />
 </template>
 
 <script setup lang="ts">
 import TestRender from "./components/TestRender/index.vue";
 import TestDrag from "./components/TestDrag.vue";
 import TestProps from "./components/TestProps/index.vue";
+import TestForm from "./components/TestForm/index.vue";
 </script>
 
 <style scoped>
