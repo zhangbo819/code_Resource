@@ -108,3 +108,22 @@ and the repository exists.
 ```git
 ssh-keygen -R github.com
 ```
+
+
+## 服务器拉取 github 时报错
+
+```txt
+GnuTLS recv error (-110): The TLS connection was non-properly terminated.
+```
+
+使用的命令
+
+```sh
+git clone https://github.com/*/*.git
+```
+
+解决方法，指定一个路径
+
+```sh
+git clone https://github.com/*/*.git ./a
+```

@@ -51,9 +51,9 @@
 
 * 待定 -->
 
-# 基础知识
+## 基础知识
 
-## 一、JS基础
+### 一、JS基础
 
 - [外链 - 字节跳动最爱考的前端面试题：JavaScript 基础](https://juejin.cn/post/6934500357091360781)
 - [外链 -「2021」高频前端面试题汇总之JavaScript篇（上）](https://juejin.cn/post/6940945178899251230)
@@ -620,25 +620,25 @@ If-None-Match： 再次请求服务器时，浏览器的请求报文头部会包
 - 对于频繁变动的资源，可以使用 Cache-Control: no-cache 并配合 ETag 使用，表示该资源已被缓存，但是每次都会发送请求询问资源是否更新
 - 对于代码文件来说，通常使用 Cache-Control: max-age=31536000 并配合策略缓存使用，然后对文件进行指纹处理，一旦文件名变动就会立刻下载新的文件
 
-# 框架
+## 框架
 
-## Vue响应式原理
+### Vue 响应式原理
 
 [内链 - Vue响应式原理](./面试题/Vue响应式原理.md)
 
-## Vue源码
+### Vue 源码
 
 [内链 - Vue 2.6源码学习心得](./Vue/study3/README.md)
 
-## Pinia
+### Pinia
 
 [外链 - 是时候 该让别人卷一下 Pinia 了](https://juejin.cn/post/7102816190178787359)
 
-## Vue Router原理
+### Vue Router 原理
 
 是相当于在不刷新页面的情况下，动态局部刷新Vue组件，实现*跳转*的操作
 
-### hash模式
+#### hash 模式
 
 基于location.hash，就是URL#号后面的值，这部分变化页面不会刷新，所以可以将定义的路由和参数都在#号后，达到切换路由的效果
 通过 hashchange 事件，获取当前路由，切换显示页面上的组件
@@ -663,7 +663,7 @@ location.hash="#search"
 
 ```
 
-### history模式
+#### history 模式
 
 利用 H5 的 History API，其中的 history.pushState() 和 history.repalceState()，同样可以**改变当前url的同时不刷新当前页面**
 
@@ -675,16 +675,16 @@ location.hash="#search"
 - 我们可以使用 popstate  事件来监听 url 的变化；
 - history.pushState() 或 history.replaceState() 不会触发 popstate 事件，这时我们需要手动触发页面渲染；
 
-# 工程化
+## 工程化
 
 1. 模块化
 2. 组件化
 3. 规范化
 4. 自动化
 
-## Webpack
+### Webpack
 
-## Babel
+### Babel
 
 Babel 是一个 JavaScript 编译器。他把最新版的 javascript 编译成当下可以执行的版本，简言之，利用 babel 就可以让我们在当前的项目中随意的使用这些新最新的 es6，甚至 es7 的语法。
 Babel 的三个主要处理步骤分别是： 解析（parse），转换（transform），生成（generate）。
@@ -698,9 +698,9 @@ Babel 的三个主要处理步骤分别是： 解析（parse），转换（trans
 
 还想深入了解的可以看 [外链 - Babel 原理](https://juejin.cn/post/6844903760603398151)
 
-## SSR
+### SSR
 
-### SPA单页面应用和SSR服务端渲染的区别
+#### SPA单页面应用和SSR服务端渲染的区别
 
 [SPA单页面应用和SSR服务端渲染的区别](https://blog.csdn.net/lbPro0412/article/details/107818239)
 
@@ -736,17 +736,25 @@ CSRF (Cross Site Request Forgery, 跨站请求伪造)，字面理解意思就是
 
 [外链 - 掘金1.8w字文档](https://juejin.cn/post/6872111128135073806)
 
-# 性能优化
+## 性能优化
 
 [外链 - 前端性能优化 24 条建议（2020）](https://juejin.cn/post/6892994632968306702#heading-11)
 
 [内链 - 性能优化](./面试题/性能优化.md)
 
-# 其他
+## 后端
 
-# 计算机基础
+### Nest
 
-## 算法
+#### 部分请求一直 pending
+
+- 请求没发出去，经查找发现是浏览器发送请求时 header 中不能有汉字，有的话会报错导致请求发不出去
+
+## 其他
+
+## 计算机基础
+
+### 算法
 
 1. 排序
 2. 双指针
@@ -754,21 +762,21 @@ CSRF (Cross Site Request Forgery, 跨站请求伪造)，字面理解意思就是
 4. 贪心
 5. 深搜、广搜
 
-## 数据结构
+### 数据结构
 
 [内链 - 数据结构](./数据结构/README.md)
 
-## 设计模式
+### 设计模式
 
-# 面试题
+## 面试题
 
 [内链 - 面试题](./面试题/README.md)
 
-# 学习资料
+## 学习资料
 
 [外链 - 迷茫时学习Node.js最好的方法](https://zhuanlan.zhihu.com/p/29625882)
 [外链 - 很棒的微型 npm 包 (适合学习源码)](https://github.com/parro-it/awesome-micro-npm-packages)
 
-# 参考链接
+## 参考链接
 
 [外链 - 面试分享：两年工作经验成功面试阿里P6总结](https://juejin.cn/post/6844903928442667015)

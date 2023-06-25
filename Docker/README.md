@@ -82,4 +82,34 @@ docker logs CONTAINER_ID
 
 ```
 
+- 实施查看信息
+
+> -f 实时信息
+> -t 显示时间戳
+
+```sh 
+docker logs CONTAINER_ID -f -t
+
+```
+
 (外链 - docker logs－查看docker容器日志)[https://www.jianshu.com/p/1eb1d1d3f25e]
+
+## docker compose
+
+- 构建
+
+```sh
+docker-compose build 
+```
+
+- 启动
+
+```sh
+docker-compose up -d
+```
+
+- 停止并删除容器
+
+```sh
+docker compose down
+```
