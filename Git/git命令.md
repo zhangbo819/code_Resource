@@ -19,7 +19,21 @@ git merge --no-edit
 git rm --cache -r dist
 ```
 
-## 撤销 (本地仓库 和 远程仓库) 提交的commit
+## 撤销 (本地仓库 和 远程仓库) 提交的 commit
+
+### 撤销工作区
+
+```git
+git reset --hard
+```
+
+### 撤销上一个提交
+
+```git
+git reset HEAD~1 
+```
+
+### 详情
 
 ```git
 git reset --hard <版本号>
