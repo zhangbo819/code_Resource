@@ -116,3 +116,22 @@ docker compose down
 
 ## 持久化
 
+使用 docker volume
+
+- 查询列表
+
+```sh
+docker volume ls
+```
+
+- 查看具体 volume 信息
+
+```sh
+docker volume inspect VOLUME_ID
+```
+
+- 删除
+
+```sh
+docker volume rm VOLUME_ID
+```
