@@ -1,5 +1,195 @@
 # 面试收集的各种真题
 
+## 新橙科技
+
+React Vue2 Vue3 中怎么把组件挂载到指定元素上
+> React Portals
+> Vue3 Teleport
+> Vue2
+
+```js
+export function create(Component, props) {
+  // 创建实例
+  const vm = new Vue({
+    render (h) {
+      return h(Component, { props })
+    }
+  }).$mount();
+  
+
+  // 手动挂载
+  document.body.appendChild(vm.$el)
+
+  // 销毁方法
+  const comp = vm.$children[0]
+  comp.remove = function () {
+    document.body.removeChild(vm.$el);
+    vm.$destroy();
+  }
+
+  return comp;
+}
+
+// Notice 是一个普通 Vue 组件
+
+// 其他地方调用
+const notice = create(Notice, {
+  title: 'title',
+  message: 'message',
+  duration: 1000
+})
+notice.show()
+```
+
+## 希望在线
+
+Promise 都有什么
+水平垂直居中方法有哪些
+事件循环，微任务都有哪些，nextTick 有什么用，如何实现
+call、apply、bind
+深拷贝
+Vue 组件间通信，react 呢，recoil 底层如何实现
+Vue3 比 Vue2 性能方面的一些增强有哪些
+手写 Promise.all
+
+```js
+function myPromiseAll(promises = []) {
+  return new Promise((resolve, reject) => {
+    const { length } = promises
+    const res = new Array(length)
+    let count = 0
+    promises.forEach((p, index) => {
+      p.then((r) => {
+        res[index] = r
+        count++
+        if (count === length) {
+          resolve(res)
+        }
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  })
+}
+
+const res = myPromiseAll([Promise.resolve(1), new Promise((resolve) => {
+  setTimeout(() => {
+    resolve(2)
+  }, 1000)
+})])
+
+res.then((r) => {
+  console.log(r)
+})
+```
+
+## 永鼎
+
+vue路由守卫，动态路由
+vue 计算属性 两种
+useReduce
+react最新版更新
+（框架使用偏多）
+
+## 用友
+
+自我介绍（需要重新梳理，说话说一半，抛出一些疑问的点，引导别人去问自己擅长的点）
+React 路由，两种模式
+React Class 生命周期
+React Hook 的 context 和 class 中的有什么不同
+uesEffect 中可以写 async 函数吗，为什么
+> useEffect 返回一个销毁函数, 如果 useEffect 第一个参数传入 async，返回值则变成了 Promise，会导致 react 在调用销毁函数的时候报错。
+useEffect 用的时候遇到过哪些问题，useEffect 中的闭包陷阱有了解吗
+
+## 图森未来
+
+rollup 配置
+项目如何配置 ts
+dep 和 watcher的 关系
+原型、原型链
+CSRF、跨域 cookie，用 image 请求了一个其他域名的图片会携带 cookie 吗，cookie 有请求方法限制吗
+setTimeout 和 requestAnimationFrame 、requestIdleCallback
+手写防抖
+手写一个算法题
+
+```js
+
+{
+    a: {
+        b: {
+            c: 1
+        },
+        d: 2
+    },
+    e: 3
+}
+
+{
+    'a.b.c': 1,
+    'a.d': 2,
+    'e': 3
+}
+
+```
+
+## 酷我
+
+说下项目中做过什么有难度或者是有挑战性的事情
+React Hook 和 Class 组件的区别
+Vue 双向绑定原理
+Vue2 和 Vue3 区别
+做过一些 webpack 的配置吗
+Vite 和 Webpack 的区别
+移动端适配如何做（像素），了解 vw、vh 吗
+强缓存、协商缓存
+从输入 URL 到页面渲染
+
+笔试题
+
+- 看打印
+
+```js
+const a = '100'
+a.a = 1
+console.log(a.a)  // undefined
+```
+
+- 看打印
+
+[内链 - fn_this](./DD/fn_this.js)
+
+- 实现 1 2 3，各占 1:2:3，不改变dom的情况下，让 3 在最前面
+
+```html
+<div>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+</div>
+```
+
+## 艺术宝
+
+封装了哪些公共组件
+dva graphql
+环境部署
+CI/CD
+状态管理 Recoil
+
+## 好扑
+
+聊所有的项目，做的什么内容
+css 选择器及优先级
+原型链、作用域链、闭包
+js 数据类型, 说说 Symbol
+跨域
+ts 用的多吗，说说常用的高阶类型
+redux 和 useContext 有什么区别
+react hook 用了哪些，用过哪些其他的 hook 库，看过里面怎么实现的吗，说说自己写的hook
+react 性能优化
+React.memo 第二个参数
+平时用过哪些设计模式
+
 ## Funplus
 
 区块链钱包项目我做了什么，底层有了解吗
