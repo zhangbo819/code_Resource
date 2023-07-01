@@ -19,7 +19,21 @@ git merge --no-edit
 git rm --cache -r dist
 ```
 
-## 撤销 (本地仓库 和 远程仓库) 提交的commit
+## 撤销 (本地仓库 和 远程仓库) 提交的 commit
+
+### 撤销工作区
+
+```git
+git reset --hard
+```
+
+### 撤销上一个提交
+
+```git
+git reset HEAD~1 
+```
+
+### 详情
 
 ```git
 git reset --hard <版本号>
@@ -107,4 +121,23 @@ and the repository exists.
 
 ```git
 ssh-keygen -R github.com
+```
+
+
+## 服务器拉取 github 时报错
+
+```txt
+GnuTLS recv error (-110): The TLS connection was non-properly terminated.
+```
+
+使用的命令
+
+```sh
+git clone https://github.com/*/*.git
+```
+
+解决方法，指定一个路径
+
+```sh
+git clone https://github.com/*/*.git ./a
 ```
