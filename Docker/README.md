@@ -116,7 +116,15 @@ docker compose down
 
 ## 持久化
 
+```
+volumes:
+    - myapp:/home/data
+```
+
 使用 docker volume
+> 通过 docker-compose 中配置路径，在容器中指定目录保存时，可以同步到外部
+> 当容器销毁重建时，会从指定路径中恢复，从而达到恢复数据的目的
+> 外部路径可以通过 volume inspect 查看，可以修改或者转移
 
 - 查询列表
 

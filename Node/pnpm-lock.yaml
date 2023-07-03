@@ -28,6 +28,9 @@ dependencies:
   express:
     specifier: ^4.17.2
     version: 4.18.1
+  identicon.js:
+    specifier: ^2.3.3
+    version: 2.3.3
   inquirer:
     specifier: ^6.3.1
     version: 6.5.2
@@ -1560,6 +1563,10 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       safer-buffer: 2.1.2
+    dev: false
+
+  /identicon.js@2.3.3:
+    resolution: {integrity: sha512-/qgOkXKZ7YbeCYbawJ9uQQ3XJ3uBg9VDpvHjabCAPp6aRMhjLaFAxG90+1TxzrhKaj6AYpVGrx6UXQfQA41UEA==}
     dev: false
 
   /ieee754@1.2.1:
