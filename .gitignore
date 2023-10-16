@@ -20,6 +20,15 @@ Node/fs/stream/output/*
 Node/zip_test/*.zip
 Node/myServer/*.zip
 Node/patu/image
+# Node/爬虫/data.json
+# Node/爬虫/newData.json
+Node/爬虫/*.json
+Node/爬虫/china/*.json
+Node/爬虫/mid/*.json
+Node/爬虫/world/*.json
+Node/爬虫/world/output/*.json
+Node/爬虫/world/output/*.txt
+!Node/爬虫/world/historyMap.json
 
 widget/微信文档地区名称转换/wxData.json
 widget/微信文档地区名称转换/a.txt

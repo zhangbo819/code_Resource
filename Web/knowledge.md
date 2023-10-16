@@ -1,0 +1,60 @@
+# KNOWLEDGE
+
+- 前端基础
+    - js
+    - css
+- 框架
+    - Vue
+    - React
+    - Next/Nuxt
+- 跨端
+    - React Native
+    - Flutter
+    - Taro
+    - Uniapp
+    - Electron
+- 网络
+    - http / https
+    - TCP/IP
+    - OSI stack
+    - DNS etc
+- 工程化
+    - Webpack
+    - Vite
+    - ESLint
+    - Babel
+    - CI/CD
+    - Docker
+    - Rust
+- Node
+    - Nest
+    - 脚手架
+    - 组件库
+- 后端
+    - 语言
+        - Java
+        - C/C++
+        - Python
+        - Go
+    - 数据库
+        - MySQL
+        - Nginx
+        - Radis
+    - 中间件
+- 计算机系统
+    - Unix/Linux
+    - Shell
+- 计算机知识
+    - 算法
+    - 数据结构
+    - 设计模式
+    - 计算机原理
+        - 二进制
+        - 非门、与门、或门、异或门
+        - 半加器（2个 bit 相加）、全加器(3个 bit 相加)
+        - ALU
+        - RAM
+        - CPU
+        - 指令、指令集
+        - 机器码、汇编、编程语言
+- 英文

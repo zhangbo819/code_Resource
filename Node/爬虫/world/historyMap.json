@@ -1,0 +1,3262 @@
+[
+    {
+        "name": "沃尔玛",
+        "country": "美国",
+        "industry": "综合商业"
+    },
+    {
+        "name": "亚马逊",
+        "country": "美国",
+        "industry": "互联网服务和零售"
+    },
+    {
+        "name": "国家电网有限公司",
+        "country": "中国",
+        "industry": "公用设施"
+    },
+    {
+        "name": "中国石油天然气集团有限公司",
+        "country": "中国",
+        "industry": "炼油"
+    },
+    {
+        "name": "中国石油化工集团有限公司",
+        "country": "中国",
+        "industry": "炼油"
+    },
+    {
+        "name": "沙特阿美公司",
+        "country": "沙特阿拉伯",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "苹果公司",
+        "country": "美国",
+        "industry": "计算机、办公设备"
+    },
+    {
+        "name": "大众公司",
+        "country": "德国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "中国建筑集团有限公司",
+        "country": "中国",
+        "industry": "工程与建筑"
+    },
+    {
+        "name": "CVS Health公司",
+        "country": "美国",
+        "industry": "保健：药品和其他服务"
+    },
+    {
+        "name": "联合健康集团",
+        "country": "美国",
+        "industry": "保健：保险和管理医保"
+    },
+    {
+        "name": "埃克森美孚",
+        "country": "美国",
+        "industry": "炼油"
+    },
+    {
+        "name": "丰田汽车公司",
+        "country": "日本",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "伯克希尔－哈撒韦公司",
+        "country": "美国",
+        "industry": "财产与意外保险（股份）"
+    },
+    {
+        "name": "壳牌公司",
+        "country": "英国",
+        "industry": "炼油"
+    },
+    {
+        "name": "麦克森公司",
+        "country": "美国",
+        "industry": "批发：保健"
+    },
+    {
+        "name": "Alphabet公司",
+        "country": "美国",
+        "industry": "互联网服务和零售"
+    },
+    {
+        "name": "三星电子",
+        "country": "韩国",
+        "industry": "电子、电气设备"
+    },
+    {
+        "name": "托克集团",
+        "country": "新加坡",
+        "industry": "贸易"
+    },
+    {
+        "name": "鸿海精密工业股份有限公司",
+        "country": "中国",
+        "industry": "电子、电气设备"
+    },
+    {
+        "name": "美源伯根公司",
+        "country": "美国",
+        "industry": "批发：保健"
+    },
+    {
+        "name": "中国工商银行股份有限公司",
+        "country": "中国",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "嘉能可",
+        "country": "瑞士",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "中国建设银行股份有限公司",
+        "country": "中国",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "中国平安保险",
+        "country": "中国",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "开市客",
+        "country": "美国",
+        "industry": "综合商业"
+    },
+    {
+        "name": "道达尔能源公司",
+        "country": "法国",
+        "industry": "炼油"
+    },
+    {
+        "name": "中国农业银行股份有限公司",
+        "country": "中国",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "Stellantis集团",
+        "country": "荷兰",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "信诺",
+        "country": "美国",
+        "industry": "保健：药品和其他服务"
+    },
+    {
+        "name": "中国中化控股有限责任公司",
+        "country": "中国",
+        "industry": "化学品"
+    },
+    {
+        "name": "美国电话电报公司",
+        "country": "美国",
+        "industry": "电信"
+    },
+    {
+        "name": "微软",
+        "country": "美国",
+        "industry": "计算机软件"
+    },
+    {
+        "name": "中国铁路工程集团有限公司",
+        "country": "中国",
+        "industry": "工程与建筑"
+    },
+    {
+        "name": "英国石油公司",
+        "country": "英国",
+        "industry": "炼油"
+    },
+    {
+        "name": "嘉德诺",
+        "country": "美国",
+        "industry": "批发：保健"
+    },
+    {
+        "name": "雪佛龙",
+        "country": "美国",
+        "industry": "炼油"
+    },
+    {
+        "name": "梅赛德斯-奔驰集团",
+        "country": "德国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "中国铁道建筑集团有限公司",
+        "country": "中国",
+        "industry": "工程与建筑"
+    },
+    {
+        "name": "中国人寿保险",
+        "country": "中国",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "三菱商事株式会社",
+        "country": "日本",
+        "industry": "贸易"
+    },
+    {
+        "name": "中国银行股份有限公司",
+        "country": "中国",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "家得宝",
+        "country": "美国",
+        "industry": "专业零售商：其他"
+    },
+    {
+        "name": "中国宝武钢铁集团有限公司",
+        "country": "中国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "沃博联",
+        "country": "美国",
+        "industry": "食品店和杂货店"
+    },
+    {
+        "name": "京东集团股份有限公司",
+        "country": "中国",
+        "industry": "互联网服务和零售"
+    },
+    {
+        "name": "安联保险集团",
+        "country": "德国",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "安盛",
+        "country": "法国",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "马拉松原油公司",
+        "country": "美国",
+        "industry": "炼油"
+    },
+    {
+        "name": "Elevance Health公司",
+        "country": "美国",
+        "industry": "保健：保险和管理医保"
+    },
+    {
+        "name": "克罗格",
+        "country": "美国",
+        "industry": "食品店和杂货店"
+    },
+    {
+        "name": "俄罗斯天然气工业股份公司",
+        "country": "俄罗斯",
+        "industry": "能源"
+    },
+    {
+        "name": "福特汽车公司",
+        "country": "美国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "威瑞森电信",
+        "country": "美国",
+        "industry": "电信"
+    },
+    {
+        "name": "阿里巴巴集团控股有限公司",
+        "country": "中国",
+        "industry": "互联网服务和零售"
+    },
+    {
+        "name": "富腾公司",
+        "country": "芬兰",
+        "industry": "能源"
+    },
+    {
+        "name": "中国移动通信集团有限公司",
+        "country": "中国",
+        "industry": "电信"
+    },
+    {
+        "name": "中国五矿集团有限公司",
+        "country": "中国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "宝马集团",
+        "country": "德国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "中国交通建设集团有限公司",
+        "country": "中国",
+        "industry": "工程与建筑"
+    },
+    {
+        "name": "本田汽车",
+        "country": "日本",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "德国电信",
+        "country": "德国",
+        "industry": "电信"
+    },
+    {
+        "name": "摩根大通公司",
+        "country": "美国",
+        "industry": "商业银行"
+    },
+    {
+        "name": "通用汽车公司",
+        "country": "美国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "中国海洋石油集团有限公司",
+        "country": "中国",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "Centene公司",
+        "country": "美国",
+        "industry": "保健：保险和管理医保"
+    },
+    {
+        "name": "卢克石油公司",
+        "country": "俄罗斯",
+        "industry": "炼油"
+    },
+    {
+        "name": "上海汽车集团股份有限公司",
+        "country": "中国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "山东能源集团有限公司",
+        "country": "中国",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "中国华润有限公司",
+        "country": "中国",
+        "industry": "多元化金融"
+    },
+    {
+        "name": "Meta Platforms公司",
+        "country": "美国",
+        "industry": "互联网服务和零售"
+    },
+    {
+        "name": "意大利忠利保险公司",
+        "country": "意大利",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "美国康卡斯特电信公司",
+        "country": "美国",
+        "industry": "电信"
+    },
+    {
+        "name": "Phillips 66公司",
+        "country": "美国",
+        "industry": "炼油"
+    },
+    {
+        "name": "恒力集团有限公司",
+        "country": "中国",
+        "industry": "纺织"
+    },
+    {
+        "name": "正威国际集团有限公司",
+        "country": "中国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "厦门建发集团有限公司",
+        "country": "中国",
+        "industry": "贸易"
+    },
+    {
+        "name": "日本伊藤忠商事株式会社",
+        "country": "日本",
+        "industry": "贸易"
+    },
+    {
+        "name": "中国第一汽车集团有限公司",
+        "country": "中国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "中国医药集团有限公司",
+        "country": "中国",
+        "industry": "批发：保健"
+    },
+    {
+        "name": "中国邮政集团有限公司",
+        "country": "中国",
+        "industry": "邮件、包裹及货物包装运输"
+    },
+    {
+        "name": "瓦莱罗能源公司",
+        "country": "美国",
+        "industry": "炼油"
+    },
+    {
+        "name": "日本电报电话公司",
+        "country": "日本",
+        "industry": "电信"
+    },
+    {
+        "name": "法国农业信贷银行",
+        "country": "法国",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "国家能源投资集团有限责任公司",
+        "country": "中国",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "戴尔科技公司",
+        "country": "美国",
+        "industry": "计算机、办公设备"
+    },
+    {
+        "name": "塔吉特公司",
+        "country": "美国",
+        "industry": "综合商业"
+    },
+    {
+        "name": "三井物产株式会社",
+        "country": "日本",
+        "industry": "贸易"
+    },
+    {
+        "name": "中国南方电网有限责任公司",
+        "country": "中国",
+        "industry": "公用设施"
+    },
+    {
+        "name": "意大利国家电力公司",
+        "country": "意大利",
+        "industry": "公用设施"
+    },
+    {
+        "name": "中粮集团有限公司",
+        "country": "中国",
+        "industry": "贸易"
+    },
+    {
+        "name": "现代汽车",
+        "country": "韩国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "房利美",
+        "country": "美国",
+        "industry": "多元化金融"
+    },
+    {
+        "name": "日本邮政控股公司",
+        "country": "日本",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "法国电力公司",
+        "country": "法国",
+        "industry": "公用设施"
+    },
+    {
+        "name": "华为投资控股有限公司",
+        "country": "中国",
+        "industry": "网络、通讯设备"
+    },
+    {
+        "name": "联合包裹速递服务公司",
+        "country": "美国",
+        "industry": "邮件、包裹及货物包装运输"
+    },
+    {
+        "name": "印度人寿保险公司",
+        "country": "印度",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "德国邮政敦豪集团",
+        "country": "德国",
+        "industry": "邮件、包裹及货物包装运输"
+    },
+    {
+        "name": "中国电力建设集团有限公司",
+        "country": "中国",
+        "industry": "工程与建筑"
+    },
+    {
+        "name": "美国劳氏公司",
+        "country": "美国",
+        "industry": "专业零售商：其他"
+    },
+    {
+        "name": "中国中信集团有限公司",
+        "country": "中国",
+        "industry": "多元化金融"
+    },
+    {
+        "name": "雀巢公司",
+        "country": "瑞士",
+        "industry": "食品：消费产品"
+    },
+    {
+        "name": "信实工业公司",
+        "country": "印度",
+        "industry": "炼油"
+    },
+    {
+        "name": "美国银行",
+        "country": "美国",
+        "industry": "商业银行"
+    },
+    {
+        "name": "厦门国贸控股集团有限公司",
+        "country": "中国",
+        "industry": "贸易"
+    },
+    {
+        "name": "强生",
+        "country": "美国",
+        "industry": "制药"
+    },
+    {
+        "name": "博世集团",
+        "country": "德国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "巴斯夫公司",
+        "country": "德国",
+        "industry": "化学品"
+    },
+    {
+        "name": "中国人民保险集团股份有限公司",
+        "country": "中国",
+        "industry": "财产与意外保险（股份）"
+    },
+    {
+        "name": "埃尼石油公司",
+        "country": "意大利",
+        "industry": "炼油"
+    },
+    {
+        "name": "意昂集团",
+        "country": "德国",
+        "industry": "能源"
+    },
+    {
+        "name": "日立",
+        "country": "日本",
+        "industry": "电子、电气设备"
+    },
+    {
+        "name": "Equinor公司",
+        "country": "挪威",
+        "industry": "炼油"
+    },
+    {
+        "name": "皇家阿霍德德尔海兹集团",
+        "country": "荷兰",
+        "industry": "食品店和杂货店"
+    },
+    {
+        "name": "索尼",
+        "country": "日本",
+        "industry": "电子、电气设备"
+    },
+    {
+        "name": "SK集团",
+        "country": "韩国",
+        "industry": "炼油"
+    },
+    {
+        "name": "俄罗斯石油公司",
+        "country": "俄罗斯",
+        "industry": "炼油"
+    },
+    {
+        "name": "家乐福",
+        "country": "法国",
+        "industry": "食品店和杂货店"
+    },
+    {
+        "name": "物产中大集团股份有限公司",
+        "country": "中国",
+        "industry": "贸易"
+    },
+    {
+        "name": "腾讯控股有限公司",
+        "country": "中国",
+        "industry": "互联网服务和零售"
+    },
+    {
+        "name": "东风汽车集团有限公司",
+        "country": "中国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "法国巴黎银行",
+        "country": "法国",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "ADM公司",
+        "country": "美国",
+        "industry": "食品生产"
+    },
+    {
+        "name": "绿地控股集团股份有限公司",
+        "country": "中国",
+        "industry": "房地产"
+    },
+    {
+        "name": "乐购",
+        "country": "英国",
+        "industry": "食品店和杂货店"
+    },
+    {
+        "name": "中国远洋海运集团有限公司",
+        "country": "中国",
+        "industry": "船务"
+    },
+    {
+        "name": "巴西国家石油公司",
+        "country": "巴西",
+        "industry": "炼油"
+    },
+    {
+        "name": "联邦快递",
+        "country": "美国",
+        "industry": "邮件、包裹及货物包装运输"
+    },
+    {
+        "name": "Engie集团",
+        "country": "法国",
+        "industry": "能源"
+    },
+    {
+        "name": "中国电信集团有限公司",
+        "country": "中国",
+        "industry": "电信"
+    },
+    {
+        "name": "哈门那公司",
+        "country": "美国",
+        "industry": "保健：保险和管理医保"
+    },
+    {
+        "name": "慕尼黑再保险集团",
+        "country": "德国",
+        "industry": "财产与意外保险（股份）"
+    },
+    {
+        "name": "美国富国银行",
+        "country": "美国",
+        "industry": "商业银行"
+    },
+    {
+        "name": "州立农业保险公司",
+        "country": "美国",
+        "industry": "财产与意外保险（互助）"
+    },
+    {
+        "name": "中国兵器工业集团有限公司",
+        "country": "中国",
+        "industry": "航天与防务"
+    },
+    {
+        "name": "辉瑞制药有限公司",
+        "country": "美国",
+        "industry": "制药"
+    },
+    {
+        "name": "碧桂园控股有限公司",
+        "country": "中国",
+        "industry": "房地产"
+    },
+    {
+        "name": "中国铝业集团有限公司",
+        "country": "中国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "引能仕控股株式会社",
+        "country": "日本",
+        "industry": "炼油"
+    },
+    {
+        "name": "花旗集团",
+        "country": "美国",
+        "industry": "商业银行"
+    },
+    {
+        "name": "印度石油公司",
+        "country": "印度",
+        "industry": "炼油"
+    },
+    {
+        "name": "百事公司",
+        "country": "美国",
+        "industry": "食品：消费产品"
+    },
+    {
+        "name": "中国航空工业集团有限公司",
+        "country": "中国",
+        "industry": "航天与防务"
+    },
+    {
+        "name": "英特尔公司",
+        "country": "美国",
+        "industry": "半导体、电子元件"
+    },
+    {
+        "name": "西班牙国家银行",
+        "country": "西班牙",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "Seven & I 控股公司",
+        "country": "日本",
+        "industry": "专业零售"
+    },
+    {
+        "name": "日本永旺集团",
+        "country": "日本",
+        "industry": "食品店和杂货店"
+    },
+    {
+        "name": "汇丰银行控股公司",
+        "country": "英国",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "太平洋建设集团有限公司",
+        "country": "中国",
+        "industry": "工程与建筑"
+    },
+    {
+        "name": "美国邮政",
+        "country": "美国",
+        "industry": "邮件、包裹及货物包装运输"
+    },
+    {
+        "name": "招商局集团有限公司",
+        "country": "中国",
+        "industry": "邮件、包裹及货物包装运输"
+    },
+    {
+        "name": "安赛乐米塔尔",
+        "country": "卢森堡",
+        "industry": "金属产品"
+    },
+    {
+        "name": "宝洁公司",
+        "country": "美国",
+        "industry": "家居、个人用品"
+    },
+    {
+        "name": "交通银行股份有限公司",
+        "country": "中国",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "迪奥公司",
+        "country": "法国",
+        "industry": "服装"
+    },
+    {
+        "name": "丸红株式会社",
+        "country": "日本",
+        "industry": "贸易"
+    },
+    {
+        "name": "布鲁克菲尔德资产管理公司",
+        "country": "加拿大",
+        "industry": "多元化金融"
+    },
+    {
+        "name": "西门子",
+        "country": "德国",
+        "industry": "工业机械"
+    },
+    {
+        "name": "厦门象屿集团有限公司",
+        "country": "中国",
+        "industry": "贸易"
+    },
+    {
+        "name": "日产汽车",
+        "country": "日本",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "北京汽车集团有限公司",
+        "country": "中国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "晋能控股集团有限公司",
+        "country": "中国",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "日本生命保险公司",
+        "country": "日本",
+        "industry": "人寿与健康保险（互助）"
+    },
+    {
+        "name": "通用电气公司",
+        "country": "美国",
+        "industry": "工业机械"
+    },
+    {
+        "name": "墨西哥石油公司",
+        "country": "墨西哥",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "第一生命控股有限公司",
+        "country": "日本",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "国际商业机器公司",
+        "country": "美国",
+        "industry": "信息技术服务"
+    },
+    {
+        "name": "瑞士罗氏公司",
+        "country": "瑞士",
+        "industry": "制药"
+    },
+    {
+        "name": "艾伯森公司",
+        "country": "美国",
+        "industry": "食品店和杂货店"
+    },
+    {
+        "name": "联想集团有限公司",
+        "country": "中国",
+        "industry": "计算机、办公设备"
+    },
+    {
+        "name": "丰田通商公司",
+        "country": "日本",
+        "industry": "贸易"
+    },
+    {
+        "name": "大都会人寿",
+        "country": "美国",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "招商银行股份有限公司",
+        "country": "中国",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "保德信金融集团",
+        "country": "美国",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "江西铜业集团有限公司",
+        "country": "中国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "泰国国家石油有限公司",
+        "country": "泰国",
+        "industry": "炼油"
+    },
+    {
+        "name": "万科企业股份有限公司",
+        "country": "中国",
+        "industry": "房地产"
+    },
+    {
+        "name": "苏黎世保险集团",
+        "country": "瑞士",
+        "industry": "财产与意外保险（股份）"
+    },
+    {
+        "name": "浙江荣盛控股集团有限公司",
+        "country": "中国",
+        "industry": "化学品"
+    },
+    {
+        "name": "中国保利集团有限公司",
+        "country": "中国",
+        "industry": "房地产"
+    },
+    {
+        "name": "中国太平洋保险(集团)股份有限公司",
+        "country": "中国",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "华特迪士尼公司",
+        "country": "美国",
+        "industry": "娱乐"
+    },
+    {
+        "name": "Energy Transfer公司",
+        "country": "美国",
+        "industry": "管道运输"
+    },
+    {
+        "name": "洛克希德－马丁",
+        "country": "美国",
+        "industry": "航天与防务"
+    },
+    {
+        "name": "广州汽车工业集团有限公司",
+        "country": "中国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "LG电子",
+        "country": "韩国",
+        "industry": "电子、电气设备"
+    },
+    {
+        "name": "浦项制铁控股公司",
+        "country": "韩国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "河钢集团有限公司",
+        "country": "中国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "印度石油天然气公司",
+        "country": "印度",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "房地美",
+        "country": "美国",
+        "industry": "多元化金融"
+    },
+    {
+        "name": "丰益国际",
+        "country": "新加坡",
+        "industry": "食品生产"
+    },
+    {
+        "name": "松下控股公司",
+        "country": "日本",
+        "industry": "电子、电气设备"
+    },
+    {
+        "name": "巴西JBS公司",
+        "country": "巴西",
+        "industry": "食品生产"
+    },
+    {
+        "name": "高盛",
+        "country": "美国",
+        "industry": "商业银行"
+    },
+    {
+        "name": "中国建材集团有限公司",
+        "country": "中国",
+        "industry": "建材、玻璃"
+    },
+    {
+        "name": "雷神技术公司",
+        "country": "美国",
+        "industry": "航天与防务"
+    },
+    {
+        "name": "英杰华集团",
+        "country": "英国",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "山东魏桥创业集团有限公司",
+        "country": "中国",
+        "industry": "纺织"
+    },
+    {
+        "name": "荷兰全球保险集团",
+        "country": "荷兰",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "力拓集团",
+        "country": "英国",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "惠普公司",
+        "country": "美国",
+        "industry": "计算机、办公设备"
+    },
+    {
+        "name": "英国法通保险公司",
+        "country": "英国",
+        "industry": "专业零售"
+    },
+    {
+        "name": "波音",
+        "country": "美国",
+        "industry": "航天与防务"
+    },
+    {
+        "name": "联合利华",
+        "country": "英国",
+        "industry": "家居、个人用品"
+    },
+    {
+        "name": "马士基集团",
+        "country": "丹麦",
+        "industry": "船务"
+    },
+    {
+        "name": "空中客车公司",
+        "country": "荷兰",
+        "industry": "航天与防务"
+    },
+    {
+        "name": "兴业银行股份有限公司",
+        "country": "中国",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "陕西煤业化工集团有限责任公司",
+        "country": "中国",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "中国光大集团股份公司",
+        "country": "中国",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "摩根士丹利",
+        "country": "美国",
+        "industry": "商业银行"
+    },
+    {
+        "name": "起亚公司",
+        "country": "韩国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "必和必拓集团",
+        "country": "澳大利亚",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "日本制铁集团公司",
+        "country": "日本",
+        "industry": "金属产品"
+    },
+    {
+        "name": "中国华能集团有限公司",
+        "country": "中国",
+        "industry": "能源"
+    },
+    {
+        "name": "马来西亚国家石油公司",
+        "country": "马来西亚",
+        "industry": "能源"
+    },
+    {
+        "name": "鞍钢集团有限公司",
+        "country": "中国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "万喜集团",
+        "country": "法国",
+        "industry": "工程与建筑"
+    },
+    {
+        "name": "邦吉公司",
+        "country": "美国",
+        "industry": "食品生产"
+    },
+    {
+        "name": "法国兴业银行",
+        "country": "法国",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "HCA 医疗保健公司",
+        "country": "美国",
+        "industry": "保健：医疗设施"
+    },
+    {
+        "name": "英国劳埃德银行集团",
+        "country": "英国",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "印尼国家石油公司",
+        "country": "印度尼西亚",
+        "industry": "炼油"
+    },
+    {
+        "name": "中国机械工业集团有限公司",
+        "country": "中国",
+        "industry": "工业机械"
+    },
+    {
+        "name": "台积公司",
+        "country": "中国",
+        "industry": "半导体、电子元件"
+    },
+    {
+        "name": "上海浦东发展银行股份有限公司",
+        "country": "中国",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "艾伯维",
+        "country": "美国",
+        "industry": "制药"
+    },
+    {
+        "name": "法国达飞海运集团",
+        "country": "法国",
+        "industry": "船务"
+    },
+    {
+        "name": "浙江吉利控股集团有限公司",
+        "country": "中国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "德国联邦铁路公司",
+        "country": "德国",
+        "industry": "铁路运输"
+    },
+    {
+        "name": "巴西淡水河谷公司",
+        "country": "巴西",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "加拿大鲍尔集团",
+        "country": "加拿大",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "中国电子科技集团有限公司",
+        "country": "中国",
+        "industry": "航天与防务"
+    },
+    {
+        "name": "软银集团",
+        "country": "日本",
+        "industry": "电信"
+    },
+    {
+        "name": "陶氏公司",
+        "country": "美国",
+        "industry": "化学品"
+    },
+    {
+        "name": "印度国家银行",
+        "country": "印度",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "雷诺",
+        "country": "法国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "青山控股集团有限公司",
+        "country": "中国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "百威英博",
+        "country": "比利时",
+        "industry": "饮料"
+    },
+    {
+        "name": "三菱日联金融集团",
+        "country": "日本",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "盛虹控股集团有限公司",
+        "country": "中国",
+        "industry": "化学品"
+    },
+    {
+        "name": "特斯拉",
+        "country": "美国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "中国船舶集团有限公司",
+        "country": "中国",
+        "industry": "船务"
+    },
+    {
+        "name": "Talanx公司",
+        "country": "德国",
+        "industry": "财产与意外保险（股份）"
+    },
+    {
+        "name": "美的集团股份有限公司",
+        "country": "中国",
+        "industry": "电子、电气设备"
+    },
+    {
+        "name": "好事达",
+        "country": "美国",
+        "industry": "财产与意外保险（股份）"
+    },
+    {
+        "name": "沃达丰集团",
+        "country": "英国",
+        "industry": "电信"
+    },
+    {
+        "name": "诺华公司",
+        "country": "瑞士",
+        "industry": "制药"
+    },
+    {
+        "name": "韩国电力公司",
+        "country": "韩国",
+        "industry": "公用设施"
+    },
+    {
+        "name": "日本出光兴产株式会社",
+        "country": "日本",
+        "industry": "炼油"
+    },
+    {
+        "name": "雷普索尔公司",
+        "country": "西班牙",
+        "industry": "炼油"
+    },
+    {
+        "name": "圣戈班集团",
+        "country": "法国",
+        "industry": "建材、玻璃"
+    },
+    {
+        "name": "东京海上日动火灾保险公司",
+        "country": "日本",
+        "industry": "财产与意外保险（股份）"
+    },
+    {
+        "name": "拜耳集团",
+        "country": "德国",
+        "industry": "制药"
+    },
+    {
+        "name": "美国国际集团",
+        "country": "美国",
+        "industry": "财产与意外保险（股份）"
+    },
+    {
+        "name": "德国艾德卡公司",
+        "country": "德国",
+        "industry": "批发：食品"
+    },
+    {
+        "name": "陕西延长石油",
+        "country": "中国",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "百思买",
+        "country": "美国",
+        "industry": "专业零售商：其他"
+    },
+    {
+        "name": "特许通讯公司",
+        "country": "美国",
+        "industry": "电信"
+    },
+    {
+        "name": "国家电力投资集团有限公司",
+        "country": "中国",
+        "industry": "能源"
+    },
+    {
+        "name": "西斯科公司",
+        "country": "美国",
+        "industry": "批发：食品"
+    },
+    {
+        "name": "默沙东",
+        "country": "美国",
+        "industry": "制药"
+    },
+    {
+        "name": "美国纽约人寿保险公司",
+        "country": "美国",
+        "industry": "人寿与健康保险（互助）"
+    },
+    {
+        "name": "浙江恒逸集团有限公司",
+        "country": "中国",
+        "industry": "化学品"
+    },
+    {
+        "name": "卡特彼勒",
+        "country": "美国",
+        "industry": "建筑和农业机械"
+    },
+    {
+        "name": "小米集团",
+        "country": "中国",
+        "industry": "电子、电气设备"
+    },
+    {
+        "name": "中国联合网络通信股份有限公司",
+        "country": "中国",
+        "industry": "电信"
+    },
+    {
+        "name": "埃森哲",
+        "country": "爱尔兰",
+        "industry": "信息技术服务"
+    },
+    {
+        "name": "中国能源建设集团有限公司",
+        "country": "中国",
+        "industry": "工程与建筑"
+    },
+    {
+        "name": "俄罗斯联邦储蓄银行",
+        "country": "俄罗斯",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "Orange公司",
+        "country": "法国",
+        "industry": "电信"
+    },
+    {
+        "name": "伍尔沃斯集团",
+        "country": "澳大利亚",
+        "industry": "食品店和杂货店"
+    },
+    {
+        "name": "中国民生银行股份有限公司",
+        "country": "中国",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "思科公司",
+        "country": "美国",
+        "industry": "网络、通讯设备"
+    },
+    {
+        "name": "美洲电信",
+        "country": "墨西哥",
+        "industry": "电信"
+    },
+    {
+        "name": "路易达孚集团",
+        "country": "荷兰",
+        "industry": "食品生产"
+    },
+    {
+        "name": "宏利金融",
+        "country": "加拿大",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "电装公司",
+        "country": "日本",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "住友商事",
+        "country": "日本",
+        "industry": "贸易"
+    },
+    {
+        "name": "TJX公司",
+        "country": "美国",
+        "industry": "专业零售商：服装"
+    },
+    {
+        "name": "日本KDDI电信公司",
+        "country": "日本",
+        "industry": "电信"
+    },
+    {
+        "name": "法国BPCE银行集团",
+        "country": "法国",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "大众超级市场公司",
+        "country": "美国",
+        "industry": "食品店和杂货店"
+    },
+    {
+        "name": "康菲石油公司",
+        "country": "美国",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "美国利宝互助保险集团",
+        "country": "美国",
+        "industry": "财产与意外保险（股份）"
+    },
+    {
+        "name": "前进保险公司",
+        "country": "美国",
+        "industry": "财产与意外保险（股份）"
+    },
+    {
+        "name": "英格卡集团",
+        "country": "荷兰",
+        "industry": "专业零售"
+    },
+    {
+        "name": "友邦保险控股有限公司",
+        "country": "中国",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "美国全国保险公司",
+        "country": "美国",
+        "industry": "财产与意外保险（互助）"
+    },
+    {
+        "name": "东京电力公司",
+        "country": "日本",
+        "industry": "公用设施"
+    },
+    {
+        "name": "江苏沙钢集团有限公司",
+        "country": "中国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "泰森食品",
+        "country": "美国",
+        "industry": "食品生产"
+    },
+    {
+        "name": "EXOR集团",
+        "country": "荷兰",
+        "industry": "多元化金融"
+    },
+    {
+        "name": "葛兰素史克集团",
+        "country": "英国",
+        "industry": "制药"
+    },
+    {
+        "name": "巴拉特石油公司",
+        "country": "印度",
+        "industry": "炼油"
+    },
+    {
+        "name": "瑞士再保险股份有限公司",
+        "country": "瑞士",
+        "industry": "财产与意外保险（股份）"
+    },
+    {
+        "name": "中国中煤能源集团有限公司",
+        "country": "中国",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "意大利联合圣保罗银行",
+        "country": "意大利",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "苏商建设集团有限公司",
+        "country": "中国",
+        "industry": "工程与建筑"
+    },
+    {
+        "name": "西班牙电话公司",
+        "country": "西班牙",
+        "industry": "电信"
+    },
+    {
+        "name": "百时美施贵宝公司",
+        "country": "美国",
+        "industry": "制药"
+    },
+    {
+        "name": "浙江省交通投资集团有限公司",
+        "country": "中国",
+        "industry": "运输及物流"
+    },
+    {
+        "name": "赛诺菲",
+        "country": "法国",
+        "industry": "制药"
+    },
+    {
+        "name": "Iberdrola公司",
+        "country": "西班牙",
+        "industry": "公用设施"
+    },
+    {
+        "name": "利安德巴塞尔工业公司",
+        "country": "荷兰",
+        "industry": "化学品"
+    },
+    {
+        "name": "韩华集团",
+        "country": "韩国",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "加拿大皇家银行",
+        "country": "加拿大",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "Alimentation Couche-Tard公司",
+        "country": "加拿大",
+        "industry": "专业零售"
+    },
+    {
+        "name": "MS&AD保险集团控股有限公司",
+        "country": "日本",
+        "industry": "财产与意外保险（股份）"
+    },
+    {
+        "name": "采埃孚",
+        "country": "德国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "和硕",
+        "country": "中国",
+        "industry": "电子、电气设备"
+    },
+    {
+        "name": "德国大陆集团",
+        "country": "德国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "耐克公司",
+        "country": "美国",
+        "industry": "服装"
+    },
+    {
+        "name": "法国布伊格集团",
+        "country": "法国",
+        "industry": "工程与建筑"
+    },
+    {
+        "name": "中国兵器装备集团公司",
+        "country": "中国",
+        "industry": "航天与防务"
+    },
+    {
+        "name": "费森尤斯集团",
+        "country": "德国",
+        "industry": "保健：医疗设施"
+    },
+    {
+        "name": "仁宝电脑",
+        "country": "中国",
+        "industry": "计算机、办公设备"
+    },
+    {
+        "name": "迪尔公司",
+        "country": "美国",
+        "industry": "建筑和农业机械"
+    },
+    {
+        "name": "乔治威斯顿公司",
+        "country": "加拿大",
+        "industry": "食品店和杂货店"
+    },
+    {
+        "name": "美国运通公司",
+        "country": "美国",
+        "industry": "多元化金融"
+    },
+    {
+        "name": "上海建工集团股份有限公司",
+        "country": "中国",
+        "industry": "工程与建筑"
+    },
+    {
+        "name": "中国航天科技集团有限公司",
+        "country": "中国",
+        "industry": "航天与防务"
+    },
+    {
+        "name": "沃尔沃集团",
+        "country": "瑞典",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "中国电子信息产业集团有限公司",
+        "country": "中国",
+        "industry": "电子、电气设备"
+    },
+    {
+        "name": "雅培公司",
+        "country": "美国",
+        "industry": "医疗器材和设备"
+    },
+    {
+        "name": "中国华电集团有限公司",
+        "country": "中国",
+        "industry": "公用设施"
+    },
+    {
+        "name": "StoneX集团",
+        "country": "美国",
+        "industry": "多元化金融"
+    },
+    {
+        "name": "首钢集团有限公司",
+        "country": "中国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "Plains GP Holdings公司",
+        "country": "美国",
+        "industry": "管道运输"
+    },
+    {
+        "name": "奥地利石油天然气集团",
+        "country": "奥地利",
+        "industry": "炼油"
+    },
+    {
+        "name": "英美资源集团",
+        "country": "英国",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "山东钢铁集团有限公司",
+        "country": "中国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "伊塔乌联合银行控股公司",
+        "country": "巴西",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "中国太平保险集团有限责任公司",
+        "country": "中国",
+        "industry": "人寿与健康保险（互助）"
+    },
+    {
+        "name": "法国国营铁路集团",
+        "country": "法国",
+        "industry": "铁路运输"
+    },
+    {
+        "name": "杭州钢铁集团有限公司",
+        "country": "中国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "德国中央合作银行",
+        "country": "德国",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "安达保险公司",
+        "country": "瑞士",
+        "industry": "财产与意外保险（股份）"
+    },
+    {
+        "name": "金川集团股份有限公司",
+        "country": "中国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "法国邮政",
+        "country": "法国",
+        "industry": "邮件、包裹及货物包装运输"
+    },
+    {
+        "name": "中国航天科工集团有限公司",
+        "country": "中国",
+        "industry": "航天与防务"
+    },
+    {
+        "name": "森宝利公司",
+        "country": "英国",
+        "industry": "食品店和杂货店"
+    },
+    {
+        "name": "Enterprise Products Partners公司",
+        "country": "美国",
+        "industry": "管道运输"
+    },
+    {
+        "name": "蒂森克虏伯",
+        "country": "德国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "瑞银集团",
+        "country": "瑞士",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "泰康保险集团股份有限公司",
+        "country": "中国",
+        "industry": "人寿与健康保险（互助）"
+    },
+    {
+        "name": "美国教师退休基金会",
+        "country": "美国",
+        "industry": "人寿与健康保险（互助）"
+    },
+    {
+        "name": "甲骨文公司",
+        "country": "美国",
+        "industry": "计算机软件"
+    },
+    {
+        "name": "广达电脑公司",
+        "country": "中国",
+        "industry": "计算机、办公设备"
+    },
+    {
+        "name": "德意志银行",
+        "country": "德国",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "三菱电机股份有限公司",
+        "country": "日本",
+        "industry": "电子、电气设备"
+    },
+    {
+        "name": "西班牙对外银行",
+        "country": "西班牙",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "安徽海螺集团有限责任公司",
+        "country": "中国",
+        "industry": "建材、玻璃"
+    },
+    {
+        "name": "大和房建",
+        "country": "日本",
+        "industry": "工程与建筑"
+    },
+    {
+        "name": "赛默飞世尔科技公司",
+        "country": "美国",
+        "industry": "科学、摄影和控制设备"
+    },
+    {
+        "name": "新希望控股集团有限公司",
+        "country": "中国",
+        "industry": "食品生产"
+    },
+    {
+        "name": "KOC集团",
+        "country": "土耳其",
+        "industry": "能源"
+    },
+    {
+        "name": "日本钢铁工程控股公司",
+        "country": "日本",
+        "industry": "金属产品"
+    },
+    {
+        "name": "可口可乐公司",
+        "country": "美国",
+        "industry": "饮料"
+    },
+    {
+        "name": "广州市建筑集团有限公司",
+        "country": "中国",
+        "industry": "工程与建筑"
+    },
+    {
+        "name": "通用动力",
+        "country": "美国",
+        "industry": "航天与防务"
+    },
+    {
+        "name": "CHS公司",
+        "country": "美国",
+        "industry": "食品生产"
+    },
+    {
+        "name": "北京建龙重工集团有限公司",
+        "country": "中国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "中国核工业集团有限公司",
+        "country": "中国",
+        "industry": "能源"
+    },
+    {
+        "name": "西班牙ACS集团",
+        "country": "西班牙",
+        "industry": "工程与建筑"
+    },
+    {
+        "name": "多伦多道明银行",
+        "country": "加拿大",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "欧莱雅",
+        "country": "法国",
+        "industry": "家居、个人用品"
+    },
+    {
+        "name": "巴登-符滕堡州能源公司",
+        "country": "德国",
+        "industry": "公用设施"
+    },
+    {
+        "name": "LG化学公司",
+        "country": "韩国",
+        "industry": "化学品"
+    },
+    {
+        "name": "印度塔塔汽车公司",
+        "country": "印度",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "ELO集团",
+        "country": "法国",
+        "industry": "食品店和杂货店"
+    },
+    {
+        "name": "深圳市投资控股有限公司",
+        "country": "中国",
+        "industry": "多元化金融"
+    },
+    {
+        "name": "SK海力士公司",
+        "country": "韩国",
+        "industry": "半导体、电子元件"
+    },
+    {
+        "name": "巴克莱",
+        "country": "英国",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "Enbridge公司",
+        "country": "加拿大",
+        "industry": "管道运输"
+    },
+    {
+        "name": "国泰金融控股股份有限公司",
+        "country": "中国",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "日本明治安田生命保险公司",
+        "country": "日本",
+        "industry": "人寿与健康保险（互助）"
+    },
+    {
+        "name": "意大利邮政集团",
+        "country": "意大利",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "联合服务汽车协会",
+        "country": "美国",
+        "industry": "财产与意外保险（股份）"
+    },
+    {
+        "name": "Finatis公司",
+        "country": "法国",
+        "industry": "食品店和杂货店"
+    },
+    {
+        "name": "阿斯利康",
+        "country": "英国",
+        "industry": "制药"
+    },
+    {
+        "name": "KB金融集团",
+        "country": "韩国",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "损保控股有限公司",
+        "country": "日本",
+        "industry": "财产与意外保险（股份）"
+    },
+    {
+        "name": "Cenovus Energy公司",
+        "country": "加拿大",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "中国中车集团有限公司",
+        "country": "中国",
+        "industry": "工业机械"
+    },
+    {
+        "name": "敬业集团有限公司",
+        "country": "中国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "西北互助人寿保险公司",
+        "country": "美国",
+        "industry": "人寿与健康保险（互助）"
+    },
+    {
+        "name": "日本三井住友金融集团",
+        "country": "日本",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "纽柯",
+        "country": "美国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "现代摩比斯公司",
+        "country": "韩国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "Exelon公司",
+        "country": "美国",
+        "industry": "公用事业：天然气和电力"
+    },
+    {
+        "name": "麦格纳国际",
+        "country": "加拿大",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "长江和记实业有限公司",
+        "country": "中国",
+        "industry": "专业零售"
+    },
+    {
+        "name": "菲尼克斯医药公司",
+        "country": "德国",
+        "industry": "批发：保健"
+    },
+    {
+        "name": "万通互惠理财公司",
+        "country": "美国",
+        "industry": "人寿与健康保险（互助）"
+    },
+    {
+        "name": "德讯集团",
+        "country": "瑞士",
+        "industry": "运输及物流"
+    },
+    {
+        "name": "怡和集团",
+        "country": "中国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "Raízen公司",
+        "country": "巴西",
+        "industry": "炼油"
+    },
+    {
+        "name": "美国诺斯洛普格拉曼公司",
+        "country": "美国",
+        "industry": "航天与防务"
+    },
+    {
+        "name": "铜陵有色金属集团控股有限公司",
+        "country": "中国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "三菱化学控股",
+        "country": "日本",
+        "industry": "化学品"
+    },
+    {
+        "name": "3M公司",
+        "country": "美国",
+        "industry": "化学品"
+    },
+    {
+        "name": "英美烟草集团",
+        "country": "英国",
+        "industry": "烟草"
+    },
+    {
+        "name": "日本瑞穗金融集团",
+        "country": "日本",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "海尔智家股份有限公司",
+        "country": "中国",
+        "industry": "电子、电气设备"
+    },
+    {
+        "name": "新加坡奥兰集团",
+        "country": "新加坡",
+        "industry": "批发：食品"
+    },
+    {
+        "name": "紫金矿业集团股份有限公司",
+        "country": "中国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "贺利氏控股集团",
+        "country": "德国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "爱信",
+        "country": "日本",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "Travelers公司",
+        "country": "美国",
+        "industry": "财产与意外保险（股份）"
+    },
+    {
+        "name": "中国大唐集团有限公司",
+        "country": "中国",
+        "industry": "能源"
+    },
+    {
+        "name": "龙湖集团控股有限公司",
+        "country": "中国",
+        "industry": "房地产"
+    },
+    {
+        "name": "蜀道投资集团有限责任公司",
+        "country": "中国",
+        "industry": "工程与建筑"
+    },
+    {
+        "name": "中国航空油料集团有限公司",
+        "country": "中国",
+        "industry": "贸易"
+    },
+    {
+        "name": "艾睿电子",
+        "country": "美国",
+        "industry": "批发：电子、办公设备"
+    },
+    {
+        "name": "新华人寿保险股份有限公司",
+        "country": "中国",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "霍尼韦尔国际公司",
+        "country": "美国",
+        "industry": "电子、电气设备"
+    },
+    {
+        "name": "日本三菱重工业股份有限公司",
+        "country": "日本",
+        "industry": "工业机械"
+    },
+    {
+        "name": "Dollar General公司",
+        "country": "美国",
+        "industry": "专业零售商：其他"
+    },
+    {
+        "name": "施耐德电气",
+        "country": "法国",
+        "industry": "电子、电气设备"
+    },
+    {
+        "name": "湖南钢铁集团有限公司",
+        "country": "中国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "潞安化工集团有限公司",
+        "country": "中国",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "西门子能源",
+        "country": "德国",
+        "industry": "能源"
+    },
+    {
+        "name": "波兰国营石油公司",
+        "country": "波兰",
+        "industry": "炼油"
+    },
+    {
+        "name": "荷兰国际集团",
+        "country": "荷兰",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "菲尼克斯集团控股公司",
+        "country": "英国",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "法国威立雅环境集团",
+        "country": "法国",
+        "industry": "公用设施"
+    },
+    {
+        "name": "Coop集团",
+        "country": "瑞士",
+        "industry": "食品店和杂货店"
+    },
+    {
+        "name": "高通",
+        "country": "美国",
+        "industry": "半导体、电子元件"
+    },
+    {
+        "name": "上海医药集团股份有限公司",
+        "country": "中国",
+        "industry": "批发：保健"
+    },
+    {
+        "name": "山西焦煤集团有限责任公司",
+        "country": "中国",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "CarMax公司",
+        "country": "美国",
+        "industry": "汽车零售和服务"
+    },
+    {
+        "name": "SAP公司",
+        "country": "德国",
+        "industry": "计算机软件"
+    },
+    {
+        "name": "新疆中泰",
+        "country": "中国",
+        "industry": "化学品"
+    },
+    {
+        "name": "塔塔钢铁",
+        "country": "印度",
+        "industry": "金属产品"
+    },
+    {
+        "name": "比亚迪股份有限公司",
+        "country": "中国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "Rajesh Exports公司",
+        "country": "印度",
+        "industry": "贸易"
+    },
+    {
+        "name": "Inditex公司",
+        "country": "西班牙",
+        "industry": "专业零售"
+    },
+    {
+        "name": "巴西布拉德斯科银行",
+        "country": "巴西",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "富邦金融控股股份有限公司",
+        "country": "中国",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "顺丰控股股份有限公司",
+        "country": "中国",
+        "industry": "运输及物流"
+    },
+    {
+        "name": "住友生命保险公司",
+        "country": "日本",
+        "industry": "人寿与健康保险（互助）"
+    },
+    {
+        "name": "第一资本金融公司",
+        "country": "美国",
+        "industry": "商业银行"
+    },
+    {
+        "name": "佳能",
+        "country": "日本",
+        "industry": "计算机、办公设备"
+    },
+    {
+        "name": "广西投资集团有限公司",
+        "country": "中国",
+        "industry": "多元化金融"
+    },
+    {
+        "name": "富士通",
+        "country": "日本",
+        "industry": "信息技术服务"
+    },
+    {
+        "name": "云南省投资控股集团有限公司",
+        "country": "中国",
+        "industry": "多元化金融"
+    },
+    {
+        "name": "武田药品公司",
+        "country": "日本",
+        "industry": "制药"
+    },
+    {
+        "name": "铃木汽车",
+        "country": "日本",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "Migros集团",
+        "country": "瑞士",
+        "industry": "食品店和杂货店"
+    },
+    {
+        "name": "TD Synnex公司",
+        "country": "美国",
+        "industry": "批发：电子、办公设备"
+    },
+    {
+        "name": "潍柴动力股份有限公司",
+        "country": "中国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "新疆广汇实业投资",
+        "country": "中国",
+        "industry": "贸易"
+    },
+    {
+        "name": "菲利普－莫里斯国际公司",
+        "country": "美国",
+        "industry": "烟草"
+    },
+    {
+        "name": "全球燃料服务公司",
+        "country": "美国",
+        "industry": "能源"
+    },
+    {
+        "name": "加拿大丰业银行",
+        "country": "加拿大",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "森科能源公司",
+        "country": "加拿大",
+        "industry": "炼油"
+    },
+    {
+        "name": "山东高速集团有限公司",
+        "country": "中国",
+        "industry": "运输及物流"
+    },
+    {
+        "name": "海亮集团有限公司",
+        "country": "中国",
+        "industry": "贸易"
+    },
+    {
+        "name": "CRH公司",
+        "country": "爱尔兰",
+        "industry": "建材、玻璃"
+    },
+    {
+        "name": "Investor公司",
+        "country": "瑞典",
+        "industry": "多元化金融"
+    },
+    {
+        "name": "纬创集团",
+        "country": "中国",
+        "industry": "计算机、办公设备"
+    },
+    {
+        "name": "林德集团",
+        "country": "英国",
+        "industry": "化学品"
+    },
+    {
+        "name": "三星人寿保险",
+        "country": "韩国",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "巴西银行",
+        "country": "巴西",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "成都兴城投资集团有限公司",
+        "country": "中国",
+        "industry": "工程与建筑"
+    },
+    {
+        "name": "广州医药集团有限公司",
+        "country": "中国",
+        "industry": "制药"
+    },
+    {
+        "name": "Performance Food Group公司",
+        "country": "美国",
+        "industry": "批发：食品"
+    },
+    {
+        "name": "上海德龙钢铁集团有限公司",
+        "country": "中国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "GS加德士",
+        "country": "韩国",
+        "industry": "炼油"
+    },
+    {
+        "name": "Mercadona公司",
+        "country": "西班牙",
+        "industry": "食品店和杂货店"
+    },
+    {
+        "name": "CJ集团",
+        "country": "韩国",
+        "industry": "食品生产"
+    },
+    {
+        "name": "美敦力公司",
+        "country": "爱尔兰",
+        "industry": "医疗器材和设备"
+    },
+    {
+        "name": "三星C&T公司",
+        "country": "韩国",
+        "industry": "贸易"
+    },
+    {
+        "name": "台湾中油股份有限公司",
+        "country": "中国",
+        "industry": "炼油"
+    },
+    {
+        "name": "住友电工",
+        "country": "日本",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "X5零售集团",
+        "country": "荷兰",
+        "industry": "食品店和杂货店"
+    },
+    {
+        "name": "达美航空",
+        "country": "美国",
+        "industry": "航空"
+    },
+    {
+        "name": "美国航空集团",
+        "country": "美国",
+        "industry": "航空"
+    },
+    {
+        "name": "东芝",
+        "country": "日本",
+        "industry": "电子、电气设备"
+    },
+    {
+        "name": "Netflix公司",
+        "country": "美国",
+        "industry": "娱乐"
+    },
+    {
+        "name": "麦德龙",
+        "country": "德国",
+        "industry": "批发：食品"
+    },
+    {
+        "name": "派拉蒙环球公司",
+        "country": "美国",
+        "industry": "娱乐"
+    },
+    {
+        "name": "普利司通",
+        "country": "日本",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "US Foods Holding公司",
+        "country": "美国",
+        "industry": "批发：食品"
+    },
+    {
+        "name": "丹纳赫公司",
+        "country": "美国",
+        "industry": "医疗器材和设备"
+    },
+    {
+        "name": "珠海格力电器股份有限公司",
+        "country": "中国",
+        "industry": "电子、电气设备"
+    },
+    {
+        "name": "霍尔希姆公司",
+        "country": "瑞士",
+        "industry": "包装与容器"
+    },
+    {
+        "name": "Medipal控股公司",
+        "country": "日本",
+        "industry": "批发：保健"
+    },
+    {
+        "name": "捷普公司",
+        "country": "美国",
+        "industry": "半导体、电子元件"
+    },
+    {
+        "name": "任仕达公司",
+        "country": "荷兰",
+        "industry": "多元化外包服务"
+    },
+    {
+        "name": "星巴克公司",
+        "country": "美国",
+        "industry": "食品：饮食服务业"
+    },
+    {
+        "name": "Coles集团",
+        "country": "澳大利亚",
+        "industry": "食品店和杂货店"
+    },
+    {
+        "name": "瑞士信贷",
+        "country": "瑞士",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "莱茵集团",
+        "country": "德国",
+        "industry": "公用设施"
+    },
+    {
+        "name": "DSV公司",
+        "country": "丹麦",
+        "industry": "邮件、包裹及货物包装运输"
+    },
+    {
+        "name": "瑞士ABB集团",
+        "country": "瑞士",
+        "industry": "工业机械"
+    },
+    {
+        "name": "亿滋国际",
+        "country": "美国",
+        "industry": "食品：消费产品"
+    },
+    {
+        "name": "达能",
+        "country": "法国",
+        "industry": "食品：消费产品"
+    },
+    {
+        "name": "优美科公司",
+        "country": "比利时",
+        "industry": "化学品"
+    },
+    {
+        "name": "Uniper公司",
+        "country": "德国",
+        "industry": "能源"
+    },
+    {
+        "name": "中国平安保险（集团）股份有限公司",
+        "country": "中国",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "信诺集团",
+        "country": "美国",
+        "industry": "保健：药品和其他服务"
+    },
+    {
+        "name": "中国人寿保险（集团）公司",
+        "country": "中国",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "博枫公司",
+        "country": "加拿大",
+        "industry": "多元化金融"
+    },
+    {
+        "name": "Seven &amp; I 控股公司",
+        "country": "日本",
+        "industry": "专业零售"
+    },
+    {
+        "name": "高盛集团",
+        "country": "美国",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "World Kinect公司",
+        "country": "美国",
+        "industry": "能源"
+    },
+    {
+        "name": "戴姆勒卡车控股股份公司",
+        "country": "德国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "陕西延长石油（集团）有限责任公司",
+        "country": "中国",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "宁德时代新能源科技股份有限公司",
+        "country": "中国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "Energi Danmark集团",
+        "country": "丹麦",
+        "industry": "能源"
+    },
+    {
+        "name": "HD现代公司",
+        "country": "韩国",
+        "industry": "炼油"
+    },
+    {
+        "name": "PBF Energy公司",
+        "country": "美国",
+        "industry": "炼油"
+    },
+    {
+        "name": "联合航空控股公司",
+        "country": "美国",
+        "industry": "航空"
+    },
+    {
+        "name": "德迅集团",
+        "country": "瑞士",
+        "industry": "运输及物流"
+    },
+    {
+        "name": "韩国天然气公司",
+        "country": "韩国",
+        "industry": "公用设施"
+    },
+    {
+        "name": "MS&AD保险集团控股有限公司",
+        "country": "日本",
+        "industry": "财产与意外保险（股份）"
+    },
+    {
+        "name": "HF Sinclair公司",
+        "country": "美国",
+        "industry": "炼油"
+    },
+    {
+        "name": "Nutrien公司",
+        "country": "加拿大",
+        "industry": "食品生产"
+    },
+    {
+        "name": "哥伦比亚国家石油公司",
+        "country": "哥伦比亚",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "荷兰GasTerra能源公司",
+        "country": "荷兰",
+        "industry": "公用设施"
+    },
+    {
+        "name": "西方石油公司",
+        "country": "美国",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "巴西联邦储蓄银行",
+        "country": "巴西",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "新疆中泰（集团）有限责任公司",
+        "country": "中国",
+        "industry": "化学品"
+    },
+    {
+        "name": "广州工业投资控股集团有限公司",
+        "country": "中国",
+        "industry": "工业机械"
+    },
+    {
+        "name": "赫伯罗特公司",
+        "country": "德国",
+        "industry": "船务"
+    },
+    {
+        "name": "西班牙能源集团",
+        "country": "西班牙",
+        "industry": "公用设施"
+    },
+    {
+        "name": "广东省广新控股集团有限公司",
+        "country": "中国",
+        "industry": "多元化金融"
+    },
+    {
+        "name": "Vibra Energia公司",
+        "country": "巴西",
+        "industry": "炼油"
+    },
+    {
+        "name": "陕西建工控股集团有限公司",
+        "country": "中国",
+        "industry": "工程与建筑"
+    },
+    {
+        "name": "蒙特利尔银行",
+        "country": "加拿大",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "汉莎集团",
+        "country": "德国",
+        "industry": "航空"
+    },
+    {
+        "name": "三菱化学集团",
+        "country": "日本",
+        "industry": "化学品"
+    },
+    {
+        "name": "Magnit公司",
+        "country": "俄罗斯",
+        "industry": "食品店和杂货店"
+    },
+    {
+        "name": "华纳兄弟探索公司",
+        "country": "美国",
+        "industry": "娱乐"
+    },
+    {
+        "name": "莱纳公司",
+        "country": "美国",
+        "industry": "房屋建筑商"
+    },
+    {
+        "name": "Fomento Económico Mexicano公司",
+        "country": "墨西哥",
+        "industry": "饮料"
+    },
+    {
+        "name": "D.R. Horton公司",
+        "country": "美国",
+        "industry": "房屋建筑商"
+    },
+    {
+        "name": "三星C&amp;T公司",
+        "country": "韩国",
+        "industry": "贸易"
+    },
+    {
+        "name": "Cheniere Energy公司",
+        "country": "美国",
+        "industry": "管道运输"
+    },
+    {
+        "name": "博通公司",
+        "country": "美国",
+        "industry": "半导体、电子元件"
+    },
+    {
+        "name": "美团",
+        "country": "中国",
+        "industry": "互联网服务和零售"
+    },
+    {
+        "name": "康帕斯集团",
+        "country": "英国",
+        "industry": "食品：饮食服务业"
+    },
+    {
+        "name": "Canadian Natural Resources公司",
+        "country": "加拿大",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "Molina Healthcare公司",
+        "country": "美国",
+        "industry": "保健：保险和管理医保"
+    },
+    {
+        "name": "通威集团有限公司",
+        "country": "中国",
+        "industry": "能源"
+    },
+    {
+        "name": "Uber Technologies公司",
+        "country": "美国",
+        "industry": "互联网服务和零售"
+    },
+    {
+        "name": "立讯精密工业股份有限公司",
+        "country": "中国",
+        "industry": "电子、电气设备"
+    },
+    {
+        "name": "NRG Energy公司",
+        "country": "美国",
+        "industry": "能源"
+    },
+    {
+        "name": "法国液化空气集团",
+        "country": "法国",
+        "industry": "化学品"
+    },
+    {
+        "name": "赛富时",
+        "country": "美国",
+        "industry": "计算机软件"
+    },
+    {
+        "name": "新疆广汇实业投资（集团）有限责任公司",
+        "country": "中国",
+        "industry": "贸易"
+    },
+    {
+        "name": "CVSHealth公司",
+        "country": "美国",
+        "industry": "互联网服务和零售"
+    },
+    {
+        "name": "荷兰皇家壳牌石油公司",
+        "country": "荷兰",
+        "industry": "医疗器材和设备"
+    },
+    {
+        "name": "戴姆勒股份公司",
+        "country": "德国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "Anthem公司",
+        "country": "美国",
+        "industry": "互联网服务和零售"
+    },
+    {
+        "name": "东风汽车公司集团有限公司",
+        "country": "中国",
+        "industry": "贸易"
+    },
+    {
+        "name": "Facebook公司",
+        "country": "美国",
+        "industry": "互联网服务和零售"
+    },
+    {
+        "name": "中国恒大集团",
+        "country": "中国",
+        "industry": "房地产"
+    },
+    {
+        "name": "Phillips66公司",
+        "country": "美国",
+        "industry": "互联网服务和零售"
+    },
+    {
+        "name": "中国中化集团有限公司",
+        "country": "中国",
+        "industry": "贸易"
+    },
+    {
+        "name": "松下",
+        "country": "日本",
+        "industry": "电子、电气设备"
+    },
+    {
+        "name": "中国化工集团有限公司",
+        "country": "中国",
+        "industry": "化学品"
+    },
+    {
+        "name": "英国保诚集团",
+        "country": "英国",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "Seven&I控股公司",
+        "country": "日本",
+        "industry": "专业零售"
+    },
+    {
+        "name": "AlimentationCouche-Tard公司",
+        "country": "加拿大",
+        "industry": "互联网服务和零售"
+    },
+    {
+        "name": "HCA医疗保健公司",
+        "country": "美国",
+        "industry": "保健：医疗设施"
+    },
+    {
+        "name": "友邦保险集团有限公司",
+        "country": "中国",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "韩国浦项制铁公司",
+        "country": "韩国",
+        "industry": "金属产品"
+    },
+    {
+        "name": "英国葛兰素史克公司",
+        "country": "英国",
+        "industry": "制药"
+    },
+    {
+        "name": "EnergyTransfer公司",
+        "country": "美国",
+        "industry": "互联网服务和零售"
+    },
+    {
+        "name": "苏宁易购集团股份有限公司",
+        "country": "中国",
+        "industry": "专业零售"
+    },
+    {
+        "name": "阳光龙净集团有限公司",
+        "country": "中国",
+        "industry": "多元化金融"
+    },
+    {
+        "name": "RajeshExports公司",
+        "country": "印度",
+        "industry": "互联网服务和零售"
+    },
+    {
+        "name": "中国兵器装备集团有限公司",
+        "country": "中国",
+        "industry": "航天与防务"
+    },
+    {
+        "name": "雪松控股集团有限公司",
+        "country": "中国",
+        "industry": "贸易"
+    },
+    {
+        "name": "DollarGeneral公司",
+        "country": "美国",
+        "industry": "互联网服务和零售"
+    },
+    {
+        "name": "融创中国控股有限公司",
+        "country": "中国",
+        "industry": "房地产"
+    },
+    {
+        "name": "加拿大永明金融集团",
+        "country": "加拿大",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "关西电力",
+        "country": "日本",
+        "industry": "公用设施"
+    },
+    {
+        "name": "中国通用技术(集团)控股有限责任公司",
+        "country": "中国",
+        "industry": "工程与建筑"
+    },
+    {
+        "name": "日本电气公司",
+        "country": "日本",
+        "industry": "信息技术服务"
+    },
+    {
+        "name": "英国电信集团",
+        "country": "英国",
+        "industry": "电信"
+    },
+    {
+        "name": "日本中部电力",
+        "country": "日本",
+        "industry": "公用设施"
+    },
+    {
+        "name": "Financièredel'Odet公司",
+        "country": "法国",
+        "industry": "娱乐"
+    },
+    {
+        "name": "EnterpriseProductsPartners公司",
+        "country": "美国",
+        "industry": "互联网服务和零售"
+    },
+    {
+        "name": "马自达汽车株式会社",
+        "country": "日本",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "慧与公司",
+        "country": "美国",
+        "industry": "计算机、办公设备"
+    },
+    {
+        "name": "Achmea公司",
+        "country": "荷兰",
+        "industry": "人寿与健康保险（互助）"
+    },
+    {
+        "name": "UnitedNaturalFoods公司",
+        "country": "美国",
+        "industry": "互联网服务和零售"
+    },
+    {
+        "name": "英国森特理克集团",
+        "country": "英国",
+        "industry": "公用设施"
+    },
+    {
+        "name": "斯巴鲁公司",
+        "country": "日本",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "德国勃林格殷格翰公司",
+        "country": "德国",
+        "industry": "制药"
+    },
+    {
+        "name": "维亚康姆CBS公司",
+        "country": "美国",
+        "industry": "娱乐"
+    },
+    {
+        "name": "卡夫亨氏公司",
+        "country": "美国",
+        "industry": "食品：消费产品"
+    },
+    {
+        "name": "新加坡奥兰国际有限公司",
+        "country": "新加坡",
+        "industry": "批发：食品"
+    },
+    {
+        "name": "华润置地有限公司",
+        "country": "中国",
+        "industry": "房地产"
+    },
+    {
+        "name": "万洲国际有限公司",
+        "country": "中国",
+        "industry": "纺织服装"
+    },
+    {
+        "name": "DollarTree公司",
+        "country": "美国",
+        "industry": "互联网服务和零售"
+    },
+    {
+        "name": "安进",
+        "country": "美国",
+        "industry": "制药"
+    },
+    {
+        "name": "美国合众银行",
+        "country": "美国",
+        "industry": "商业银行"
+    },
+    {
+        "name": "爱立信公司",
+        "country": "瑞典",
+        "industry": "网络、通讯设备"
+    },
+    {
+        "name": "华阳新材料科技集团有限公司",
+        "country": "中国",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "PerformanceFoodGroup公司",
+        "country": "美国",
+        "industry": "互联网服务和零售"
+    },
+    {
+        "name": "诺基亚",
+        "country": "芬兰",
+        "industry": "网络、通讯设备"
+    },
+    {
+        "name": "BAE系统公司",
+        "country": "英国",
+        "industry": "航天与防务"
+    },
+    {
+        "name": "吉利德科学公司",
+        "country": "美国",
+        "industry": "制药"
+    },
+    {
+        "name": "Synnex公司",
+        "country": "美国",
+        "industry": "批发：电子、办公设备"
+    },
+    {
+        "name": "联合信贷集团",
+        "country": "意大利",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "曼福集团",
+        "country": "西班牙",
+        "industry": "财产与意外保险（股份）"
+    },
+    {
+        "name": "阿弗瑞萨控股公司",
+        "country": "日本",
+        "industry": "批发：保健"
+    },
+    {
+        "name": "美国礼来公司",
+        "country": "美国",
+        "industry": "制药"
+    },
+    {
+        "name": "TruistFinancial公司",
+        "country": "美国",
+        "industry": "互联网服务和零售"
+    },
+    {
+        "name": "中国再保险",
+        "country": "中国",
+        "industry": "财产与意外保险（股份）"
+    },
+    {
+        "name": "澳洲联邦银行",
+        "country": "澳大利亚",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "伟创力公司",
+        "country": "新加坡",
+        "industry": "电子、电气设备"
+    },
+    {
+        "name": "来德爱",
+        "country": "美国",
+        "industry": "食品店和杂货店"
+    },
+    {
+        "name": "道达尔公司",
+        "country": "法国",
+        "industry": "炼油"
+    },
+    {
+        "name": "标致",
+        "country": "法国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "中国太平洋保险集团公司",
+        "country": "中国",
+        "industry": "航天与防务"
+    },
+    {
+        "name": "欧尚集团",
+        "country": "法国",
+        "industry": "专业零售商：其他"
+    },
+    {
+        "name": "法国国家人寿保险公司",
+        "country": "法国",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "起亚汽车",
+        "country": "韩国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "中国光大集团",
+        "country": "中国",
+        "industry": "燃气、电力、清洁能源、水供应销售"
+    },
+    {
+        "name": "兖矿集团",
+        "country": "中国",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "象屿集团",
+        "country": "中国",
+        "industry": "贸易"
+    },
+    {
+        "name": "M&G公司",
+        "country": "英国",
+        "industry": "人寿与健康保险（股份）"
+    },
+    {
+        "name": "Tech Data公司",
+        "country": "美国",
+        "industry": "批发：电子、办公设备"
+    },
+    {
+        "name": "爱信精机",
+        "country": "日本",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "斯伦贝谢公司",
+        "country": "美国",
+        "industry": "油气设备与服务"
+    },
+    {
+        "name": "冀中能源集团",
+        "country": "中国",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "法国航空－荷兰皇家航空集团",
+        "country": "法国",
+        "industry": "航空"
+    },
+    {
+        "name": "CFE公司",
+        "country": "墨西哥",
+        "industry": "公用设施"
+    },
+    {
+        "name": "江森自控国际公司",
+        "country": "爱尔兰",
+        "industry": "工业机械"
+    },
+    {
+        "name": "国际航空集团",
+        "country": "英国",
+        "industry": "航空"
+    },
+    {
+        "name": "华夏保险公司",
+        "country": "中国",
+        "industry": "人寿与健康保险（互助）"
+    },
+    {
+        "name": "赛峰集团",
+        "country": "法国",
+        "industry": "航天与防务"
+    },
+    {
+        "name": "Financière de l'Odet公司",
+        "country": "法国",
+        "industry": "娱乐"
+    },
+    {
+        "name": "大同煤矿集团有限责任公司",
+        "country": "中国",
+        "industry": "煤炭"
+    },
+    {
+        "name": "东日本旅客铁道株式会社",
+        "country": "日本",
+        "industry": "铁路运输"
+    },
+    {
+        "name": "米其林公司",
+        "country": "法国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "喜力控股公司",
+        "country": "荷兰",
+        "industry": "饮料"
+    },
+    {
+        "name": "拉法基豪瑞集团",
+        "country": "瑞士",
+        "industry": "建材、玻璃"
+    },
+    {
+        "name": "阿迪达斯集团",
+        "country": "德国",
+        "industry": "服装"
+    },
+    {
+        "name": "德科集团",
+        "country": "瑞士",
+        "industry": "多元化外包服务"
+    },
+    {
+        "name": "河南能源化工集团",
+        "country": "中国",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "潞安集团",
+        "country": "中国",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "西太平洋银行",
+        "country": "澳大利亚",
+        "industry": "银行：商业储蓄"
+    },
+    {
+        "name": "帕卡公司",
+        "country": "美国",
+        "industry": "车辆与零部件"
+    },
+    {
+        "name": "山西阳泉煤业(集团)有限责任公司",
+        "country": "中国",
+        "industry": "采矿、原油生产"
+    },
+    {
+        "name": "山西晋城无烟煤矿业集团",
+        "country": "中国",
+        "industry": "采矿、原油生产"
+    }
+]
