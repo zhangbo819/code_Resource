@@ -2,7 +2,7 @@
 
 本质上是为了**提升效率、减少错误**
 
-1. 打包构建 webpack / vite / rollup / gulp，生产 dev
+1. 打包构建 Webpack / vite / Rollup / gulp，生产 dev
 2. 组件库、微前端
 3. BFF，node 层
 4. 脚手架、实用脚本
@@ -14,12 +14,101 @@
 ### 模块
 
 Node
-- CommonJS
+- CommonJS, **同步加载**
+
+```js
+// 定义模块math.js
+var basicNum = 0;
+function add(a, b) {
+  return a + b;
+}
+module.exports = { //在这里写上需要向外暴露的函数、变量
+  add: add,
+  basicNum: basicNum
+}
+
+// 引用自定义的模块时，参数包含路径，可省略.js
+var math = require('./math');
+math.add(2, 5);
+
+// 引用核心模块时，不需要带路径
+var http = require('http');
+http.createService(...).listen(3000);
+```
 
 浏览器
 
-- AMD
+- AMD 和 require.js
+  ```html
+  /** 网页中引入require.js及main.js **/
+  <script src="js/require.js" data-main="js/main"></script>
+  ```
+  ```js
+  // 定义math.js模块
+  define(function () {
+      var basicNum = 0;
+      var add = function (x, y) {
+          return x + y;
+      };
+      return {
+          add: add,
+          basicNum :basicNum
+      };
+  });
+  // 定义一个依赖underscore.js的模块
+  define(['underscore'], function (_) {
+    var classify = function (list) {
+      _.countBy(list, function(num) {
+        return num > 30 ? 'old' : 'young';
+      })
+    };
+    return {
+      classify: classify
+    };
+  })
+
+  // 引用模块，将模块放在[]内
+  require(['jquery', 'math'], function ($, math) {
+    var sum = math.add(10,20);
+    $("#sum").html(sum);
+  });
+  ```
 - CMD
+  ```js
+  /** AMD写法 **/
+  define(["a", "b", "c", "d", "e", "f"], function(a, b, c, d, e, f) { 
+      // 等于在最前面声明并初始化了要用到的所有模块
+      a.doSomething();
+      if (false) {
+          // 即便没用到某个模块 b，但 b 还是提前执行了
+          b.doSomething()
+      } 
+  });
+
+  /** CMD写法 **/
+  define(function(require, exports, module) {
+      var a = require('./a'); //在需要时申明
+      a.doSomething();
+      if (false) {
+          var b = require('./b');
+          b.doSomething();
+      }
+  });
+
+  /** sea.js **/
+  // 定义模块 math.js
+  define(function(require, exports, module) {
+      var $ = require('jquery.js');
+      var add = function (a, b) {
+          return a + b;
+      }
+      exports.add = add;
+  });
+  // 加载模块
+  seajs.use(['math.js'], function (math) {
+      var sum = math.add(1 + 2);
+  });
+  ```
 - ES Module
   - 通过 ```<script type="module"><script>``` 适用
   - 自动采用严格模式
@@ -27,49 +116,49 @@ Node
   - 浏览器会以 CORS 的方式请求 JS，需要服务端支持
   - 会延迟执行，相当于加了 defer 属性
 
-### rollup 与 webpack 的区别
+### Rollup 与 Webpack 的区别
 
-- rollup 设计之初相对于其他打包器由如下不同
+- Rollup 设计之初相对于其他打包器由如下不同
 
-输出文件组织形式不同，其他打包器，比如 webpack 会在输出文件中实现自定义的 require 函数，将各个模块的代码添加进行进一步包装，这种处理会对 bundle 的大小带来明显问题；而 rollup 只是将它们在同一个文件中按顺序解决依赖关系，重命名解决全局作用域问题，不会添加另外的代码。
-es6 的模块化语法带来了 tree shaking
+  - 输出文件组织形式不同，其他打包器，比如 Webpack 会在输出文件中实现自定义的 require 函数，将各个模块的代码添加进行进一步包装，这种处理会对 bundle 的大小带来明显问题；而 Rollup 只是将它们在同一个文件中按顺序解决依赖关系，重命名解决全局作用域问题，不会添加另外的代码。
+  - es6 的模块化语法带来了 tree shaking
 
 - Rollup 官方解析：Rollup 是一个 JavaScript 模块打包器，可以将小块代码编译成大块复杂的代码，例如 library 或应用程序
 
-- webpack 官方解析：webpack 是一个现代 JavaScript 应用程序的静态模块打包器(module bundler)。当 webpack 处理应用程序时，它会递归地构建一个依赖关系图(dependency graph)，其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 bundle。
+- Webpack 官方解析：Webpack 是一个现代 JavaScript 应用程序的静态模块打包器(module bundler)。当 Webpack 处理应用程序时，它会递归地构建一个依赖关系图(dependency graph)，其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 bundle。
 
 - 应用场景对比
   使用 Rollup 的开源项目：
 
-vue
-vuex
-vue-router
+  - vue
+  - vuex
+  - vue-router
 
-使用 webpack 的项目：
+  使用 Webpack 的项目：
 
-饿了么 UI
-mint-ui
-vue 脚手架项目
+  - 饿了么 UI
+  - mint-ui
+  - vue 脚手架项目
 
-从上面使用场景可以大概分析出，Rollup 偏向应用于 js 库，webpack 偏向应用于前端工程，UI 库；如果你的应用场景中只是 js 代码，希望做 ES 转换，模块解析，可以使用 Rollup。如果你的场景中涉及到 css、html，涉及到复杂的代码拆分合并，建议使用 webpack。
+从上面使用场景可以大概分析出，Rollup 偏向应用于 js 库，Webpack 偏向应用于前端工程，UI 库；如果你的应用场景中只是 js 代码，希望做 ES 转换，模块解析，可以使用 Rollup。如果你的场景中涉及到 css、html，涉及到复杂的代码拆分合并，建议使用 Webpack。
 
 从应用场景上来看：
 
-- webpack：适合大型复杂的前端站点构建，尤其是模块化的，单页应用。
-- rollup：专门针对类库进行打包，它的优点是小巧而专注。因此现在很多我们熟知的库都都使用它进行打包，比如：Vue、React 和 three.js 等。
+- Webpack：适合大型复杂的前端站点构建，尤其是模块化的，单页应用。
+- Rollup：专门针对类库进行打包，它的优点是小巧而专注。因此现在很多我们熟知的库都都使用它进行打包，比如：Vue、React 和 three.js 等。
 - parcel：零配置，傻瓜式。适用于简单的实验室项目，打包出错很难调试。不支持 Tree Shaking。更多优点：传送门。
 - vite：灵活、复杂度适中，未来趋势。开发期间无需打包，越大型体验感越好。
 - snowpack 与 vite 类似。
 
-### webpack v3、v4、v5 的区别
+### Webpack v3、v4、v5 的区别
 
 [v3 和 v4](https://segmentfault.com/a/1190000021881418)
 [v4 和 v5](https://juejin.cn/post/6990869970385109005)
 
-### webpack 运行流程
+### Webpack 运行流程
 
-- 初始化参数：解析 webpack 配置参数，合并 shell 传入和 webpack.config.js 文件配置的参数，形成最后的配置结果。
-- 开始编译：上一步得到的参数初始化 compiler 对象，注册所有配置的插件，插件监听 webpack 构建生命周期的事件节点，做出相应的反应，执行对象的 run 方法开始执行编译。
+- 初始化参数：解析 Webpack 配置参数，合并 shell 传入和 Webpack.config.js 文件配置的参数，形成最后的配置结果。
+- 开始编译：上一步得到的参数初始化 compiler 对象，注册所有配置的插件，插件监听 Webpack 构建生命周期的事件节点，做出相应的反应，执行对象的 run 方法开始执行编译。
 - 确定入口：从配置的 entry 入口，开始解析文件构建 AST 语法树，找出依赖，递归下去。
 - 编译模块：递归中根据文件类型和 loader 配置，调用所有配置的 loader 对文件进行转换，再找出该模块依赖的模块，再递归本步骤直到所有入口依赖的文件都经过了本步骤的处理。
 - 完成模块编译：在经过第 4 步使⽤ Loader 翻译完所有模块后，得到了每个模块被翻译后的最终内容以及它们之间的依赖关系；
@@ -112,7 +201,7 @@ vue 脚手架项目
 - optimize-css-assets-webpack-plugin，用于生产环境，对 css 进行压缩
 - copy-webpack-plugin，打包的时候，将静态资源拷贝到 dist 目录
 
-### compiler 和 compilation 对象
+### Compiler 和 Compilation 对象
 
 - Compiler 对象包含了 Webpack 环境所有的的配置信息
 - Compilation 对象包含了当前的模块资源、编译生成资源、变化的文件等
@@ -157,9 +246,9 @@ class MyPlugin {
 }
 ```
 
-### webpack 的运行流程吗
+### Webpack 的运行流程
 
-- 调用 webpack 函数接收 config 配置信息，并初始化 compiler，在此期间会 apply 所有 webpack 内置的插件;
+- 调用 Webpack 函数接收 config 配置信息，并初始化 compiler，在此期间会 apply 所有 Webpack 内置的插件;
 - 调用 compiler.run 进入模块编译阶段；
 - 每一次新的编译都会实例化一个 compilation 对象，记录本次编译的基本信息；
 - 进入 make 阶段，即触发 compilation.hooks.make 钩子，从 entry 为入口：
@@ -167,9 +256,9 @@ class MyPlugin {
   2. 调用第三方插件 acorn 对标准 JS 模块进行分析，收集模块依赖项。同时也会继续递归每个依赖项，收集依赖项的依赖项信息，不断递归下去；最终会得到一颗依赖树；
 - 最后调用 compilation.seal render 模块，整合各个依赖项，最后输出一个或多个 chunk；
 
-### webpack 性能优化
+### Webpack 性能优化
 
-[webpack 进阶之性能优化(webpack5 最新版本)](https://juejin.cn/post/7244819106342780988?searchId=202310171518474A5AA87860BF08DDDF2C#heading-23)
+[Webpack 进阶之性能优化(Webpack5 最新版本)](https://juejin.cn/post/7244819106342780988?searchId=202310171518474A5AA87860BF08DDDF2C#heading-23)
 
 - 优化构建速度
   - 定向查找
@@ -214,10 +303,10 @@ class MyPlugin {
   - 合理使用缓存
     - babel-loader 开启缓存
     - cache-loader
-    - webpack5 配置 cache.type
+    - Webpack5 配置 cache.type
 - 优化构建结果
   - 压缩 html
-    - html-webpack-plugin
+    - html-Webpack-plugin
     ```js
     module.export = {
       plugins: [
@@ -235,19 +324,19 @@ class MyPlugin {
     };
     ```
   - 压缩 js
-    - v4 以前 uglifyjs-webpack-plugin
-    - v4 后默认使用 terser-webpack-plugin，可以开启 parallel 参数，使用多进程压缩
+    - v4 以前 uglifyjs-Webpack-plugin
+    - v4 后默认使用 terser-Webpack-plugin，可以开启 parallel 参数，使用多进程压缩
   - 压缩 css
-    - 对于 webpack4 及以下 使用的是 optimize-css-assets-webpack-plugin 插件来压缩 css。
-    - 在 webpack5 中推荐使用的是 css-minimizer-webpack-plugin。
+    - 对于 Webpack4 及以下 使用的是 optimize-css-assets-Webpack-plugin 插件来压缩 css。
+    - 在 Webpack5 中推荐使用的是 css-minimizer-Webpack-plugin。
     - PurgeCSS，无用 css 的擦除
   - 压缩 image
-    - image-webpack-loader
+    - image-Webpack-loader
   - 按需加载
     - import()
   - 提前加载（prefetch 和 preload）
-    - prefetch, /_ webpackPrefetch: true _/
-    - preload, /_ webpackPreload: true _/
+    - prefetch, /_ WebpackPrefetch: true _/
+    - preload, /_ WebpackPreload: true _/
     - prefetch  与  preload  的区别
       1. preload chunk  会在父  chunk  加载时，以并行方式开始加载。prefetch chunk  会在父  chunk  加载结束后开始加载。
       2. preload chunk  具有中等优先级，并立即下载。prefetch chunk  在浏览器闲置时下载。
@@ -258,7 +347,7 @@ class MyPlugin {
     - MiniCssExtractPlugin，css 分割
   - Tree Shaking (摇树)
     - optimization.usedExports: true, js
-    - purgecss-webpack-plugin, css
+    - purgecss-Webpack-plugin, css
   - Gzip
     - CompressionWebpackPlugin
   - 作用提升 (Scope Hoisting)
