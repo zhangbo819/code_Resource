@@ -103,3 +103,109 @@ vue脚手架项目
 - Compiler 对象包含了 Webpack 环境所有的的配置信息
 - Compilation 对象包含了当前的模块资源、编译生成资源、变化的文件等
 - Compiler 和 Compilation 的区别在于：Compiler 代表了整个 Webpack 从启动到关闭的生命周期，而 Compilation 只是代表了一次新的编译。
+
+### webpack 的运行流程吗
+
+- 调用 webpack 函数接收 config 配置信息，并初始化 compiler，在此期间会 apply 所有 webpack 内置的插件;
+- 调用 compiler.run 进入模块编译阶段；
+- 每一次新的编译都会实例化一个 compilation 对象，记录本次编译的基本信息；
+- 进入 make 阶段，即触发 compilation.hooks.make 钩子，从 entry 为入口：
+    1. 调用合适的 loader 对模块源码预处理，转换为标准的 JS 模块；
+    2. 调用第三方插件 acorn 对标准 JS 模块进行分析，收集模块依赖项。同时也会继续递归每个依赖项，收集依赖项的依赖项信息，不断递归下去；最终会得到一颗依赖树；
+- 最后调用 compilation.seal render 模块，整合各个依赖项，最后输出一个或多个 chunk；
+
+### webpack 性能优化
+
+[webpack进阶之性能优化(webpack5最新版本)](https://juejin.cn/post/7244819106342780988?searchId=202310171518474A5AA87860BF08DDDF2C#heading-23)
+
+- 优化构建速度
+    - 定向查找
+        - resolve.modules
+        ```js
+        module.export = {
+            resolve: {
+                // 使用绝对路径指明第三方模块存放的位置，以减少搜索步骤
+                // __diename 表示当前工作目录，也就是项目根目录
+                modules: [path.resolve(__dirname, 'node_modules')]
+            }
+        }
+        ```
+        - resolve.extensions
+        ```js
+        module.export = {
+            resolve: {
+                extensions: ['.js', '.jsx', '.ts', '.tsx'],
+            }
+        }
+        ```
+    - 减少执行构建的模块
+        - 合理配置 noParse
+        - 合理配置 IgnorePlugin
+        - 合理配置 externals
+        - 合理配置 loader 的 include、exclude
+    - 并行构建以提升总体速度
+        - HappyPack, 多进程处理 loader
+        - Thread-loader，会创建多个 worker 池进行并发执行构建任务
+    - 并行压缩提高构建效率
+        - UglifyjsWebpackPlugin、TerserWebpackPlugin 开启 paralle
+        ```js
+        module.exports = {
+            optimization: {
+                minimizer: [
+                new UglifyJsPlugin({parallel: true}), // 开启多进程
+                // new TerserPlugin({ parallel: true }), // 默认已经开启，其实无需设置
+                ],
+            },
+        };
+        ```
+    - 合理使用缓存
+        - babel-loader 开启缓存
+        - cache-loader
+        - webpack5 配置 cache.type
+- 优化构建结果
+    - 压缩 html
+        - html-webpack-plugin
+        ```js
+        module.export = {
+            plugins: [
+                new HtmlWebpackPlugin({
+                // 动态生成 html 文件
+                template: "./index.html",
+                minify: {
+                    // 压缩HTML
+                    removeComments: true, // 移除HTML中的注释
+                    collapseWhitespace: true, // 删除空⽩符与换⾏符
+                    minifyCSS: true // 压缩内联css
+                },
+                })
+            ]
+        }
+        ```
+    - 压缩 js
+        - v4 以前 uglifyjs-webpack-plugin
+        - v4 后默认使用 terser-webpack-plugin，可以开启 parallel 参数，使用多进程压缩
+    - 压缩 css
+        - 对于 webpack4 及以下 使用的是 optimize-css-assets-webpack-plugin插件来压缩css。
+        - 在 webpack5 中推荐使用的是 css-minimizer-webpack-plugin。
+        - PurgeCSS，无用 css 的擦除
+    - 压缩 image
+        - image-webpack-loader
+    - 按需加载
+        - import()
+    - 提前加载（prefetch 和 preload）
+        - prefetch, /* webpackPrefetch: true */
+        - preload, /* webpackPreload: true */
+        - prefetch 与 preload 的区别
+            1. preload chunk 会在父 chunk 加载时，以并行方式开始加载。prefetch chunk 会在父 chunk 加载结束后开始加载。
+            2. preload chunk 具有中等优先级，并立即下载。prefetch chunk 在浏览器闲置时下载。
+            3. preload chunk 会在父 chunk 中立即请求，用于当下时刻。prefetch chunk 会用于未来的某个时刻。
+            4. 浏览器支持程度不同，需要注意。
+    - Code Splitting (代码分割)
+        - SplitChunksPlugin, JS分割
+        - MiniCssExtractPlugin，css分割
+    - Tree Shaking (摇树)
+        - optimization.usedExports: true, js
+        - purgecss-webpack-plugin, css
+    - Gzip
+        - CompressionWebpackPlugin
+    - 作用提升 (Scope Hoisting)
