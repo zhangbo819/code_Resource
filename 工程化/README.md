@@ -11,6 +11,22 @@
 
 ## 知识点
 
+### 模块
+
+Node
+- CommonJS
+
+浏览器
+
+- AMD
+- CMD
+- ES Module
+  - 通过 ```<script type="module"><script>``` 适用
+  - 自动采用严格模式
+  - 每个 ESM 模块都有独立的私有作用域
+  - 浏览器会以 CORS 的方式请求 JS，需要服务端支持
+  - 会延迟执行，相当于加了 defer 属性
+
 ### rollup 与 webpack 的区别
 
 - rollup 设计之初相对于其他打包器由如下不同
