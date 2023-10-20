@@ -1,4 +1,5 @@
 const htmlWebpackPlugin = require("html-webpack-plugin");
+const speedMeasureWebpackPlugin  = require("speed-measure-webpack-plugin");
 
 class MyPlugin {
   apply(compiler) {
@@ -35,6 +36,7 @@ module.exports = {
   },
   plugins: [
     new MyPlugin(),
+    new speedMeasureWebpackPlugin(),
     new htmlWebpackPlugin({
       template: "./index.html",
       minify: {

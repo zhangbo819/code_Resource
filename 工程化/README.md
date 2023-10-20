@@ -259,6 +259,7 @@ class MyPlugin {
 ### Webpack 性能优化
 
 [Webpack 进阶之性能优化(Webpack5 最新版本)](https://juejin.cn/post/7244819106342780988?searchId=202310171518474A5AA87860BF08DDDF2C#heading-23)
+[webpack 5高级配置优化](https://juejin.cn/post/7121129785501155341?from=search-suggest)
 
 - 优化构建速度
   - 定向查找
@@ -288,6 +289,27 @@ class MyPlugin {
   - 并行构建以提升总体速度
     - HappyPack, 多进程处理 loader
     - Thread-loader，会创建多个 worker 池进行并发执行构建任务
+    ```js
+    {
+      test: /\.js$/,
+      // exclude: /node_modules/, // 排除node_modules代码不编译
+      include: path.resolve(__dirname, "../src"), // 也可以用包含
+      use: [
+        {
+          loader: "thread-loader", // 开启多进程
+          options: {
+            workers: threads, // 数量
+          },
+        },
+        {
+          loader: "babel-loader",
+          options: {
+            cacheDirectory: true, // 开启babel编译缓存
+          },
+        },
+      ],
+    },
+    ```
   - 并行压缩提高构建效率
     - UglifyjsWebpackPlugin、TerserWebpackPlugin 开启 paralle
     ```js
@@ -304,6 +326,34 @@ class MyPlugin {
     - babel-loader 开启缓存
     - cache-loader
     - Webpack5 配置 cache.type
+    - EsLint, ESLintWebpackPlugin
+    - webpack 持久化缓存, `cache: filesystem`
+    ```js
+    module.exports = {
+      cache: {
+        type: "filesystem", // 使用文件缓存
+      },
+    };
+    ```
+    - Network Cache, 开发阶段
+  - OneOf，匹配上一个 loader, 剩下的就不匹配了
+  ```js
+  {
+    module: {
+      rules: [
+        {
+          oneOf: [
+            {
+              // 用来匹配 .css 结尾的文件
+              test: /\.css$/,
+              // use 数组里面 Loader 执行顺序是从右到左
+              use: ["style-loader", "css-loader"],
+            },
+          ]
+        }
+    }
+  }
+  ```
 - 优化构建结果
   - 压缩 html
     - html-webpack-plugin，minify
@@ -486,3 +536,5 @@ class MyPlugin {
     }
     ```
   - 作用提升 (Scope Hoisting)
+- 打包分析工具
+  - speed-measure-webpack-plugin，能够看到各部分耗时
