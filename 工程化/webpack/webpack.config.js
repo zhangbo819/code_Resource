@@ -1,3 +1,5 @@
+const htmlWebpackPlugin = require("html-webpack-plugin");
+
 class MyPlugin {
   apply(compiler) {
     console.log("MyPlugin 启动");
@@ -23,5 +25,24 @@ class MyPlugin {
 module.exports = {
   mode: "none",
   entry: "./src/main",
-  plugins: [new MyPlugin()],
+  module: {
+    rules: [
+      { 
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      }
+    ]
+  },
+  plugins: [
+    new MyPlugin(),
+    new htmlWebpackPlugin({
+      template: "./index.html",
+      minify: {
+        // 压缩HTML
+        removeComments: true, // 移除HTML中的注释
+        collapseWhitespace: true, // 删除空⽩符与换⾏符
+        minifyCSS: true, // 压缩内联css
+      },
+    }),
+  ],
 };

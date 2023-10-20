@@ -306,7 +306,7 @@ class MyPlugin {
     - Webpack5 配置 cache.type
 - 优化构建结果
   - 压缩 html
-    - html-Webpack-plugin
+    - html-webpack-plugin，minify
     ```js
     module.export = {
       plugins: [
@@ -324,19 +324,101 @@ class MyPlugin {
     };
     ```
   - 压缩 js
-    - v4 以前 uglifyjs-Webpack-plugin
-    - v4 后默认使用 terser-Webpack-plugin，可以开启 parallel 参数，使用多进程压缩
+    - v4 以前 uglifyjs-webpack-plugin
+      ```js
+      const UglifyJsPlugin = require("uglifyjs-webpack-plugin"); // 需要安装
+
+      module.exports = {
+        module: {
+          rules: [
+            {
+              test: /\.jsx?$/,
+              use: ["babel-loader"],
+              exclude: /node_modules/, //排除 node_modules 目录
+            },
+          ]
+        },
+        optimization: {
+          // 是否需要压缩
+          minimize: true, // 开发环境需要开启
+          // 配置压缩工具
+          minimizer: [
+            new UglifyJsPlugin({})
+          ],
+        },
+      }
+      ```
+    - v4 后默认使用 terser-webpack-plugin，可以开启 parallel 参数，使用多进程压缩
+      ```js
+      const TerserPlugin = require("terser-webpack-plugin"); // webpack5 内置，不需要再单独安装
+
+      optimization: {
+        // 是否需要压缩
+        minimize: true,
+        // 配置压缩工具
+        minimizer: [
+          new TerserPlugin({// 在这里自定义配置}),
+        ],
+      },
+      ```
   - 压缩 css
-    - 对于 Webpack4 及以下 使用的是 optimize-css-assets-Webpack-plugin 插件来压缩 css。
-    - 在 Webpack5 中推荐使用的是 css-minimizer-Webpack-plugin。
+    - 对于 Webpack4 及以下 使用的是 optimize-css-assets-webpack-plugin 插件来压缩 css。
+    - 在 Webpack5 中推荐使用的是 css-minimizer-webpack-plugin。
     - PurgeCSS，无用 css 的擦除
+    ```js
+    const path = require("path");
+    const PurgecssPlugin = require("purgecss-webpack-plugin");
+    const glob = require("glob"); // 文件匹配模式
+
+    plugins: [
+      // ...
+      new PurgecssPlugin({
+        // 这里我的样式在根目录下的index.html里面使用，所以配置这个路径
+        paths: glob.sync(`${path.join(__dirname)}/index.html`, { nodir: true }),
+      }),
+    ]
+    ```
   - 压缩 image
-    - image-Webpack-loader
+    - image-webpack-loader
+    ```js
+    module.exports = {
+      module: {
+        rules: [
+          {
+            test: /\.(png|jpg|gif|jpeg|webp|svg)$/,
+            use: [
+              "file-loader",
+              {
+                loader: "image-webpack-loader",
+                options: {
+                  mozjpeg: {
+                    progressive: true,
+                  },
+                  // optipng.enabled: false will disable optipng
+                  optipng: {
+                    enabled: false,
+                  },
+                  pngquant: {
+                    quality: [0.65, 0.9],
+                    speed: 4,
+                  },
+                  gifsicle: {
+                    interlaced: false,
+                  },
+                },
+              },
+            ],
+            exclude: /node_modules/, //排除 node_modules 目录
+          },
+        ]
+      },
+    }
+    ```
   - 按需加载
     - import()
   - 提前加载（prefetch 和 preload）
-    - prefetch, /_ WebpackPrefetch: true _/
-    - preload, /_ WebpackPreload: true _/
+    - prefetch, /* WebpackPrefetch: true */
+    - preload, /* WebpackPreload: true */
     - prefetch  与  preload  的区别
       1. preload chunk  会在父  chunk  加载时，以并行方式开始加载。prefetch chunk  会在父  chunk  加载结束后开始加载。
       2. preload chunk  具有中等优先级，并立即下载。prefetch chunk  在浏览器闲置时下载。
@@ -344,10 +426,63 @@ class MyPlugin {
       4. 浏览器支持程度不同，需要注意。
   - Code Splitting (代码分割)
     - SplitChunksPlugin, JS 分割
+    ```js
+    module.exports = {
+      //...
+      optimization: {
+        splitChunks: {
+          chunks: 'async', // 值有 `all`，`async` 和 `initial`
+          minSize: 20000, // 生成 chunk 的最小体积（以 bytes 为单位）。
+          minRemainingSize: 0,
+          minChunks: 1, // 拆分前必须共享模块的最小 chunks 数。
+          maxAsyncRequests: 30, // 按需加载时的最大并行请求数。
+          maxInitialRequests: 30, // 入口点的最大并行请求数。
+          enforceSizeThreshold: 50000,
+          cacheGroups: {
+            defaultVendors: {
+              test: /[\/]node_modules[\/]/,
+              priority: -10,
+              reuseExistingChunk: true,
+            },
+            default: {
+              minChunks: 2,
+              priority: -20,
+              reuseExistingChunk: true,
+            },
+          },
+        },
+      },
+    };
+    ```
     - MiniCssExtractPlugin，css 分割
   - Tree Shaking (摇树)
     - optimization.usedExports: true, js
-    - purgecss-Webpack-plugin, css
+    - purgecss-webpack-plugin, css
+    ```js
+    // webpack.config.js
+    const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+    // ...
+    {
+      test: /\.less?$/,
+      use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"],
+      exclude: /node_modules/, //排除 node_modules 目录
+    },
+
+    plugins: [
+      // ...
+      new MiniCssExtractPlugin(),
+    ],
+    ```
   - Gzip
     - CompressionWebpackPlugin
+    ```js
+    const CompressionWebpackPlugin = require("compression-webpack-plugin"); // 需要安装
+
+    module.exports = {
+      plugins: [
+        new CompressionWebpackPlugin()
+      ]
+    }
+    ```
   - 作用提升 (Scope Hoisting)
