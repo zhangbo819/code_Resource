@@ -1,5 +1,7 @@
-const htmlWebpackPlugin = require("html-webpack-plugin");
-const speedMeasureWebpackPlugin  = require("speed-measure-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const SpeedMeasureWebpackPlugin = require("speed-measure-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 class MyPlugin {
   apply(compiler) {
@@ -25,19 +27,21 @@ class MyPlugin {
 
 module.exports = {
   mode: "none",
+  // mode: "production",
   entry: "./src/main",
   module: {
     rules: [
-      { 
+      {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      }
-    ]
+        use: ["style-loader", "css-loader"],
+      },
+    ],
   },
   plugins: [
     new MyPlugin(),
-    new speedMeasureWebpackPlugin(),
-    new htmlWebpackPlugin({
+    new SpeedMeasureWebpackPlugin(),
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
       template: "./index.html",
       minify: {
         // 压缩HTML
@@ -47,4 +51,10 @@ module.exports = {
       },
     }),
   ],
+  optimization: {
+    // 是否需要压缩
+    minimize: true,
+    // 配置压缩工具
+    minimizer: [new TerserPlugin({})],
+  },
 };
