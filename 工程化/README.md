@@ -167,6 +167,11 @@ http.createService(...).listen(3000);
 
 > 在以上过程中，Webpack 会在特定的时间点，⼴播出特定的事件，插件在监听到感兴趣的事件后，会执⾏特定的逻辑。并且插件可以调⽤ Webpack 提供的 API ，改变 Webpack 的运⾏结果。比如 UglifyPlugin，会在 loader 转换递归完，对结果使用 UglifyJs 压缩，覆盖之前的结果。
 
+### 什么是Webpack的热更新（Hot Module Replacement）？原理是什么？
+
+Webpack 的热更新（Hot Module Replacement，简称HMR），在不刷新页面的前提下，将新代码替换掉旧代码。
+HRM 的原理实际上是 webpack-dev-server（WDS）和浏览器之间维护了一个 websocket 服务。当本地资源发生变化后，webpack 会先将打包生成新的模块代码放入内存中，然后 WDS 向浏览器推送更新，并附带上构建时的 hash，让客户端和上一次资源进行对比。客户端对比出差异后会向 WDS 发起 Ajax 请求获取到更改后的内容（文件列表、hash），通过这些信息再向 WDS 发起 jsonp 请求获取到最新的模块代码。
+
 ### hash、chunkhash、contenthash
 
 - hash：是跟整个项目的构建相关，只要项目里有文件更改，整个项目构建的 hash 值都会更改，并且全部文件都共用相同的 hash 值。
@@ -195,11 +200,14 @@ http.createService(...).listen(3000);
 
 ### 常见 Plugin
 
+- define-plugin : 定义环境变量(?)
 - html-webpack-plugin，对 html 文件操作
 - clean-webpack-plugin，清理上次打包内容
 - mini-css-extract-plugin，从 js 中单独抽离 css 样式文件，通常在生产环境使用
 - optimize-css-assets-webpack-plugin，用于生产环境，对 css 进行压缩
 - copy-webpack-plugin，打包的时候，将静态资源拷贝到 dist 目录
+- DllPlugin 可以将第三方库预先打包成单独的文件，减少构建时间。
+- HardSourceWebpackPlugin 可以缓存中间文件，加速后续构建过程
 
 ### Compiler 和 Compilation 对象
 
