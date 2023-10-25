@@ -11,9 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.8.1",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.3",
+    "image-webpack-loader": "^8.1.0",
     "mini-css-extract-plugin": "^2.7.6",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
     "purgecss-webpack-plugin": "^5.0.0",

@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const SpeedMeasureWebpackPlugin = require("speed-measure-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+// const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin");
 // 无用 css 的擦除
@@ -35,6 +35,9 @@ module.exports = {
   mode: "none",
   // mode: "production",
   entry: "./src/main",
+  output: {
+    clean: true,
+  },
   module: {
     rules: [
       {
@@ -42,12 +45,37 @@ module.exports = {
         // use: ["style-loader", "css-loader"],
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
+      {
+        test: /\.(png|jpg|gif|jpeg|webp|svg)$/,
+        use: [
+          "file-loader",
+          {
+            loader: "image-webpack-loader",
+            options: {
+              mozjpeg: {
+                progressive: true,
+              },
+              // optipng.enabled: false will disable optipng
+              optipng: {
+                enabled: false,
+              },
+              pngquant: {
+                quality: [0.65, 0.9],
+                speed: 4,
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+            },
+          },
+        ],
+        exclude: /node_modules/, //排除 node_modules 目录
+      },
     ],
   },
   plugins: [
     new MyPlugin(),
     new SpeedMeasureWebpackPlugin(),
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: "./index.html",
       minify: {

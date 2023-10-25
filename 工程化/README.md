@@ -420,22 +420,39 @@ class MyPlugin {
       },
       ```
   - 压缩 css
+    - 首先用 mini-css-extract-plugin ，将 css 文件单独抽离出来
+      ```js
+      {
+        module: {
+          rules: [
+            {
+              test: /\.css$/,
+              // use: ["style-loader", "css-loader"],
+              use: [MiniCssExtractPlugin.loader, "css-loader"],
+            },
+          ],
+        },
+        plugins: [
+          new MiniCssExtractPlugin()
+        ]
+      }
+      ```
     - 对于 Webpack4 及以下 使用的是 optimize-css-assets-webpack-plugin 插件来压缩 css。
     - 在 Webpack5 中推荐使用的是 css-minimizer-webpack-plugin。
     - PurgeCSS，无用 css 的擦除
-    ```js
-    const path = require("path");
-    const PurgecssPlugin = require("purgecss-webpack-plugin");
-    const glob = require("glob"); // 文件匹配模式
+      ```js
+      const { PurgeCSSPlugin } = require("purgecss-webpack-plugin");
+      const path = require("path");
+      const glob = require("glob");
 
-    plugins: [
-      // ...
-      new PurgecssPlugin({
-        // 这里我的样式在根目录下的index.html里面使用，所以配置这个路径
-        paths: glob.sync(`${path.join(__dirname)}/index.html`, { nodir: true }),
-      }),
-    ]
-    ```
+      plugins: [
+        // ...
+        new PurgecssPlugin({
+          // 这里我的样式在根目录下的index.html里面使用，所以配置这个路径
+          paths: glob.sync(`${path.join(__dirname)}/index.html`, { nodir: true }),
+        }),
+      ]
+      ```
   - 压缩 image
     - image-webpack-loader
     ```js
@@ -477,13 +494,13 @@ class MyPlugin {
   - 提前加载（prefetch 和 preload）
     - prefetch, /* WebpackPrefetch: true */
     - preload, /* WebpackPreload: true */
-    - prefetch  与  preload  的区别
-      1. preload chunk  会在父  chunk  加载时，以并行方式开始加载。prefetch chunk  会在父  chunk  加载结束后开始加载。
-      2. preload chunk  具有中等优先级，并立即下载。prefetch chunk  在浏览器闲置时下载。
-      3. preload chunk  会在父  chunk  中立即请求，用于当下时刻。prefetch chunk  会用于未来的某个时刻。
+    - prefetch 与 preload 的区别
+      1. preload chunk 会在父 chunk 加载时，以并行方式开始加载。prefetch chunk 会在父 chunk 加载结束后开始加载。
+      2. preload chunk 具有中等优先级，并立即下载。prefetch chunk  在浏览器闲置时下载。
+      3. preload chunk 会在父 chunk 中立即请求，用于当下时刻。prefetch chunk 会用于未来的某个时刻。
       4. 浏览器支持程度不同，需要注意。
   - Code Splitting (代码分割)
-    - SplitChunksPlugin, JS 分割
+    - SplitChunksPlugin, JS 分割合并
     ```js
     module.exports = {
       //...

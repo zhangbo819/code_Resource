@@ -1,1 +1,2 @@
-export default A = "AsyncModule"
+const AsyncModule = "AsyncModule"
+export default AsyncModule
