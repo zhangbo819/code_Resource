@@ -2,6 +2,12 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const SpeedMeasureWebpackPlugin = require("speed-measure-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin");
+// 无用 css 的擦除
+const { PurgeCSSPlugin } = require("purgecss-webpack-plugin");
+const path = require("path");
+const glob = require("glob");
 
 class MyPlugin {
   apply(compiler) {
@@ -33,7 +39,8 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        // use: ["style-loader", "css-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
     ],
   },
@@ -50,11 +57,20 @@ module.exports = {
         minifyCSS: true, // 压缩内联css
       },
     }),
+    new MiniCssExtractPlugin(),
+    // 无用 css 的擦除
+    new PurgeCSSPlugin({
+      // 这里我的样式在根目录下的index.html里面使用，所以配置这个路径
+      paths: glob.sync(`${path.join(__dirname)}/index.html`, { nodir: true }),
+    }),
   ],
   optimization: {
     // 是否需要压缩
     minimize: true,
     // 配置压缩工具
-    minimizer: [new TerserPlugin({})],
+    minimizer: [
+      new TerserPlugin({}), // 添加 css 压缩配置
+      new OptimizeCssAssetsWebpackPlugin({}),
+    ], // 需要安装],
   },
 };

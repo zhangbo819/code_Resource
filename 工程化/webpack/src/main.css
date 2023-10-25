@@ -1,8 +1,14 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    background-color: #f008;
+  background-color: #f008;
+}
+
+.useLess {
+  margin: 12px;
+  padding: 12px;
+  font-size: 16px;
 }
