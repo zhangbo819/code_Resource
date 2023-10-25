@@ -439,7 +439,7 @@ class MyPlugin {
       ```
     - 对于 Webpack4 及以下 使用的是 optimize-css-assets-webpack-plugin 插件来压缩 css。
     - 在 Webpack5 中推荐使用的是 css-minimizer-webpack-plugin。
-    - PurgeCSS，无用 css 的擦除
+    - PurgeCSS，无用 css 的擦除 [官网链接](https://purgecss.com/plugins/webpack.html)
       ```js
       const { PurgeCSSPlugin } = require("purgecss-webpack-plugin");
       const path = require("path");
@@ -447,10 +447,10 @@ class MyPlugin {
 
       plugins: [
         // ...
-        new PurgecssPlugin({
-          // 这里我的样式在根目录下的index.html里面使用，所以配置这个路径
-          paths: glob.sync(`${path.join(__dirname)}/index.html`, { nodir: true }),
-        }),
+       // 无用 css 的擦除
+      new PurgeCSSPlugin({
+        paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
+      }),
       ]
       ```
   - 压缩 image
@@ -506,7 +506,7 @@ class MyPlugin {
       //...
       optimization: {
         splitChunks: {
-          chunks: 'async', // 值有 `all`，`async` 和 `initial`
+          chunks: 'all', // 值有 `all`，`async` 和 `initial`
           minSize: 20000, // 生成 chunk 的最小体积（以 bytes 为单位）。
           minRemainingSize: 0,
           minChunks: 1, // 拆分前必须共享模块的最小 chunks 数。

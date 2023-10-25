@@ -1,3 +1,4 @@
+import react from 'react';
 import AComp from "./AComp";
 import { Fn1 } from "./util";
 import "./main.css";

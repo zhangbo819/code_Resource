@@ -3,7 +3,11 @@
   padding: 0;
 }
 
-body {
+/* body {
+  background-color: #f008;
+} */
+
+.fn1 {
   background-color: #f008;
 }
 
