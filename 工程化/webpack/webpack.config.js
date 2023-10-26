@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 // html 处理
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 // 分析时间
@@ -49,6 +50,13 @@ module.exports = {
   output: {
     clean: true,
   },
+  devServer: {
+    // static: './dist',
+    open: true,
+    port: '8088',
+    hot: true,
+    // hotOnly: true
+  },
   module: {
     rules: [
       {
@@ -86,6 +94,7 @@ module.exports = {
   },
   plugins: [
     new MyPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new SpeedMeasureWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: "./index.html",
