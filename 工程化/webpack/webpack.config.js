@@ -1,4 +1,4 @@
-const webpack = require('webpack')
+const webpack = require("webpack");
 // html 处理
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 // 分析时间
@@ -16,28 +16,8 @@ const path = require("path");
 const glob = require("glob");
 // Gzip
 const CompressionWebpackPlugin = require("compression-webpack-plugin"); // 需要安装
-
-class MyPlugin {
-  apply(compiler) {
-    console.log("MyPlugin 启动");
-
-    compiler.hooks.emit.tap("MyPlugin", (compilation) => {
-      // compilation一可以理解为此次打包的上下文
-      for (const name in compilation.assets) {
-        // console.log(name)
-        // console.log(compilation.assets[name]. source())
-        if (name.endsWith(".js")) {
-          const contents = compilation.assets[name].source();
-          const withoutComments = contents.replace(/\/\*\*+\*\//g, "");
-          compilation.assets[name] = {
-            source: () => withoutComments,
-            size: () => withoutComments.length,
-          };
-        }
-      }
-    });
-  }
-}
+// MyPlugin
+const { MyPlugin } = require("./MyPlugin");
 
 const PATHS = {
   src: path.join(__dirname, "src"),
@@ -53,7 +33,7 @@ module.exports = {
   devServer: {
     // static: './dist',
     open: true,
-    port: '8088',
+    port: "8088",
     hot: true,
     // hotOnly: true
   },
