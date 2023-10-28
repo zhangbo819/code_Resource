@@ -52,13 +52,13 @@ http.createService(...).listen(3000);
       };
       return {
           add: add,
-          basicNum :basicNum
+          basicNum: basicNum
       };
   });
   // 定义一个依赖underscore.js的模块
   define(['underscore'], function (_) {
     var classify = function (list) {
-      _.countBy(list, function(num) {
+      _.countBy(list, function (num) {
         return num > 30 ? 'old' : 'young';
       })
     };
@@ -69,7 +69,7 @@ http.createService(...).listen(3000);
 
   // 引用模块，将模块放在[]内
   require(['jquery', 'math'], function ($, math) {
-    var sum = math.add(10,20);
+    var sum = math.add(10, 20);
     $("#sum").html(sum);
   });
   ```
@@ -80,8 +80,8 @@ http.createService(...).listen(3000);
       // 等于在最前面声明并初始化了要用到的所有模块
       a.doSomething();
       if (false) {
-          // 即便没用到某个模块 b，但 b 还是提前执行了
-          b.doSomething()
+        // 即便没用到某个模块 b，但 b 还是提前执行了
+        b.doSomething()
       } 
   });
 
@@ -90,8 +90,8 @@ http.createService(...).listen(3000);
       var a = require('./a'); //在需要时申明
       a.doSomething();
       if (false) {
-          var b = require('./b');
-          b.doSomething();
+        var b = require('./b');
+        b.doSomething();
       }
   });
 
@@ -100,7 +100,7 @@ http.createService(...).listen(3000);
   define(function(require, exports, module) {
       var $ = require('jquery.js');
       var add = function (a, b) {
-          return a + b;
+        return a + b;
       }
       exports.add = add;
   });
@@ -181,7 +181,7 @@ HRM 的原理实际上是 webpack-dev-server（WDS）和浏览器之间维护了
 ### 常见 Loader
 
 - style-loader 将 css-loader 生成的样式表通过`<style>`标签，插入到页面中去。
-- css-loader 用来解释` @import和url()`
+- css-loader 用来解释 `@import 和 url()`
 - less-loader sass-loader 转化为普通 css
 - postcss-loader
 
@@ -242,7 +242,7 @@ class MyPlugin {
         // console.log(compilation.assets[name]. source())
         if (name.endsWith(".js")) {
           const contents = compilation.assets[name].source();
-          const withoutComments = contents.replace(/\/\*\*+\*\//g, "");
+          const withoutComments = contents.replace(/\/\*\*+\*\//g, ""); 
           compilation.assets[name] = {
             source: () => withoutComments,
             size: () => withoutComments.length,
