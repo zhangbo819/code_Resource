@@ -28,27 +28,51 @@ class CalcFund {
     );
   }
 
-//   private calcHSTechnology(nowPoint: number, ): string {
-//     return `当前点数${nowPoint}`;
-//   }
+  //   private calcHSTechnology(nowPoint: number, ): string {
+  //     return `当前点数${nowPoint}`;
+  //   }
 
-//   public doCalcHSTechnology() {
-//     console.log(
-//       this.calcHSTechnology(
-//         ...(process.argv.slice(2).map((i) => Number(i)) as [
-//           number,
-//         //   number,
-//         //   number
-//         ])
-//       )
-//     );
-//   }
+  //   public doCalcHSTechnology() {
+  //     console.log(
+  //       this.calcHSTechnology(
+  //         ...(process.argv.slice(2).map((i) => Number(i)) as [
+  //           number,
+  //         //   number,
+  //         //   number
+  //         ])
+  //       )
+  //     );
+  //   }
+
+  // all 总仓位
+  private calcAmount(all: number): number {
+    let res = 0;
+    // 策略
+    const map_tactics: Record<number | string, number> = {
+      5: 3,
+      7.5: 2,
+      10: 5,
+    };
+    Object.keys(map_tactics).forEach((k) => {
+      const part = (all * map_tactics[k]) / 10;
+      const rate = Number(k) / 100;
+      console.log('k', k)
+      const partRes = part * rate
+      res += partRes;
+      console.log(`part rate partRes, ${part} * ${rate} = ${partRes}\n`)
+    });
+    return res;
+  }
+
+  public doCalcAmount() {
+    console.log('final res', this.calcAmount(process.argv.slice(2)[0]));
+  }
 }
 
 const calcFund = new CalcFund();
 
-calcFund.doCalcAddForReduceLossGains()
-// calcFund.doCalcHSTechnology()
+// calcFund.doCalcAddForReduceLossGains();
+calcFund.doCalcAmount();
 
 declare const process: {
   argv: any[];
