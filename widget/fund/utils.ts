@@ -49,9 +49,13 @@ class CalcFund {
     let res = 0;
     // 策略
     const map_tactics: Record<number | string, number> = {
-      5: 3,
-      7.5: 2,
-      10: 5,
+      '5': 3,
+      '7.5': 2,
+      '10.0': 5,
+      // '5': 2.5,
+      // '7.5': 1.5,
+      // '10.0': 4.5,
+      // '12.5': 1.5
     };
     Object.keys(map_tactics).forEach((k) => {
       const part = (all * map_tactics[k]) / 10;
@@ -59,13 +63,14 @@ class CalcFund {
       console.log('k', k)
       const partRes = part * rate
       res += partRes;
-      console.log(`part rate partRes, ${part} * ${rate} = ${partRes}\n`)
+      console.log(`part rate partRes, ${part} * ${rate} = ${partRes}`)
+      console.log('res', res, '\n')
     });
     return res;
   }
 
   public doCalcAmount() {
-    console.log('final res', this.calcAmount(process.argv.slice(2)[0]));
+    this.calcAmount(process.argv.slice(2)[0]);
   }
 }
 
