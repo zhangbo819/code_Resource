@@ -49,8 +49,9 @@ class CalcFund {
     let res = 0;
     // 策略
     const map_tactics: Record<number | string, number> = {
-      '5': 3,
-      '7.5': 2,
+      '1.5': 1.5,
+      '5': 1.5,
+      '7': 2,
       '10.0': 5,
       // '5': 2.5,
       // '7.5': 1.5,
