@@ -1,7 +1,8 @@
 import React from "react";
 // import { TestRender } from "./components/TestRender";
+// import { TestContext } from "./components/TestContext";
+import { TestSuspense } from "./components/TestSuspense";
 import "./App.css";
-import { TestContext } from "./components/TestContext";
 
 function App() {
   return (
@@ -10,7 +11,9 @@ function App() {
       {/* 测试 render */}
       {/* <TestRender></TestRender> */}
       {/* 测试 Context */}
-      <TestContext></TestContext>
+      {/* <TestContext></TestContext> */}
+      {/* 测试 Suspense */}
+      <TestSuspense></TestSuspense>
     </div>
   );
 }

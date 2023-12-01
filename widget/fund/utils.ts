@@ -77,8 +77,8 @@ class CalcFund {
 
 const calcFund = new CalcFund();
 
-// calcFund.doCalcAddForReduceLossGains();
-calcFund.doCalcAmount();
+calcFund.doCalcAddForReduceLossGains();
+// calcFund.doCalcAmount();
 
 declare const process: {
   argv: any[];
