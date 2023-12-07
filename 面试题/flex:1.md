@@ -8,7 +8,7 @@ flex: flex-grow, flex-shrink 和 flex-basis 的简写
 
 ```css
 .a {
-  flex: 0 1 auto
+  flex: 0 1 auto;
 }
 ```
 
@@ -16,18 +16,16 @@ flex: 1
 
 ```css
 .a {
-  flex: 1 1 0%
+  flex: 1 1 0%;
 }
 ```
 
 ## flex-grow: 定义项目的放大比例
 
 ```css
-
 .item {
-    flex-grow: <number>;
+  flex-grow: <number>;
 }
-
 ```
 
 默认值为 0，即如果存在剩余空间，也不放大
@@ -44,11 +42,9 @@ flex: 1
 ## flex-shrink: 定义了项目的缩小比例
 
 ```css
-
 .item {
-    flex-shrink: <number>;
+  flex-shrink: <number>;
 }
-
 ```
 
 默认值: 1，即如果空间不足，该项目将缩小，负值对该属性无效。
@@ -59,11 +55,9 @@ flex: 1
 ## flex-basis: 定义了在分配多余空间之前，项目占据的主轴空间，浏览器根据这个属性，计算主轴是否有多余空间
 
 ```css
-
 .item {
-    flex-basis: <length> | auto;
+  flex-basis: <length> | auto;
 }
-
 ```
 
 默认值：auto，即项目本来的大小, 这时候 item 的宽高取决于 width 或 height 的值。
