@@ -2,11 +2,11 @@
 
 本质上是为了**提升效率、减少错误**
 
-1. 打包构建 Webpack / vite / Rollup / gulp，生产 dev
+1. 打包构建 Webpack / Vite / Rollup / Gulp，生产 dev
 2. 组件库、微前端
-3. BFF，node 层
+3. BFF，Node 层
 4. 脚手架、实用脚本
-5. 前端规范，代码规范、提交规范、格式化工具、TS、IDE、ESLint、prettierr
+5. 前端规范，代码规范、提交规范、格式化工具、TS、IDE、ESLint、prettier
 6. 线上监控平台，性能、报错、用户行为埋点
 
 ## 知识点
@@ -121,7 +121,7 @@ http.createService(...).listen(3000);
 - Rollup 设计之初相对于其他打包器由如下不同
 
   - 输出文件组织形式不同，其他打包器，比如 Webpack 会在输出文件中实现自定义的 require 函数，将各个模块的代码添加进行进一步包装，这种处理会对 bundle 的大小带来明显问题；而 Rollup 只是将它们在同一个文件中按顺序解决依赖关系，重命名解决全局作用域问题，不会添加另外的代码。
-  - es6 的模块化语法带来了 tree shaking
+  - ES6 的模块化语法带来了 tree shaking
 
 - Rollup 官方解析：Rollup 是一个 JavaScript 模块打包器，可以将小块代码编译成大块复杂的代码，例如 library 或应用程序
 
@@ -140,7 +140,9 @@ http.createService(...).listen(3000);
   - mint-ui
   - vue 脚手架项目
 
-从上面使用场景可以大概分析出，Rollup 偏向应用于 js 库，Webpack 偏向应用于前端工程，UI 库；如果你的应用场景中只是 js 代码，希望做 ES 转换，模块解析，可以使用 Rollup。如果你的场景中涉及到 css、html，涉及到复杂的代码拆分合并，建议使用 Webpack。
+从上面使用场景可以大概分析出，Rollup 偏向应用于 js 库，Webpack 偏向应用于前端工程，UI 库；
+- 如果你的应用场景中只是 js 代码，希望做 ES 转换，模块解析，可以使用 Rollup。
+- 如果你的场景中涉及到 css、html，涉及到复杂的代码拆分合并，建议使用 Webpack。
 
 从应用场景上来看：
 
@@ -170,7 +172,7 @@ http.createService(...).listen(3000);
 ### 什么是Webpack的热更新（Hot Module Replacement）？原理是什么？
 
 Webpack 的热更新（Hot Module Replacement，简称HMR），在不刷新页面的前提下，将新代码替换掉旧代码。
-HRM 的原理实际上是 webpack-dev-server（WDS）和浏览器之间维护了一个 websocket 服务。当本地资源发生变化后，webpack 会先将打包生成新的模块代码放入内存中，然后 WDS 向浏览器推送更新，并附带上构建时的 hash，让客户端和上一次资源进行对比。客户端对比出差异后会向 WDS 发起 Ajax 请求获取到更改后的内容（文件列表、hash），通过这些信息再向 WDS 发起 jsonp 请求获取到最新的模块代码。
+HRM 的原理实际上是 webpack-dev-server（WDS）和浏览器之间维护了一个 websocket 服务。当本地资源发生变化后，Webpack 会先将打包生成新的模块代码放入内存中，然后 WDS 向浏览器推送更新，并附带上构建时的 hash，让客户端和上一次资源进行对比。客户端对比出差异后会向 WDS 发起 Ajax 请求获取到更改后的内容（文件列表、hash），通过这些信息再向 WDS 发起 JSONP 请求获取到最新的模块代码。
 
 ### hash、chunkhash、contenthash
 
@@ -182,7 +184,7 @@ HRM 的原理实际上是 webpack-dev-server（WDS）和浏览器之间维护了
 
 - style-loader 将 css-loader 生成的样式表通过`<style>`标签，插入到页面中去。
 - css-loader 用来解释 `@import 和 url()`
-- less-loader sass-loader 转化为普通 css
+- less-loader、sass-loader 转化为普通 css
 - postcss-loader
 
   - 把 css 解析成 JS 可以操作的抽象语法树 AST
@@ -266,8 +268,8 @@ class MyPlugin {
 
 ### Webpack 性能优化
 
-[Webpack 进阶之性能优化(Webpack5 最新版本)](https://juejin.cn/post/7244819106342780988?searchId=202310171518474A5AA87860BF08DDDF2C#heading-23)
-[webpack 5高级配置优化](https://juejin.cn/post/7121129785501155341?from=search-suggest)
+[Webpack 进阶之性能优化(Webpack 5 最新版本)](https://juejin.cn/post/7244819106342780988?searchId=202310171518474A5AA87860BF08DDDF2C#heading-23)
+[Webpack 5 高级配置优化](https://juejin.cn/post/7121129785501155341?from=search-suggest)
 
 - 优化构建速度
   - 定向查找
@@ -333,9 +335,9 @@ class MyPlugin {
   - 合理使用缓存
     - babel-loader 开启缓存
     - cache-loader
-    - Webpack5 配置 cache.type
-    - EsLint, ESLintWebpackPlugin
-    - webpack 持久化缓存, `cache: filesystem`
+    - Webpack 5 配置 cache.type
+    - ESLint, ESLintWebpackPlugin
+    - Webpack 持久化缓存, `cache: filesystem`
     ```js
     module.exports = {
       cache: {
@@ -437,8 +439,8 @@ class MyPlugin {
         ]
       }
       ```
-    - 对于 Webpack4 及以下 使用的是 optimize-css-assets-webpack-plugin 插件来压缩 css。
-    - 在 Webpack5 中推荐使用的是 css-minimizer-webpack-plugin。
+    - 对于 Webpack 4 及以下使用的是 optimize-css-assets-webpack-plugin 插件来压缩 css。
+    - 在 Webpack 5 中推荐使用的是 css-minimizer-webpack-plugin。
     - PurgeCSS，无用 css 的擦除 [官网链接](https://purgecss.com/plugins/webpack.html)
       ```js
       const { PurgeCSSPlugin } = require("purgecss-webpack-plugin");

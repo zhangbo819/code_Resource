@@ -85,7 +85,7 @@ res.then((r) => {
 
 ## 永鼎
 
-vue路由守卫，动态路由
+vue 路由守卫，动态路由
 vue 计算属性 两种
 useReduce
 react最新版更新
@@ -138,7 +138,7 @@ setTimeout 和 requestAnimationFrame 、requestIdleCallback
 React Hook 和 Class 组件的区别
 Vue 双向绑定原理
 Vue2 和 Vue3 区别
-做过一些 webpack 的配置吗
+做过一些 Webpack 的配置吗
 Vite 和 Webpack 的区别
 移动端适配如何做（像素），了解 vw、vh 吗
 强缓存、协商缓存
