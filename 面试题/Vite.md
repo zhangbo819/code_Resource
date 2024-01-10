@@ -8,4 +8,4 @@
 
 ## 参考链接
 
-[外链 - 深入理解Vite核心原理](https://juejin.cn/post/7064853960636989454#heading-25)
+[外链 - 深入理解 Vite 核心原理](https://juejin.cn/post/7064853960636989454#heading-25)
