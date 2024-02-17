@@ -49,12 +49,12 @@ class CalcFund {
     let res = 0;
     // 策略
     const map_tactics: Record<number | string, number> = {
-      '0': 1, // 4000 进
-      '1': 1,
-      '3': 1,
-      '6': 3, // -6 翻倍
-      '7': 1, // 附近再补
-      '10': 3  // 再下3个
+      "0": 1, // 4000 进
+      "1": 1,
+      "3": 1,
+      "6": 3, // -6 翻倍
+      "7": 1, // 附近再补
+      "10": 3, // 再下3个
       // '1.5': 1.5,
       // '5': 1.5,
       // '7': 2,
@@ -67,11 +67,11 @@ class CalcFund {
     Object.keys(map_tactics).forEach((k) => {
       const part = (all * map_tactics[k]) / 10;
       const rate = Number(k) / 100;
-      console.log('k', k)
-      const partRes = part * rate
+      console.log("k", k);
+      const partRes = part * rate;
       res += partRes;
-      console.log(`part rate partRes, ${part} * ${rate} = ${partRes}`)
-      console.log('res', res, '\n')
+      console.log(`part rate partRes, ${part} * ${rate} = ${partRes}`);
+      console.log("res", res, "\n");
     });
     return res;
   }
@@ -79,12 +79,39 @@ class CalcFund {
   public doCalcAmount() {
     this.calcAmount(process.argv.slice(2)[0]);
   }
+
+  // 计算在当前位置需要涨百分之多少才能达到指定的金额
+  // 17.2, 3.5
+  private calcPercentageFormValue($now: number, $add: number) {
+    let target = $now;
+    let res = 0;
+
+    const step = 0.01;
+
+    while ($now + $add > target) {
+      target *= 1 + step;
+      res += step;
+      // console.log("target", target);
+    }
+
+    return Number((res * 100).toFixed(7)) + "%";
+  }
+
+  public doCalcPercentageFormValue() {
+    console.log(
+      "需要涨",
+      this.calcPercentageFormValue(
+        ...(process.argv.slice(2).map((i) => Number(i)) as [number, number])
+      )
+    );
+  }
 }
 
 const calcFund = new CalcFund();
 
-calcFund.doCalcAddForReduceLossGains();
+// calcFund.doCalcAddForReduceLossGains();
 // calcFund.doCalcAmount();
+calcFund.doCalcPercentageFormValue();
 
 declare const process: {
   argv: any[];

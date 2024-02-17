@@ -92,6 +92,12 @@ docker logs CONTAINER_ID -f -t
 
 ```
 
+- 查看前 100 行
+
+```sh
+docker logs -f -t CONTAINER_ID | head -n 100
+```
+
 (外链 - docker logs－查看docker容器日志)[https://www.jianshu.com/p/1eb1d1d3f25e]
 
 ## docker compose
