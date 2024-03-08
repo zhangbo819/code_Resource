@@ -88,7 +88,7 @@ res.then((r) => {
 vue 路由守卫，动态路由
 vue 计算属性 两种
 useReduce
-react最新版更新
+react 最新版更新
 （框架使用偏多）
 
 ## 用友
@@ -105,7 +105,7 @@ useEffect 用的时候遇到过哪些问题，useEffect 中的闭包陷阱有了
 
 rollup 配置
 项目如何配置 ts
-dep 和 watcher的 关系
+dep 和 watcher 的 关系
 原型、原型链
 CSRF、跨域 cookie，用 image 请求了一个其他域名的图片会携带 cookie 吗，cookie 有请求方法限制吗
 setTimeout 和 requestAnimationFrame 、requestIdleCallback
