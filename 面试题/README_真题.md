@@ -185,7 +185,7 @@ js 数据类型, 说说 Symbol
 跨域
 ts 用的多吗，说说常用的高阶类型
 redux 和 useContext 有什么区别
-react hook 用了哪些，用过哪些其他的 hook 库，看过里面怎么实现的吗，说说自己写的hook
+react hook 用了哪些，用过哪些其他的 hook 库，看过里面怎么实现的吗，说说自己写的 hook
 react 性能优化
 React.memo 第二个参数
 平时用过哪些设计模式
@@ -194,7 +194,7 @@ React.memo 第二个参数
 
 区块链钱包项目我做了什么，底层有了解吗
 css 渐变边框、渐变文字
-react hook 用了哪些，说说自己实现的一个自定义hook，hook 底层有了解吗
+react hook 用了哪些，说说自己实现的一个自定义 hook，hook 底层有了解吗
 Vue2 和 Vue3 响应式原理
 实现 New
 call、apply、bind
@@ -209,21 +209,21 @@ call、apply、bind
 
 ## 字节 抖音
 
-Css如何隐藏一个元素
-position的各个属性, 各个属性相对于谁进行定位的
+Css 如何隐藏一个元素
+position 的各个属性, 各个属性相对于谁进行定位的
 flex：1
-flex所有属性
-实现css宽高比二比一
-Clientwidth等都是什么
-Vue中怎么判断一个ref
+flex 所有属性
+实现 css 宽高比二比一
+Clientwidth 等都是什么
+Vue 中怎么判断一个 ref
 说下依赖收集
-Vue3编译优化
-给一个标签，使用h函数描述
+Vue3 编译优化
+给一个标签，使用 h 函数描述
 手写 判断合法的 ‘[]{}()’
 
 ## 猎聘一面
 
-Cookie 跨域问题 -> withCredentials设置为true
+Cookie 跨域问题 -> withCredentials 设置为 true
 微前端的优势
 箭头函数和普通函数的区别
 类数组如何转换为普通数组 1.Array.prototype.slice.call() 2.Array.form 3. […arguments]
@@ -232,14 +232,14 @@ Cookie 跨域问题 -> withCredentials设置为true
 
 ## 猎聘二面
 
-http状态码
-http版本号 我们用的什么版本 前端需要注意什么
+http 状态码
+http 版本号 我们用的什么版本 前端需要注意什么
 前端安全性
-nginx配置问题
+nginx 配置问题
 ts、自动化测试
-webpack打包速度优化
+webpack 打包速度优化
 
-## boss一面
+## boss 一面
 
 Cookie, 设置域名
 
@@ -257,37 +257,37 @@ Vue两种路由
 微前端原理、遇到的问题
 webpack如何优化
 
-## boss二面
+## boss 二面
 
-如何检测线上bug -> 检测平台、检测指标, 如何获取到全局报错
+如何检测线上 bug -> 检测平台、检测指标, 如何获取到全局报错
 页面有若干个图片，检测下载进度
 多页面应用，有一个通用的提示条，在一个页面关闭，让其在一段时间内全部页面都不显示，纯前端如何实现
-React组件通信
-React不可变数据
+React 组件通信
+React 不可变数据
 跨域问题
-Cookie怎么配置跨域
-前端安全性，XSS，CSRF攻击，是什么如何防止
+Cookie 怎么配置跨域
+前端安全性，XSS，CSRF 攻击，是什么如何防止
 
 ## 用友一面
 
 如何设计组件
-Vue动态路由怎么做 -> addRoutes
+Vue 动态路由怎么做 -> addRoutes
 继承，组合继承 -> 录入
 事件代理是什么及原理 -> 原理是时间冒泡
 事件循环机制 -> 
-Vue响应式原理 
-为什么data是一个函数 -> 避免组件复用引发的引用类型数据污染问题
-性能优化 -> 最主要的点Webpack了解，压缩Vue生命周期 -> 8个 创建、挂载、更新、销毁，每个都有before，和完成后
+Vue 响应式原理 
+为什么 data 是一个函数 -> 避免组件复用引发的引用类型数据污染问题
+性能优化 -> 最主要的点 Webpack 了解，压缩 Vue 生命周期 -> 8个 创建、挂载、更新、销毁，每个都有before，和完成后
 
 
 ## 逍遥志
 
-Vue和react区别
+Vue 和 react 区别
 水平垂直居中
-react hook，useMemo和useCallback区别
+react hook，useMemo 和 useCallback区别
 事件循环
-从浏览器输入url到页面解析
-webpack优化
+从浏览器输入 url 到页面解析
+webpack 优化
 防抖
 
 ## Cider 一面
@@ -295,14 +295,14 @@ webpack优化
 移动端适配, rem
 积分商城项目搭建问题
 flex: 1
-css动画 只播放一次 的属性是什么
-Margin-top移动到父级是为什么
+css 动画 只播放一次的属性是什么
+Margin-top 移动到父级是为什么
 能说下缓存吗（强缓存、协商缓存）
 箭头函数和普通函数的区别
 说下原型和原型链，顺便说下原型链终点是什么
-Vue.nextTick什么场景用
-Vue父子组件从创建到挂载生命周期
-Js事件循环
+Vue.nextTick 什么场景用
+Vue 父子组件从创建到挂载生命周期
+Js 事件循环
 
 ```js
 new Promise((resolve) => {
@@ -328,9 +328,9 @@ new Promise((resolve) => {
 promise 执行顺序
 promise.all 及 如果有一个出错 怎么排查
 flex:1
-Vue 计算属性和watch
-Vue响应式原理
-Vueloader作用
+Vue 计算属性和 watch
+Vue 响应式原理
+Vueloader 作用
 微前端原理
 
 ## 美餐 一面
@@ -338,7 +338,7 @@ Vueloader作用
 科里化
 flex
 怎么取消一个请求, 很多个请求可以只取消固定的几个，或者全部都取消
-咋设计一个sdk
+咋设计一个 sdk
 
 ## 洛凯云享
 
