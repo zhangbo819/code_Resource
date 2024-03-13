@@ -14,7 +14,7 @@ f1()
 
 setTimeout(() => {
     console.log(7)
-    f2()
+    // f2()
 })
 
 new Promise((resolve) => {
