@@ -62,7 +62,7 @@
 
 ## offsetWidth、offsetLeft、clientWidth和scrollWidth
 
-[内链 - clientWidth和offset](./clientWidth和offset.md)
+[内链 - clientWidth 和 offset](./clientWidth和offset.md)
 
 ## js 事件循环
 
