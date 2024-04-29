@@ -20,13 +20,16 @@ function threeDoor(time = 10000, n = 3) {
         const car = Math.floor(Math.random() * maxNumber) // 0 1 2 3
         // 第一次选择的位置
         const firstChoose = Math.floor(Math.random() * maxNumber) // 0 1 2 3
-        // 排除掉的位置
-        const exclude = data.filter(i => i !== firstChoose && i !== car)[0]
+        // 可以排除掉的位置数组
+        const excludes = data.filter(i => i !== firstChoose && i !== car)
+        // 排除掉的位置 随机找一个
+        const exclude = excludes[Math.floor(Math.random() * excludes.length)]
+        // const exclude = excludes[0] // 取0时，永远取不到最后一位
         // 剩余的门
         const newDoors = data.filter(i => i !== exclude && i !== firstChoose)
         // 新选择的位置
         const newChoose = newDoors[Math.floor(Math.random() * newDoors.length)] // right 37.5%
-        // const newChoose = newDoors[0] // error 50% ??
+        // const newChoose = newDoors[0] // error 50%
 
         if (newChoose === car) {
             res_change.win++
