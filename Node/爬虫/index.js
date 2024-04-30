@@ -3,7 +3,7 @@ const axios = require("axios");
 const fs = require("fs");
 const utils = require("./utils");
 
-const targetYear = 2021;
+const targetYear = 2023;
 const targetPart = "china";
 // const targetPart = 'world'
 
