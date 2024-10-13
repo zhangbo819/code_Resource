@@ -57,6 +57,29 @@ docker container stop CONTAINER_ID
 docker container rm CONTAINER_ID
 ```
 
+- 进入一个容器
+
+```sh
+docker exec -it [コンテナ名] /bin/bash
+```
+
+如果报错
+
+```
+OCI runtime exec failed: exec failed: unable to start container process: exec: "/bin/bash": stat /bin/bash: no such file or directory: unknown
+```
+执行
+
+```sh
+docker exec -it [コンテナ名] sh
+```
+
+再执行
+
+```sh
+docker exec -it [コンテナ名] /bin/sh
+```
+
 ## 镜像
 
 - 查看镜像列表
