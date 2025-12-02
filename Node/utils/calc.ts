@@ -14,18 +14,18 @@ function fn(a: number, b: number) {
 
 type param = [a: number, b: number][]
 
-function fn2(d: param) {
-  let res = { n: 0, xj: 0, gj: 0 }
-  d.forEach((i) => {
-    const item = fn.apply(this, i)
-    console.log(item)
-    res.n += item.n
-    res.xj += item.xj
-    res.gj += item.gj
-  })
-  console.log(res)
-  // obj: { n: number, xj: number, gj: number }, 
-}
+// function fn2(d: param) {
+//   let res = { n: 0, xj: 0, gj: 0 }
+//   d.forEach((i) => {
+//     const item = fn.apply(this, i)
+//     console.log(item)
+//     res.n += item.n
+//     res.xj += item.xj
+//     res.gj += item.gj
+//   })
+//   console.log(res)
+//   // obj: { n: number, xj: number, gj: number }, 
+// }
 
 function to(s: string) {
   let r: param = []
@@ -38,4 +38,18 @@ function to(s: string) {
 
 // console.log(fn())
 // console.log(fn2)
-fn2(to(process.argv[2]))
+// fn2(to(process.argv[2]))
+
+function fn3 (base: number, increase: number) {
+    let x = base;
+    let n = 0;
+
+    while (x < base + increase) {
+      x *= 1.01
+      n++
+    }
+
+    return n
+}
+// console.log(fn3(14, 2.3))
+console.log(fn3(15.5, 2.3))
