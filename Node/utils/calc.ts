@@ -51,5 +51,5 @@ function fn3 (base: number, increase: number) {
 
     return n
 }
-// console.log(fn3(14, 2.3))
-console.log(fn3(15.5, 2.3))
+// console.log(fn3(14.1, 2.3))
+console.log(fn3(14.5, 2.3))
