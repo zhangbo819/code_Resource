@@ -1,0 +1,12 @@
+{
+  "name": "cpp",
+  "description": "learn c++",
+  "version": "1.0.0",
+  "main": "main.cpp",
+  "scripts": {
+    "test": "g++ *.cpp ./src/*.cpp -o ./build/app  && ./build/app",
+    "module": "g++ main.cpp helloworld.cpp -o ./build/app  && ./build/app"
+  },
+  "author": "zzb",
+  "license": "ISC"
+}
