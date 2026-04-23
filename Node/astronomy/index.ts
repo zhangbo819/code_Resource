@@ -2,7 +2,7 @@ import planets from "./planets";
 
 // ts-node index.ts
 // 测试数据
-const data = planets.planetsHouses.getData(new Date(), 8);
+const data = planets.planetsHouses.getData(new Date());
 
 // console.log("基础信息", data);
 console.log(

@@ -1,5 +1,5 @@
-import { Body, Ecliptic, GeoVector } from "astronomy-engine";
-import swisseph from "swisseph";
+import { Body, Ecliptic, GeoVector } from "astronomy-engine"; // Astronomy Engine 轻量计算
+import swisseph from "swisseph"; // Swiss Ephemeris 完整占星系统 
 
 const SIGNS = [
   "Aries",
@@ -66,6 +66,25 @@ function getPlanetInfo(body: Body, date: Date) {
 // 拿到10行星的经度 落座 度数
 function getAllPlanets(date = new Date()) {
   return BODIES.map((body) => getPlanetInfo(body, date));
+}
+
+// 判断是否逆行
+function isRetrograde(body: Body, date: Date) {
+  // 日月不会逆行
+  if (body === Body.Sun || body === Body.Moon) return false;
+
+  const dt = 60 * 60 * 1000; // 一小时
+  
+  const lon1 = getPlanetInfo(body, date).longitude;
+  const lon2 = getPlanetInfo(body, new Date(date.getTime() + dt)).longitude;
+
+  let diff = lon2 - lon1; // 每小时移动多少度
+
+  // 处理跨360°
+  if (diff > 180) diff -= 360;
+  if (diff < -180) diff += 360;
+
+  return diff < 0;
 }
 
 // 宫位
@@ -174,11 +193,12 @@ class PlanetsHouses {
       Lat_Lon.chiba.lat,
       Lat_Lon.chiba.lon,
     );
-    // console.log("houseData", houseData);
+    console.log("houseData", houseData);
 
     const data: PlanetItem[] = planets.map((p) => ({
       ...p,
       house: this._getHouseIndex(p.longitude, houseData.houses),
+      retrograde: isRetrograde(p.name, date),
     }));
 
     // 四轴
