@@ -58,9 +58,9 @@ function getPlanetInfo(body: Body, date: Date) {
 
   return {
     name: body,
-    longitude: lon,
     sign: SIGNS[Math.floor(lon / 30)],
     degree: +(lon % 30).toFixed(2),
+    longitude: lon,
   };
 }
 

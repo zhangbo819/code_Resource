@@ -4,6 +4,7 @@ import { planetsHouses } from "./houses";
 // ts-node index.ts
 // 测试数据
 
+// 是否用宫位
 const withoutHouse = true;
 
 if (withoutHouse) {
@@ -25,9 +26,9 @@ if (withoutHouse) {
     housesData.planets.find((i) => i.name === "Moon"),
   );
 }
-
 // const xiangwei = phasePosition.calculateAspects([
 //   ...housesData.planets,
 //   housesData.angles.find((i) => i.name === "ASC"), // 只计算上升的相位
 // ]);
 // console.log("相位", xiangwei);
+
