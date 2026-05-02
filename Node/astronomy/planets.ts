@@ -65,7 +65,7 @@ function getPlanetInfo(body: Body, date: Date) {
 }
 
 // 拿到10行星的经度 落座 度数
-export function getAllPlanets(date = new Date()) {
+export function getAllPlanets(date = new Date()): PlanetItem[] {
   return BODIES.map((body) => ({
     ...getPlanetInfo(body, date),
     retrograde: isRetrograde(body, date),
