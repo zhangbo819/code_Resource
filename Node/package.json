@@ -18,7 +18,7 @@
     "@google/genai": "^2.8.0",
     "archiver": "^3.0.0",
     "astronomy-engine": "^2.1.19",
-    "axios": "^1.15.0",
+    "axios": "^1.18.0",
     "babel-preset-es2015": "^6.24.1",
     "cheerio": "^1.0.0-rc.10",
     "commander": "^2.20.0",
